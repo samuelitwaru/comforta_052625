@@ -72,44 +72,35 @@ namespace GeneXus.Programs {
          AV12SupplierCount = 0;
          AV14Udparg1 = new prc_getuserorganisationid(context).executeUdp( );
          /* Using cursor P00ES3 */
-         pr_default.execute(0);
+         pr_default.execute(0, new Object[] {AV14Udparg1});
          while ( (pr_default.getStatus(0) != 101) )
          {
             A602SG_LocationSupplierOrganisatio = P00ES3_A602SG_LocationSupplierOrganisatio[0];
             n602SG_LocationSupplierOrganisatio = P00ES3_n602SG_LocationSupplierOrganisatio[0];
             A603SG_LocationSupplierLocationId = P00ES3_A603SG_LocationSupplierLocationId[0];
             n603SG_LocationSupplierLocationId = P00ES3_n603SG_LocationSupplierLocationId[0];
-            A584ActiveAppVersionId = P00ES3_A584ActiveAppVersionId[0];
-            n584ActiveAppVersionId = P00ES3_n584ActiveAppVersionId[0];
-            A598PublishedActiveAppVersionId = P00ES3_A598PublishedActiveAppVersionId[0];
-            n598PublishedActiveAppVersionId = P00ES3_n598PublishedActiveAppVersionId[0];
+            A630ToolBoxLastUpdateReceptionistI = P00ES3_A630ToolBoxLastUpdateReceptionistI[0];
+            n630ToolBoxLastUpdateReceptionistI = P00ES3_n630ToolBoxLastUpdateReceptionistI[0];
+            A89ReceptionistId = P00ES3_A89ReceptionistId[0];
+            A29LocationId = P00ES3_A29LocationId[0];
             A42SupplierGenId = P00ES3_A42SupplierGenId[0];
             n42SupplierGenId = P00ES3_n42SupplierGenId[0];
             A601SG_OrganisationSupplierId = P00ES3_A601SG_OrganisationSupplierId[0];
             n601SG_OrganisationSupplierId = P00ES3_n601SG_OrganisationSupplierId[0];
             A40000GXC1 = P00ES3_A40000GXC1[0];
             n40000GXC1 = P00ES3_n40000GXC1[0];
-            A584ActiveAppVersionId = P00ES3_A584ActiveAppVersionId[0];
-            n584ActiveAppVersionId = P00ES3_n584ActiveAppVersionId[0];
-            A598PublishedActiveAppVersionId = P00ES3_A598PublishedActiveAppVersionId[0];
-            n598PublishedActiveAppVersionId = P00ES3_n598PublishedActiveAppVersionId[0];
+            A630ToolBoxLastUpdateReceptionistI = P00ES3_A630ToolBoxLastUpdateReceptionistI[0];
+            n630ToolBoxLastUpdateReceptionistI = P00ES3_n630ToolBoxLastUpdateReceptionistI[0];
             A40000GXC1 = P00ES3_A40000GXC1[0];
             n40000GXC1 = P00ES3_n40000GXC1[0];
             /* Using cursor P00ES4 */
             pr_default.execute(1, new Object[] {n602SG_LocationSupplierOrganisatio, A602SG_LocationSupplierOrganisatio});
             pr_default.close(1);
-            /* Using cursor P00ES5 */
-            pr_default.execute(2, new Object[] {n584ActiveAppVersionId, A584ActiveAppVersionId});
-            pr_default.close(2);
-            /* Using cursor P00ES6 */
-            pr_default.execute(3, new Object[] {n598PublishedActiveAppVersionId, A598PublishedActiveAppVersionId});
-            pr_default.close(3);
             AV12SupplierCount = (short)(A40000GXC1);
             pr_default.readNext(0);
          }
          pr_default.close(0);
          pr_default.close(1);
-         pr_default.close(3);
          cleanup();
       }
 
@@ -123,22 +114,18 @@ namespace GeneXus.Programs {
          ExitApp();
       }
 
-      protected override void CloseCursors( )
-      {
-         pr_default.close(2);
-      }
-
       public override void initialize( )
       {
          AV14Udparg1 = Guid.Empty;
+         P00ES3_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00ES3_A602SG_LocationSupplierOrganisatio = new Guid[] {Guid.Empty} ;
          P00ES3_n602SG_LocationSupplierOrganisatio = new bool[] {false} ;
          P00ES3_A603SG_LocationSupplierLocationId = new Guid[] {Guid.Empty} ;
          P00ES3_n603SG_LocationSupplierLocationId = new bool[] {false} ;
-         P00ES3_A584ActiveAppVersionId = new Guid[] {Guid.Empty} ;
-         P00ES3_n584ActiveAppVersionId = new bool[] {false} ;
-         P00ES3_A598PublishedActiveAppVersionId = new Guid[] {Guid.Empty} ;
-         P00ES3_n598PublishedActiveAppVersionId = new bool[] {false} ;
+         P00ES3_A630ToolBoxLastUpdateReceptionistI = new Guid[] {Guid.Empty} ;
+         P00ES3_n630ToolBoxLastUpdateReceptionistI = new bool[] {false} ;
+         P00ES3_A89ReceptionistId = new Guid[] {Guid.Empty} ;
+         P00ES3_A29LocationId = new Guid[] {Guid.Empty} ;
          P00ES3_A42SupplierGenId = new Guid[] {Guid.Empty} ;
          P00ES3_n42SupplierGenId = new bool[] {false} ;
          P00ES3_A601SG_OrganisationSupplierId = new Guid[] {Guid.Empty} ;
@@ -147,28 +134,20 @@ namespace GeneXus.Programs {
          P00ES3_n40000GXC1 = new bool[] {false} ;
          A602SG_LocationSupplierOrganisatio = Guid.Empty;
          A603SG_LocationSupplierLocationId = Guid.Empty;
-         A584ActiveAppVersionId = Guid.Empty;
-         A598PublishedActiveAppVersionId = Guid.Empty;
+         A630ToolBoxLastUpdateReceptionistI = Guid.Empty;
+         A89ReceptionistId = Guid.Empty;
+         A29LocationId = Guid.Empty;
          A42SupplierGenId = Guid.Empty;
          A601SG_OrganisationSupplierId = Guid.Empty;
          P00ES4_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P00ES4_n11OrganisationId = new bool[] {false} ;
-         P00ES5_A523AppVersionId = new Guid[] {Guid.Empty} ;
-         P00ES6_A523AppVersionId = new Guid[] {Guid.Empty} ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_countsuppliers__default(),
             new Object[][] {
                 new Object[] {
-               P00ES3_A602SG_LocationSupplierOrganisatio, P00ES3_n602SG_LocationSupplierOrganisatio, P00ES3_A603SG_LocationSupplierLocationId, P00ES3_n603SG_LocationSupplierLocationId, P00ES3_A584ActiveAppVersionId, P00ES3_n584ActiveAppVersionId, P00ES3_A598PublishedActiveAppVersionId, P00ES3_n598PublishedActiveAppVersionId, P00ES3_A42SupplierGenId, P00ES3_A601SG_OrganisationSupplierId,
-               P00ES3_n601SG_OrganisationSupplierId, P00ES3_A40000GXC1, P00ES3_n40000GXC1
+               P00ES3_A11OrganisationId, P00ES3_A602SG_LocationSupplierOrganisatio, P00ES3_n602SG_LocationSupplierOrganisatio, P00ES3_A603SG_LocationSupplierLocationId, P00ES3_n603SG_LocationSupplierLocationId, P00ES3_A630ToolBoxLastUpdateReceptionistI, P00ES3_n630ToolBoxLastUpdateReceptionistI, P00ES3_A89ReceptionistId, P00ES3_A29LocationId, P00ES3_A42SupplierGenId,
+               P00ES3_A601SG_OrganisationSupplierId, P00ES3_n601SG_OrganisationSupplierId, P00ES3_A40000GXC1, P00ES3_n40000GXC1
                }
                , new Object[] {
                P00ES4_A11OrganisationId
-               }
-               , new Object[] {
-               P00ES5_A523AppVersionId
-               }
-               , new Object[] {
-               P00ES6_A523AppVersionId
                }
             }
          );
@@ -179,30 +158,31 @@ namespace GeneXus.Programs {
       private int A40000GXC1 ;
       private bool n602SG_LocationSupplierOrganisatio ;
       private bool n603SG_LocationSupplierLocationId ;
-      private bool n584ActiveAppVersionId ;
-      private bool n598PublishedActiveAppVersionId ;
+      private bool n630ToolBoxLastUpdateReceptionistI ;
       private bool n42SupplierGenId ;
       private bool n601SG_OrganisationSupplierId ;
       private bool n40000GXC1 ;
       private Guid AV14Udparg1 ;
       private Guid A602SG_LocationSupplierOrganisatio ;
       private Guid A603SG_LocationSupplierLocationId ;
-      private Guid A584ActiveAppVersionId ;
-      private Guid A598PublishedActiveAppVersionId ;
+      private Guid A630ToolBoxLastUpdateReceptionistI ;
+      private Guid A89ReceptionistId ;
+      private Guid A29LocationId ;
       private Guid A42SupplierGenId ;
       private Guid A601SG_OrganisationSupplierId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
+      private Guid[] P00ES3_A11OrganisationId ;
       private Guid[] P00ES3_A602SG_LocationSupplierOrganisatio ;
       private bool[] P00ES3_n602SG_LocationSupplierOrganisatio ;
       private Guid[] P00ES3_A603SG_LocationSupplierLocationId ;
       private bool[] P00ES3_n603SG_LocationSupplierLocationId ;
-      private Guid[] P00ES3_A584ActiveAppVersionId ;
-      private bool[] P00ES3_n584ActiveAppVersionId ;
-      private Guid[] P00ES3_A598PublishedActiveAppVersionId ;
-      private bool[] P00ES3_n598PublishedActiveAppVersionId ;
+      private Guid[] P00ES3_A630ToolBoxLastUpdateReceptionistI ;
+      private bool[] P00ES3_n630ToolBoxLastUpdateReceptionistI ;
+      private Guid[] P00ES3_A89ReceptionistId ;
+      private Guid[] P00ES3_A29LocationId ;
       private Guid[] P00ES3_A42SupplierGenId ;
       private bool[] P00ES3_n42SupplierGenId ;
       private Guid[] P00ES3_A601SG_OrganisationSupplierId ;
@@ -210,9 +190,6 @@ namespace GeneXus.Programs {
       private int[] P00ES3_A40000GXC1 ;
       private bool[] P00ES3_n40000GXC1 ;
       private Guid[] P00ES4_A11OrganisationId ;
-      private bool[] P00ES4_n11OrganisationId ;
-      private Guid[] P00ES5_A523AppVersionId ;
-      private Guid[] P00ES6_A523AppVersionId ;
       private short aP0_SupplierCount ;
    }
 
@@ -224,8 +201,6 @@ namespace GeneXus.Programs {
          return new Cursor[] {
           new ForEachCursor(def[0])
          ,new ForEachCursor(def[1])
-         ,new ForEachCursor(def[2])
-         ,new ForEachCursor(def[3])
        };
     }
 
@@ -236,24 +211,15 @@ namespace GeneXus.Programs {
        {
           Object[] prmP00ES3;
           prmP00ES3 = new Object[] {
+          new ParDef("AV14Udparg1",GXType.UniqueIdentifier,36,0)
           };
           Object[] prmP00ES4;
           prmP00ES4 = new Object[] {
           new ParDef("SG_LocationSupplierOrganisatio",GXType.UniqueIdentifier,36,0){Nullable=true}
           };
-          Object[] prmP00ES5;
-          prmP00ES5 = new Object[] {
-          new ParDef("ActiveAppVersionId",GXType.UniqueIdentifier,36,0){Nullable=true}
-          };
-          Object[] prmP00ES6;
-          prmP00ES6 = new Object[] {
-          new ParDef("PublishedActiveAppVersionId",GXType.UniqueIdentifier,36,0){Nullable=true}
-          };
           def= new CursorDef[] {
-              new CursorDef("P00ES3", "SELECT T1.SG_LocationSupplierOrganisatio AS SG_LocationSupplierOrganisatio, T1.SG_LocationSupplierLocationId AS SG_LocationSupplierLocationId, T2.ActiveAppVersionId, T2.PublishedActiveAppVersionId, T1.SupplierGenId, T1.SG_OrganisationSupplierId, COALESCE( T3.GXC1, 0) AS GXC1 FROM ((Trn_SupplierGen T1 LEFT JOIN Trn_Location T2 ON T2.LocationId = T1.SG_LocationSupplierLocationId AND T2.OrganisationId = T1.SG_LocationSupplierOrganisatio) LEFT JOIN LATERAL (SELECT COUNT(*) AS GXC1, SupplierGenId, LocationId, OrganisationId FROM Trn_ProductService WHERE T1.SupplierGenId = SupplierGenId and T1.SG_LocationSupplierLocationId = LocationId and T1.SG_OrganisationSupplierId = OrganisationId GROUP BY SupplierGenId, LocationId, OrganisationId ) T3 ON T3.SupplierGenId = T1.SupplierGenId AND T3.LocationId = T1.SG_LocationSupplierLocationId AND T3.OrganisationId = T1.SG_OrganisationSupplierId) ORDER BY T1.SupplierGenId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00ES3,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P00ES3", "SELECT T3.OrganisationId, T1.SG_LocationSupplierOrganisatio AS SG_LocationSupplierOrganisatio, T1.SG_LocationSupplierLocationId AS SG_LocationSupplierLocationId, T2.ToolBoxLastUpdateReceptionistI, T3.ReceptionistId, T3.LocationId, T1.SupplierGenId, T1.SG_OrganisationSupplierId, COALESCE( T4.GXC1, 0) AS GXC1 FROM (((Trn_SupplierGen T1 LEFT JOIN Trn_Location T2 ON T2.LocationId = T1.SG_LocationSupplierLocationId AND T2.OrganisationId = T1.SG_LocationSupplierOrganisatio) LEFT JOIN Trn_Receptionist T3 ON T3.ReceptionistId = T2.ToolBoxLastUpdateReceptionistI AND T3.OrganisationId = T1.SG_LocationSupplierOrganisatio AND T3.LocationId = T1.SG_LocationSupplierLocationId) LEFT JOIN LATERAL (SELECT COUNT(*) AS GXC1, SupplierGenId, LocationId, OrganisationId FROM Trn_ProductService WHERE T1.SupplierGenId = SupplierGenId and T1.SG_LocationSupplierLocationId = LocationId and T1.SG_OrganisationSupplierId = OrganisationId GROUP BY SupplierGenId, LocationId, OrganisationId ) T4 ON T4.SupplierGenId = T1.SupplierGenId AND T4.LocationId = T1.SG_LocationSupplierLocationId AND T4.OrganisationId = T1.SG_OrganisationSupplierId) WHERE T3.OrganisationId = :AV14Udparg1 ORDER BY T1.SupplierGenId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00ES3,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("P00ES4", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :SG_LocationSupplierOrganisatio ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00ES4,1, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00ES5", "SELECT AppVersionId FROM Trn_AppVersion WHERE AppVersionId = :ActiveAppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00ES5,1, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00ES6", "SELECT AppVersionId FROM Trn_AppVersion WHERE AppVersionId = :PublishedActiveAppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00ES6,1, GxCacheFrequency.OFF ,true,false )
           };
        }
     }
@@ -266,26 +232,21 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((bool[]) buf[1])[0] = rslt.wasNull(1);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(2);
-                ((bool[]) buf[3])[0] = rslt.wasNull(2);
-                ((Guid[]) buf[4])[0] = rslt.getGuid(3);
-                ((bool[]) buf[5])[0] = rslt.wasNull(3);
-                ((Guid[]) buf[6])[0] = rslt.getGuid(4);
-                ((bool[]) buf[7])[0] = rslt.wasNull(4);
-                ((Guid[]) buf[8])[0] = rslt.getGuid(5);
-                ((Guid[]) buf[9])[0] = rslt.getGuid(6);
-                ((bool[]) buf[10])[0] = rslt.wasNull(6);
-                ((int[]) buf[11])[0] = rslt.getInt(7);
-                ((bool[]) buf[12])[0] = rslt.wasNull(7);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+                ((bool[]) buf[2])[0] = rslt.wasNull(2);
+                ((Guid[]) buf[3])[0] = rslt.getGuid(3);
+                ((bool[]) buf[4])[0] = rslt.wasNull(3);
+                ((Guid[]) buf[5])[0] = rslt.getGuid(4);
+                ((bool[]) buf[6])[0] = rslt.wasNull(4);
+                ((Guid[]) buf[7])[0] = rslt.getGuid(5);
+                ((Guid[]) buf[8])[0] = rslt.getGuid(6);
+                ((Guid[]) buf[9])[0] = rslt.getGuid(7);
+                ((Guid[]) buf[10])[0] = rslt.getGuid(8);
+                ((bool[]) buf[11])[0] = rslt.wasNull(8);
+                ((int[]) buf[12])[0] = rslt.getInt(9);
+                ((bool[]) buf[13])[0] = rslt.wasNull(9);
                 return;
              case 1 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                return;
-             case 2 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                return;
-             case 3 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 return;
        }

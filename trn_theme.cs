@@ -2295,7 +2295,7 @@ namespace GeneXus.Programs {
             pr_default.execute(15, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId});
             if ( (pr_default.getStatus(15) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_OrganisationSetting", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Locations", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(15);
@@ -2303,7 +2303,7 @@ namespace GeneXus.Programs {
             pr_default.execute(16, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId});
             if ( (pr_default.getStatus(16) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Locations", "")+" ("+context.GetMessage( "SG_Location Theme", "")+")"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {""}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(16);
@@ -2311,7 +2311,7 @@ namespace GeneXus.Programs {
             pr_default.execute(17, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId});
             if ( (pr_default.getStatus(17) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Locations", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_OrganisationSetting", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(17);
@@ -4918,7 +4918,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025524540223", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202552858717", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -4934,7 +4934,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_theme.js", "?2025524540224", false, true);
+         context.AddJavascriptSource("trn_theme.js", "?202552858718", false, true);
          /* End function include_jscripts */
       }
 
@@ -5486,11 +5486,10 @@ namespace GeneXus.Programs {
          T000Z8_A281Trn_ThemeFontFamily = new string[] {""} ;
          T000Z8_A405Trn_ThemeFontSize = new short[1] ;
          T000Z8_A576ThemeIsPredefined = new bool[] {false} ;
-         T000Z17_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
+         T000Z17_A29LocationId = new Guid[] {Guid.Empty} ;
          T000Z17_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         T000Z18_A29LocationId = new Guid[] {Guid.Empty} ;
-         T000Z18_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         T000Z19_A29LocationId = new Guid[] {Guid.Empty} ;
+         T000Z18_A523AppVersionId = new Guid[] {Guid.Empty} ;
+         T000Z19_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
          T000Z19_A11OrganisationId = new Guid[] {Guid.Empty} ;
          T000Z20_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
          T000Z20_n273Trn_ThemeId = new bool[] {false} ;
@@ -5644,13 +5643,13 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               T000Z17_A100OrganisationSettingid, T000Z17_A11OrganisationId
+               T000Z17_A29LocationId, T000Z17_A11OrganisationId
                }
                , new Object[] {
-               T000Z18_A29LocationId, T000Z18_A11OrganisationId
+               T000Z18_A523AppVersionId
                }
                , new Object[] {
-               T000Z19_A29LocationId, T000Z19_A11OrganisationId
+               T000Z19_A100OrganisationSettingid, T000Z19_A11OrganisationId
                }
                , new Object[] {
                T000Z20_A273Trn_ThemeId
@@ -6014,11 +6013,10 @@ namespace GeneXus.Programs {
       private string[] T000Z8_A281Trn_ThemeFontFamily ;
       private short[] T000Z8_A405Trn_ThemeFontSize ;
       private bool[] T000Z8_A576ThemeIsPredefined ;
-      private Guid[] T000Z17_A100OrganisationSettingid ;
+      private Guid[] T000Z17_A29LocationId ;
       private Guid[] T000Z17_A11OrganisationId ;
-      private Guid[] T000Z18_A29LocationId ;
-      private Guid[] T000Z18_A11OrganisationId ;
-      private Guid[] T000Z19_A29LocationId ;
+      private Guid[] T000Z18_A523AppVersionId ;
+      private Guid[] T000Z19_A100OrganisationSettingid ;
       private Guid[] T000Z19_A11OrganisationId ;
       private Guid[] T000Z20_A273Trn_ThemeId ;
       private bool[] T000Z20_n273Trn_ThemeId ;
@@ -6489,9 +6487,9 @@ public class trn_theme__default : DataStoreHelperBase, IDataStoreHelper
           ,new CursorDef("T000Z14", "SAVEPOINT gxupdate;INSERT INTO Trn_Theme(Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeFontSize, ThemeIsPredefined) VALUES(:Trn_ThemeId, :Trn_ThemeName, :Trn_ThemeFontFamily, :Trn_ThemeFontSize, :ThemeIsPredefined);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000Z14)
           ,new CursorDef("T000Z15", "SAVEPOINT gxupdate;UPDATE Trn_Theme SET Trn_ThemeName=:Trn_ThemeName, Trn_ThemeFontFamily=:Trn_ThemeFontFamily, Trn_ThemeFontSize=:Trn_ThemeFontSize, ThemeIsPredefined=:ThemeIsPredefined  WHERE Trn_ThemeId = :Trn_ThemeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000Z15)
           ,new CursorDef("T000Z16", "SAVEPOINT gxupdate;DELETE FROM Trn_Theme  WHERE Trn_ThemeId = :Trn_ThemeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000Z16)
-          ,new CursorDef("T000Z17", "SELECT OrganisationSettingid, OrganisationId FROM Trn_OrganisationSetting WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000Z17,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("T000Z18", "SELECT LocationId, OrganisationId FROM Trn_Location WHERE LocationThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000Z18,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("T000Z19", "SELECT LocationId, OrganisationId FROM Trn_Location WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000Z19,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000Z17", "SELECT LocationId, OrganisationId FROM Trn_Location WHERE LocationThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000Z17,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000Z18", "SELECT AppVersionId FROM Trn_AppVersion WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000Z18,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000Z19", "SELECT OrganisationSettingid, OrganisationId FROM Trn_OrganisationSetting WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000Z19,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("T000Z20", "SELECT Trn_ThemeId FROM Trn_Theme ORDER BY Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000Z20,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T000Z21", "SELECT Trn_ThemeId, CtaColorId, CtaColorName, CtaColorCode FROM Trn_ThemeCtaColor WHERE Trn_ThemeId = :Trn_ThemeId and CtaColorId = :CtaColorId ORDER BY Trn_ThemeId, CtaColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000Z21,11, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T000Z22", "SELECT Trn_ThemeId FROM Trn_ThemeCtaColor WHERE (Trn_ThemeId = :Trn_ThemeId AND CtaColorName = :CtaColorName) AND (Not ( Trn_ThemeId = :Trn_ThemeId and CtaColorId = :CtaColorId)) ",true, GxErrorMask.GX_NOMASK, false, this,prmT000Z22,1, GxCacheFrequency.OFF ,true,false )
@@ -6603,7 +6601,6 @@ public class trn_theme__default : DataStoreHelperBase, IDataStoreHelper
              return;
           case 16 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              return;
           case 17 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);

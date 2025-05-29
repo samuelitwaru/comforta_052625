@@ -98,19 +98,31 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {AV26LocationId});
          while ( (pr_default.getStatus(1) != 101) )
          {
-            A273Trn_ThemeId = P00C33_A273Trn_ThemeId[0];
-            n273Trn_ThemeId = P00C33_n273Trn_ThemeId[0];
+            A584ActiveAppVersionId = P00C33_A584ActiveAppVersionId[0];
+            n584ActiveAppVersionId = P00C33_n584ActiveAppVersionId[0];
+            A598PublishedActiveAppVersionId = P00C33_A598PublishedActiveAppVersionId[0];
+            n598PublishedActiveAppVersionId = P00C33_n598PublishedActiveAppVersionId[0];
             A577LocationThemeId = P00C33_A577LocationThemeId[0];
             n577LocationThemeId = P00C33_n577LocationThemeId[0];
             A573LocationHasOwnBrand = P00C33_A573LocationHasOwnBrand[0];
             A29LocationId = P00C33_A29LocationId[0];
             A11OrganisationId = P00C33_A11OrganisationId[0];
             /* Using cursor P00C34 */
-            pr_default.execute(2, new Object[] {n577LocationThemeId, A577LocationThemeId});
-            while ( (pr_default.getStatus(2) != 101) )
+            pr_default.execute(2, new Object[] {n598PublishedActiveAppVersionId, A598PublishedActiveAppVersionId});
+            A273Trn_ThemeId = P00C34_A273Trn_ThemeId[0];
+            n273Trn_ThemeId = P00C34_n273Trn_ThemeId[0];
+            pr_default.close(2);
+            /* Using cursor P00C35 */
+            pr_default.execute(3, new Object[] {n584ActiveAppVersionId, A584ActiveAppVersionId});
+            A273Trn_ThemeId = P00C35_A273Trn_ThemeId[0];
+            n273Trn_ThemeId = P00C35_n273Trn_ThemeId[0];
+            pr_default.close(3);
+            /* Using cursor P00C36 */
+            pr_default.execute(4, new Object[] {n577LocationThemeId, A577LocationThemeId});
+            while ( (pr_default.getStatus(4) != 101) )
             {
-               A273Trn_ThemeId = P00C34_A273Trn_ThemeId[0];
-               n273Trn_ThemeId = P00C34_n273Trn_ThemeId[0];
+               A273Trn_ThemeId = P00C36_A273Trn_ThemeId[0];
+               n273Trn_ThemeId = P00C36_n273Trn_ThemeId[0];
                AV22BC_Trn_Theme = new SdtTrn_Theme(context);
                AV22BC_Trn_Theme.Load(A577LocationThemeId);
                AV22BC_Trn_Theme.gxTpr_Color.Sort("ColorName");
@@ -120,26 +132,27 @@ namespace GeneXus.Programs {
                S111 ();
                if ( returnInSub )
                {
-                  pr_default.close(2);
+                  pr_default.close(4);
                   cleanup();
                   if (true) return;
                }
                /* Exiting from a For First loop. */
                if (true) break;
             }
-            pr_default.close(2);
+            pr_default.close(4);
             pr_default.readNext(1);
          }
          pr_default.close(1);
-         /* Using cursor P00C35 */
-         pr_default.execute(3, new Object[] {AV16OrganisationId});
-         while ( (pr_default.getStatus(3) != 101) )
+         pr_default.close(3);
+         /* Using cursor P00C37 */
+         pr_default.execute(5, new Object[] {AV16OrganisationId});
+         while ( (pr_default.getStatus(5) != 101) )
          {
-            A537OrganisationHasOwnBrand = P00C35_A537OrganisationHasOwnBrand[0];
-            A11OrganisationId = P00C35_A11OrganisationId[0];
-            A273Trn_ThemeId = P00C35_A273Trn_ThemeId[0];
-            n273Trn_ThemeId = P00C35_n273Trn_ThemeId[0];
-            A100OrganisationSettingid = P00C35_A100OrganisationSettingid[0];
+            A537OrganisationHasOwnBrand = P00C37_A537OrganisationHasOwnBrand[0];
+            A11OrganisationId = P00C37_A11OrganisationId[0];
+            A273Trn_ThemeId = P00C37_A273Trn_ThemeId[0];
+            n273Trn_ThemeId = P00C37_n273Trn_ThemeId[0];
+            A100OrganisationSettingid = P00C37_A100OrganisationSettingid[0];
             new prc_logtoserver(context ).execute(  context.GetMessage( "Organisation Setting Theme >>> ", "")+A273Trn_ThemeId.ToString()) ;
             if ( ! (Guid.Empty==A273Trn_ThemeId) )
             {
@@ -152,14 +165,14 @@ namespace GeneXus.Programs {
                S111 ();
                if ( returnInSub )
                {
-                  pr_default.close(3);
+                  pr_default.close(5);
                   cleanup();
                   if (true) return;
                }
             }
-            pr_default.readNext(3);
+            pr_default.readNext(5);
          }
-         pr_default.close(3);
+         pr_default.close(5);
          cleanup();
       }
 
@@ -182,6 +195,11 @@ namespace GeneXus.Programs {
          ExitApp();
       }
 
+      protected override void CloseCursors( )
+      {
+         pr_default.close(2);
+      }
+
       public override void initialize( )
       {
          AV23BC_Trn_ThemeCollection = new GXBCCollection<SdtTrn_Theme>( context, "Trn_Theme", "Comforta_version2");
@@ -193,23 +211,31 @@ namespace GeneXus.Programs {
          A273Trn_ThemeId = Guid.Empty;
          AV22BC_Trn_Theme = new SdtTrn_Theme(context);
          AV28Icons = new GXBCLevelCollection<SdtTrn_Theme_Icon>( context, "Trn_Theme.Icon", "Comforta_version2");
-         P00C33_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         P00C33_n273Trn_ThemeId = new bool[] {false} ;
+         P00C33_A584ActiveAppVersionId = new Guid[] {Guid.Empty} ;
+         P00C33_n584ActiveAppVersionId = new bool[] {false} ;
+         P00C33_A598PublishedActiveAppVersionId = new Guid[] {Guid.Empty} ;
+         P00C33_n598PublishedActiveAppVersionId = new bool[] {false} ;
          P00C33_A577LocationThemeId = new Guid[] {Guid.Empty} ;
          P00C33_n577LocationThemeId = new bool[] {false} ;
          P00C33_A573LocationHasOwnBrand = new bool[] {false} ;
          P00C33_A29LocationId = new Guid[] {Guid.Empty} ;
          P00C33_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         A584ActiveAppVersionId = Guid.Empty;
+         A598PublishedActiveAppVersionId = Guid.Empty;
          A577LocationThemeId = Guid.Empty;
          A29LocationId = Guid.Empty;
          A11OrganisationId = Guid.Empty;
          P00C34_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
          P00C34_n273Trn_ThemeId = new bool[] {false} ;
-         P00C35_A537OrganisationHasOwnBrand = new bool[] {false} ;
-         P00C35_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00C35_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
          P00C35_n273Trn_ThemeId = new bool[] {false} ;
-         P00C35_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
+         P00C36_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         P00C36_n273Trn_ThemeId = new bool[] {false} ;
+         P00C37_A537OrganisationHasOwnBrand = new bool[] {false} ;
+         P00C37_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         P00C37_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         P00C37_n273Trn_ThemeId = new bool[] {false} ;
+         P00C37_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
          A100OrganisationSettingid = Guid.Empty;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_getorganisationtheme__default(),
             new Object[][] {
@@ -217,13 +243,19 @@ namespace GeneXus.Programs {
                P00C32_A576ThemeIsPredefined, P00C32_A274Trn_ThemeName, P00C32_A273Trn_ThemeId
                }
                , new Object[] {
-               P00C33_A273Trn_ThemeId, P00C33_n273Trn_ThemeId, P00C33_A577LocationThemeId, P00C33_n577LocationThemeId, P00C33_A573LocationHasOwnBrand, P00C33_A29LocationId, P00C33_A11OrganisationId
+               P00C33_A584ActiveAppVersionId, P00C33_n584ActiveAppVersionId, P00C33_A598PublishedActiveAppVersionId, P00C33_n598PublishedActiveAppVersionId, P00C33_A577LocationThemeId, P00C33_n577LocationThemeId, P00C33_A573LocationHasOwnBrand, P00C33_A29LocationId, P00C33_A11OrganisationId
                }
                , new Object[] {
-               P00C34_A273Trn_ThemeId
+               P00C34_A273Trn_ThemeId, P00C34_n273Trn_ThemeId
                }
                , new Object[] {
-               P00C35_A537OrganisationHasOwnBrand, P00C35_A11OrganisationId, P00C35_A273Trn_ThemeId, P00C35_n273Trn_ThemeId, P00C35_A100OrganisationSettingid
+               P00C35_A273Trn_ThemeId, P00C35_n273Trn_ThemeId
+               }
+               , new Object[] {
+               P00C36_A273Trn_ThemeId
+               }
+               , new Object[] {
+               P00C37_A537OrganisationHasOwnBrand, P00C37_A11OrganisationId, P00C37_A273Trn_ThemeId, P00C37_n273Trn_ThemeId, P00C37_A100OrganisationSettingid
                }
             }
          );
@@ -232,6 +264,8 @@ namespace GeneXus.Programs {
 
       private bool A576ThemeIsPredefined ;
       private bool n273Trn_ThemeId ;
+      private bool n584ActiveAppVersionId ;
+      private bool n598PublishedActiveAppVersionId ;
       private bool n577LocationThemeId ;
       private bool A573LocationHasOwnBrand ;
       private bool returnInSub ;
@@ -240,6 +274,8 @@ namespace GeneXus.Programs {
       private Guid AV16OrganisationId ;
       private Guid AV26LocationId ;
       private Guid A273Trn_ThemeId ;
+      private Guid A584ActiveAppVersionId ;
+      private Guid A598PublishedActiveAppVersionId ;
       private Guid A577LocationThemeId ;
       private Guid A29LocationId ;
       private Guid A11OrganisationId ;
@@ -255,8 +291,10 @@ namespace GeneXus.Programs {
       private bool[] P00C32_n273Trn_ThemeId ;
       private SdtTrn_Theme AV22BC_Trn_Theme ;
       private GXBCLevelCollection<SdtTrn_Theme_Icon> AV28Icons ;
-      private Guid[] P00C33_A273Trn_ThemeId ;
-      private bool[] P00C33_n273Trn_ThemeId ;
+      private Guid[] P00C33_A584ActiveAppVersionId ;
+      private bool[] P00C33_n584ActiveAppVersionId ;
+      private Guid[] P00C33_A598PublishedActiveAppVersionId ;
+      private bool[] P00C33_n598PublishedActiveAppVersionId ;
       private Guid[] P00C33_A577LocationThemeId ;
       private bool[] P00C33_n577LocationThemeId ;
       private bool[] P00C33_A573LocationHasOwnBrand ;
@@ -264,11 +302,15 @@ namespace GeneXus.Programs {
       private Guid[] P00C33_A11OrganisationId ;
       private Guid[] P00C34_A273Trn_ThemeId ;
       private bool[] P00C34_n273Trn_ThemeId ;
-      private bool[] P00C35_A537OrganisationHasOwnBrand ;
-      private Guid[] P00C35_A11OrganisationId ;
       private Guid[] P00C35_A273Trn_ThemeId ;
       private bool[] P00C35_n273Trn_ThemeId ;
-      private Guid[] P00C35_A100OrganisationSettingid ;
+      private Guid[] P00C36_A273Trn_ThemeId ;
+      private bool[] P00C36_n273Trn_ThemeId ;
+      private bool[] P00C37_A537OrganisationHasOwnBrand ;
+      private Guid[] P00C37_A11OrganisationId ;
+      private Guid[] P00C37_A273Trn_ThemeId ;
+      private bool[] P00C37_n273Trn_ThemeId ;
+      private Guid[] P00C37_A100OrganisationSettingid ;
       private GXBCCollection<SdtTrn_Theme> aP2_BC_Trn_ThemeCollection ;
    }
 
@@ -282,6 +324,8 @@ namespace GeneXus.Programs {
          ,new ForEachCursor(def[1])
          ,new ForEachCursor(def[2])
          ,new ForEachCursor(def[3])
+         ,new ForEachCursor(def[4])
+         ,new ForEachCursor(def[5])
        };
     }
 
@@ -299,17 +343,27 @@ namespace GeneXus.Programs {
           };
           Object[] prmP00C34;
           prmP00C34 = new Object[] {
-          new ParDef("LocationThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+          new ParDef("PublishedActiveAppVersionId",GXType.UniqueIdentifier,36,0){Nullable=true}
           };
           Object[] prmP00C35;
           prmP00C35 = new Object[] {
+          new ParDef("ActiveAppVersionId",GXType.UniqueIdentifier,36,0){Nullable=true}
+          };
+          Object[] prmP00C36;
+          prmP00C36 = new Object[] {
+          new ParDef("LocationThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+          };
+          Object[] prmP00C37;
+          prmP00C37 = new Object[] {
           new ParDef("AV16OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
               new CursorDef("P00C32", "SELECT ThemeIsPredefined, Trn_ThemeName, Trn_ThemeId FROM Trn_Theme WHERE (Not (char_length(trim(trailing ' ' from RTRIM(LTRIM(Trn_ThemeName))))=0)) AND (ThemeIsPredefined = TRUE) ORDER BY Trn_ThemeName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00C32,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00C33", "SELECT Trn_ThemeId, LocationThemeId, LocationHasOwnBrand, LocationId, OrganisationId FROM Trn_Location WHERE (LocationId = :AV26LocationId) AND (LocationHasOwnBrand = TRUE) ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00C33,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00C34", "SELECT Trn_ThemeId FROM Trn_Theme WHERE Trn_ThemeId = :LocationThemeId ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00C34,1, GxCacheFrequency.OFF ,true,true )
-             ,new CursorDef("P00C35", "SELECT OrganisationHasOwnBrand, OrganisationId, Trn_ThemeId, OrganisationSettingid FROM Trn_OrganisationSetting WHERE (OrganisationId = :AV16OrganisationId) AND (OrganisationHasOwnBrand = TRUE) ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00C35,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("P00C33", "SELECT ActiveAppVersionId, PublishedActiveAppVersionId, LocationThemeId, LocationHasOwnBrand, LocationId, OrganisationId FROM Trn_Location WHERE (LocationId = :AV26LocationId) AND (LocationHasOwnBrand = TRUE) ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00C33,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("P00C34", "SELECT Trn_ThemeId FROM Trn_AppVersion WHERE AppVersionId = :PublishedActiveAppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00C34,1, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("P00C35", "SELECT Trn_ThemeId FROM Trn_AppVersion WHERE AppVersionId = :ActiveAppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00C35,1, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("P00C36", "SELECT Trn_ThemeId FROM Trn_Theme WHERE Trn_ThemeId = :LocationThemeId ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00C36,1, GxCacheFrequency.OFF ,true,true )
+             ,new CursorDef("P00C37", "SELECT OrganisationHasOwnBrand, OrganisationId, Trn_ThemeId, OrganisationSettingid FROM Trn_OrganisationSetting WHERE (OrganisationId = :AV16OrganisationId) AND (OrganisationHasOwnBrand = TRUE) ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00C37,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }
@@ -330,14 +384,24 @@ namespace GeneXus.Programs {
                 ((bool[]) buf[1])[0] = rslt.wasNull(1);
                 ((Guid[]) buf[2])[0] = rslt.getGuid(2);
                 ((bool[]) buf[3])[0] = rslt.wasNull(2);
-                ((bool[]) buf[4])[0] = rslt.getBool(3);
-                ((Guid[]) buf[5])[0] = rslt.getGuid(4);
-                ((Guid[]) buf[6])[0] = rslt.getGuid(5);
+                ((Guid[]) buf[4])[0] = rslt.getGuid(3);
+                ((bool[]) buf[5])[0] = rslt.wasNull(3);
+                ((bool[]) buf[6])[0] = rslt.getBool(4);
+                ((Guid[]) buf[7])[0] = rslt.getGuid(5);
+                ((Guid[]) buf[8])[0] = rslt.getGuid(6);
                 return;
              case 2 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((bool[]) buf[1])[0] = rslt.wasNull(1);
                 return;
              case 3 :
+                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((bool[]) buf[1])[0] = rslt.wasNull(1);
+                return;
+             case 4 :
+                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                return;
+             case 5 :
                 ((bool[]) buf[0])[0] = rslt.getBool(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((Guid[]) buf[2])[0] = rslt.getGuid(3);

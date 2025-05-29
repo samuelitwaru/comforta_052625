@@ -5,6 +5,8 @@ using GeneXus.Resources;
 using GeneXus.Application;
 using GeneXus.Metadata;
 using GeneXus.Cryptography;
+using System.Data;
+using GeneXus.Data;
 using GeneXus.Data.ADO;
 using GeneXus.Data.NTier;
 using GeneXus.Data.NTier.ADO;
@@ -22,6 +24,9 @@ namespace GeneXus.Programs {
       public api_residentservice( )
       {
          context = new GxContext(  );
+         dsDataStore1 = context.GetDataStore("DataStore1");
+         dsGAM = context.GetDataStore("GAM");
+         dsDefault = context.GetDataStore("Default");
          IsMain = true;
          IsApiObject = true;
          initialize();
@@ -32,6 +37,9 @@ namespace GeneXus.Programs {
          this.context = context;
          IsMain = false;
          IsApiObject = true;
+         dsDataStore1 = context.GetDataStore("DataStore1");
+         dsGAM = context.GetDataStore("GAM");
+         dsDefault = context.GetDataStore("Default");
          initialize();
          if ( context.HttpContext != null )
          {
@@ -1228,36 +1236,6 @@ namespace GeneXus.Programs {
          /* AddPageCildren Constructor */
       }
 
-      public void gxep_updatelocationtheme( Guid aP0_ThemeId ,
-                                            out SdtSDT_Theme aP1_SDT_Theme ,
-                                            out SdtSDT_Error aP2_error )
-      {
-         restCliUpdateLocationTheme = new GXRestAPIClient();
-         if ( restLocation == null )
-         {
-            InitLocation();
-         }
-         restLocation.ResourceName = "toolbox/update-location-theme/";
-         restCliUpdateLocationTheme.Location = restLocation;
-         restCliUpdateLocationTheme.HttpMethod = "POST";
-         restCliUpdateLocationTheme.AddBodyVar("ThemeId", (Guid)(aP0_ThemeId));
-         restCliUpdateLocationTheme.RestExecute();
-         if ( restCliUpdateLocationTheme.ErrorCode != 0 )
-         {
-            gxProperties.ErrorCode = restCliUpdateLocationTheme.ErrorCode;
-            gxProperties.ErrorMessage = restCliUpdateLocationTheme.ErrorMessage;
-            gxProperties.StatusCode = restCliUpdateLocationTheme.StatusCode;
-            aP1_SDT_Theme = new SdtSDT_Theme();
-            aP2_error = new SdtSDT_Error();
-         }
-         else
-         {
-            aP1_SDT_Theme = restCliUpdateLocationTheme.GetBodySdt<SdtSDT_Theme>("SDT_Theme");
-            aP2_error = restCliUpdateLocationTheme.GetBodySdt<SdtSDT_Error>("error");
-         }
-         /* UpdateLocationTheme Constructor */
-      }
-
       public void gxep_productserviceapi( Guid aP0_ProductServiceId ,
                                           out SdtSDT_ProductService aP1_SDT_ProductService ,
                                           out SdtSDT_Error aP2_error )
@@ -1637,6 +1615,38 @@ namespace GeneXus.Programs {
             aP3_error = restCliUpdateAppVersion.GetBodySdt<SdtSDT_Error>("error");
          }
          /* UpdateAppVersion Constructor */
+      }
+
+      public void gxep_updateappversiontheme( Guid aP0_AppVersionId ,
+                                              Guid aP1_ThemeId ,
+                                              out SdtSDT_Theme aP2_SDT_Theme ,
+                                              out SdtSDT_Error aP3_error )
+      {
+         restCliUpdateAppVersionTheme = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "toolbox/update-appversion-theme/";
+         restCliUpdateAppVersionTheme.Location = restLocation;
+         restCliUpdateAppVersionTheme.HttpMethod = "POST";
+         restCliUpdateAppVersionTheme.AddBodyVar("AppVersionId", (Guid)(aP0_AppVersionId));
+         restCliUpdateAppVersionTheme.AddBodyVar("ThemeId", (Guid)(aP1_ThemeId));
+         restCliUpdateAppVersionTheme.RestExecute();
+         if ( restCliUpdateAppVersionTheme.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliUpdateAppVersionTheme.ErrorCode;
+            gxProperties.ErrorMessage = restCliUpdateAppVersionTheme.ErrorMessage;
+            gxProperties.StatusCode = restCliUpdateAppVersionTheme.StatusCode;
+            aP2_SDT_Theme = new SdtSDT_Theme();
+            aP3_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP2_SDT_Theme = restCliUpdateAppVersionTheme.GetBodySdt<SdtSDT_Theme>("SDT_Theme");
+            aP3_error = restCliUpdateAppVersionTheme.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* UpdateAppVersionTheme Constructor */
       }
 
       public void gxep_activateappversion( Guid aP0_AppVersionId ,
@@ -2503,8 +2513,6 @@ namespace GeneXus.Programs {
          aP8_error = new SdtSDT_Error();
          restCliUpdatePageBatch = new GXRestAPIClient();
          restCliAddPageCildren = new GXRestAPIClient();
-         restCliUpdateLocationTheme = new GXRestAPIClient();
-         aP1_SDT_Theme = new SdtSDT_Theme();
          restCliProductServiceAPI = new GXRestAPIClient();
          aP1_SDT_ProductService = new SdtSDT_ProductService();
          restCliGetServices = new GXRestAPIClient();
@@ -2527,6 +2535,7 @@ namespace GeneXus.Programs {
          aP2_AppVersion = new SdtSDT_AppVersion();
          restCliCopyAppVersion = new GXRestAPIClient();
          restCliUpdateAppVersion = new GXRestAPIClient();
+         restCliUpdateAppVersionTheme = new GXRestAPIClient();
          restCliActivateAppVersion = new GXRestAPIClient();
          aP1_AppVersion = new SdtSDT_AppVersion();
          restCliDeleteAppVersion = new GXRestAPIClient();
@@ -2605,7 +2614,6 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliUpdatePage ;
       protected GXRestAPIClient restCliUpdatePageBatch ;
       protected GXRestAPIClient restCliAddPageCildren ;
-      protected GXRestAPIClient restCliUpdateLocationTheme ;
       protected GXRestAPIClient restCliProductServiceAPI ;
       protected GXRestAPIClient restCliGetServices ;
       protected GXRestAPIClient restCliGetLocationTheme ;
@@ -2619,6 +2627,7 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliCreateAppVersion ;
       protected GXRestAPIClient restCliCopyAppVersion ;
       protected GXRestAPIClient restCliUpdateAppVersion ;
+      protected GXRestAPIClient restCliUpdateAppVersionTheme ;
       protected GXRestAPIClient restCliActivateAppVersion ;
       protected GXRestAPIClient restCliDeleteAppVersion ;
       protected GXRestAPIClient restCliSavePageV2 ;
@@ -2645,6 +2654,9 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliDeleteMemo ;
       protected GxLocation restLocation ;
       protected GxObjectProperties gxProperties ;
+      protected IGxDataStore dsDataStore1 ;
+      protected IGxDataStore dsGAM ;
+      protected IGxDataStore dsDefault ;
       protected SdtSDT_LoginResidentResponse aP1_loginResult ;
       protected SdtSDT_LoginResidentResponse aP2_loginResult ;
       protected SdtSDT_RecoverPasswordStep1 aP1_RecoverPasswordStep1Result ;
@@ -2678,7 +2690,6 @@ namespace GeneXus.Programs {
       protected string aP5_result ;
       protected string aP7_result ;
       protected SdtSDT_Error aP8_error ;
-      protected SdtSDT_Theme aP1_SDT_Theme ;
       protected SdtSDT_ProductService aP1_SDT_ProductService ;
       protected GXBaseCollection<SdtSDT_ProductService> aP0_SDT_ProductServiceCollection ;
       protected SdtSDT_Theme aP2_SDT_Theme ;

@@ -59,7 +59,7 @@ namespace GeneXus.Programs {
          metadata.Set("BT", "Trn_LocationDynamicForm");
          metadata.Set("PK", "[ \"LocationDynamicFormId\",\"OrganisationId\",\"LocationId\" ]");
          metadata.Set("PKAssigned", "[ \"LocationDynamicFormId\" ]");
-         metadata.Set("FKList", "[ { \"FK\":[ \"LocationId\",\"OrganisationId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"OrganisationId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"WWPFormId\",\"WWPFormVersionNumber\" ],\"FKMap\":[  ] } ]");
+         metadata.Set("FKList", "[ { \"FK\":[ \"LocationId\",\"OrganisationId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"WWPFormId\",\"WWPFormVersionNumber\" ],\"FKMap\":[  ] } ]");
          metadata.Set("AllowInsert", "True");
          metadata.Set("AllowUpdate", "True");
          metadata.Set("AllowDelete", "True");

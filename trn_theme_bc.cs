@@ -813,7 +813,7 @@ namespace GeneXus.Programs {
             pr_default.execute(13, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId});
             if ( (pr_default.getStatus(13) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_OrganisationSetting", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Locations", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(13);
@@ -821,7 +821,7 @@ namespace GeneXus.Programs {
             pr_default.execute(14, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId});
             if ( (pr_default.getStatus(14) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Locations", "")+" ("+context.GetMessage( "SG_Location Theme", "")+")"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {""}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(14);
@@ -829,7 +829,7 @@ namespace GeneXus.Programs {
             pr_default.execute(15, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId});
             if ( (pr_default.getStatus(15) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Locations", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_OrganisationSetting", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(15);
@@ -3294,11 +3294,10 @@ namespace GeneXus.Programs {
          BC000Z8_A281Trn_ThemeFontFamily = new string[] {""} ;
          BC000Z8_A405Trn_ThemeFontSize = new short[1] ;
          BC000Z8_A576ThemeIsPredefined = new bool[] {false} ;
-         BC000Z15_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
+         BC000Z15_A29LocationId = new Guid[] {Guid.Empty} ;
          BC000Z15_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         BC000Z16_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC000Z16_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         BC000Z17_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC000Z16_A523AppVersionId = new Guid[] {Guid.Empty} ;
+         BC000Z17_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
          BC000Z17_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC000Z18_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
          BC000Z18_n273Trn_ThemeId = new bool[] {false} ;
@@ -3459,13 +3458,13 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               BC000Z15_A100OrganisationSettingid, BC000Z15_A11OrganisationId
+               BC000Z15_A29LocationId, BC000Z15_A11OrganisationId
                }
                , new Object[] {
-               BC000Z16_A29LocationId, BC000Z16_A11OrganisationId
+               BC000Z16_A523AppVersionId
                }
                , new Object[] {
-               BC000Z17_A29LocationId, BC000Z17_A11OrganisationId
+               BC000Z17_A100OrganisationSettingid, BC000Z17_A11OrganisationId
                }
                , new Object[] {
                BC000Z18_A273Trn_ThemeId, BC000Z18_A274Trn_ThemeName, BC000Z18_A281Trn_ThemeFontFamily, BC000Z18_A405Trn_ThemeFontSize, BC000Z18_A576ThemeIsPredefined
@@ -3636,11 +3635,10 @@ namespace GeneXus.Programs {
       private string[] BC000Z8_A281Trn_ThemeFontFamily ;
       private short[] BC000Z8_A405Trn_ThemeFontSize ;
       private bool[] BC000Z8_A576ThemeIsPredefined ;
-      private Guid[] BC000Z15_A100OrganisationSettingid ;
+      private Guid[] BC000Z15_A29LocationId ;
       private Guid[] BC000Z15_A11OrganisationId ;
-      private Guid[] BC000Z16_A29LocationId ;
-      private Guid[] BC000Z16_A11OrganisationId ;
-      private Guid[] BC000Z17_A29LocationId ;
+      private Guid[] BC000Z16_A523AppVersionId ;
+      private Guid[] BC000Z17_A100OrganisationSettingid ;
       private Guid[] BC000Z17_A11OrganisationId ;
       private Guid[] BC000Z18_A273Trn_ThemeId ;
       private bool[] BC000Z18_n273Trn_ThemeId ;
@@ -4075,9 +4073,9 @@ public class trn_theme_bc__default : DataStoreHelperBase, IDataStoreHelper
           ,new CursorDef("BC000Z12", "SAVEPOINT gxupdate;INSERT INTO Trn_Theme(Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeFontSize, ThemeIsPredefined) VALUES(:Trn_ThemeId, :Trn_ThemeName, :Trn_ThemeFontFamily, :Trn_ThemeFontSize, :ThemeIsPredefined);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000Z12)
           ,new CursorDef("BC000Z13", "SAVEPOINT gxupdate;UPDATE Trn_Theme SET Trn_ThemeName=:Trn_ThemeName, Trn_ThemeFontFamily=:Trn_ThemeFontFamily, Trn_ThemeFontSize=:Trn_ThemeFontSize, ThemeIsPredefined=:ThemeIsPredefined  WHERE Trn_ThemeId = :Trn_ThemeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000Z13)
           ,new CursorDef("BC000Z14", "SAVEPOINT gxupdate;DELETE FROM Trn_Theme  WHERE Trn_ThemeId = :Trn_ThemeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000Z14)
-          ,new CursorDef("BC000Z15", "SELECT OrganisationSettingid, OrganisationId FROM Trn_OrganisationSetting WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Z15,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000Z16", "SELECT LocationId, OrganisationId FROM Trn_Location WHERE LocationThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Z16,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000Z17", "SELECT LocationId, OrganisationId FROM Trn_Location WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Z17,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000Z15", "SELECT LocationId, OrganisationId FROM Trn_Location WHERE LocationThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Z15,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000Z16", "SELECT AppVersionId FROM Trn_AppVersion WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Z16,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000Z17", "SELECT OrganisationSettingid, OrganisationId FROM Trn_OrganisationSetting WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Z17,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("BC000Z18", "SELECT TM1.Trn_ThemeId, TM1.Trn_ThemeName, TM1.Trn_ThemeFontFamily, TM1.Trn_ThemeFontSize, TM1.ThemeIsPredefined FROM Trn_Theme TM1 WHERE TM1.Trn_ThemeId = :Trn_ThemeId ORDER BY TM1.Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Z18,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC000Z19", "SELECT Trn_ThemeId, CtaColorId, CtaColorName, CtaColorCode FROM Trn_ThemeCtaColor WHERE Trn_ThemeId = :Trn_ThemeId and CtaColorId = :CtaColorId ORDER BY Trn_ThemeId, CtaColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Z19,11, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC000Z20", "SELECT Trn_ThemeId FROM Trn_ThemeCtaColor WHERE (Trn_ThemeId = :Trn_ThemeId AND CtaColorName = :CtaColorName) AND (Not ( Trn_ThemeId = :Trn_ThemeId and CtaColorId = :CtaColorId)) ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000Z20,1, GxCacheFrequency.OFF ,true,false )
@@ -4179,7 +4177,6 @@ public class trn_theme_bc__default : DataStoreHelperBase, IDataStoreHelper
              return;
           case 14 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              return;
           case 15 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);

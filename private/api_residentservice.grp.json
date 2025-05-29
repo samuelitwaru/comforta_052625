@@ -385,16 +385,6 @@
 "Implementation":"Prc_AddPageChildren"
 },
 {
-"PathRegexp":"toolbox/update-location-theme",
-"Path":"toolbox/update-location-theme",
-"Verb":"POST",
-"Name":"updatelocationtheme",
-"Bodystyle":"Wrapped",
-"VariableAlias": [],
-"ServiceMethod":"gxep_updatelocationtheme",
-"Implementation":"Prc_UpdateLocationTheme"
-},
-{
 "PathRegexp":"productservice",
 "Path":"productservice",
 "Name":"productserviceapi",
@@ -523,6 +513,16 @@
 "VariableAlias": [],
 "ServiceMethod":"gxep_updateappversion",
 "Implementation":"Prc_UpdateAppVersion"
+},
+{
+"PathRegexp":"toolbox/update-appversion-theme",
+"Path":"toolbox/update-appversion-theme",
+"Verb":"POST",
+"Name":"updateappversiontheme",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_updateappversiontheme",
+"Implementation":"Prc_UpdateAppVersionTheme"
 },
 {
 "PathRegexp":"toolbox/v2/activate-appversion",

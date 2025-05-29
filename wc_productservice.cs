@@ -2389,32 +2389,24 @@ namespace GeneXus.Programs {
          Combo_suppliergenid_Includeaddnewoption = GXt_boolean7;
          ucCombo_suppliergenid.SendProperty(context, "", false, Combo_suppliergenid_Internalname, "IncludeAddNewOption", StringUtil.BoolToStr( Combo_suppliergenid_Includeaddnewoption));
          /* Using cursor H00A02 */
-         pr_default.execute(0);
+         pr_default.execute(0, new Object[] {AV47OrganisationId});
          while ( (pr_default.getStatus(0) != 101) )
          {
             A602SG_LocationSupplierOrganisatio = H00A02_A602SG_LocationSupplierOrganisatio[0];
             n602SG_LocationSupplierOrganisatio = H00A02_n602SG_LocationSupplierOrganisatio[0];
             A603SG_LocationSupplierLocationId = H00A02_A603SG_LocationSupplierLocationId[0];
             n603SG_LocationSupplierLocationId = H00A02_n603SG_LocationSupplierLocationId[0];
-            A584ActiveAppVersionId = H00A02_A584ActiveAppVersionId[0];
-            n584ActiveAppVersionId = H00A02_n584ActiveAppVersionId[0];
-            A598PublishedActiveAppVersionId = H00A02_A598PublishedActiveAppVersionId[0];
-            n598PublishedActiveAppVersionId = H00A02_n598PublishedActiveAppVersionId[0];
+            A630ToolBoxLastUpdateReceptionistI = H00A02_A630ToolBoxLastUpdateReceptionistI[0];
+            n630ToolBoxLastUpdateReceptionistI = H00A02_n630ToolBoxLastUpdateReceptionistI[0];
+            A89ReceptionistId = H00A02_A89ReceptionistId[0];
+            A29LocationId = H00A02_A29LocationId[0];
             A42SupplierGenId = H00A02_A42SupplierGenId[0];
             A44SupplierGenCompanyName = H00A02_A44SupplierGenCompanyName[0];
-            A584ActiveAppVersionId = H00A02_A584ActiveAppVersionId[0];
-            n584ActiveAppVersionId = H00A02_n584ActiveAppVersionId[0];
-            A598PublishedActiveAppVersionId = H00A02_A598PublishedActiveAppVersionId[0];
-            n598PublishedActiveAppVersionId = H00A02_n598PublishedActiveAppVersionId[0];
+            A630ToolBoxLastUpdateReceptionistI = H00A02_A630ToolBoxLastUpdateReceptionistI[0];
+            n630ToolBoxLastUpdateReceptionistI = H00A02_n630ToolBoxLastUpdateReceptionistI[0];
             /* Using cursor H00A03 */
             pr_default.execute(1, new Object[] {n602SG_LocationSupplierOrganisatio, A602SG_LocationSupplierOrganisatio});
             pr_default.close(1);
-            /* Using cursor H00A04 */
-            pr_default.execute(2, new Object[] {n584ActiveAppVersionId, A584ActiveAppVersionId});
-            pr_default.close(2);
-            /* Using cursor H00A05 */
-            pr_default.execute(3, new Object[] {n598PublishedActiveAppVersionId, A598PublishedActiveAppVersionId});
-            pr_default.close(3);
             AV31Combo_DataItem = new WorkWithPlus.workwithplus_web.SdtDVB_SDTComboData_Item(context);
             AV31Combo_DataItem.gxTpr_Id = StringUtil.Trim( A42SupplierGenId.ToString());
             AV31Combo_DataItem.gxTpr_Title = A44SupplierGenCompanyName;
@@ -2423,7 +2415,6 @@ namespace GeneXus.Programs {
          }
          pr_default.close(0);
          pr_default.close(1);
-         pr_default.close(3);
          Combo_suppliergenid_Selectedvalue_set = ((Guid.Empty==AV39SupplierGenId) ? "" : StringUtil.Trim( AV39SupplierGenId.ToString()));
          ucCombo_suppliergenid.SendProperty(context, "", false, Combo_suppliergenid_Internalname, "SelectedValue_set", Combo_suppliergenid_Selectedvalue_set);
       }
@@ -2432,25 +2423,25 @@ namespace GeneXus.Programs {
       {
          /* 'LOADCOMBOSUPPLIERAGBID' Routine */
          returnInSub = false;
-         pr_default.dynParam(4, new Object[]{ new Object[]{
+         pr_default.dynParam(2, new Object[]{ new Object[]{
                                               A49SupplierAgbId ,
                                               AV37PreferredAgbSuppliers } ,
                                               new int[]{
                                               }
          });
-         /* Using cursor H00A06 */
-         pr_default.execute(4);
-         while ( (pr_default.getStatus(4) != 101) )
+         /* Using cursor H00A04 */
+         pr_default.execute(2);
+         while ( (pr_default.getStatus(2) != 101) )
          {
-            A49SupplierAgbId = H00A06_A49SupplierAgbId[0];
-            A51SupplierAgbName = H00A06_A51SupplierAgbName[0];
+            A49SupplierAgbId = H00A04_A49SupplierAgbId[0];
+            A51SupplierAgbName = H00A04_A51SupplierAgbName[0];
             AV31Combo_DataItem = new WorkWithPlus.workwithplus_web.SdtDVB_SDTComboData_Item(context);
             AV31Combo_DataItem.gxTpr_Id = StringUtil.Trim( A49SupplierAgbId.ToString());
             AV31Combo_DataItem.gxTpr_Title = A51SupplierAgbName;
             AV46SupplierAgbId_Data.Add(AV31Combo_DataItem, 0);
-            pr_default.readNext(4);
+            pr_default.readNext(2);
          }
-         pr_default.close(4);
+         pr_default.close(2);
          Combo_supplieragbid_Selectedvalue_set = ((Guid.Empty==AV41SupplierAgbId) ? "" : StringUtil.Trim( AV41SupplierAgbId.ToString()));
          ucCombo_supplieragbid.SendProperty(context, "", false, Combo_supplieragbid_Internalname, "SelectedValue_set", Combo_supplieragbid_Selectedvalue_set);
       }
@@ -2463,43 +2454,43 @@ namespace GeneXus.Programs {
          AV43SupplierGenId_Data.Clear();
          if ( ! AV42noFilterAgb && ( StringUtil.StrCmp(AV13ProductServiceGroup, " AGB Supplier") == 0 ) )
          {
-            /* Using cursor H00A07 */
-            pr_default.execute(5);
-            while ( (pr_default.getStatus(5) != 101) )
+            /* Using cursor H00A05 */
+            pr_default.execute(3);
+            while ( (pr_default.getStatus(3) != 101) )
             {
-               A49SupplierAgbId = H00A07_A49SupplierAgbId[0];
-               A51SupplierAgbName = H00A07_A51SupplierAgbName[0];
+               A49SupplierAgbId = H00A05_A49SupplierAgbId[0];
+               A51SupplierAgbName = H00A05_A51SupplierAgbName[0];
                AV31Combo_DataItem = new WorkWithPlus.workwithplus_web.SdtDVB_SDTComboData_Item(context);
                AV31Combo_DataItem.gxTpr_Id = StringUtil.Trim( A49SupplierAgbId.ToString());
                AV31Combo_DataItem.gxTpr_Title = A51SupplierAgbName;
                AV46SupplierAgbId_Data.Add(AV31Combo_DataItem, 0);
-               pr_default.readNext(5);
+               pr_default.readNext(3);
             }
-            pr_default.close(5);
+            pr_default.close(3);
             Combo_supplieragbid_Selectedvalue_set = ((Guid.Empty==AV41SupplierAgbId) ? "" : StringUtil.Trim( AV41SupplierAgbId.ToString()));
             ucCombo_supplieragbid.SendProperty(context, "", false, Combo_supplieragbid_Internalname, "SelectedValue_set", Combo_supplieragbid_Selectedvalue_set);
          }
          else if ( ( AV42noFilterAgb ) && ( StringUtil.StrCmp(AV13ProductServiceGroup, " AGB Supplier") == 0 ) )
          {
-            pr_default.dynParam(6, new Object[]{ new Object[]{
+            pr_default.dynParam(4, new Object[]{ new Object[]{
                                                  A49SupplierAgbId ,
                                                  AV37PreferredAgbSuppliers } ,
                                                  new int[]{
                                                  }
             });
-            /* Using cursor H00A08 */
-            pr_default.execute(6);
-            while ( (pr_default.getStatus(6) != 101) )
+            /* Using cursor H00A06 */
+            pr_default.execute(4);
+            while ( (pr_default.getStatus(4) != 101) )
             {
-               A49SupplierAgbId = H00A08_A49SupplierAgbId[0];
-               A51SupplierAgbName = H00A08_A51SupplierAgbName[0];
+               A49SupplierAgbId = H00A06_A49SupplierAgbId[0];
+               A51SupplierAgbName = H00A06_A51SupplierAgbName[0];
                AV31Combo_DataItem = new WorkWithPlus.workwithplus_web.SdtDVB_SDTComboData_Item(context);
                AV31Combo_DataItem.gxTpr_Id = StringUtil.Trim( A49SupplierAgbId.ToString());
                AV31Combo_DataItem.gxTpr_Title = A51SupplierAgbName;
                AV46SupplierAgbId_Data.Add(AV31Combo_DataItem, 0);
-               pr_default.readNext(6);
+               pr_default.readNext(4);
             }
-            pr_default.close(6);
+            pr_default.close(4);
             if ( ! AV48isStart )
             {
                AV41SupplierAgbId = Guid.Empty;
@@ -2510,42 +2501,58 @@ namespace GeneXus.Programs {
          }
          else if ( ! AV40noFilterGen && ( StringUtil.StrCmp(AV13ProductServiceGroup, "Supplier") == 0 ) )
          {
-            pr_default.dynParam(7, new Object[]{ new Object[]{
+            pr_default.dynParam(5, new Object[]{ new Object[]{
                                                  A42SupplierGenId ,
                                                  AV38PreferredGenSuppliers ,
                                                  A11OrganisationId ,
                                                  AV47OrganisationId } ,
                                                  new int[]{
-                                                 TypeConstants.BOOLEAN
+                                                 }
+            });
+            /* Using cursor H00A07 */
+            pr_default.execute(5, new Object[] {AV47OrganisationId});
+            while ( (pr_default.getStatus(5) != 101) )
+            {
+               A602SG_LocationSupplierOrganisatio = H00A07_A602SG_LocationSupplierOrganisatio[0];
+               n602SG_LocationSupplierOrganisatio = H00A07_n602SG_LocationSupplierOrganisatio[0];
+               A603SG_LocationSupplierLocationId = H00A07_A603SG_LocationSupplierLocationId[0];
+               n603SG_LocationSupplierLocationId = H00A07_n603SG_LocationSupplierLocationId[0];
+               A630ToolBoxLastUpdateReceptionistI = H00A07_A630ToolBoxLastUpdateReceptionistI[0];
+               n630ToolBoxLastUpdateReceptionistI = H00A07_n630ToolBoxLastUpdateReceptionistI[0];
+               A89ReceptionistId = H00A07_A89ReceptionistId[0];
+               A29LocationId = H00A07_A29LocationId[0];
+               A42SupplierGenId = H00A07_A42SupplierGenId[0];
+               A44SupplierGenCompanyName = H00A07_A44SupplierGenCompanyName[0];
+               A630ToolBoxLastUpdateReceptionistI = H00A07_A630ToolBoxLastUpdateReceptionistI[0];
+               n630ToolBoxLastUpdateReceptionistI = H00A07_n630ToolBoxLastUpdateReceptionistI[0];
+               /* Using cursor H00A08 */
+               pr_default.execute(6, new Object[] {n602SG_LocationSupplierOrganisatio, A602SG_LocationSupplierOrganisatio});
+               pr_default.close(6);
+               AV31Combo_DataItem = new WorkWithPlus.workwithplus_web.SdtDVB_SDTComboData_Item(context);
+               AV31Combo_DataItem.gxTpr_Id = StringUtil.Trim( A42SupplierGenId.ToString());
+               AV31Combo_DataItem.gxTpr_Title = A44SupplierGenCompanyName;
+               AV43SupplierGenId_Data.Add(AV31Combo_DataItem, 0);
+               pr_default.readNext(5);
+            }
+            pr_default.close(5);
+            pr_default.close(6);
+            Combo_suppliergenid_Selectedvalue_set = ((Guid.Empty==AV39SupplierGenId) ? "" : StringUtil.Trim( AV39SupplierGenId.ToString()));
+            ucCombo_suppliergenid.SendProperty(context, "", false, Combo_suppliergenid_Internalname, "SelectedValue_set", Combo_suppliergenid_Selectedvalue_set);
+         }
+         else if ( ( AV40noFilterGen ) && ( StringUtil.StrCmp(AV13ProductServiceGroup, "Supplier") == 0 ) )
+         {
+            pr_default.dynParam(7, new Object[]{ new Object[]{
+                                                 A42SupplierGenId ,
+                                                 AV38PreferredGenSuppliers } ,
+                                                 new int[]{
                                                  }
             });
             /* Using cursor H00A09 */
             pr_default.execute(7);
             while ( (pr_default.getStatus(7) != 101) )
             {
-               A602SG_LocationSupplierOrganisatio = H00A09_A602SG_LocationSupplierOrganisatio[0];
-               n602SG_LocationSupplierOrganisatio = H00A09_n602SG_LocationSupplierOrganisatio[0];
-               A603SG_LocationSupplierLocationId = H00A09_A603SG_LocationSupplierLocationId[0];
-               n603SG_LocationSupplierLocationId = H00A09_n603SG_LocationSupplierLocationId[0];
-               A584ActiveAppVersionId = H00A09_A584ActiveAppVersionId[0];
-               n584ActiveAppVersionId = H00A09_n584ActiveAppVersionId[0];
-               A598PublishedActiveAppVersionId = H00A09_A598PublishedActiveAppVersionId[0];
-               n598PublishedActiveAppVersionId = H00A09_n598PublishedActiveAppVersionId[0];
                A42SupplierGenId = H00A09_A42SupplierGenId[0];
                A44SupplierGenCompanyName = H00A09_A44SupplierGenCompanyName[0];
-               A584ActiveAppVersionId = H00A09_A584ActiveAppVersionId[0];
-               n584ActiveAppVersionId = H00A09_n584ActiveAppVersionId[0];
-               A598PublishedActiveAppVersionId = H00A09_A598PublishedActiveAppVersionId[0];
-               n598PublishedActiveAppVersionId = H00A09_n598PublishedActiveAppVersionId[0];
-               /* Using cursor H00A010 */
-               pr_default.execute(8, new Object[] {n602SG_LocationSupplierOrganisatio, A602SG_LocationSupplierOrganisatio});
-               pr_default.close(8);
-               /* Using cursor H00A011 */
-               pr_default.execute(9, new Object[] {n584ActiveAppVersionId, A584ActiveAppVersionId});
-               pr_default.close(9);
-               /* Using cursor H00A012 */
-               pr_default.execute(10, new Object[] {n598PublishedActiveAppVersionId, A598PublishedActiveAppVersionId});
-               pr_default.close(10);
                AV31Combo_DataItem = new WorkWithPlus.workwithplus_web.SdtDVB_SDTComboData_Item(context);
                AV31Combo_DataItem.gxTpr_Id = StringUtil.Trim( A42SupplierGenId.ToString());
                AV31Combo_DataItem.gxTpr_Title = A44SupplierGenCompanyName;
@@ -2553,32 +2560,6 @@ namespace GeneXus.Programs {
                pr_default.readNext(7);
             }
             pr_default.close(7);
-            pr_default.close(8);
-            pr_default.close(10);
-            Combo_suppliergenid_Selectedvalue_set = ((Guid.Empty==AV39SupplierGenId) ? "" : StringUtil.Trim( AV39SupplierGenId.ToString()));
-            ucCombo_suppliergenid.SendProperty(context, "", false, Combo_suppliergenid_Internalname, "SelectedValue_set", Combo_suppliergenid_Selectedvalue_set);
-         }
-         else if ( ( AV40noFilterGen ) && ( StringUtil.StrCmp(AV13ProductServiceGroup, "Supplier") == 0 ) )
-         {
-            pr_default.dynParam(11, new Object[]{ new Object[]{
-                                                 A42SupplierGenId ,
-                                                 AV38PreferredGenSuppliers } ,
-                                                 new int[]{
-                                                 }
-            });
-            /* Using cursor H00A013 */
-            pr_default.execute(11);
-            while ( (pr_default.getStatus(11) != 101) )
-            {
-               A42SupplierGenId = H00A013_A42SupplierGenId[0];
-               A44SupplierGenCompanyName = H00A013_A44SupplierGenCompanyName[0];
-               AV31Combo_DataItem = new WorkWithPlus.workwithplus_web.SdtDVB_SDTComboData_Item(context);
-               AV31Combo_DataItem.gxTpr_Id = StringUtil.Trim( A42SupplierGenId.ToString());
-               AV31Combo_DataItem.gxTpr_Title = A44SupplierGenCompanyName;
-               AV43SupplierGenId_Data.Add(AV31Combo_DataItem, 0);
-               pr_default.readNext(11);
-            }
-            pr_default.close(11);
             if ( ! AV48isStart )
             {
                AV39SupplierGenId = Guid.Empty;
@@ -2753,7 +2734,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025524840627", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025528426754", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2769,7 +2750,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wc_productservice.js", "?2025524840627", false, true);
+         context.AddJavascriptSource("wc_productservice.js", "?2025528426755", false, true);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
@@ -3541,12 +3522,6 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected override void CloseCursors( )
-      {
-         pr_default.close(9);
-         pr_default.close(2);
-      }
-
       public override bool UploadEnabled( )
       {
          return true ;
@@ -3649,50 +3624,47 @@ namespace GeneXus.Programs {
          AV35PhoneCode_DPItem = new SdtSDT_Country_SDT_CountryItem(context);
          AV33ComboTitles = new GxSimpleCollection<string>();
          Combo_phonecode_Selectedvalue_set = "";
+         H00A02_A11OrganisationId = new Guid[] {Guid.Empty} ;
          H00A02_A602SG_LocationSupplierOrganisatio = new Guid[] {Guid.Empty} ;
          H00A02_n602SG_LocationSupplierOrganisatio = new bool[] {false} ;
          H00A02_A603SG_LocationSupplierLocationId = new Guid[] {Guid.Empty} ;
          H00A02_n603SG_LocationSupplierLocationId = new bool[] {false} ;
-         H00A02_A584ActiveAppVersionId = new Guid[] {Guid.Empty} ;
-         H00A02_n584ActiveAppVersionId = new bool[] {false} ;
-         H00A02_A598PublishedActiveAppVersionId = new Guid[] {Guid.Empty} ;
-         H00A02_n598PublishedActiveAppVersionId = new bool[] {false} ;
+         H00A02_A630ToolBoxLastUpdateReceptionistI = new Guid[] {Guid.Empty} ;
+         H00A02_n630ToolBoxLastUpdateReceptionistI = new bool[] {false} ;
+         H00A02_A89ReceptionistId = new Guid[] {Guid.Empty} ;
+         H00A02_A29LocationId = new Guid[] {Guid.Empty} ;
          H00A02_A42SupplierGenId = new Guid[] {Guid.Empty} ;
          H00A02_A44SupplierGenCompanyName = new string[] {""} ;
          A602SG_LocationSupplierOrganisatio = Guid.Empty;
          A603SG_LocationSupplierLocationId = Guid.Empty;
-         A584ActiveAppVersionId = Guid.Empty;
-         A598PublishedActiveAppVersionId = Guid.Empty;
+         A630ToolBoxLastUpdateReceptionistI = Guid.Empty;
+         A89ReceptionistId = Guid.Empty;
+         A29LocationId = Guid.Empty;
          H00A03_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         H00A03_n11OrganisationId = new bool[] {false} ;
-         H00A04_A523AppVersionId = new Guid[] {Guid.Empty} ;
-         H00A05_A523AppVersionId = new Guid[] {Guid.Empty} ;
          A49SupplierAgbId = Guid.Empty;
-         H00A06_A49SupplierAgbId = new Guid[] {Guid.Empty} ;
-         H00A06_A51SupplierAgbName = new string[] {""} ;
+         H00A04_A49SupplierAgbId = new Guid[] {Guid.Empty} ;
+         H00A04_A51SupplierAgbName = new string[] {""} ;
          A51SupplierAgbName = "";
          Combo_supplieragbid_Selectedvalue_set = "";
          ucCombo_supplieragbid = new GXUserControl();
-         H00A07_A49SupplierAgbId = new Guid[] {Guid.Empty} ;
-         H00A07_A51SupplierAgbName = new string[] {""} ;
-         H00A08_A49SupplierAgbId = new Guid[] {Guid.Empty} ;
-         H00A08_A51SupplierAgbName = new string[] {""} ;
-         H00A09_A602SG_LocationSupplierOrganisatio = new Guid[] {Guid.Empty} ;
-         H00A09_n602SG_LocationSupplierOrganisatio = new bool[] {false} ;
-         H00A09_A603SG_LocationSupplierLocationId = new Guid[] {Guid.Empty} ;
-         H00A09_n603SG_LocationSupplierLocationId = new bool[] {false} ;
-         H00A09_A584ActiveAppVersionId = new Guid[] {Guid.Empty} ;
-         H00A09_n584ActiveAppVersionId = new bool[] {false} ;
-         H00A09_A598PublishedActiveAppVersionId = new Guid[] {Guid.Empty} ;
-         H00A09_n598PublishedActiveAppVersionId = new bool[] {false} ;
+         H00A05_A49SupplierAgbId = new Guid[] {Guid.Empty} ;
+         H00A05_A51SupplierAgbName = new string[] {""} ;
+         H00A06_A49SupplierAgbId = new Guid[] {Guid.Empty} ;
+         H00A06_A51SupplierAgbName = new string[] {""} ;
+         H00A07_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         H00A07_A602SG_LocationSupplierOrganisatio = new Guid[] {Guid.Empty} ;
+         H00A07_n602SG_LocationSupplierOrganisatio = new bool[] {false} ;
+         H00A07_A603SG_LocationSupplierLocationId = new Guid[] {Guid.Empty} ;
+         H00A07_n603SG_LocationSupplierLocationId = new bool[] {false} ;
+         H00A07_A630ToolBoxLastUpdateReceptionistI = new Guid[] {Guid.Empty} ;
+         H00A07_n630ToolBoxLastUpdateReceptionistI = new bool[] {false} ;
+         H00A07_A89ReceptionistId = new Guid[] {Guid.Empty} ;
+         H00A07_A29LocationId = new Guid[] {Guid.Empty} ;
+         H00A07_A42SupplierGenId = new Guid[] {Guid.Empty} ;
+         H00A07_A44SupplierGenCompanyName = new string[] {""} ;
+         H00A08_A11OrganisationId = new Guid[] {Guid.Empty} ;
          H00A09_A42SupplierGenId = new Guid[] {Guid.Empty} ;
          H00A09_A44SupplierGenCompanyName = new string[] {""} ;
-         H00A010_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         H00A010_n11OrganisationId = new bool[] {false} ;
-         H00A011_A523AppVersionId = new Guid[] {Guid.Empty} ;
-         H00A012_A523AppVersionId = new Guid[] {Guid.Empty} ;
-         H00A013_A42SupplierGenId = new Guid[] {Guid.Empty} ;
-         H00A013_A44SupplierGenCompanyName = new string[] {""} ;
          Combo_suppliergenid_Caption = "";
          Combo_supplieragbid_Caption = "";
          ucUsercontrol1 = new GXUserControl();
@@ -3705,40 +3677,30 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.wc_productservice__default(),
             new Object[][] {
                 new Object[] {
-               H00A02_A602SG_LocationSupplierOrganisatio, H00A02_n602SG_LocationSupplierOrganisatio, H00A02_A603SG_LocationSupplierLocationId, H00A02_n603SG_LocationSupplierLocationId, H00A02_A584ActiveAppVersionId, H00A02_n584ActiveAppVersionId, H00A02_A598PublishedActiveAppVersionId, H00A02_n598PublishedActiveAppVersionId, H00A02_A42SupplierGenId, H00A02_A44SupplierGenCompanyName
+               H00A02_A11OrganisationId, H00A02_A602SG_LocationSupplierOrganisatio, H00A02_n602SG_LocationSupplierOrganisatio, H00A02_A603SG_LocationSupplierLocationId, H00A02_n603SG_LocationSupplierLocationId, H00A02_A630ToolBoxLastUpdateReceptionistI, H00A02_n630ToolBoxLastUpdateReceptionistI, H00A02_A89ReceptionistId, H00A02_A29LocationId, H00A02_A42SupplierGenId,
+               H00A02_A44SupplierGenCompanyName
                }
                , new Object[] {
                H00A03_A11OrganisationId
                }
                , new Object[] {
-               H00A04_A523AppVersionId
+               H00A04_A49SupplierAgbId, H00A04_A51SupplierAgbName
                }
                , new Object[] {
-               H00A05_A523AppVersionId
+               H00A05_A49SupplierAgbId, H00A05_A51SupplierAgbName
                }
                , new Object[] {
                H00A06_A49SupplierAgbId, H00A06_A51SupplierAgbName
                }
                , new Object[] {
-               H00A07_A49SupplierAgbId, H00A07_A51SupplierAgbName
+               H00A07_A11OrganisationId, H00A07_A602SG_LocationSupplierOrganisatio, H00A07_n602SG_LocationSupplierOrganisatio, H00A07_A603SG_LocationSupplierLocationId, H00A07_n603SG_LocationSupplierLocationId, H00A07_A630ToolBoxLastUpdateReceptionistI, H00A07_n630ToolBoxLastUpdateReceptionistI, H00A07_A89ReceptionistId, H00A07_A29LocationId, H00A07_A42SupplierGenId,
+               H00A07_A44SupplierGenCompanyName
                }
                , new Object[] {
-               H00A08_A49SupplierAgbId, H00A08_A51SupplierAgbName
+               H00A08_A11OrganisationId
                }
                , new Object[] {
-               H00A09_A602SG_LocationSupplierOrganisatio, H00A09_n602SG_LocationSupplierOrganisatio, H00A09_A603SG_LocationSupplierLocationId, H00A09_n603SG_LocationSupplierLocationId, H00A09_A584ActiveAppVersionId, H00A09_n584ActiveAppVersionId, H00A09_A598PublishedActiveAppVersionId, H00A09_n598PublishedActiveAppVersionId, H00A09_A42SupplierGenId, H00A09_A44SupplierGenCompanyName
-               }
-               , new Object[] {
-               H00A010_A11OrganisationId
-               }
-               , new Object[] {
-               H00A011_A523AppVersionId
-               }
-               , new Object[] {
-               H00A012_A523AppVersionId
-               }
-               , new Object[] {
-               H00A013_A42SupplierGenId, H00A013_A44SupplierGenCompanyName
+               H00A09_A42SupplierGenId, H00A09_A44SupplierGenCompanyName
                }
             }
          );
@@ -4049,8 +4011,7 @@ namespace GeneXus.Programs {
       private bool GXt_boolean7 ;
       private bool n602SG_LocationSupplierOrganisatio ;
       private bool n603SG_LocationSupplierLocationId ;
-      private bool n584ActiveAppVersionId ;
-      private bool n598PublishedActiveAppVersionId ;
+      private bool n630ToolBoxLastUpdateReceptionistI ;
       private bool AV48isStart ;
       private bool Combo_suppliergenid_Emptyitem ;
       private bool Combo_supplieragbid_Emptyitem ;
@@ -4087,8 +4048,9 @@ namespace GeneXus.Programs {
       private Guid GXt_guid1 ;
       private Guid A602SG_LocationSupplierOrganisatio ;
       private Guid A603SG_LocationSupplierLocationId ;
-      private Guid A584ActiveAppVersionId ;
-      private Guid A598PublishedActiveAppVersionId ;
+      private Guid A630ToolBoxLastUpdateReceptionistI ;
+      private Guid A89ReceptionistId ;
+      private Guid A29LocationId ;
       private Guid A49SupplierAgbId ;
       private IGxSession AV45Session ;
       private GeneXus.Utils.GxStringCollection gxdynajaxctrlcodr ;
@@ -4136,49 +4098,45 @@ namespace GeneXus.Programs {
       private SdtSDT_Country_SDT_CountryItem AV35PhoneCode_DPItem ;
       private GxSimpleCollection<string> AV33ComboTitles ;
       private IDataStoreProvider pr_default ;
+      private Guid[] H00A02_A11OrganisationId ;
       private Guid[] H00A02_A602SG_LocationSupplierOrganisatio ;
       private bool[] H00A02_n602SG_LocationSupplierOrganisatio ;
       private Guid[] H00A02_A603SG_LocationSupplierLocationId ;
       private bool[] H00A02_n603SG_LocationSupplierLocationId ;
-      private Guid[] H00A02_A584ActiveAppVersionId ;
-      private bool[] H00A02_n584ActiveAppVersionId ;
-      private Guid[] H00A02_A598PublishedActiveAppVersionId ;
-      private bool[] H00A02_n598PublishedActiveAppVersionId ;
+      private Guid[] H00A02_A630ToolBoxLastUpdateReceptionistI ;
+      private bool[] H00A02_n630ToolBoxLastUpdateReceptionistI ;
+      private Guid[] H00A02_A89ReceptionistId ;
+      private Guid[] H00A02_A29LocationId ;
       private Guid[] H00A02_A42SupplierGenId ;
       private string[] H00A02_A44SupplierGenCompanyName ;
       private Guid[] H00A03_A11OrganisationId ;
-      private bool[] H00A03_n11OrganisationId ;
-      private Guid[] H00A04_A523AppVersionId ;
-      private Guid[] H00A05_A523AppVersionId ;
+      private Guid[] H00A04_A49SupplierAgbId ;
+      private string[] H00A04_A51SupplierAgbName ;
+      private Guid[] H00A05_A49SupplierAgbId ;
+      private string[] H00A05_A51SupplierAgbName ;
       private Guid[] H00A06_A49SupplierAgbId ;
       private string[] H00A06_A51SupplierAgbName ;
-      private Guid[] H00A07_A49SupplierAgbId ;
-      private string[] H00A07_A51SupplierAgbName ;
-      private Guid[] H00A08_A49SupplierAgbId ;
-      private string[] H00A08_A51SupplierAgbName ;
-      private Guid[] H00A09_A602SG_LocationSupplierOrganisatio ;
-      private bool[] H00A09_n602SG_LocationSupplierOrganisatio ;
-      private Guid[] H00A09_A603SG_LocationSupplierLocationId ;
-      private bool[] H00A09_n603SG_LocationSupplierLocationId ;
-      private Guid[] H00A09_A584ActiveAppVersionId ;
-      private bool[] H00A09_n584ActiveAppVersionId ;
-      private Guid[] H00A09_A598PublishedActiveAppVersionId ;
-      private bool[] H00A09_n598PublishedActiveAppVersionId ;
+      private Guid[] H00A07_A11OrganisationId ;
+      private Guid[] H00A07_A602SG_LocationSupplierOrganisatio ;
+      private bool[] H00A07_n602SG_LocationSupplierOrganisatio ;
+      private Guid[] H00A07_A603SG_LocationSupplierLocationId ;
+      private bool[] H00A07_n603SG_LocationSupplierLocationId ;
+      private Guid[] H00A07_A630ToolBoxLastUpdateReceptionistI ;
+      private bool[] H00A07_n630ToolBoxLastUpdateReceptionistI ;
+      private Guid[] H00A07_A89ReceptionistId ;
+      private Guid[] H00A07_A29LocationId ;
+      private Guid[] H00A07_A42SupplierGenId ;
+      private string[] H00A07_A44SupplierGenCompanyName ;
+      private Guid[] H00A08_A11OrganisationId ;
       private Guid[] H00A09_A42SupplierGenId ;
       private string[] H00A09_A44SupplierGenCompanyName ;
-      private Guid[] H00A010_A11OrganisationId ;
-      private bool[] H00A010_n11OrganisationId ;
-      private Guid[] H00A011_A523AppVersionId ;
-      private Guid[] H00A012_A523AppVersionId ;
-      private Guid[] H00A013_A42SupplierGenId ;
-      private string[] H00A013_A44SupplierGenCompanyName ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }
 
    public class wc_productservice__default : DataStoreHelperBase, IDataStoreHelper
    {
-      protected Object[] conditional_H00A06( IGxContext context ,
+      protected Object[] conditional_H00A04( IGxContext context ,
                                              Guid A49SupplierAgbId ,
                                              GxSimpleCollection<Guid> AV37PreferredAgbSuppliers )
       {
@@ -4193,7 +4151,7 @@ namespace GeneXus.Programs {
          return GXv_Object8 ;
       }
 
-      protected Object[] conditional_H00A08( IGxContext context ,
+      protected Object[] conditional_H00A06( IGxContext context ,
                                              Guid A49SupplierAgbId ,
                                              GxSimpleCollection<Guid> AV37PreferredAgbSuppliers )
       {
@@ -4208,7 +4166,7 @@ namespace GeneXus.Programs {
          return GXv_Object10 ;
       }
 
-      protected Object[] conditional_H00A09( IGxContext context ,
+      protected Object[] conditional_H00A07( IGxContext context ,
                                              Guid A42SupplierGenId ,
                                              GxSimpleCollection<Guid> AV38PreferredGenSuppliers ,
                                              Guid A11OrganisationId ,
@@ -4216,18 +4174,21 @@ namespace GeneXus.Programs {
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         Object[] GXv_Object12 = new Object[2];
-         scmdbuf = "SELECT T1.SG_LocationSupplierOrganisatio AS SG_LocationSupplierOrganisatio, T1.SG_LocationSupplierLocationId AS SG_LocationSupplierLocationId, T2.ActiveAppVersionId, T2.PublishedActiveAppVersionId, T1.SupplierGenId, T1.SupplierGenCompanyName FROM (Trn_SupplierGen T1 LEFT JOIN Trn_Location T2 ON T2.LocationId = T1.SG_LocationSupplierLocationId AND T2.OrganisationId = T1.SG_LocationSupplierOrganisatio)";
+         short[] GXv_int12 = new short[1];
+         Object[] GXv_Object13 = new Object[2];
+         scmdbuf = "SELECT T3.OrganisationId, T1.SG_LocationSupplierOrganisatio AS SG_LocationSupplierOrganisatio, T1.SG_LocationSupplierLocationId AS SG_LocationSupplierLocationId, T2.ToolBoxLastUpdateReceptionistI, T3.ReceptionistId, T3.LocationId, T1.SupplierGenId, T1.SupplierGenCompanyName FROM ((Trn_SupplierGen T1 LEFT JOIN Trn_Location T2 ON T2.LocationId = T1.SG_LocationSupplierLocationId AND T2.OrganisationId = T1.SG_LocationSupplierOrganisatio) LEFT JOIN Trn_Receptionist T3 ON T3.ReceptionistId = T2.ToolBoxLastUpdateReceptionistI AND T3.OrganisationId = T1.SG_LocationSupplierOrganisatio AND T3.LocationId = T1.SG_LocationSupplierLocationId)";
          AddWhere(sWhereString, "(Not "+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV38PreferredGenSuppliers, "T1.SupplierGenId IN (", ")")+")");
+         AddWhere(sWhereString, "(T3.OrganisationId = :AV47OrganisationId)");
          scmdbuf += sWhereString;
          scmdbuf += " ORDER BY T1.SupplierGenCompanyName";
-         GXv_Object12[0] = scmdbuf;
-         return GXv_Object12 ;
+         GXv_Object13[0] = scmdbuf;
+         GXv_Object13[1] = GXv_int12;
+         return GXv_Object13 ;
       }
 
-      protected Object[] conditional_H00A013( IGxContext context ,
-                                              Guid A42SupplierGenId ,
-                                              GxSimpleCollection<Guid> AV38PreferredGenSuppliers )
+      protected Object[] conditional_H00A09( IGxContext context ,
+                                             Guid A42SupplierGenId ,
+                                             GxSimpleCollection<Guid> AV38PreferredGenSuppliers )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
@@ -4246,14 +4207,14 @@ namespace GeneXus.Programs {
       {
          switch ( cursor )
          {
+               case 2 :
+                     return conditional_H00A04(context, (Guid)dynConstraints[0] , (GxSimpleCollection<Guid>)dynConstraints[1] );
                case 4 :
                      return conditional_H00A06(context, (Guid)dynConstraints[0] , (GxSimpleCollection<Guid>)dynConstraints[1] );
-               case 6 :
-                     return conditional_H00A08(context, (Guid)dynConstraints[0] , (GxSimpleCollection<Guid>)dynConstraints[1] );
+               case 5 :
+                     return conditional_H00A07(context, (Guid)dynConstraints[0] , (GxSimpleCollection<Guid>)dynConstraints[1] , (Guid)dynConstraints[2] , (Guid)dynConstraints[3] );
                case 7 :
-                     return conditional_H00A09(context, (Guid)dynConstraints[0] , (GxSimpleCollection<Guid>)dynConstraints[1] , (Guid)dynConstraints[2] , (Guid)dynConstraints[3] );
-               case 11 :
-                     return conditional_H00A013(context, (Guid)dynConstraints[0] , (GxSimpleCollection<Guid>)dynConstraints[1] );
+                     return conditional_H00A09(context, (Guid)dynConstraints[0] , (GxSimpleCollection<Guid>)dynConstraints[1] );
          }
          return base.getDynamicStatement(cursor, context, dynConstraints);
       }
@@ -4270,10 +4231,6 @@ namespace GeneXus.Programs {
          ,new ForEachCursor(def[5])
          ,new ForEachCursor(def[6])
          ,new ForEachCursor(def[7])
-         ,new ForEachCursor(def[8])
-         ,new ForEachCursor(def[9])
-         ,new ForEachCursor(def[10])
-         ,new ForEachCursor(def[11])
        };
     }
 
@@ -4284,59 +4241,41 @@ namespace GeneXus.Programs {
        {
           Object[] prmH00A02;
           prmH00A02 = new Object[] {
+          new ParDef("AV47OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           Object[] prmH00A03;
           prmH00A03 = new Object[] {
           new ParDef("SG_LocationSupplierOrganisatio",GXType.UniqueIdentifier,36,0){Nullable=true}
           };
-          Object[] prmH00A04;
-          prmH00A04 = new Object[] {
-          new ParDef("ActiveAppVersionId",GXType.UniqueIdentifier,36,0){Nullable=true}
-          };
           Object[] prmH00A05;
           prmH00A05 = new Object[] {
-          new ParDef("PublishedActiveAppVersionId",GXType.UniqueIdentifier,36,0){Nullable=true}
           };
-          Object[] prmH00A07;
-          prmH00A07 = new Object[] {
-          };
-          Object[] prmH00A010;
-          prmH00A010 = new Object[] {
+          Object[] prmH00A08;
+          prmH00A08 = new Object[] {
           new ParDef("SG_LocationSupplierOrganisatio",GXType.UniqueIdentifier,36,0){Nullable=true}
           };
-          Object[] prmH00A011;
-          prmH00A011 = new Object[] {
-          new ParDef("ActiveAppVersionId",GXType.UniqueIdentifier,36,0){Nullable=true}
-          };
-          Object[] prmH00A012;
-          prmH00A012 = new Object[] {
-          new ParDef("PublishedActiveAppVersionId",GXType.UniqueIdentifier,36,0){Nullable=true}
+          Object[] prmH00A04;
+          prmH00A04 = new Object[] {
           };
           Object[] prmH00A06;
           prmH00A06 = new Object[] {
           };
-          Object[] prmH00A08;
-          prmH00A08 = new Object[] {
+          Object[] prmH00A07;
+          prmH00A07 = new Object[] {
+          new ParDef("AV47OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           Object[] prmH00A09;
           prmH00A09 = new Object[] {
           };
-          Object[] prmH00A013;
-          prmH00A013 = new Object[] {
-          };
           def= new CursorDef[] {
-              new CursorDef("H00A02", "SELECT T1.SG_LocationSupplierOrganisatio AS SG_LocationSupplierOrganisatio, T1.SG_LocationSupplierLocationId AS SG_LocationSupplierLocationId, T2.ActiveAppVersionId, T2.PublishedActiveAppVersionId, T1.SupplierGenId, T1.SupplierGenCompanyName FROM (Trn_SupplierGen T1 LEFT JOIN Trn_Location T2 ON T2.LocationId = T1.SG_LocationSupplierLocationId AND T2.OrganisationId = T1.SG_LocationSupplierOrganisatio) ORDER BY T1.SupplierGenCompanyName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00A02,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("H00A02", "SELECT T3.OrganisationId, T1.SG_LocationSupplierOrganisatio AS SG_LocationSupplierOrganisatio, T1.SG_LocationSupplierLocationId AS SG_LocationSupplierLocationId, T2.ToolBoxLastUpdateReceptionistI, T3.ReceptionistId, T3.LocationId, T1.SupplierGenId, T1.SupplierGenCompanyName FROM ((Trn_SupplierGen T1 LEFT JOIN Trn_Location T2 ON T2.LocationId = T1.SG_LocationSupplierLocationId AND T2.OrganisationId = T1.SG_LocationSupplierOrganisatio) LEFT JOIN Trn_Receptionist T3 ON T3.ReceptionistId = T2.ToolBoxLastUpdateReceptionistI AND T3.OrganisationId = T1.SG_LocationSupplierOrganisatio AND T3.LocationId = T1.SG_LocationSupplierLocationId) WHERE T3.OrganisationId = :AV47OrganisationId ORDER BY T1.SupplierGenCompanyName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00A02,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00A03", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :SG_LocationSupplierOrganisatio ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00A03,1, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("H00A04", "SELECT AppVersionId FROM Trn_AppVersion WHERE AppVersionId = :ActiveAppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00A04,1, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("H00A05", "SELECT AppVersionId FROM Trn_AppVersion WHERE AppVersionId = :PublishedActiveAppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00A05,1, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("H00A04", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00A04,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("H00A05", "SELECT SupplierAgbId, SupplierAgbName FROM Trn_SupplierAGB ORDER BY SupplierAgbName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00A05,100, GxCacheFrequency.OFF ,false,false )
              ,new CursorDef("H00A06", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00A06,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("H00A07", "SELECT SupplierAgbId, SupplierAgbName FROM Trn_SupplierAGB ORDER BY SupplierAgbName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00A07,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("H00A08", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00A08,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("H00A09", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00A09,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("H00A010", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :SG_LocationSupplierOrganisatio ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00A010,1, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("H00A011", "SELECT AppVersionId FROM Trn_AppVersion WHERE AppVersionId = :ActiveAppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00A011,1, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("H00A012", "SELECT AppVersionId FROM Trn_AppVersion WHERE AppVersionId = :PublishedActiveAppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00A012,1, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("H00A013", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00A013,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("H00A07", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00A07,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("H00A08", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :SG_LocationSupplierOrganisatio ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00A08,1, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("H00A09", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00A09,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -4349,24 +4288,27 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((bool[]) buf[1])[0] = rslt.wasNull(1);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(2);
-                ((bool[]) buf[3])[0] = rslt.wasNull(2);
-                ((Guid[]) buf[4])[0] = rslt.getGuid(3);
-                ((bool[]) buf[5])[0] = rslt.wasNull(3);
-                ((Guid[]) buf[6])[0] = rslt.getGuid(4);
-                ((bool[]) buf[7])[0] = rslt.wasNull(4);
-                ((Guid[]) buf[8])[0] = rslt.getGuid(5);
-                ((string[]) buf[9])[0] = rslt.getVarchar(6);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+                ((bool[]) buf[2])[0] = rslt.wasNull(2);
+                ((Guid[]) buf[3])[0] = rslt.getGuid(3);
+                ((bool[]) buf[4])[0] = rslt.wasNull(3);
+                ((Guid[]) buf[5])[0] = rslt.getGuid(4);
+                ((bool[]) buf[6])[0] = rslt.wasNull(4);
+                ((Guid[]) buf[7])[0] = rslt.getGuid(5);
+                ((Guid[]) buf[8])[0] = rslt.getGuid(6);
+                ((Guid[]) buf[9])[0] = rslt.getGuid(7);
+                ((string[]) buf[10])[0] = rslt.getVarchar(8);
                 return;
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 return;
              case 2 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((string[]) buf[1])[0] = rslt.getVarchar(2);
                 return;
              case 3 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((string[]) buf[1])[0] = rslt.getVarchar(2);
                 return;
              case 4 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -4374,34 +4316,21 @@ namespace GeneXus.Programs {
                 return;
              case 5 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+                ((bool[]) buf[2])[0] = rslt.wasNull(2);
+                ((Guid[]) buf[3])[0] = rslt.getGuid(3);
+                ((bool[]) buf[4])[0] = rslt.wasNull(3);
+                ((Guid[]) buf[5])[0] = rslt.getGuid(4);
+                ((bool[]) buf[6])[0] = rslt.wasNull(4);
+                ((Guid[]) buf[7])[0] = rslt.getGuid(5);
+                ((Guid[]) buf[8])[0] = rslt.getGuid(6);
+                ((Guid[]) buf[9])[0] = rslt.getGuid(7);
+                ((string[]) buf[10])[0] = rslt.getVarchar(8);
                 return;
              case 6 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
                 return;
              case 7 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((bool[]) buf[1])[0] = rslt.wasNull(1);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(2);
-                ((bool[]) buf[3])[0] = rslt.wasNull(2);
-                ((Guid[]) buf[4])[0] = rslt.getGuid(3);
-                ((bool[]) buf[5])[0] = rslt.wasNull(3);
-                ((Guid[]) buf[6])[0] = rslt.getGuid(4);
-                ((bool[]) buf[7])[0] = rslt.wasNull(4);
-                ((Guid[]) buf[8])[0] = rslt.getGuid(5);
-                ((string[]) buf[9])[0] = rslt.getVarchar(6);
-                return;
-             case 8 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                return;
-             case 9 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                return;
-             case 10 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                return;
-             case 11 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
                 return;

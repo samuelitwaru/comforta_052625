@@ -96,11 +96,10 @@ namespace GeneXus.Programs {
                                               A42SupplierGenId ,
                                               A11OrganisationId } ,
                                               new int[]{
-                                              TypeConstants.BOOLEAN
                                               }
          });
          /* Using cursor P00C12 */
-         pr_default.execute(0, new Object[] {AV9SupplierGenId});
+         pr_default.execute(0, new Object[] {AV9SupplierGenId, AV8OrganisationId});
          while ( (pr_default.getStatus(0) != 101) )
          {
             GXTC12 = 0;
@@ -108,24 +107,16 @@ namespace GeneXus.Programs {
             n602SG_LocationSupplierOrganisatio = P00C12_n602SG_LocationSupplierOrganisatio[0];
             A603SG_LocationSupplierLocationId = P00C12_A603SG_LocationSupplierLocationId[0];
             n603SG_LocationSupplierLocationId = P00C12_n603SG_LocationSupplierLocationId[0];
-            A584ActiveAppVersionId = P00C12_A584ActiveAppVersionId[0];
-            n584ActiveAppVersionId = P00C12_n584ActiveAppVersionId[0];
-            A598PublishedActiveAppVersionId = P00C12_A598PublishedActiveAppVersionId[0];
-            n598PublishedActiveAppVersionId = P00C12_n598PublishedActiveAppVersionId[0];
+            A630ToolBoxLastUpdateReceptionistI = P00C12_A630ToolBoxLastUpdateReceptionistI[0];
+            n630ToolBoxLastUpdateReceptionistI = P00C12_n630ToolBoxLastUpdateReceptionistI[0];
+            A89ReceptionistId = P00C12_A89ReceptionistId[0];
+            A29LocationId = P00C12_A29LocationId[0];
             A42SupplierGenId = P00C12_A42SupplierGenId[0];
-            A584ActiveAppVersionId = P00C12_A584ActiveAppVersionId[0];
-            n584ActiveAppVersionId = P00C12_n584ActiveAppVersionId[0];
-            A598PublishedActiveAppVersionId = P00C12_A598PublishedActiveAppVersionId[0];
-            n598PublishedActiveAppVersionId = P00C12_n598PublishedActiveAppVersionId[0];
+            A630ToolBoxLastUpdateReceptionistI = P00C12_A630ToolBoxLastUpdateReceptionistI[0];
+            n630ToolBoxLastUpdateReceptionistI = P00C12_n630ToolBoxLastUpdateReceptionistI[0];
             /* Using cursor P00C13 */
             pr_default.execute(1, new Object[] {n602SG_LocationSupplierOrganisatio, A602SG_LocationSupplierOrganisatio});
             pr_default.close(1);
-            /* Using cursor P00C14 */
-            pr_default.execute(2, new Object[] {n584ActiveAppVersionId, A584ActiveAppVersionId});
-            pr_default.close(2);
-            /* Using cursor P00C15 */
-            pr_default.execute(3, new Object[] {n598PublishedActiveAppVersionId, A598PublishedActiveAppVersionId});
-            pr_default.close(3);
             new prc_deletecascadeproductservice(context ).execute(  Guid.Empty,  A42SupplierGenId,  Guid.Empty,  A11OrganisationId) ;
             new prc_deletecascadesupplierdynamicform(context ).execute(  Guid.Empty,  0,  A42SupplierGenId) ;
             if ( AV12isMain )
@@ -159,9 +150,9 @@ namespace GeneXus.Programs {
             }
             else
             {
-               /* Using cursor P00C16 */
-               pr_default.execute(4, new Object[] {A42SupplierGenId});
-               pr_default.close(4);
+               /* Using cursor P00C14 */
+               pr_default.execute(2, new Object[] {A42SupplierGenId});
+               pr_default.close(2);
                pr_default.SmartCacheProvider.SetUpdated("Trn_SupplierGen");
             }
             if ( GXTC12 == 1 )
@@ -172,7 +163,6 @@ namespace GeneXus.Programs {
          }
          pr_default.close(0);
          pr_default.close(1);
-         pr_default.close(3);
          cleanup();
       }
 
@@ -187,32 +177,26 @@ namespace GeneXus.Programs {
          ExitApp();
       }
 
-      protected override void CloseCursors( )
-      {
-         pr_default.close(2);
-      }
-
       public override void initialize( )
       {
          A42SupplierGenId = Guid.Empty;
          A11OrganisationId = Guid.Empty;
+         P00C12_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00C12_A602SG_LocationSupplierOrganisatio = new Guid[] {Guid.Empty} ;
          P00C12_n602SG_LocationSupplierOrganisatio = new bool[] {false} ;
          P00C12_A603SG_LocationSupplierLocationId = new Guid[] {Guid.Empty} ;
          P00C12_n603SG_LocationSupplierLocationId = new bool[] {false} ;
-         P00C12_A584ActiveAppVersionId = new Guid[] {Guid.Empty} ;
-         P00C12_n584ActiveAppVersionId = new bool[] {false} ;
-         P00C12_A598PublishedActiveAppVersionId = new Guid[] {Guid.Empty} ;
-         P00C12_n598PublishedActiveAppVersionId = new bool[] {false} ;
+         P00C12_A630ToolBoxLastUpdateReceptionistI = new Guid[] {Guid.Empty} ;
+         P00C12_n630ToolBoxLastUpdateReceptionistI = new bool[] {false} ;
+         P00C12_A89ReceptionistId = new Guid[] {Guid.Empty} ;
+         P00C12_A29LocationId = new Guid[] {Guid.Empty} ;
          P00C12_A42SupplierGenId = new Guid[] {Guid.Empty} ;
          A602SG_LocationSupplierOrganisatio = Guid.Empty;
          A603SG_LocationSupplierLocationId = Guid.Empty;
-         A584ActiveAppVersionId = Guid.Empty;
-         A598PublishedActiveAppVersionId = Guid.Empty;
+         A630ToolBoxLastUpdateReceptionistI = Guid.Empty;
+         A89ReceptionistId = Guid.Empty;
+         A29LocationId = Guid.Empty;
          P00C13_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P00C13_n11OrganisationId = new bool[] {false} ;
-         P00C14_A523AppVersionId = new Guid[] {Guid.Empty} ;
-         P00C15_A523AppVersionId = new Guid[] {Guid.Empty} ;
          AV10Trn_SupplierGen = new SdtTrn_SupplierGen(context);
          AV16GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV11ErrorMessage = new GeneXus.Utils.SdtMessages_Message(context);
@@ -227,16 +211,10 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_deletecascadesuppliergen__default(),
             new Object[][] {
                 new Object[] {
-               P00C12_A602SG_LocationSupplierOrganisatio, P00C12_n602SG_LocationSupplierOrganisatio, P00C12_A603SG_LocationSupplierLocationId, P00C12_n603SG_LocationSupplierLocationId, P00C12_A584ActiveAppVersionId, P00C12_n584ActiveAppVersionId, P00C12_A598PublishedActiveAppVersionId, P00C12_n598PublishedActiveAppVersionId, P00C12_A42SupplierGenId
+               P00C12_A11OrganisationId, P00C12_A602SG_LocationSupplierOrganisatio, P00C12_n602SG_LocationSupplierOrganisatio, P00C12_A603SG_LocationSupplierLocationId, P00C12_n603SG_LocationSupplierLocationId, P00C12_A630ToolBoxLastUpdateReceptionistI, P00C12_n630ToolBoxLastUpdateReceptionistI, P00C12_A89ReceptionistId, P00C12_A29LocationId, P00C12_A42SupplierGenId
                }
                , new Object[] {
                P00C13_A11OrganisationId
-               }
-               , new Object[] {
-               P00C14_A523AppVersionId
-               }
-               , new Object[] {
-               P00C15_A523AppVersionId
                }
                , new Object[] {
                }
@@ -251,8 +229,7 @@ namespace GeneXus.Programs {
       private bool AV13isSuccessful ;
       private bool n602SG_LocationSupplierOrganisatio ;
       private bool n603SG_LocationSupplierLocationId ;
-      private bool n584ActiveAppVersionId ;
-      private bool n598PublishedActiveAppVersionId ;
+      private bool n630ToolBoxLastUpdateReceptionistI ;
       private string AV14Message ;
       private Guid AV9SupplierGenId ;
       private Guid AV8OrganisationId ;
@@ -260,27 +237,26 @@ namespace GeneXus.Programs {
       private Guid A11OrganisationId ;
       private Guid A602SG_LocationSupplierOrganisatio ;
       private Guid A603SG_LocationSupplierLocationId ;
-      private Guid A584ActiveAppVersionId ;
-      private Guid A598PublishedActiveAppVersionId ;
+      private Guid A630ToolBoxLastUpdateReceptionistI ;
+      private Guid A89ReceptionistId ;
+      private Guid A29LocationId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private bool aP3_isSuccessful ;
       private string aP4_Message ;
       private IDataStoreProvider pr_default ;
+      private Guid[] P00C12_A11OrganisationId ;
       private Guid[] P00C12_A602SG_LocationSupplierOrganisatio ;
       private bool[] P00C12_n602SG_LocationSupplierOrganisatio ;
       private Guid[] P00C12_A603SG_LocationSupplierLocationId ;
       private bool[] P00C12_n603SG_LocationSupplierLocationId ;
-      private Guid[] P00C12_A584ActiveAppVersionId ;
-      private bool[] P00C12_n584ActiveAppVersionId ;
-      private Guid[] P00C12_A598PublishedActiveAppVersionId ;
-      private bool[] P00C12_n598PublishedActiveAppVersionId ;
+      private Guid[] P00C12_A630ToolBoxLastUpdateReceptionistI ;
+      private bool[] P00C12_n630ToolBoxLastUpdateReceptionistI ;
+      private Guid[] P00C12_A89ReceptionistId ;
+      private Guid[] P00C12_A29LocationId ;
       private Guid[] P00C12_A42SupplierGenId ;
       private Guid[] P00C13_A11OrganisationId ;
-      private bool[] P00C13_n11OrganisationId ;
-      private Guid[] P00C14_A523AppVersionId ;
-      private Guid[] P00C15_A523AppVersionId ;
       private SdtTrn_SupplierGen AV10Trn_SupplierGen ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV16GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV11ErrorMessage ;
@@ -362,9 +338,9 @@ public class prc_deletecascadesuppliergen__default : DataStoreHelperBase, IDataS
    {
       System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
       string scmdbuf;
-      short[] GXv_int1 = new short[1];
+      short[] GXv_int1 = new short[2];
       Object[] GXv_Object2 = new Object[2];
-      scmdbuf = "SELECT T1.SG_LocationSupplierOrganisatio AS SG_LocationSupplierOrganisatio, T1.SG_LocationSupplierLocationId AS SG_LocationSupplierLocationId, T2.ActiveAppVersionId, T2.PublishedActiveAppVersionId, T1.SupplierGenId FROM (Trn_SupplierGen T1 LEFT JOIN Trn_Location T2 ON T2.LocationId = T1.SG_LocationSupplierLocationId AND T2.OrganisationId = T1.SG_LocationSupplierOrganisatio)";
+      scmdbuf = "SELECT T3.OrganisationId, T1.SG_LocationSupplierOrganisatio AS SG_LocationSupplierOrganisatio, T1.SG_LocationSupplierLocationId AS SG_LocationSupplierLocationId, T2.ToolBoxLastUpdateReceptionistI, T3.ReceptionistId, T3.LocationId, T1.SupplierGenId FROM ((Trn_SupplierGen T1 LEFT JOIN Trn_Location T2 ON T2.LocationId = T1.SG_LocationSupplierLocationId AND T2.OrganisationId = T1.SG_LocationSupplierOrganisatio) LEFT JOIN Trn_Receptionist T3 ON T3.ReceptionistId = T2.ToolBoxLastUpdateReceptionistI AND T3.OrganisationId = T1.SG_LocationSupplierOrganisatio AND T3.LocationId = T1.SG_LocationSupplierLocationId)";
       if ( ! (Guid.Empty==AV9SupplierGenId) )
       {
          AddWhere(sWhereString, "(T1.SupplierGenId = :AV9SupplierGenId)");
@@ -373,9 +349,17 @@ public class prc_deletecascadesuppliergen__default : DataStoreHelperBase, IDataS
       {
          GXv_int1[0] = 1;
       }
+      if ( ! (Guid.Empty==AV8OrganisationId) )
+      {
+         AddWhere(sWhereString, "(T3.OrganisationId = :AV8OrganisationId)");
+      }
+      else
+      {
+         GXv_int1[1] = 1;
+      }
       scmdbuf += sWhereString;
       scmdbuf += " ORDER BY T1.SupplierGenId";
-      scmdbuf += " FOR UPDATE OF T1, T1";
+      scmdbuf += " FOR UPDATE OF T1, T1, T1";
       GXv_Object2[0] = scmdbuf;
       GXv_Object2[1] = GXv_int1;
       return GXv_Object2 ;
@@ -399,9 +383,7 @@ public class prc_deletecascadesuppliergen__default : DataStoreHelperBase, IDataS
       return new Cursor[] {
        new ForEachCursor(def[0])
       ,new ForEachCursor(def[1])
-      ,new ForEachCursor(def[2])
-      ,new ForEachCursor(def[3])
-      ,new UpdateCursor(def[4])
+      ,new UpdateCursor(def[2])
     };
  }
 
@@ -416,26 +398,17 @@ public class prc_deletecascadesuppliergen__default : DataStoreHelperBase, IDataS
        };
        Object[] prmP00C14;
        prmP00C14 = new Object[] {
-       new ParDef("ActiveAppVersionId",GXType.UniqueIdentifier,36,0){Nullable=true}
-       };
-       Object[] prmP00C15;
-       prmP00C15 = new Object[] {
-       new ParDef("PublishedActiveAppVersionId",GXType.UniqueIdentifier,36,0){Nullable=true}
-       };
-       Object[] prmP00C16;
-       prmP00C16 = new Object[] {
        new ParDef("SupplierGenId",GXType.UniqueIdentifier,36,0)
        };
        Object[] prmP00C12;
        prmP00C12 = new Object[] {
-       new ParDef("AV9SupplierGenId",GXType.UniqueIdentifier,36,0)
+       new ParDef("AV9SupplierGenId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("AV8OrganisationId",GXType.UniqueIdentifier,36,0)
        };
        def= new CursorDef[] {
            new CursorDef("P00C12", "scmdbuf",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00C12,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("P00C13", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :SG_LocationSupplierOrganisatio ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00C13,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("P00C14", "SELECT AppVersionId FROM Trn_AppVersion WHERE AppVersionId = :ActiveAppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00C14,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("P00C15", "SELECT AppVersionId FROM Trn_AppVersion WHERE AppVersionId = :PublishedActiveAppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00C15,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("P00C16", "SAVEPOINT gxupdate;DELETE FROM Trn_SupplierGen  WHERE SupplierGenId = :SupplierGenId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00C16)
+          ,new CursorDef("P00C14", "SAVEPOINT gxupdate;DELETE FROM Trn_SupplierGen  WHERE SupplierGenId = :SupplierGenId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00C14)
        };
     }
  }
@@ -448,22 +421,17 @@ public class prc_deletecascadesuppliergen__default : DataStoreHelperBase, IDataS
     {
           case 0 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((bool[]) buf[1])[0] = rslt.wasNull(1);
-             ((Guid[]) buf[2])[0] = rslt.getGuid(2);
-             ((bool[]) buf[3])[0] = rslt.wasNull(2);
-             ((Guid[]) buf[4])[0] = rslt.getGuid(3);
-             ((bool[]) buf[5])[0] = rslt.wasNull(3);
-             ((Guid[]) buf[6])[0] = rslt.getGuid(4);
-             ((bool[]) buf[7])[0] = rslt.wasNull(4);
-             ((Guid[]) buf[8])[0] = rslt.getGuid(5);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((bool[]) buf[2])[0] = rslt.wasNull(2);
+             ((Guid[]) buf[3])[0] = rslt.getGuid(3);
+             ((bool[]) buf[4])[0] = rslt.wasNull(3);
+             ((Guid[]) buf[5])[0] = rslt.getGuid(4);
+             ((bool[]) buf[6])[0] = rslt.wasNull(4);
+             ((Guid[]) buf[7])[0] = rslt.getGuid(5);
+             ((Guid[]) buf[8])[0] = rslt.getGuid(6);
+             ((Guid[]) buf[9])[0] = rslt.getGuid(7);
              return;
           case 1 :
-             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             return;
-          case 2 :
-             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             return;
-          case 3 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              return;
     }

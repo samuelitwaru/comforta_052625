@@ -1,2 +1,65 @@
-				Translated: en to nl >>  >> 
-				Translated: en to nl >>  >> 
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/login
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_receptionistdashboard.aspx
+IsActive: true
+>>>>>>>>>>>> 
+IsActive: true
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_applicationdesign.aspx
+IsActive: false
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_locationreceptionists.aspx
+IsActive: true
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/login
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_receptionistdashboard.aspx
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_applicationdesign.aspx
+IsActive: false
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_receptionistdashboard.aspx
+IsActive: true
+>>>>>>>>>>>> 
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_applicationdesign.aspx
+IsActive: false
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_receptionistdashboard.aspx
+IsActive: true
+>>>>>>>>>>>> 
+IsActive: true
+>>>>>>>>>>>> 
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_applicationdesign.aspx
+IsActive: false
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_receptionistdashboard.aspx
+IsActive: true
+>>>>>>>>>>>> 
+IsActive: true
+>>>>>>>>>>>> 
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_applicationdesign.aspx
+IsActive: false
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_receptionistdashboard.aspx
+IsActive: true
+>>>>>>>>>>>> 
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_applicationdesign.aspx
+IsActive: false
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_applicationdesign.aspx
+IsActive: false
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_locationreceptionists.aspx
+IsActive: true
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_receptionistdashboard.aspx
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_applicationdesign.aspx
+IsActive: false
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/login
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_receptionistdashboard.aspx
+IsActive: true
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/login
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_receptionistdashboard.aspx
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_applicationdesign.aspx
+IsActive: false
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_receptionistdashboard.aspx
+IsActive: true
+>>>>>>>>>>>> 
+IsActive: true
+>>>>>>>>>>>> 
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_applicationdesign.aspx
+IsActive: false
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_applicationdesign.aspx
+IsActive: false
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_receptionistdashboard.aspx
+IsActive: true
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_locationresidents.aspx
+>>>>>>>>>>>> http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_applicationdesign.aspx
+IsActive: false

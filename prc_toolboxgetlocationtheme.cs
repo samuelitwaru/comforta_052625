@@ -88,16 +88,36 @@ namespace GeneXus.Programs {
             pr_default.execute(0, new Object[] {AV17Udparg1, AV18Udparg2});
             while ( (pr_default.getStatus(0) != 101) )
             {
+               A577LocationThemeId = P00AJ2_A577LocationThemeId[0];
+               n577LocationThemeId = P00AJ2_n577LocationThemeId[0];
+               A584ActiveAppVersionId = P00AJ2_A584ActiveAppVersionId[0];
+               n584ActiveAppVersionId = P00AJ2_n584ActiveAppVersionId[0];
+               A598PublishedActiveAppVersionId = P00AJ2_A598PublishedActiveAppVersionId[0];
+               n598PublishedActiveAppVersionId = P00AJ2_n598PublishedActiveAppVersionId[0];
                A11OrganisationId = P00AJ2_A11OrganisationId[0];
                A29LocationId = P00AJ2_A29LocationId[0];
-               A273Trn_ThemeId = P00AJ2_A273Trn_ThemeId[0];
-               n273Trn_ThemeId = P00AJ2_n273Trn_ThemeId[0];
                A274Trn_ThemeName = P00AJ2_A274Trn_ThemeName[0];
+               n274Trn_ThemeName = P00AJ2_n274Trn_ThemeName[0];
                A281Trn_ThemeFontFamily = P00AJ2_A281Trn_ThemeFontFamily[0];
+               n281Trn_ThemeFontFamily = P00AJ2_n281Trn_ThemeFontFamily[0];
                A405Trn_ThemeFontSize = P00AJ2_A405Trn_ThemeFontSize[0];
+               n405Trn_ThemeFontSize = P00AJ2_n405Trn_ThemeFontSize[0];
                A274Trn_ThemeName = P00AJ2_A274Trn_ThemeName[0];
+               n274Trn_ThemeName = P00AJ2_n274Trn_ThemeName[0];
                A281Trn_ThemeFontFamily = P00AJ2_A281Trn_ThemeFontFamily[0];
+               n281Trn_ThemeFontFamily = P00AJ2_n281Trn_ThemeFontFamily[0];
                A405Trn_ThemeFontSize = P00AJ2_A405Trn_ThemeFontSize[0];
+               n405Trn_ThemeFontSize = P00AJ2_n405Trn_ThemeFontSize[0];
+               /* Using cursor P00AJ3 */
+               pr_default.execute(1, new Object[] {n598PublishedActiveAppVersionId, A598PublishedActiveAppVersionId});
+               A273Trn_ThemeId = P00AJ3_A273Trn_ThemeId[0];
+               n273Trn_ThemeId = P00AJ3_n273Trn_ThemeId[0];
+               pr_default.close(1);
+               /* Using cursor P00AJ4 */
+               pr_default.execute(2, new Object[] {n584ActiveAppVersionId, A584ActiveAppVersionId});
+               A273Trn_ThemeId = P00AJ4_A273Trn_ThemeId[0];
+               n273Trn_ThemeId = P00AJ4_n273Trn_ThemeId[0];
+               pr_default.close(2);
                AV10SDT_LocationTheme = new SdtSDT_LocationTheme(context);
                AV10SDT_LocationTheme.gxTpr_Themeid = A273Trn_ThemeId;
                AV10SDT_LocationTheme.gxTpr_Themename = A274Trn_ThemeName;
@@ -107,6 +127,7 @@ namespace GeneXus.Programs {
                if (true) break;
             }
             pr_default.close(0);
+            pr_default.close(2);
          }
          cleanup();
       }
@@ -121,28 +142,54 @@ namespace GeneXus.Programs {
          ExitApp();
       }
 
+      protected override void CloseCursors( )
+      {
+         pr_default.close(1);
+      }
+
       public override void initialize( )
       {
          AV10SDT_LocationTheme = new SdtSDT_LocationTheme(context);
          AV15Error = new SdtSDT_Error(context);
          AV17Udparg1 = Guid.Empty;
          AV18Udparg2 = Guid.Empty;
+         P00AJ2_A577LocationThemeId = new Guid[] {Guid.Empty} ;
+         P00AJ2_n577LocationThemeId = new bool[] {false} ;
+         P00AJ2_A584ActiveAppVersionId = new Guid[] {Guid.Empty} ;
+         P00AJ2_n584ActiveAppVersionId = new bool[] {false} ;
+         P00AJ2_A598PublishedActiveAppVersionId = new Guid[] {Guid.Empty} ;
+         P00AJ2_n598PublishedActiveAppVersionId = new bool[] {false} ;
          P00AJ2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00AJ2_A29LocationId = new Guid[] {Guid.Empty} ;
-         P00AJ2_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         P00AJ2_n273Trn_ThemeId = new bool[] {false} ;
          P00AJ2_A274Trn_ThemeName = new string[] {""} ;
+         P00AJ2_n274Trn_ThemeName = new bool[] {false} ;
          P00AJ2_A281Trn_ThemeFontFamily = new string[] {""} ;
+         P00AJ2_n281Trn_ThemeFontFamily = new bool[] {false} ;
          P00AJ2_A405Trn_ThemeFontSize = new short[1] ;
+         P00AJ2_n405Trn_ThemeFontSize = new bool[] {false} ;
+         A577LocationThemeId = Guid.Empty;
+         A584ActiveAppVersionId = Guid.Empty;
+         A598PublishedActiveAppVersionId = Guid.Empty;
          A11OrganisationId = Guid.Empty;
          A29LocationId = Guid.Empty;
-         A273Trn_ThemeId = Guid.Empty;
          A274Trn_ThemeName = "";
          A281Trn_ThemeFontFamily = "";
+         P00AJ3_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         P00AJ3_n273Trn_ThemeId = new bool[] {false} ;
+         A273Trn_ThemeId = Guid.Empty;
+         P00AJ4_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         P00AJ4_n273Trn_ThemeId = new bool[] {false} ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_toolboxgetlocationtheme__default(),
             new Object[][] {
                 new Object[] {
-               P00AJ2_A11OrganisationId, P00AJ2_A29LocationId, P00AJ2_A273Trn_ThemeId, P00AJ2_n273Trn_ThemeId, P00AJ2_A274Trn_ThemeName, P00AJ2_A281Trn_ThemeFontFamily, P00AJ2_A405Trn_ThemeFontSize
+               P00AJ2_A577LocationThemeId, P00AJ2_n577LocationThemeId, P00AJ2_A584ActiveAppVersionId, P00AJ2_n584ActiveAppVersionId, P00AJ2_A598PublishedActiveAppVersionId, P00AJ2_n598PublishedActiveAppVersionId, P00AJ2_A11OrganisationId, P00AJ2_A29LocationId, P00AJ2_A274Trn_ThemeName, P00AJ2_n274Trn_ThemeName,
+               P00AJ2_A281Trn_ThemeFontFamily, P00AJ2_n281Trn_ThemeFontFamily, P00AJ2_A405Trn_ThemeFontSize, P00AJ2_n405Trn_ThemeFontSize
+               }
+               , new Object[] {
+               P00AJ3_A273Trn_ThemeId, P00AJ3_n273Trn_ThemeId
+               }
+               , new Object[] {
+               P00AJ4_A273Trn_ThemeId, P00AJ4_n273Trn_ThemeId
                }
             }
          );
@@ -150,11 +197,20 @@ namespace GeneXus.Programs {
       }
 
       private short A405Trn_ThemeFontSize ;
+      private bool n577LocationThemeId ;
+      private bool n584ActiveAppVersionId ;
+      private bool n598PublishedActiveAppVersionId ;
+      private bool n274Trn_ThemeName ;
+      private bool n281Trn_ThemeFontFamily ;
+      private bool n405Trn_ThemeFontSize ;
       private bool n273Trn_ThemeId ;
       private string A274Trn_ThemeName ;
       private string A281Trn_ThemeFontFamily ;
       private Guid AV17Udparg1 ;
       private Guid AV18Udparg2 ;
+      private Guid A577LocationThemeId ;
+      private Guid A584ActiveAppVersionId ;
+      private Guid A598PublishedActiveAppVersionId ;
       private Guid A11OrganisationId ;
       private Guid A29LocationId ;
       private Guid A273Trn_ThemeId ;
@@ -164,13 +220,24 @@ namespace GeneXus.Programs {
       private SdtSDT_LocationTheme AV10SDT_LocationTheme ;
       private SdtSDT_Error AV15Error ;
       private IDataStoreProvider pr_default ;
+      private Guid[] P00AJ2_A577LocationThemeId ;
+      private bool[] P00AJ2_n577LocationThemeId ;
+      private Guid[] P00AJ2_A584ActiveAppVersionId ;
+      private bool[] P00AJ2_n584ActiveAppVersionId ;
+      private Guid[] P00AJ2_A598PublishedActiveAppVersionId ;
+      private bool[] P00AJ2_n598PublishedActiveAppVersionId ;
       private Guid[] P00AJ2_A11OrganisationId ;
       private Guid[] P00AJ2_A29LocationId ;
-      private Guid[] P00AJ2_A273Trn_ThemeId ;
-      private bool[] P00AJ2_n273Trn_ThemeId ;
       private string[] P00AJ2_A274Trn_ThemeName ;
+      private bool[] P00AJ2_n274Trn_ThemeName ;
       private string[] P00AJ2_A281Trn_ThemeFontFamily ;
+      private bool[] P00AJ2_n281Trn_ThemeFontFamily ;
       private short[] P00AJ2_A405Trn_ThemeFontSize ;
+      private bool[] P00AJ2_n405Trn_ThemeFontSize ;
+      private Guid[] P00AJ3_A273Trn_ThemeId ;
+      private bool[] P00AJ3_n273Trn_ThemeId ;
+      private Guid[] P00AJ4_A273Trn_ThemeId ;
+      private bool[] P00AJ4_n273Trn_ThemeId ;
       private SdtSDT_LocationTheme aP0_SDT_LocationTheme ;
       private SdtSDT_Error aP1_Error ;
    }
@@ -182,6 +249,8 @@ namespace GeneXus.Programs {
          cursorDefinitions();
          return new Cursor[] {
           new ForEachCursor(def[0])
+         ,new ForEachCursor(def[1])
+         ,new ForEachCursor(def[2])
        };
     }
 
@@ -195,8 +264,18 @@ namespace GeneXus.Programs {
           new ParDef("AV17Udparg1",GXType.UniqueIdentifier,36,0) ,
           new ParDef("AV18Udparg2",GXType.UniqueIdentifier,36,0)
           };
+          Object[] prmP00AJ3;
+          prmP00AJ3 = new Object[] {
+          new ParDef("PublishedActiveAppVersionId",GXType.UniqueIdentifier,36,0){Nullable=true}
+          };
+          Object[] prmP00AJ4;
+          prmP00AJ4 = new Object[] {
+          new ParDef("ActiveAppVersionId",GXType.UniqueIdentifier,36,0){Nullable=true}
+          };
           def= new CursorDef[] {
-              new CursorDef("P00AJ2", "SELECT T1.OrganisationId, T1.LocationId, T1.Trn_ThemeId, T2.Trn_ThemeName, T2.Trn_ThemeFontFamily, T2.Trn_ThemeFontSize FROM (Trn_Location T1 LEFT JOIN Trn_Theme T2 ON T2.Trn_ThemeId = T1.Trn_ThemeId) WHERE T1.LocationId = :AV17Udparg1 and T1.OrganisationId = :AV18Udparg2 ORDER BY T1.LocationId, T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00AJ2,1, GxCacheFrequency.OFF ,false,true )
+              new CursorDef("P00AJ2", "SELECT T1.LocationThemeId AS LocationThemeId, T1.ActiveAppVersionId, T1.PublishedActiveAppVersionId, T1.OrganisationId, T1.LocationId, T2.Trn_ThemeName, T2.Trn_ThemeFontFamily, T2.Trn_ThemeFontSize FROM (Trn_Location T1 LEFT JOIN Trn_Theme T2 ON T2.Trn_ThemeId = T1.LocationThemeId) WHERE T1.LocationId = :AV17Udparg1 and T1.OrganisationId = :AV18Udparg2 ORDER BY T1.LocationId, T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00AJ2,1, GxCacheFrequency.OFF ,true,true )
+             ,new CursorDef("P00AJ3", "SELECT Trn_ThemeId FROM Trn_AppVersion WHERE AppVersionId = :PublishedActiveAppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00AJ3,1, GxCacheFrequency.OFF ,true,true )
+             ,new CursorDef("P00AJ4", "SELECT Trn_ThemeId FROM Trn_AppVersion WHERE AppVersionId = :ActiveAppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00AJ4,1, GxCacheFrequency.OFF ,true,true )
           };
        }
     }
@@ -209,12 +288,27 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-                ((bool[]) buf[3])[0] = rslt.wasNull(3);
-                ((string[]) buf[4])[0] = rslt.getVarchar(4);
-                ((string[]) buf[5])[0] = rslt.getVarchar(5);
-                ((short[]) buf[6])[0] = rslt.getShort(6);
+                ((bool[]) buf[1])[0] = rslt.wasNull(1);
+                ((Guid[]) buf[2])[0] = rslt.getGuid(2);
+                ((bool[]) buf[3])[0] = rslt.wasNull(2);
+                ((Guid[]) buf[4])[0] = rslt.getGuid(3);
+                ((bool[]) buf[5])[0] = rslt.wasNull(3);
+                ((Guid[]) buf[6])[0] = rslt.getGuid(4);
+                ((Guid[]) buf[7])[0] = rslt.getGuid(5);
+                ((string[]) buf[8])[0] = rslt.getVarchar(6);
+                ((bool[]) buf[9])[0] = rslt.wasNull(6);
+                ((string[]) buf[10])[0] = rslt.getVarchar(7);
+                ((bool[]) buf[11])[0] = rslt.wasNull(7);
+                ((short[]) buf[12])[0] = rslt.getShort(8);
+                ((bool[]) buf[13])[0] = rslt.wasNull(8);
+                return;
+             case 1 :
+                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((bool[]) buf[1])[0] = rslt.wasNull(1);
+                return;
+             case 2 :
+                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((bool[]) buf[1])[0] = rslt.wasNull(1);
                 return;
        }
     }

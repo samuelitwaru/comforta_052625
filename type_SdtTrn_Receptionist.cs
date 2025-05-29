@@ -59,7 +59,7 @@ namespace GeneXus.Programs {
          metadata.Set("BT", "Trn_Receptionist");
          metadata.Set("PK", "[ \"ReceptionistId\",\"OrganisationId\",\"LocationId\" ]");
          metadata.Set("PKAssigned", "[ \"OrganisationId\",\"ReceptionistId\" ]");
-         metadata.Set("FKList", "[ { \"FK\":[ \"LocationId\",\"OrganisationId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"OrganisationId\" ],\"FKMap\":[  ] } ]");
+         metadata.Set("FKList", "[ { \"FK\":[ \"LocationId\",\"OrganisationId\" ],\"FKMap\":[  ] } ]");
          metadata.Set("AllowInsert", "True");
          metadata.Set("AllowUpdate", "True");
          metadata.Set("AllowDelete", "True");

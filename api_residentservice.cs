@@ -5,6 +5,8 @@ using GeneXus.Resources;
 using GeneXus.Application;
 using GeneXus.Metadata;
 using GeneXus.Cryptography;
+using System.Data;
+using GeneXus.Data;
 using GeneXus.Data.ADO;
 using GeneXus.Data.NTier;
 using GeneXus.Data.NTier.ADO;
@@ -181,10 +183,6 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
-         else if ( StringUtil.StrCmp(permissionMethod, "gxep_updatelocationtheme") == 0 )
-         {
-            return GAMSecurityLevel.SecurityNone ;
-         }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_productserviceapi") == 0 )
          {
             return GAMSecurityLevel.SecurityNone ;
@@ -234,6 +232,10 @@ namespace GeneXus.Programs {
             return GAMSecurityLevel.SecurityNone ;
          }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_updateappversion") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_updateappversiontheme") == 0 )
          {
             return GAMSecurityLevel.SecurityNone ;
          }
@@ -344,6 +346,9 @@ namespace GeneXus.Programs {
       public api_residentservice( )
       {
          context = new GxContext(  );
+         dsDataStore1 = context.GetDataStore("DataStore1");
+         dsGAM = context.GetDataStore("GAM");
+         dsDefault = context.GetDataStore("Default");
          IsMain = true;
          IsApiObject = true;
       }
@@ -353,6 +358,9 @@ namespace GeneXus.Programs {
          this.context = context;
          IsMain = false;
          IsApiObject = true;
+         dsDataStore1 = context.GetDataStore("DataStore1");
+         dsGAM = context.GetDataStore("GAM");
+         dsDefault = context.GetDataStore("Default");
          if ( context.HttpContext != null )
          {
             Gx_restmethod = (string)(context.HttpContext.Request.Method);
@@ -1131,19 +1139,6 @@ namespace GeneXus.Programs {
          aP3_error=this.AV69error;
       }
 
-      public void gxep_updatelocationtheme( Guid aP0_ThemeId ,
-                                            out SdtSDT_Theme aP1_SDT_Theme ,
-                                            out SdtSDT_Error aP2_error )
-      {
-         this.AV53ThemeId = aP0_ThemeId;
-         AV69error = new SdtSDT_Error(context);
-         initialize();
-         /* UpdateLocationTheme Constructor */
-         new prc_updatelocationtheme(context ).execute(  AV53ThemeId, out  AV54SDT_Theme, out  AV69error) ;
-         aP1_SDT_Theme=this.AV54SDT_Theme;
-         aP2_error=this.AV69error;
-      }
-
       public void gxep_productserviceapi( Guid aP0_ProductServiceId ,
                                           out SdtSDT_ProductService aP1_SDT_ProductService ,
                                           out SdtSDT_Error aP2_error )
@@ -1174,7 +1169,6 @@ namespace GeneXus.Programs {
       {
          this.AV12locationId = aP0_locationId;
          this.AV16organisationId = aP1_organisationId;
-         AV54SDT_Theme = new SdtSDT_Theme(context);
          initialize();
          /* GetLocationTheme Constructor */
          new prc_getlocationtheme(context ).execute( ref  AV12locationId, ref  AV16organisationId, out  AV54SDT_Theme) ;
@@ -1339,6 +1333,22 @@ namespace GeneXus.Programs {
          /* UpdateAppVersion Constructor */
          new prc_updateappversion(context ).execute(  AV92AppVersionId,  AV99AppVersionName, out  AV98AppVersion, out  AV69error) ;
          aP2_AppVersion=this.AV98AppVersion;
+         aP3_error=this.AV69error;
+      }
+
+      public void gxep_updateappversiontheme( Guid aP0_AppVersionId ,
+                                              Guid aP1_ThemeId ,
+                                              out SdtSDT_Theme aP2_SDT_Theme ,
+                                              out SdtSDT_Error aP3_error )
+      {
+         this.AV92AppVersionId = aP0_AppVersionId;
+         this.AV53ThemeId = aP1_ThemeId;
+         AV54SDT_Theme = new SdtSDT_Theme(context);
+         AV69error = new SdtSDT_Error(context);
+         initialize();
+         /* UpdateAppVersionTheme Constructor */
+         new prc_updateappversiontheme(context ).execute(  AV92AppVersionId,  AV53ThemeId, out  AV54SDT_Theme, out  AV69error) ;
+         aP2_SDT_Theme=this.AV54SDT_Theme;
          aP3_error=this.AV69error;
       }
 
@@ -1795,9 +1805,9 @@ namespace GeneXus.Programs {
          AV51SDT_ContentPageCollection = new GXBaseCollection<SdtSDT_ContentPage>( context, "SDT_ContentPage", "Comforta_version2");
          AV61SDT_ContentPage = new SdtSDT_ContentPageV1(context);
          AV47SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2");
-         AV54SDT_Theme = new SdtSDT_Theme(context);
          AV50SDT_ProductService = new SdtSDT_ProductService(context);
          AV78SDT_ProductServiceCollection = new GXBaseCollection<SdtSDT_ProductService>( context, "SDT_ProductService", "Comforta_version2");
+         AV54SDT_Theme = new SdtSDT_Theme(context);
          AV62SDT_LocationTheme = new SdtSDT_LocationTheme(context);
          AV88SDT_ThemeCollection = new GXBaseCollection<SdtSDT_Theme>( context, "SDT_Theme", "Comforta_version2");
          AV140TrashItems = new GXBaseCollection<SdtSDT_TrashItem>( context, "SDT_TrashItem", "Comforta_version2");
@@ -1887,12 +1897,15 @@ namespace GeneXus.Programs {
       protected Guid AV77FormId ;
       protected Guid AV44ParentPageId ;
       protected Guid AV45ChildPageId ;
-      protected Guid AV53ThemeId ;
       protected Guid AV49ProductServiceId ;
       protected Guid AV141TrashId ;
       protected Guid AV92AppVersionId ;
+      protected Guid AV53ThemeId ;
       protected Guid AV107MemoCategoryId ;
       protected Guid AV112MemoId ;
+      protected IGxDataStore dsDataStore1 ;
+      protected IGxDataStore dsGAM ;
+      protected IGxDataStore dsDefault ;
       protected SdtSDT_LoginResidentResponse AV20SDT_LoginResidentResponse ;
       protected SdtSDT_LoginResidentResponse AV21loginResult ;
       protected SdtSDT_ChangeYourPassword AV75SDT_ChangeYourPassword ;
@@ -1949,12 +1962,11 @@ namespace GeneXus.Programs {
       protected string aP7_result ;
       protected SdtSDT_Error aP8_error ;
       protected GXBaseCollection<SdtSDT_PublishPage> AV70PagesList ;
-      protected SdtSDT_Theme AV54SDT_Theme ;
-      protected SdtSDT_Theme aP1_SDT_Theme ;
       protected SdtSDT_ProductService AV50SDT_ProductService ;
       protected SdtSDT_ProductService aP1_SDT_ProductService ;
       protected GXBaseCollection<SdtSDT_ProductService> AV78SDT_ProductServiceCollection ;
       protected GXBaseCollection<SdtSDT_ProductService> aP0_SDT_ProductServiceCollection ;
+      protected SdtSDT_Theme AV54SDT_Theme ;
       protected SdtSDT_Theme aP2_SDT_Theme ;
       protected SdtSDT_LocationTheme AV62SDT_LocationTheme ;
       protected SdtSDT_LocationTheme aP0_SDT_LocationTheme ;

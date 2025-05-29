@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250524054149"
+  version: "20250528180142"
 servers:
-  - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
+  - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
   /auth/resident-login:
     post:
@@ -1099,31 +1099,6 @@ paths:
         404:
           description: "Not found"
 
-  /toolbox/update-location-theme:
-    post:
-      tags:
-        - API_ResidentService  
-      operationId: "API_ResidentService.UpdateLocationTheme"
-      summary: "Update Location Theme"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UpdateLocationThemeInput"
-      
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/UpdateLocationThemeOutput"
-        404:
-          description: "Not found"
-
   /productservice:
     get:
       tags:
@@ -1421,6 +1396,31 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UpdateAppVersionOutput"
+        404:
+          description: "Not found"
+
+  /toolbox/update-appversion-theme:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.UpdateAppVersionTheme"
+      summary: "Update App Version Theme"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateAppVersionThemeInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateAppVersionThemeOutput"
         404:
           description: "Not found"
 
@@ -2065,7 +2065,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/oauth/gam/v2.0/access_token
+          tokenUrl: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
 
@@ -2188,15 +2188,6 @@ components:
           description: "SDT_Error"
           $ref: "#/components/schemas/SDT_Error"
 
-    UpdateLocationThemeOutput:
-      properties:
-        SDT_Theme:
-          description: "SDT_Theme"
-          $ref: "#/components/schemas/SDT_Theme"
-        error:
-          description: "SDT_Error"
-          $ref: "#/components/schemas/SDT_Error"
-
     ProductServiceAPIOutput:
       properties:
         SDT_ProductService:
@@ -2294,6 +2285,15 @@ components:
         AppVersion:
           description: "SDT_App Version"
           $ref: "#/components/schemas/SDT_AppVersion"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+    UpdateAppVersionThemeOutput:
+      properties:
+        SDT_Theme:
+          description: "SDT_Theme"
+          $ref: "#/components/schemas/SDT_Theme"
         error:
           description: "SDT_Error"
           $ref: "#/components/schemas/SDT_Error"
@@ -2585,12 +2585,6 @@ components:
           type: "string"
           format: "uuid"
 
-    UpdateLocationThemeInput:  
-      properties:
-        ThemeId:
-          type: "string"
-          format: "uuid"
-
 
 
 
@@ -2637,6 +2631,15 @@ components:
           format: "uuid"
         AppVersionName:
           type: "string"
+
+    UpdateAppVersionThemeInput:  
+      properties:
+        AppVersionId:
+          type: "string"
+          format: "uuid"
+        ThemeId:
+          type: "string"
+          format: "uuid"
 
     ActivateAppVersionInput:  
       properties:
@@ -3573,6 +3576,60 @@ components:
 
 
 
+    SDT_ProductService:
+      properties:
+        ProductServiceId:
+          description: "Product Service Id"
+          type: "string"
+          format: "uuid"
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
+        OrganisationId:
+          description: "Organisation Id"
+          type: "string"
+          format: "uuid"
+        ProductServiceName:
+          description: "Product Service Name"
+          type: "string"
+        ProductServiceTileName:
+          description: "Product Service Tile Name"
+          type: "string"
+        ProductServiceDescription:
+          description: "Product Service Description"
+          type: "string"
+        ProductServiceClass:
+          description: "Product Service Class"
+          type: "string"
+        ProductServiceImage:
+          description: "Product Service Image"
+          type: "string"
+        ProductServiceGroup:
+          description: "Product Service Group"
+          type: "string"
+        SupplierGenId:
+          description: "Supplier Gen Id"
+          type: "string"
+          format: "uuid"
+        SupplierGenCompanyName:
+          description: "Company Name"
+          type: "string"
+        SupplierAgbId:
+          description: "Supplier Agb Id"
+          type: "string"
+          format: "uuid"
+        SupplierAgbName:
+          description: "Supplier Agb Name"
+          type: "string"
+        CallToActions:
+          description: "SDT_Call To Action"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_CallToAction_SDT_CallToActionItem"
+
+
+
     SDT_Theme:
       properties:
         ThemeId:
@@ -3662,60 +3719,6 @@ components:
 
       x-gx-level: "SDT_Theme"
 
-    SDT_ProductService:
-      properties:
-        ProductServiceId:
-          description: "Product Service Id"
-          type: "string"
-          format: "uuid"
-        LocationId:
-          description: "Location Id"
-          type: "string"
-          format: "uuid"
-        OrganisationId:
-          description: "Organisation Id"
-          type: "string"
-          format: "uuid"
-        ProductServiceName:
-          description: "Product Service Name"
-          type: "string"
-        ProductServiceTileName:
-          description: "Product Service Tile Name"
-          type: "string"
-        ProductServiceDescription:
-          description: "Product Service Description"
-          type: "string"
-        ProductServiceClass:
-          description: "Product Service Class"
-          type: "string"
-        ProductServiceImage:
-          description: "Product Service Image"
-          type: "string"
-        ProductServiceGroup:
-          description: "Product Service Group"
-          type: "string"
-        SupplierGenId:
-          description: "Supplier Gen Id"
-          type: "string"
-          format: "uuid"
-        SupplierGenCompanyName:
-          description: "Company Name"
-          type: "string"
-        SupplierAgbId:
-          description: "Supplier Agb Id"
-          type: "string"
-          format: "uuid"
-        SupplierAgbName:
-          description: "Supplier Agb Name"
-          type: "string"
-        CallToActions:
-          description: "SDT_Call To Action"
-          type: array
-          items:
-            $ref: "#/components/schemas/SDT_CallToAction_SDT_CallToActionItem"
-
-
-
     SDT_LocationTheme:
       properties:
         ThemeId:
@@ -3791,6 +3794,10 @@ components:
         IsActive:
           description: "Is Active"
           type: "boolean"
+        ThemeId:
+          description: "Trn_Theme Id"
+          type: "string"
+          format: "uuid"
 
         Pages:
           type: array
@@ -4022,6 +4029,14 @@ components:
           description: "Location Theme Id"
           type: "string"
           format: "uuid"
+        ToolBoxLastUpdateReceptionistId:
+          description: "Tool Box Last Update Receptionist Id"
+          type: "string"
+          format: "uuid"
+        ToolBoxLastUpdateTime:
+          description: "Tool Box Last Update Time"
+          type: "string"
+          format: "date-time"
 
 
 

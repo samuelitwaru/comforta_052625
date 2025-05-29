@@ -70,6 +70,9 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("IsActive", gxTpr_Isactive, false);
 
+
+			AddObjectProperty("ThemeId", gxTpr_Themeid, false);
+
 			if (gxTv_SdtSDT_AppVersion_Pages != null)
 			{
 				AddObjectProperty("Pages", gxTv_SdtSDT_AppVersion_Pages, false);
@@ -144,6 +147,22 @@ namespace GeneXus.Programs
 
 
 
+		[SoapElement(ElementName="ThemeId")]
+		[XmlElement(ElementName="ThemeId")]
+		public Guid gxTpr_Themeid
+		{
+			get {
+				return gxTv_SdtSDT_AppVersion_Themeid; 
+			}
+			set {
+				gxTv_SdtSDT_AppVersion_Themeid = value;
+				SetDirty("Themeid");
+			}
+		}
+
+
+
+
 		[SoapElement(ElementName="Pages" )]
 		[XmlArray(ElementName="Pages"  )]
 		[XmlArrayItemAttribute(ElementName="PagesItem" , IsNullable=false )]
@@ -205,6 +224,7 @@ namespace GeneXus.Programs
 
 
 
+
 			gxTv_SdtSDT_AppVersion_Pages_N = true;
 
 			return  ;
@@ -226,6 +246,9 @@ namespace GeneXus.Programs
 		 
 
 		protected bool gxTv_SdtSDT_AppVersion_Isactive;
+		 
+
+		protected Guid gxTv_SdtSDT_AppVersion_Themeid;
 		 
 		protected bool gxTv_SdtSDT_AppVersion_Pages_N;
 		protected GXBaseCollection<SdtSDT_AppVersion_PagesItem> gxTv_SdtSDT_AppVersion_Pages = null; 
@@ -296,7 +319,19 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="Pages", Order=4, EmitDefaultValue=false)]
+		[DataMember(Name="ThemeId", Order=4)]
+		public Guid gxTpr_Themeid
+		{
+			get { 
+				return sdt.gxTpr_Themeid;
+
+			}
+			set { 
+				sdt.gxTpr_Themeid = value;
+			}
+		}
+
+		[DataMember(Name="Pages", Order=5, EmitDefaultValue=false)]
 		public GxGenericCollection<SdtSDT_AppVersion_PagesItem_RESTInterface> gxTpr_Pages
 		{
 			get {

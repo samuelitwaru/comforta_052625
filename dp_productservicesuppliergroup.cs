@@ -173,7 +173,7 @@ namespace GeneXus.Programs {
           new ParDef("AV8Udparg3",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P000P2", "SELECT OrganisationId, LocationId, LocationName FROM Trn_Location WHERE OrganisationId = :AV8Udparg3 ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP000P2,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P000P2", "SELECT OrganisationId, LocationId, LocationName FROM Trn_Location WHERE OrganisationId = :AV8Udparg3 ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP000P2,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }

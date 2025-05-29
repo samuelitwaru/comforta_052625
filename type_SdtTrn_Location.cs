@@ -57,8 +57,7 @@ namespace GeneXus.Programs {
          metadata.Set("Name", "Trn_Location");
          metadata.Set("BT", "Trn_Location");
          metadata.Set("PK", "[ \"LocationId\",\"OrganisationId\" ]");
-         metadata.Set("PKAssigned", "[ \"LocationId\" ]");
-         metadata.Set("FKList", "[ { \"FK\":[ \"AppVersionId\" ],\"FKMap\":[ \"ActiveAppVersionId-AppVersionId\" ] },{ \"FK\":[ \"AppVersionId\" ],\"FKMap\":[ \"PublishedActiveAppVersionId-AppVersionId\" ] },{ \"FK\":[ \"LocationId\",\"OrganisationId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"OrganisationId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"Trn_ThemeId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"Trn_ThemeId\" ],\"FKMap\":[ \"LocationThemeId-Trn_ThemeId\" ] } ]");
+         metadata.Set("FKList", "[ { \"FK\":[ \"AppVersionId\" ],\"FKMap\":[ \"ActiveAppVersionId-AppVersionId\" ] },{ \"FK\":[ \"AppVersionId\" ],\"FKMap\":[ \"PublishedActiveAppVersionId-AppVersionId\" ] },{ \"FK\":[ \"LocationId\",\"OrganisationId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"ReceptionistId\",\"OrganisationId\",\"LocationId\" ],\"FKMap\":[ \"ToolBoxLastUpdateReceptionistId-ReceptionistId\" ] },{ \"FK\":[ \"Trn_ThemeId\" ],\"FKMap\":[ \"LocationThemeId-Trn_ThemeId\" ] } ]");
          metadata.Set("AllowInsert", "True");
          metadata.Set("AllowUpdate", "True");
          metadata.Set("AllowDelete", "True");
@@ -95,6 +94,8 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Publishedactiveappversionid_Z");
          state.Add("gxTpr_Trn_themeid_Z");
          state.Add("gxTpr_Locationthemeid_Z");
+         state.Add("gxTpr_Toolboxlastupdatereceptionistid_Z");
+         state.Add("gxTpr_Toolboxlastupdatetime_Z_Nullable");
          state.Add("gxTpr_Locationimage_gxi_Z");
          state.Add("gxTpr_Receptionimage_gxi_Z");
          state.Add("gxTpr_Locationid_N");
@@ -109,6 +110,8 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Publishedactiveappversionid_N");
          state.Add("gxTpr_Trn_themeid_N");
          state.Add("gxTpr_Locationthemeid_N");
+         state.Add("gxTpr_Toolboxlastupdatereceptionistid_N");
+         state.Add("gxTpr_Toolboxlastupdatetime_N");
          state.Add("gxTpr_Receptionimage_gxi_N");
          return state ;
       }
@@ -147,6 +150,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Location_Publishedactiveappversionid = sdt.gxTv_SdtTrn_Location_Publishedactiveappversionid ;
          gxTv_SdtTrn_Location_Trn_themeid = sdt.gxTv_SdtTrn_Location_Trn_themeid ;
          gxTv_SdtTrn_Location_Locationthemeid = sdt.gxTv_SdtTrn_Location_Locationthemeid ;
+         gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid = sdt.gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid ;
+         gxTv_SdtTrn_Location_Toolboxlastupdatetime = sdt.gxTv_SdtTrn_Location_Toolboxlastupdatetime ;
          gxTv_SdtTrn_Location_Mode = sdt.gxTv_SdtTrn_Location_Mode ;
          gxTv_SdtTrn_Location_Initialized = sdt.gxTv_SdtTrn_Location_Initialized ;
          gxTv_SdtTrn_Location_Locationid_Z = sdt.gxTv_SdtTrn_Location_Locationid_Z ;
@@ -172,6 +177,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Location_Publishedactiveappversionid_Z = sdt.gxTv_SdtTrn_Location_Publishedactiveappversionid_Z ;
          gxTv_SdtTrn_Location_Trn_themeid_Z = sdt.gxTv_SdtTrn_Location_Trn_themeid_Z ;
          gxTv_SdtTrn_Location_Locationthemeid_Z = sdt.gxTv_SdtTrn_Location_Locationthemeid_Z ;
+         gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_Z = sdt.gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_Z ;
+         gxTv_SdtTrn_Location_Toolboxlastupdatetime_Z = sdt.gxTv_SdtTrn_Location_Toolboxlastupdatetime_Z ;
          gxTv_SdtTrn_Location_Locationimage_gxi_Z = sdt.gxTv_SdtTrn_Location_Locationimage_gxi_Z ;
          gxTv_SdtTrn_Location_Receptionimage_gxi_Z = sdt.gxTv_SdtTrn_Location_Receptionimage_gxi_Z ;
          gxTv_SdtTrn_Location_Locationid_N = sdt.gxTv_SdtTrn_Location_Locationid_N ;
@@ -186,6 +193,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Location_Publishedactiveappversionid_N = sdt.gxTv_SdtTrn_Location_Publishedactiveappversionid_N ;
          gxTv_SdtTrn_Location_Trn_themeid_N = sdt.gxTv_SdtTrn_Location_Trn_themeid_N ;
          gxTv_SdtTrn_Location_Locationthemeid_N = sdt.gxTv_SdtTrn_Location_Locationthemeid_N ;
+         gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N = sdt.gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N ;
+         gxTv_SdtTrn_Location_Toolboxlastupdatetime_N = sdt.gxTv_SdtTrn_Location_Toolboxlastupdatetime_N ;
          gxTv_SdtTrn_Location_Receptionimage_gxi_N = sdt.gxTv_SdtTrn_Location_Receptionimage_gxi_N ;
          return  ;
       }
@@ -245,6 +254,29 @@ namespace GeneXus.Programs {
          AddObjectProperty("Trn_ThemeId_N", gxTv_SdtTrn_Location_Trn_themeid_N, false, includeNonInitialized);
          AddObjectProperty("LocationThemeId", gxTv_SdtTrn_Location_Locationthemeid, false, includeNonInitialized);
          AddObjectProperty("LocationThemeId_N", gxTv_SdtTrn_Location_Locationthemeid_N, false, includeNonInitialized);
+         AddObjectProperty("ToolBoxLastUpdateReceptionistId", gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid, false, includeNonInitialized);
+         AddObjectProperty("ToolBoxLastUpdateReceptionistId_N", gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N, false, includeNonInitialized);
+         datetime_STZ = gxTv_SdtTrn_Location_Toolboxlastupdatetime;
+         sDateCnv = "";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Year( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "0000", 1, 4-StringUtil.Len( sNumToPad)) + sNumToPad;
+         sDateCnv += "-";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Month( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+         sDateCnv += "-";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Day( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+         sDateCnv += "T";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Hour( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+         sDateCnv += ":";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Minute( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+         sDateCnv += ":";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Second( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+         AddObjectProperty("ToolBoxLastUpdateTime", sDateCnv, false, includeNonInitialized);
+         AddObjectProperty("ToolBoxLastUpdateTime_N", gxTv_SdtTrn_Location_Toolboxlastupdatetime_N, false, includeNonInitialized);
          if ( includeState )
          {
             AddObjectProperty("LocationImage_GXI", gxTv_SdtTrn_Location_Locationimage_gxi, false, includeNonInitialized);
@@ -274,6 +306,27 @@ namespace GeneXus.Programs {
             AddObjectProperty("PublishedActiveAppVersionId_Z", gxTv_SdtTrn_Location_Publishedactiveappversionid_Z, false, includeNonInitialized);
             AddObjectProperty("Trn_ThemeId_Z", gxTv_SdtTrn_Location_Trn_themeid_Z, false, includeNonInitialized);
             AddObjectProperty("LocationThemeId_Z", gxTv_SdtTrn_Location_Locationthemeid_Z, false, includeNonInitialized);
+            AddObjectProperty("ToolBoxLastUpdateReceptionistId_Z", gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_Z, false, includeNonInitialized);
+            datetime_STZ = gxTv_SdtTrn_Location_Toolboxlastupdatetime_Z;
+            sDateCnv = "";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Year( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "0000", 1, 4-StringUtil.Len( sNumToPad)) + sNumToPad;
+            sDateCnv += "-";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Month( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+            sDateCnv += "-";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Day( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+            sDateCnv += "T";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Hour( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+            sDateCnv += ":";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Minute( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+            sDateCnv += ":";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Second( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+            AddObjectProperty("ToolBoxLastUpdateTime_Z", sDateCnv, false, includeNonInitialized);
             AddObjectProperty("LocationImage_GXI_Z", gxTv_SdtTrn_Location_Locationimage_gxi_Z, false, includeNonInitialized);
             AddObjectProperty("ReceptionImage_GXI_Z", gxTv_SdtTrn_Location_Receptionimage_gxi_Z, false, includeNonInitialized);
             AddObjectProperty("LocationId_N", gxTv_SdtTrn_Location_Locationid_N, false, includeNonInitialized);
@@ -288,6 +341,8 @@ namespace GeneXus.Programs {
             AddObjectProperty("PublishedActiveAppVersionId_N", gxTv_SdtTrn_Location_Publishedactiveappversionid_N, false, includeNonInitialized);
             AddObjectProperty("Trn_ThemeId_N", gxTv_SdtTrn_Location_Trn_themeid_N, false, includeNonInitialized);
             AddObjectProperty("LocationThemeId_N", gxTv_SdtTrn_Location_Locationthemeid_N, false, includeNonInitialized);
+            AddObjectProperty("ToolBoxLastUpdateReceptionistId_N", gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N, false, includeNonInitialized);
+            AddObjectProperty("ToolBoxLastUpdateTime_N", gxTv_SdtTrn_Location_Toolboxlastupdatetime_N, false, includeNonInitialized);
             AddObjectProperty("ReceptionImage_GXI_N", gxTv_SdtTrn_Location_Receptionimage_gxi_N, false, includeNonInitialized);
          }
          return  ;
@@ -456,6 +511,18 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Location_Locationthemeid = sdt.gxTv_SdtTrn_Location_Locationthemeid ;
          }
+         if ( sdt.IsDirty("ToolBoxLastUpdateReceptionistId") )
+         {
+            gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N = (short)(sdt.gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N);
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid = sdt.gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid ;
+         }
+         if ( sdt.IsDirty("ToolBoxLastUpdateTime") )
+         {
+            gxTv_SdtTrn_Location_Toolboxlastupdatetime_N = (short)(sdt.gxTv_SdtTrn_Location_Toolboxlastupdatetime_N);
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Location_Toolboxlastupdatetime = sdt.gxTv_SdtTrn_Location_Toolboxlastupdatetime ;
+         }
          return  ;
       }
 
@@ -495,6 +562,8 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Location_Publishedactiveappversionid_Z_SetNull( );
                this.gxTv_SdtTrn_Location_Trn_themeid_Z_SetNull( );
                this.gxTv_SdtTrn_Location_Locationthemeid_Z_SetNull( );
+               this.gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_Z_SetNull( );
+               this.gxTv_SdtTrn_Location_Toolboxlastupdatetime_Z_SetNull( );
                this.gxTv_SdtTrn_Location_Locationimage_gxi_Z_SetNull( );
                this.gxTv_SdtTrn_Location_Receptionimage_gxi_Z_SetNull( );
             }
@@ -540,6 +609,8 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Location_Publishedactiveappversionid_Z_SetNull( );
                this.gxTv_SdtTrn_Location_Trn_themeid_Z_SetNull( );
                this.gxTv_SdtTrn_Location_Locationthemeid_Z_SetNull( );
+               this.gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_Z_SetNull( );
+               this.gxTv_SdtTrn_Location_Toolboxlastupdatetime_Z_SetNull( );
                this.gxTv_SdtTrn_Location_Locationimage_gxi_Z_SetNull( );
                this.gxTv_SdtTrn_Location_Receptionimage_gxi_Z_SetNull( );
             }
@@ -1151,6 +1222,86 @@ namespace GeneXus.Programs {
       public bool gxTv_SdtTrn_Location_Locationthemeid_IsNull( )
       {
          return (gxTv_SdtTrn_Location_Locationthemeid_N==1) ;
+      }
+
+      [  SoapElement( ElementName = "ToolBoxLastUpdateReceptionistId" )]
+      [  XmlElement( ElementName = "ToolBoxLastUpdateReceptionistId"   )]
+      public Guid gxTpr_Toolboxlastupdatereceptionistid
+      {
+         get {
+            return gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid ;
+         }
+
+         set {
+            gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N = 0;
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid = value;
+            SetDirty("Toolboxlastupdatereceptionistid");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_SetNull( )
+      {
+         gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N = 1;
+         gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid = Guid.Empty;
+         SetDirty("Toolboxlastupdatereceptionistid");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_IsNull( )
+      {
+         return (gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N==1) ;
+      }
+
+      [  SoapElement( ElementName = "ToolBoxLastUpdateTime" )]
+      [  XmlElement( ElementName = "ToolBoxLastUpdateTime"  , IsNullable=true )]
+      public string gxTpr_Toolboxlastupdatetime_Nullable
+      {
+         get {
+            if ( gxTv_SdtTrn_Location_Toolboxlastupdatetime == DateTime.MinValue)
+               return null;
+            return new GxDatetimeString(gxTv_SdtTrn_Location_Toolboxlastupdatetime).value ;
+         }
+
+         set {
+            gxTv_SdtTrn_Location_Toolboxlastupdatetime_N = 0;
+            sdtIsNull = 0;
+            if (String.IsNullOrEmpty(value) || value == GxDatetimeString.NullValue )
+               gxTv_SdtTrn_Location_Toolboxlastupdatetime = DateTime.MinValue;
+            else
+               gxTv_SdtTrn_Location_Toolboxlastupdatetime = DateTime.Parse( value);
+         }
+
+      }
+
+      [XmlIgnore]
+      public DateTime gxTpr_Toolboxlastupdatetime
+      {
+         get {
+            return gxTv_SdtTrn_Location_Toolboxlastupdatetime ;
+         }
+
+         set {
+            gxTv_SdtTrn_Location_Toolboxlastupdatetime_N = 0;
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Location_Toolboxlastupdatetime = value;
+            SetDirty("Toolboxlastupdatetime");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Location_Toolboxlastupdatetime_SetNull( )
+      {
+         gxTv_SdtTrn_Location_Toolboxlastupdatetime_N = 1;
+         gxTv_SdtTrn_Location_Toolboxlastupdatetime = (DateTime)(DateTime.MinValue);
+         SetDirty("Toolboxlastupdatetime");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Location_Toolboxlastupdatetime_IsNull( )
+      {
+         return (gxTv_SdtTrn_Location_Toolboxlastupdatetime_N==1) ;
       }
 
       [  SoapElement( ElementName = "Mode" )]
@@ -1853,6 +2004,81 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "ToolBoxLastUpdateReceptionistId_Z" )]
+      [  XmlElement( ElementName = "ToolBoxLastUpdateReceptionistId_Z"   )]
+      public Guid gxTpr_Toolboxlastupdatereceptionistid_Z
+      {
+         get {
+            return gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_Z = value;
+            SetDirty("Toolboxlastupdatereceptionistid_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_Z = Guid.Empty;
+         SetDirty("Toolboxlastupdatereceptionistid_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_Z_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "ToolBoxLastUpdateTime_Z" )]
+      [  XmlElement( ElementName = "ToolBoxLastUpdateTime_Z"  , IsNullable=true )]
+      public string gxTpr_Toolboxlastupdatetime_Z_Nullable
+      {
+         get {
+            if ( gxTv_SdtTrn_Location_Toolboxlastupdatetime_Z == DateTime.MinValue)
+               return null;
+            return new GxDatetimeString(gxTv_SdtTrn_Location_Toolboxlastupdatetime_Z).value ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            if (String.IsNullOrEmpty(value) || value == GxDatetimeString.NullValue )
+               gxTv_SdtTrn_Location_Toolboxlastupdatetime_Z = DateTime.MinValue;
+            else
+               gxTv_SdtTrn_Location_Toolboxlastupdatetime_Z = DateTime.Parse( value);
+         }
+
+      }
+
+      [XmlIgnore]
+      public DateTime gxTpr_Toolboxlastupdatetime_Z
+      {
+         get {
+            return gxTv_SdtTrn_Location_Toolboxlastupdatetime_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Location_Toolboxlastupdatetime_Z = value;
+            SetDirty("Toolboxlastupdatetime_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Location_Toolboxlastupdatetime_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Location_Toolboxlastupdatetime_Z = (DateTime)(DateTime.MinValue);
+         SetDirty("Toolboxlastupdatetime_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Location_Toolboxlastupdatetime_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "LocationImage_GXI_Z" )]
       [  XmlElement( ElementName = "LocationImage_GXI_Z"   )]
       public string gxTpr_Locationimage_gxi_Z
@@ -2245,6 +2471,62 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "ToolBoxLastUpdateReceptionistId_N" )]
+      [  XmlElement( ElementName = "ToolBoxLastUpdateReceptionistId_N"   )]
+      public short gxTpr_Toolboxlastupdatereceptionistid_N
+      {
+         get {
+            return gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N = value;
+            SetDirty("Toolboxlastupdatereceptionistid_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N_SetNull( )
+      {
+         gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N = 0;
+         SetDirty("Toolboxlastupdatereceptionistid_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "ToolBoxLastUpdateTime_N" )]
+      [  XmlElement( ElementName = "ToolBoxLastUpdateTime_N"   )]
+      public short gxTpr_Toolboxlastupdatetime_N
+      {
+         get {
+            return gxTv_SdtTrn_Location_Toolboxlastupdatetime_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Location_Toolboxlastupdatetime_N = value;
+            SetDirty("Toolboxlastupdatetime_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Location_Toolboxlastupdatetime_N_SetNull( )
+      {
+         gxTv_SdtTrn_Location_Toolboxlastupdatetime_N = 0;
+         SetDirty("Toolboxlastupdatetime_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Location_Toolboxlastupdatetime_N_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "ReceptionImage_GXI_N" )]
       [  XmlElement( ElementName = "ReceptionImage_GXI_N"   )]
       public short gxTpr_Receptionimage_gxi_N
@@ -2320,6 +2602,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Location_Publishedactiveappversionid = Guid.Empty;
          gxTv_SdtTrn_Location_Trn_themeid = Guid.Empty;
          gxTv_SdtTrn_Location_Locationthemeid = Guid.Empty;
+         gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid = Guid.Empty;
+         gxTv_SdtTrn_Location_Toolboxlastupdatetime = (DateTime)(DateTime.MinValue);
          gxTv_SdtTrn_Location_Mode = "";
          gxTv_SdtTrn_Location_Locationid_Z = Guid.Empty;
          gxTv_SdtTrn_Location_Organisationid_Z = Guid.Empty;
@@ -2340,8 +2624,13 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Location_Publishedactiveappversionid_Z = Guid.Empty;
          gxTv_SdtTrn_Location_Trn_themeid_Z = Guid.Empty;
          gxTv_SdtTrn_Location_Locationthemeid_Z = Guid.Empty;
+         gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_Z = Guid.Empty;
+         gxTv_SdtTrn_Location_Toolboxlastupdatetime_Z = (DateTime)(DateTime.MinValue);
          gxTv_SdtTrn_Location_Locationimage_gxi_Z = "";
          gxTv_SdtTrn_Location_Receptionimage_gxi_Z = "";
+         datetime_STZ = (DateTime)(DateTime.MinValue);
+         sDateCnv = "";
+         sNumToPad = "";
          IGxSilentTrn obj;
          obj = (IGxSilentTrn)ClassLoader.FindInstance( "trn_location", "GeneXus.Programs.trn_location_bc", new Object[] {context}, constructorCallingAssembly);;
          obj.initialize();
@@ -2370,10 +2659,17 @@ namespace GeneXus.Programs {
       private short gxTv_SdtTrn_Location_Publishedactiveappversionid_N ;
       private short gxTv_SdtTrn_Location_Trn_themeid_N ;
       private short gxTv_SdtTrn_Location_Locationthemeid_N ;
+      private short gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N ;
+      private short gxTv_SdtTrn_Location_Toolboxlastupdatetime_N ;
       private short gxTv_SdtTrn_Location_Receptionimage_gxi_N ;
       private string gxTv_SdtTrn_Location_Locationphone ;
       private string gxTv_SdtTrn_Location_Mode ;
       private string gxTv_SdtTrn_Location_Locationphone_Z ;
+      private string sDateCnv ;
+      private string sNumToPad ;
+      private DateTime gxTv_SdtTrn_Location_Toolboxlastupdatetime ;
+      private DateTime gxTv_SdtTrn_Location_Toolboxlastupdatetime_Z ;
+      private DateTime datetime_STZ ;
       private bool gxTv_SdtTrn_Location_Locationhasmycare ;
       private bool gxTv_SdtTrn_Location_Locationhasmyservices ;
       private bool gxTv_SdtTrn_Location_Locationhasmyliving ;
@@ -2421,12 +2717,14 @@ namespace GeneXus.Programs {
       private Guid gxTv_SdtTrn_Location_Publishedactiveappversionid ;
       private Guid gxTv_SdtTrn_Location_Trn_themeid ;
       private Guid gxTv_SdtTrn_Location_Locationthemeid ;
+      private Guid gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid ;
       private Guid gxTv_SdtTrn_Location_Locationid_Z ;
       private Guid gxTv_SdtTrn_Location_Organisationid_Z ;
       private Guid gxTv_SdtTrn_Location_Activeappversionid_Z ;
       private Guid gxTv_SdtTrn_Location_Publishedactiveappversionid_Z ;
       private Guid gxTv_SdtTrn_Location_Trn_themeid_Z ;
       private Guid gxTv_SdtTrn_Location_Locationthemeid_Z ;
+      private Guid gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_Z ;
    }
 
    [DataContract(Name = @"Trn_Location", Namespace = "Comforta_version2")]
@@ -2830,6 +3128,35 @@ namespace GeneXus.Programs {
 
       }
 
+      [DataMember( Name = "ToolBoxLastUpdateReceptionistId" , Order = 28 )]
+      [GxSeudo()]
+      public Guid gxTpr_Toolboxlastupdatereceptionistid
+      {
+         get {
+            return sdt.gxTpr_Toolboxlastupdatereceptionistid ;
+         }
+
+         set {
+            sdt.gxTpr_Toolboxlastupdatereceptionistid = value;
+         }
+
+      }
+
+      [DataMember( Name = "ToolBoxLastUpdateTime" , Order = 29 )]
+      [GxSeudo()]
+      public string gxTpr_Toolboxlastupdatetime
+      {
+         get {
+            return DateTimeUtil.TToC2( sdt.gxTpr_Toolboxlastupdatetime, (IGxContext)(context)) ;
+         }
+
+         set {
+            GXt_dtime1 = DateTimeUtil.ResetDate(DateTimeUtil.CToT2( value, (IGxContext)(context)));
+            sdt.gxTpr_Toolboxlastupdatetime = GXt_dtime1;
+         }
+
+      }
+
       public SdtTrn_Location sdt
       {
          get {
@@ -2851,7 +3178,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 28 )]
+      [DataMember( Name = "gx_md5_hash", Order = 30 )]
       public string Hash
       {
          get {
@@ -2869,6 +3196,7 @@ namespace GeneXus.Programs {
       }
 
       private string md5Hash ;
+      private DateTime GXt_dtime1 ;
    }
 
    [DataContract(Name = @"Trn_Location", Namespace = "Comforta_version2")]

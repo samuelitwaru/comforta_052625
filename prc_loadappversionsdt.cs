@@ -75,6 +75,7 @@ namespace GeneXus.Programs {
          /* Output device settings */
          AV9SDT_AppVersion = new SdtSDT_AppVersion(context);
          AV9SDT_AppVersion.FromJSonString(AV8BC_Trn_AppVersion.ToJSonString(true, true), null);
+         AV9SDT_AppVersion.gxTpr_Themeid = AV8BC_Trn_AppVersion.gxTpr_Trn_themeid;
          AV9SDT_AppVersion.gxTpr_Pages.Clear();
          /* Using cursor P00CA2 */
          pr_default.execute(0, new Object[] {AV8BC_Trn_AppVersion.gxTpr_Appversionid});

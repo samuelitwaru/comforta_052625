@@ -1929,13 +1929,14 @@ namespace GeneXus.Programs {
             /* Grid_Load Routine */
             returnInSub = false;
             /* Using cursor H009G4 */
-            pr_default.execute(2, new Object[] {A11OrganisationId, A29LocationId});
+            pr_default.execute(2, new Object[] {A29LocationId, A11OrganisationId});
             while ( (pr_default.getStatus(2) != 101) )
             {
                A29LocationId = H009G4_A29LocationId[0];
                AV38LocationName = A31LocationName;
                AssignAttri(sPrefix, false, edtavLocationname_Internalname, AV38LocationName);
-               pr_default.readNext(2);
+               /* Exiting from a For First loop. */
+               if (true) break;
             }
             pr_default.close(2);
             cmbavActiongroup.removeAllItems();
@@ -2537,7 +2538,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255245484119", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255285142698", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2553,7 +2554,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_suppliergentrn_productservicewc.js", "?20255245484119", false, true);
+         context.AddJavascriptSource("trn_suppliergentrn_productservicewc.js", "?20255285142699", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3632,8 +3633,8 @@ namespace GeneXus.Programs {
        {
           Object[] prmH009G4;
           prmH009G4 = new Object[] {
-          new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("LocationId",GXType.UniqueIdentifier,36,0)
+          new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+          new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           Object[] prmH009G2;
           prmH009G2 = new Object[] {
@@ -3646,7 +3647,7 @@ namespace GeneXus.Programs {
           def= new CursorDef[] {
               new CursorDef("H009G2", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH009G2,11, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H009G3", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH009G3,11, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("H009G4", "SELECT OrganisationId, LocationId FROM Trn_Location WHERE (OrganisationId = :OrganisationId) AND (LocationId = :LocationId) ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH009G4,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("H009G4", "SELECT OrganisationId, LocationId FROM Trn_Location WHERE LocationId = :LocationId and OrganisationId = :OrganisationId ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH009G4,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }

@@ -1908,7 +1908,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255245425072", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025528594522", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1926,7 +1926,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wwpbaseobjects/subscriptions/wwp_subscriptionspanel.js", "?20255245425072", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/subscriptions/wwp_subscriptionspanel.js", "?2025528594523", false, true);
          }
          /* End function include_jscripts */
       }
