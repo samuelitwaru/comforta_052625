@@ -1,0 +1,58 @@
+
+<style>
+    body.pv-modal-open {
+      	overflow: hidden; /* Prevent background scrolling */
+    }
+
+    .pv-modal-backdrop {
+     	position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 1040;
+		background-color: #000;
+		opacity: 0.8;
+    }
+
+    .pv-modal {
+		background: white;
+		padding: 2rem;
+		border-radius: 8px;
+		width: 90%;
+		max-width: 500px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+		text-align: center;
+		z-index: 1041;
+		position: fixed;
+		top:100px;
+    }
+
+    .pv-modal button {
+		margin-top: 1rem;
+		padding: 0.5rem 1rem;
+		font-size: 1rem;
+    }
+
+    /* Optional: Blur background content */
+    .blur {
+      	filter: blur(4px);
+    }
+</style>
+
+<div>
+  	<div id="content" class="blur">
+    	<h1>Main Page Content</h1>
+    	<p>You can't interact with this until the modal is closed.</p>
+ 	</div>
+	
+	<div class="pv-modal">
+		<h2>Access Blocked</h2>
+		<p>The App builder is being used by another receptionist.</p>
+		<button class="tb-btn tb-btn-primary" id='pv-button'>I Understand</button>
+	</div>
+	
+	<div id="pv-modal" align="center" class="pv-modal-backdrop">
+	</div>
+
+</div>

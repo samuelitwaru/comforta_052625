@@ -238,6 +238,7 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          context.AddJavascriptSource("UserControls/UC_AppToolBox1Render.js", "", false, true);
+         context.AddJavascriptSource("UserControls/UC_PreventAccessModalRender.js", "", false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -367,6 +368,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "APPTOOLBOX1_Locationprofileimage", StringUtil.RTrim( Apptoolbox1_Locationprofileimage));
          GxWebStd.gx_hidden_field( context, "APPTOOLBOX1_Current_theme", StringUtil.RTrim( Apptoolbox1_Current_theme));
          GxWebStd.gx_hidden_field( context, "APPTOOLBOX1_Organisationlogo", StringUtil.RTrim( Apptoolbox1_Organisationlogo));
+         GxWebStd.gx_hidden_field( context, "PREVENTACCESSMODAL_Visible", StringUtil.BoolToStr( Preventaccessmodal_Visible));
          GxWebStd.gx_hidden_field( context, "APPTOOLBOX1_Servicecreationparentpagetype", StringUtil.RTrim( Apptoolbox1_Servicecreationparentpagetype));
          GxWebStd.gx_hidden_field( context, "APPTOOLBOX1_Servicecreationparentpagetype", StringUtil.RTrim( Apptoolbox1_Servicecreationparentpagetype));
       }
@@ -509,6 +511,14 @@ namespace GeneXus.Programs {
             ucApptoolbox1.SetProperty("Current_Version", AV57CurrentAppVersion);
             ucApptoolbox1.SetProperty("OrganisationLogo", Apptoolbox1_Organisationlogo);
             ucApptoolbox1.Render(context, "uc_apptoolbox1", Apptoolbox1_Internalname, "APPTOOLBOX1Container");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* User Defined Control */
+            ucPreventaccessmodal.Render(context, "uc_preventaccessmodal", Preventaccessmodal_Internalname, "PREVENTACCESSMODALContainer");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -802,6 +812,7 @@ namespace GeneXus.Programs {
             Apptoolbox1_Locationprofileimage = cgiGet( "APPTOOLBOX1_Locationprofileimage");
             Apptoolbox1_Current_theme = cgiGet( "APPTOOLBOX1_Current_theme");
             Apptoolbox1_Organisationlogo = cgiGet( "APPTOOLBOX1_Organisationlogo");
+            Preventaccessmodal_Visible = StringUtil.StrToBool( cgiGet( "PREVENTACCESSMODAL_Visible"));
             Apptoolbox1_Servicecreationparentpagetype = cgiGet( "APPTOOLBOX1_Servicecreationparentpagetype");
             /* Read variables values. */
             /* Read subfile selected row values. */
@@ -825,25 +836,22 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
+         Preventaccessmodal_Visible = false;
+         ucPreventaccessmodal.SendProperty(context, "", false, Preventaccessmodal_Internalname, "Visible", StringUtil.BoolToStr( Preventaccessmodal_Visible));
          GXt_boolean1 = AV62IsBusy;
          new prc_isappbuilderbusy(context ).execute( out  GXt_boolean1) ;
          AV62IsBusy = GXt_boolean1;
          if ( AV62IsBusy )
          {
             AV63ReferrerUrl = AV37HttpRequest.Referrer;
-            GX_msglist.addItem(context.GetMessage( "App Builder is busy", ""));
-            context.setWebReturnParms(new Object[] {});
-            context.setWebReturnParmsMetadata(new Object[] {});
-            context.wjLocDisableFrm = 1;
-            context.nUserReturn = 1;
-            returnInSub = true;
-            if (true) return;
-            CallWebObject(formatLink(AV63ReferrerUrl) );
-            context.wjLocDisableFrm = 0;
+            Preventaccessmodal_Visible = true;
+            ucPreventaccessmodal.SendProperty(context, "", false, Preventaccessmodal_Internalname, "Visible", StringUtil.BoolToStr( Preventaccessmodal_Visible));
          }
          else
          {
             new prc_updatetoolboxstatus(context ).execute(  true) ;
+            Preventaccessmodal_Visible = false;
+            ucPreventaccessmodal.SendProperty(context, "", false, Preventaccessmodal_Internalname, "Visible", StringUtil.BoolToStr( Preventaccessmodal_Visible));
          }
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV60WWPContext) ;
          AV38UserName = AV60WWPContext.gxTpr_Gamusername;
@@ -1115,7 +1123,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025528651639", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255307573843", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1131,8 +1139,9 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_applicationdesign.js", "?2025528651640", false, true);
+         context.AddJavascriptSource("wp_applicationdesign.js", "?20255307573844", false, true);
          context.AddJavascriptSource("UserControls/UC_AppToolBox1Render.js", "", false, true);
+         context.AddJavascriptSource("UserControls/UC_PreventAccessModalRender.js", "", false, true);
          /* End function include_jscripts */
       }
 
@@ -1145,6 +1154,7 @@ namespace GeneXus.Programs {
       {
          divTablecontent_Internalname = "TABLECONTENT";
          Apptoolbox1_Internalname = "APPTOOLBOX1";
+         Preventaccessmodal_Internalname = "PREVENTACCESSMODAL";
          divTablemain_Internalname = "TABLEMAIN";
          divLayoutmaintable_Internalname = "LAYOUTMAINTABLE";
          Form.Internalname = "FORM";
@@ -1159,6 +1169,7 @@ namespace GeneXus.Programs {
          }
          init_default_properties( ) ;
          Apptoolbox1_Servicecreationparentpagetype = "";
+         Preventaccessmodal_Visible = Convert.ToBoolean( -1);
          Apptoolbox1_Organisationlogo = "&OrganisationLogo";
          Apptoolbox1_Current_theme = "";
          Apptoolbox1_Locationprofileimage = "&LocationProfileImage";
@@ -1229,6 +1240,7 @@ namespace GeneXus.Programs {
          ClassString = "";
          StyleString = "";
          ucApptoolbox1 = new GXUserControl();
+         ucPreventaccessmodal = new GXUserControl();
          sEvt = "";
          EvtGridId = "";
          EvtRowId = "";
@@ -1421,6 +1433,7 @@ namespace GeneXus.Programs {
       private string StyleString ;
       private string divTablecontent_Internalname ;
       private string Apptoolbox1_Internalname ;
+      private string Preventaccessmodal_Internalname ;
       private string sEvt ;
       private string EvtGridId ;
       private string EvtRowId ;
@@ -1432,6 +1445,7 @@ namespace GeneXus.Programs {
       private string AV36Current_Language ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
+      private bool Preventaccessmodal_Visible ;
       private bool wbLoad ;
       private bool Rfr0gs ;
       private bool wbErr ;
@@ -1473,6 +1487,7 @@ namespace GeneXus.Programs {
       private Guid A392Trn_PageId ;
       private Guid AV51NewProductServiceId ;
       private GXUserControl ucApptoolbox1 ;
+      private GXUserControl ucPreventaccessmodal ;
       private GxHttpRequest AV37HttpRequest ;
       private GxFile AV52File ;
       private GXWebForm Form ;
