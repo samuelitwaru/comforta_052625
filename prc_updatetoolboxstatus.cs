@@ -80,7 +80,6 @@ namespace GeneXus.Programs {
                n630ToolBoxLastUpdateReceptionistI = P00GF3_n630ToolBoxLastUpdateReceptionistI[0];
                A632ToolBoxLastUpdateTime = P00GF3_A632ToolBoxLastUpdateTime[0];
                n632ToolBoxLastUpdateTime = P00GF3_n632ToolBoxLastUpdateTime[0];
-               new prc_logtoserver(context ).execute(  context.GetMessage( "IsActive: ", "")+StringUtil.BoolToStr( AV9IsActive)) ;
                if ( AV9IsActive )
                {
                   A630ToolBoxLastUpdateReceptionistI = A89ReceptionistId;

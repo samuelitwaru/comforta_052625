@@ -8,3 +8,4 @@ PublicTempStorage/*
 !.gitignore
 Resources/UCGrapes1/TB
 Logs.txt
+Data.txt

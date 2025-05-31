@@ -1538,7 +1538,7 @@ namespace GeneXus.Programs {
       }
 
       public void gxep_debugappversion( GXBaseCollection<SdtSDT_PageUrl> aP0_PageUrlList ,
-                                        out SdtSDT_DebugResults aP1_DebugResults ,
+                                        out SdtSDT_DebugResult aP1_DebugResults ,
                                         out SdtSDT_Error aP2_error )
       {
          this.AV134PageUrlList = aP0_PageUrlList;
@@ -1815,7 +1815,7 @@ namespace GeneXus.Programs {
          AV98AppVersion = new SdtSDT_AppVersion(context);
          AV97MenuPage = new SdtSDT_AppVersion_PagesItem(context);
          AV95ContentPage = new SdtSDT_AppVersion_PagesItem(context);
-         AV101DebugResults = new SdtSDT_DebugResults(context);
+         AV101DebugResults = new SdtSDT_DebugResult(context);
          AV129BC_Trn_Location = new SdtTrn_Location(context);
          AV121SDT_MemoCategories = new GXBaseCollection<SdtSDT_MemoCategory>( context, "SDT_MemoCategory", "Comforta_version2");
          AV122SDT_MemoCategory = new SdtSDT_MemoCategory(context);
@@ -1986,8 +1986,8 @@ namespace GeneXus.Programs {
       protected SdtSDT_AppVersion_PagesItem AV95ContentPage ;
       protected SdtSDT_AppVersion_PagesItem aP2_ContentPage ;
       protected GXBaseCollection<SdtSDT_PageUrl> AV134PageUrlList ;
-      protected SdtSDT_DebugResults AV101DebugResults ;
-      protected SdtSDT_DebugResults aP1_DebugResults ;
+      protected SdtSDT_DebugResult AV101DebugResults ;
+      protected SdtSDT_DebugResult aP1_DebugResults ;
       protected SdtTrn_Location AV129BC_Trn_Location ;
       protected SdtTrn_Location aP0_BC_Trn_Location ;
       protected SdtSDT_Error aP4_error ;

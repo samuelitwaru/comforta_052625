@@ -75,7 +75,6 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV14LanguageFrom = AV15LanguageTo;
          AV16HttpClient.BaseURL = context.GetMessage( "https://api-b2b.backenster.com", "");
          AV16HttpClient.AddHeader(context.GetMessage( "Content-type", ""), context.GetMessage( "application/json", ""));
          AV16HttpClient.AddHeader(context.GetMessage( "Authorization", ""), context.GetMessage( "Bearer a_FPErHAYaF0j7aGdubWnroJR40Q9TvO4X7ciQCdwnQv5lw3tPDnoGVL2LlsaiIXxykUJ7uMwWpU4Co6Mv", ""));
@@ -95,10 +94,10 @@ namespace GeneXus.Programs {
          }
          else
          {
+            new prc_logtofile(context ).execute(  context.GetMessage( "failed", "")) ;
             new prc_logtofile(context ).execute(  AV20Translated.gxTpr_Err) ;
             new prc_logtofile(context ).execute(  StringUtil.Str( (decimal)(AV16HttpClient.StatusCode), 10, 2)) ;
          }
-         new prc_logtoserver(context ).execute(  context.GetMessage( "				Translated: ", "")+AV12from+context.GetMessage( " to ", "")+AV13to+" >> "+AV14LanguageFrom+" >> "+AV15LanguageTo) ;
          cleanup();
       }
 

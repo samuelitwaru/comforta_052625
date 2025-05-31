@@ -1126,6 +1126,7 @@ namespace GeneXus.Programs {
                Combo_locationphonecode_Selectalltext = cgiGet( "COMBO_LOCATIONPHONECODE_Selectalltext");
                Combo_locationphonecode_Multiplevaluesseparator = cgiGet( "COMBO_LOCATIONPHONECODE_Multiplevaluesseparator");
                Combo_locationphonecode_Addnewoptiontext = cgiGet( "COMBO_LOCATIONPHONECODE_Addnewoptiontext");
+               Combo_locationphonecode_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_LOCATIONPHONECODE_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Imageuploaduc_Objectcall = cgiGet( "IMAGEUPLOADUC_Objectcall");
                Imageuploaduc_Class = cgiGet( "IMAGEUPLOADUC_Class");
                Imageuploaduc_Enabled = StringUtil.StrToBool( cgiGet( "IMAGEUPLOADUC_Enabled"));
@@ -1197,6 +1198,7 @@ namespace GeneXus.Programs {
                Combo_locationcountry_Selectalltext = cgiGet( "COMBO_LOCATIONCOUNTRY_Selectalltext");
                Combo_locationcountry_Multiplevaluesseparator = cgiGet( "COMBO_LOCATIONCOUNTRY_Multiplevaluesseparator");
                Combo_locationcountry_Addnewoptiontext = cgiGet( "COMBO_LOCATIONCOUNTRY_Addnewoptiontext");
+               Combo_locationcountry_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_LOCATIONCOUNTRY_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                /* Read variables values. */
                A31LocationName = cgiGet( edtLocationName_Internalname);
                AssignAttri("", false, "A31LocationName", A31LocationName);
@@ -2225,7 +2227,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A630ToolBoxLastUpdateReceptionistI) || (Guid.Empty==A11OrganisationId) || (Guid.Empty==A29LocationId) ) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Receptionist", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "LOCATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), "", "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "LOCATIONID");
                AnyError = 1;
                GX_FocusControl = edtOrganisationId_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -2346,7 +2348,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A630ToolBoxLastUpdateReceptionistI) || (Guid.Empty==A11OrganisationId) || (Guid.Empty==A29LocationId) ) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Receptionist", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "LOCATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), "", "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "LOCATIONID");
                AnyError = 1;
                GX_FocusControl = edtOrganisationId_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -3253,7 +3255,7 @@ namespace GeneXus.Programs {
             pr_default.execute(26, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(26) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Receptionist", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {""}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(26);
@@ -3954,7 +3956,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255285103285", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255302250249", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3970,7 +3972,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_location.js", "?20255285103288", false, true);
+         context.AddJavascriptSource("trn_location.js", "?202553022502411", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -4938,9 +4940,11 @@ namespace GeneXus.Programs {
       private int edtLocationDescription_Visible ;
       private int edtLocationDescription_Enabled ;
       private int Combo_locationphonecode_Datalistupdateminimumcharacters ;
+      private int Combo_locationphonecode_Gxcontroltype ;
       private int Locationdescriptionvar_Color ;
       private int Locationdescriptionvar_Coltitlecolor ;
       private int Combo_locationcountry_Datalistupdateminimumcharacters ;
+      private int Combo_locationcountry_Gxcontroltype ;
       private int AV47GXV1 ;
       private int idxLst ;
       private string sPrefix ;

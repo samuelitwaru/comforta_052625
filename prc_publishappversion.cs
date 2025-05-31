@@ -124,10 +124,10 @@ namespace GeneXus.Programs {
                if (true) break;
             }
             pr_default.close(0);
-            AV30Udparg1 = new prc_getuserlocationid(context).executeUdp( );
-            AV31Udparg2 = new prc_getuserorganisationid(context).executeUdp( );
+            AV31Udparg1 = new prc_getuserlocationid(context).executeUdp( );
+            AV32Udparg2 = new prc_getuserorganisationid(context).executeUdp( );
             /* Using cursor P00BL5 */
-            pr_default.execute(3, new Object[] {AV30Udparg1, AV31Udparg2});
+            pr_default.execute(3, new Object[] {AV31Udparg1, AV32Udparg2});
             while ( (pr_default.getStatus(3) != 101) )
             {
                GXTBL4 = 0;
@@ -150,6 +150,10 @@ namespace GeneXus.Programs {
                if (true) break;
             }
             pr_default.close(3);
+            GXt_objcol_SdtSDT_InfoPageTranslation1 = AV27SDT_InfoPageTranslationCollection;
+            new prc_addappversionpagesattributestosdt2(context ).execute(  AV15AppVersionId,  AV26PageIdCollection, out  GXt_objcol_SdtSDT_InfoPageTranslation1) ;
+            AV27SDT_InfoPageTranslationCollection = GXt_objcol_SdtSDT_InfoPageTranslation1;
+            new prc_addappversionpagetodynamictransalation2(context ).execute(  AV27SDT_InfoPageTranslationCollection) ;
             if ( AV18Notify )
             {
                AV19Title = "New Updates Available";
@@ -194,8 +198,8 @@ namespace GeneXus.Programs {
          AV24MetadataToolboxDetails = new SdtSDT_OneSignalCustomData_toolboxDetailsItem(context);
          AV21Metadata = new SdtSDT_OneSignalCustomData(context);
          AV26PageIdCollection = new GxSimpleCollection<Guid>();
-         AV30Udparg1 = Guid.Empty;
-         AV31Udparg2 = Guid.Empty;
+         AV31Udparg1 = Guid.Empty;
+         AV32Udparg2 = Guid.Empty;
          P00BL5_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00BL5_A29LocationId = new Guid[] {Guid.Empty} ;
          P00BL5_A598PublishedActiveAppVersionId = new Guid[] {Guid.Empty} ;
@@ -203,6 +207,8 @@ namespace GeneXus.Programs {
          A11OrganisationId = Guid.Empty;
          A29LocationId = Guid.Empty;
          A598PublishedActiveAppVersionId = Guid.Empty;
+         AV27SDT_InfoPageTranslationCollection = new GXBaseCollection<SdtSDT_InfoPageTranslation>( context, "SDT_InfoPageTranslation", "Comforta_version2");
+         GXt_objcol_SdtSDT_InfoPageTranslation1 = new GXBaseCollection<SdtSDT_InfoPageTranslation>( context, "SDT_InfoPageTranslation", "Comforta_version2");
          AV19Title = "";
          AV20NotificationMessage = "";
          AV22ResidentIdCollectionEmpty = new GxSimpleCollection<Guid>();
@@ -246,8 +252,8 @@ namespace GeneXus.Programs {
       private Guid AV15AppVersionId ;
       private Guid A523AppVersionId ;
       private Guid A516PageId ;
-      private Guid AV30Udparg1 ;
-      private Guid AV31Udparg2 ;
+      private Guid AV31Udparg1 ;
+      private Guid AV32Udparg2 ;
       private Guid A11OrganisationId ;
       private Guid A29LocationId ;
       private Guid A598PublishedActiveAppVersionId ;
@@ -270,6 +276,8 @@ namespace GeneXus.Programs {
       private Guid[] P00BL5_A29LocationId ;
       private Guid[] P00BL5_A598PublishedActiveAppVersionId ;
       private bool[] P00BL5_n598PublishedActiveAppVersionId ;
+      private GXBaseCollection<SdtSDT_InfoPageTranslation> AV27SDT_InfoPageTranslationCollection ;
+      private GXBaseCollection<SdtSDT_InfoPageTranslation> GXt_objcol_SdtSDT_InfoPageTranslation1 ;
       private GxSimpleCollection<Guid> AV22ResidentIdCollectionEmpty ;
       private SdtSDT_Error aP2_SDT_Error ;
       private IDataStoreProvider pr_datastore1 ;
@@ -375,8 +383,8 @@ public class prc_publishappversion__default : DataStoreHelperBase, IDataStoreHel
        };
        Object[] prmP00BL5;
        prmP00BL5 = new Object[] {
-       new ParDef("AV30Udparg1",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("AV31Udparg2",GXType.UniqueIdentifier,36,0)
+       new ParDef("AV31Udparg1",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("AV32Udparg2",GXType.UniqueIdentifier,36,0)
        };
        Object[] prmP00BL6;
        prmP00BL6 = new Object[] {
@@ -388,7 +396,7 @@ public class prc_publishappversion__default : DataStoreHelperBase, IDataStoreHel
            new CursorDef("P00BL2", "SELECT AppVersionId FROM Trn_AppVersion WHERE AppVersionId = :AV15AppVersionId ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BL2,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("P00BL3", "SELECT AppVersionId, PagePublishedStructure, PageStructure, PageId, PageName FROM Trn_AppVersionPage WHERE (AppVersionId = :AppVersionId) AND (Not ( PageStructure = ( PagePublishedStructure))) ORDER BY AppVersionId  FOR UPDATE OF Trn_AppVersionPage",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BL3,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("P00BL4", "SAVEPOINT gxupdate;UPDATE Trn_AppVersionPage SET PagePublishedStructure=:PagePublishedStructure  WHERE AppVersionId = :AppVersionId AND PageId = :PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00BL4)
-          ,new CursorDef("P00BL5", "SELECT OrganisationId, LocationId, PublishedActiveAppVersionId FROM Trn_Location WHERE LocationId = :AV30Udparg1 and OrganisationId = :AV31Udparg2 ORDER BY LocationId, OrganisationId  FOR UPDATE OF Trn_Location",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BL5,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("P00BL5", "SELECT OrganisationId, LocationId, PublishedActiveAppVersionId FROM Trn_Location WHERE LocationId = :AV31Udparg1 and OrganisationId = :AV32Udparg2 ORDER BY LocationId, OrganisationId  FOR UPDATE OF Trn_Location",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BL5,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("P00BL6", "SAVEPOINT gxupdate;UPDATE Trn_Location SET PublishedActiveAppVersionId=:PublishedActiveAppVersionId  WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00BL6)
        };
     }

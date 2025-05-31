@@ -340,6 +340,9 @@ namespace GeneXus.Programs.wwpbaseobjects {
          send_integrity_footer_hashes( ) ;
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISAUTHORIZED_MYPROFILE", AV16IsAuthorized_MyProfile);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_MYPROFILE", GetSecureSignedToken( sPrefix, AV16IsAuthorized_MyProfile, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"RECEPTIONISTGAMGUID", A95ReceptionistGAMGUID);
+         GxWebStd.gx_hidden_field( context, sPrefix+"TOOLBOXLASTUPDATERECEPTIONISTI", A630ToolBoxLastUpdateReceptionistI.ToString());
+         GxWebStd.gx_hidden_field( context, sPrefix+"RECEPTIONISTID", A89ReceptionistId.ToString());
       }
 
       protected void RenderHtmlCloseForm3A2( )
@@ -451,7 +454,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             GxWebStd.gx_label_element( context, edtavUsername_Internalname, context.GetMessage( "User Name", ""), "gx-form-item MasterPageTopActionsUserNameLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 14,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavUsername_Internalname, AV6UserName, StringUtil.RTrim( context.localUtil.Format( AV6UserName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,14);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavUsername_Jsonclick, 0, "MasterPageTopActionsUserName", "", "", "", "", 1, edtavUsername_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, false, "", "start", true, "", "HLP_WWPBaseObjects/WWP_MasterPageTopActionsWC.htm");
+            GxWebStd.gx_single_line_edit( context, edtavUsername_Internalname, AV6UserName, StringUtil.RTrim( context.localUtil.Format( AV6UserName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,14);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavUsername_Jsonclick, 0, "MasterPageTopActionsUserName", "", "", "", "", 1, edtavUsername_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WWPBaseObjects/WWP_MasterPageTopActionsWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -462,7 +465,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             GxWebStd.gx_label_element( context, edtavRolesdescriptions_Internalname, context.GetMessage( "Roles Descriptions", ""), "gx-form-item MasterPageTopActionsRoleNameLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 17,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavRolesdescriptions_Internalname, AV12RolesDescriptions, StringUtil.RTrim( context.localUtil.Format( AV12RolesDescriptions, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,17);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavRolesdescriptions_Jsonclick, 0, "MasterPageTopActionsRoleName", "", "", "", "", 1, edtavRolesdescriptions_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, false, "", "start", true, "", "HLP_WWPBaseObjects/WWP_MasterPageTopActionsWC.htm");
+            GxWebStd.gx_single_line_edit( context, edtavRolesdescriptions_Internalname, AV12RolesDescriptions, StringUtil.RTrim( context.localUtil.Format( AV12RolesDescriptions, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,17);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavRolesdescriptions_Jsonclick, 0, "MasterPageTopActionsRoleName", "", "", "", "", 1, edtavRolesdescriptions_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WWPBaseObjects/WWP_MasterPageTopActionsWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -915,6 +918,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Read saved SDTs. */
             /* Read saved values. */
             /* Read variables values. */
+            AV6UserName = cgiGet( edtavUsername_Internalname);
+            AssignAttri(sPrefix, false, "AV6UserName", AV6UserName);
+            AV12RolesDescriptions = cgiGet( edtavRolesdescriptions_Internalname);
+            AssignAttri(sPrefix, false, "AV12RolesDescriptions", AV12RolesDescriptions);
+            GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vROLESDESCRIPTIONS", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV12RolesDescriptions, "")), context));
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Crypto.GetSiteKey( );
@@ -958,10 +966,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
          AV6UserName = (String.IsNullOrEmpty(StringUtil.RTrim( AV9GAMUser.gxTpr_Firstname)) ? AV9GAMUser.gxTpr_Name : StringUtil.Trim( AV9GAMUser.gxTpr_Firstname)+" "+StringUtil.Trim( AV9GAMUser.gxTpr_Lastname));
          AssignAttri(sPrefix, false, "AV6UserName", AV6UserName);
          AV10GAMRoleCollection = new GeneXus.Programs.genexussecurity.SdtGAMSession(context).getroles(out  AV7GAMErrorCollection);
-         AV17GXV1 = 1;
-         while ( AV17GXV1 <= AV10GAMRoleCollection.Count )
+         AV19GXV1 = 1;
+         while ( AV19GXV1 <= AV10GAMRoleCollection.Count )
          {
-            AV11GAMRole = ((GeneXus.Programs.genexussecurity.SdtGAMRole)AV10GAMRoleCollection.Item(AV17GXV1));
+            AV11GAMRole = ((GeneXus.Programs.genexussecurity.SdtGAMRole)AV10GAMRoleCollection.Item(AV19GXV1));
             if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV12RolesDescriptions)) )
             {
                AV12RolesDescriptions += ", ";
@@ -971,7 +979,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             AV12RolesDescriptions += (String.IsNullOrEmpty(StringUtil.RTrim( AV11GAMRole.gxTpr_Description)) ? AV11GAMRole.gxTpr_Name : AV11GAMRole.gxTpr_Description);
             AssignAttri(sPrefix, false, "AV12RolesDescriptions", AV12RolesDescriptions);
             GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vROLESDESCRIPTIONS", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV12RolesDescriptions, "")), context));
-            AV17GXV1 = (int)(AV17GXV1+1);
+            AV19GXV1 = (int)(AV19GXV1+1);
          }
       }
 
@@ -1015,19 +1023,49 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          /* 'DoLogout' Routine */
          returnInSub = false;
+         GXt_char1 = AV18UserId;
+         new prc_getloggedinuserid(context ).execute( out  GXt_char1) ;
+         AV18UserId = GXt_char1;
+         AssignAttri(sPrefix, false, "AV18UserId", AV18UserId);
+         /* Using cursor H003A2 */
+         pr_default.execute(0, new Object[] {AV18UserId});
+         while ( (pr_default.getStatus(0) != 101) )
+         {
+            A630ToolBoxLastUpdateReceptionistI = H003A2_A630ToolBoxLastUpdateReceptionistI[0];
+            n630ToolBoxLastUpdateReceptionistI = H003A2_n630ToolBoxLastUpdateReceptionistI[0];
+            A11OrganisationId = H003A2_A11OrganisationId[0];
+            A29LocationId = H003A2_A29LocationId[0];
+            A89ReceptionistId = H003A2_A89ReceptionistId[0];
+            A95ReceptionistGAMGUID = H003A2_A95ReceptionistGAMGUID[0];
+            A630ToolBoxLastUpdateReceptionistI = H003A2_A630ToolBoxLastUpdateReceptionistI[0];
+            n630ToolBoxLastUpdateReceptionistI = H003A2_n630ToolBoxLastUpdateReceptionistI[0];
+            /* Using cursor H003A3 */
+            pr_default.execute(1, new Object[] {A89ReceptionistId, A11OrganisationId, A29LocationId});
+            while ( (pr_default.getStatus(1) != 101) )
+            {
+               A630ToolBoxLastUpdateReceptionistI = H003A3_A630ToolBoxLastUpdateReceptionistI[0];
+               n630ToolBoxLastUpdateReceptionistI = H003A3_n630ToolBoxLastUpdateReceptionistI[0];
+               new prc_updatetoolboxstatus(context ).execute(  false) ;
+               pr_default.readNext(1);
+            }
+            pr_default.close(1);
+            pr_default.readNext(0);
+         }
+         pr_default.close(0);
          AV8isOk = new GeneXus.Programs.genexussecurity.SdtGAMRepository(context).logout(out  AV7GAMErrorCollection);
          AV13WebSession.Clear();
          CallWebObject(formatLink("ulogin.aspx") );
          context.wjLocDisableFrm = 1;
+         /*  Sending Event outputs  */
       }
 
       protected void S112( )
       {
          /* 'CHECKSECURITYFORACTIONS' Routine */
          returnInSub = false;
-         GXt_boolean1 = AV16IsAuthorized_MyProfile;
-         new WorkWithPlus.workwithplus_commongam.secgamisauthbyfunctionalitykey(context ).execute(  "<Check_Is_Authenticated>", out  GXt_boolean1) ;
-         AV16IsAuthorized_MyProfile = GXt_boolean1;
+         GXt_boolean2 = AV16IsAuthorized_MyProfile;
+         new WorkWithPlus.workwithplus_commongam.secgamisauthbyfunctionalitykey(context ).execute(  "<Check_Is_Authenticated>", out  GXt_boolean2) ;
+         AV16IsAuthorized_MyProfile = GXt_boolean2;
          AssignAttri(sPrefix, false, "AV16IsAuthorized_MyProfile", AV16IsAuthorized_MyProfile);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_MYPROFILE", GetSecureSignedToken( sPrefix, AV16IsAuthorized_MyProfile, context));
          if ( ! ( AV16IsAuthorized_MyProfile && ( StringUtil.Contains( AV12RolesDescriptions, context.GetMessage( "Organisation Manager", "")) || StringUtil.Contains( AV12RolesDescriptions, context.GetMessage( "Receptionist", "")) ) ) )
@@ -1231,7 +1269,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025528575547", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255302249934", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1249,7 +1287,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wwpbaseobjects/wwp_masterpagetopactionswc.js", "?2025528575551", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/wwp_masterpagetopactionswc.js", "?20255302249938", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
@@ -1327,7 +1365,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          setEventMetadata("REFRESH",""","oparms":[{"av":"AV16IsAuthorized_MyProfile","fld":"vISAUTHORIZED_MYPROFILE","hsh":true},{"av":"Btnmyprofile_Visible","ctrl":"BTNMYPROFILE","prop":"Visible"}]}""");
          setEventMetadata("'DOMYPROFILE'","""{"handler":"E133A2","iparms":[{"av":"AV16IsAuthorized_MyProfile","fld":"vISAUTHORIZED_MYPROFILE","hsh":true}]}""");
          setEventMetadata("'DOACTIONCHANGEPASSWORD'","""{"handler":"E143A2","iparms":[]}""");
-         setEventMetadata("'DOLOGOUT'","""{"handler":"E153A2","iparms":[]}""");
+         setEventMetadata("'DOLOGOUT'","""{"handler":"E153A2","iparms":[{"av":"A95ReceptionistGAMGUID","fld":"RECEPTIONISTGAMGUID"},{"av":"A630ToolBoxLastUpdateReceptionistI","fld":"TOOLBOXLASTUPDATERECEPTIONISTI"},{"av":"A89ReceptionistId","fld":"RECEPTIONISTID"}]""");
+         setEventMetadata("'DOLOGOUT'",""","oparms":[{"av":"AV18UserId","fld":"vUSERID"}]}""");
          setEventMetadata("'DOACTIONCHANGEYOURPASSWORD'","""{"handler":"E163A2","iparms":[]}""");
          return  ;
       }
@@ -1352,6 +1391,9 @@ namespace GeneXus.Programs.wwpbaseobjects {
          AV12RolesDescriptions = "";
          GXKey = "";
          forbiddenHiddens = new GXProperties();
+         A95ReceptionistGAMGUID = "";
+         A630ToolBoxLastUpdateReceptionistI = Guid.Empty;
+         A89ReceptionistId = Guid.Empty;
          GX_FocusControl = "";
          TempTags = "";
          AV6UserName = "";
@@ -1369,14 +1411,42 @@ namespace GeneXus.Programs.wwpbaseobjects {
          AV10GAMRoleCollection = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMRole>( context, "GeneXus.Programs.genexussecurity.SdtGAMRole", "GeneXus.Programs");
          AV7GAMErrorCollection = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          AV11GAMRole = new GeneXus.Programs.genexussecurity.SdtGAMRole(context);
+         AV18UserId = "";
+         GXt_char1 = "";
+         H003A2_A630ToolBoxLastUpdateReceptionistI = new Guid[] {Guid.Empty} ;
+         H003A2_n630ToolBoxLastUpdateReceptionistI = new bool[] {false} ;
+         H003A2_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         H003A2_A29LocationId = new Guid[] {Guid.Empty} ;
+         H003A2_A89ReceptionistId = new Guid[] {Guid.Empty} ;
+         H003A2_A95ReceptionistGAMGUID = new string[] {""} ;
+         A11OrganisationId = Guid.Empty;
+         A29LocationId = Guid.Empty;
+         H003A3_A29LocationId = new Guid[] {Guid.Empty} ;
+         H003A3_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         H003A3_A630ToolBoxLastUpdateReceptionistI = new Guid[] {Guid.Empty} ;
+         H003A3_n630ToolBoxLastUpdateReceptionistI = new bool[] {false} ;
          AV13WebSession = context.GetSession();
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_default = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.wwp_masterpagetopactionswc__default(),
+            new Object[][] {
+                new Object[] {
+               H003A2_A630ToolBoxLastUpdateReceptionistI, H003A2_n630ToolBoxLastUpdateReceptionistI, H003A2_A11OrganisationId, H003A2_A29LocationId, H003A2_A89ReceptionistId, H003A2_A95ReceptionistGAMGUID
+               }
+               , new Object[] {
+               H003A3_A29LocationId, H003A3_A11OrganisationId, H003A3_A630ToolBoxLastUpdateReceptionistI, H003A3_n630ToolBoxLastUpdateReceptionistI
+               }
+            }
+         );
          /* GeneXus formulas. */
          edtavUsername_Enabled = 0;
          edtavRolesdescriptions_Enabled = 0;
       }
 
+      private short nRcdExists_3 ;
+      private short nIsMod_3 ;
+      private short nRcdExists_4 ;
+      private short nIsMod_4 ;
       private short nGotPars ;
       private short GxWebError ;
       private short nDynComponent ;
@@ -1388,7 +1458,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private short nDonePA ;
       private int edtavUsername_Enabled ;
       private int edtavRolesdescriptions_Enabled ;
-      private int AV17GXV1 ;
+      private int AV19GXV1 ;
       private int idxLst ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
@@ -1430,6 +1500,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private string EvtRowId ;
       private string sEvtType ;
       private string hsh ;
+      private string GXt_char1 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool AV16IsAuthorized_MyProfile ;
@@ -1438,11 +1509,18 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
+      private bool n630ToolBoxLastUpdateReceptionistI ;
       private bool AV8isOk ;
-      private bool GXt_boolean1 ;
+      private bool GXt_boolean2 ;
       private bool Btnmyprofile_Visible ;
       private string AV12RolesDescriptions ;
+      private string A95ReceptionistGAMGUID ;
       private string AV6UserName ;
+      private string AV18UserId ;
+      private Guid A630ToolBoxLastUpdateReceptionistI ;
+      private Guid A89ReceptionistId ;
+      private Guid A11OrganisationId ;
+      private Guid A29LocationId ;
       private GXProperties forbiddenHiddens ;
       private GXUserControl ucBtnmyprofile ;
       private GXUserControl ucBtnactionchangepassword ;
@@ -1456,8 +1534,77 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMRole> AV10GAMRoleCollection ;
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV7GAMErrorCollection ;
       private GeneXus.Programs.genexussecurity.SdtGAMRole AV11GAMRole ;
+      private IDataStoreProvider pr_default ;
+      private Guid[] H003A2_A630ToolBoxLastUpdateReceptionistI ;
+      private bool[] H003A2_n630ToolBoxLastUpdateReceptionistI ;
+      private Guid[] H003A2_A11OrganisationId ;
+      private Guid[] H003A2_A29LocationId ;
+      private Guid[] H003A2_A89ReceptionistId ;
+      private string[] H003A2_A95ReceptionistGAMGUID ;
+      private Guid[] H003A3_A29LocationId ;
+      private Guid[] H003A3_A11OrganisationId ;
+      private Guid[] H003A3_A630ToolBoxLastUpdateReceptionistI ;
+      private bool[] H003A3_n630ToolBoxLastUpdateReceptionistI ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }
+
+   public class wwp_masterpagetopactionswc__default : DataStoreHelperBase, IDataStoreHelper
+   {
+      public ICursor[] getCursors( )
+      {
+         cursorDefinitions();
+         return new Cursor[] {
+          new ForEachCursor(def[0])
+         ,new ForEachCursor(def[1])
+       };
+    }
+
+    private static CursorDef[] def;
+    private void cursorDefinitions( )
+    {
+       if ( def == null )
+       {
+          Object[] prmH003A2;
+          prmH003A2 = new Object[] {
+          new ParDef("AV18UserId",GXType.VarChar,40,0)
+          };
+          Object[] prmH003A3;
+          prmH003A3 = new Object[] {
+          new ParDef("ReceptionistId",GXType.UniqueIdentifier,36,0) ,
+          new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
+          new ParDef("LocationId",GXType.UniqueIdentifier,36,0)
+          };
+          def= new CursorDef[] {
+              new CursorDef("H003A2", "SELECT T2.ToolBoxLastUpdateReceptionistI, T1.OrganisationId, T1.LocationId, T1.ReceptionistId, T1.ReceptionistGAMGUID FROM (Trn_Receptionist T1 INNER JOIN Trn_Location T2 ON T2.LocationId = T1.LocationId AND T2.OrganisationId = T1.OrganisationId) WHERE T1.ReceptionistGAMGUID = ( :AV18UserId) ORDER BY T1.ReceptionistId, T1.OrganisationId, T1.LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH003A2,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("H003A3", "SELECT LocationId, OrganisationId, ToolBoxLastUpdateReceptionistI FROM Trn_Location WHERE ToolBoxLastUpdateReceptionistI = :ReceptionistId and OrganisationId = :OrganisationId and LocationId = :LocationId ORDER BY ToolBoxLastUpdateReceptionistI, OrganisationId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH003A3,100, GxCacheFrequency.OFF ,true,false )
+          };
+       }
+    }
+
+    public void getResults( int cursor ,
+                            IFieldGetter rslt ,
+                            Object[] buf )
+    {
+       switch ( cursor )
+       {
+             case 0 :
+                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((bool[]) buf[1])[0] = rslt.wasNull(1);
+                ((Guid[]) buf[2])[0] = rslt.getGuid(2);
+                ((Guid[]) buf[3])[0] = rslt.getGuid(3);
+                ((Guid[]) buf[4])[0] = rslt.getGuid(4);
+                ((string[]) buf[5])[0] = rslt.getVarchar(5);
+                return;
+             case 1 :
+                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+                ((bool[]) buf[3])[0] = rslt.wasNull(3);
+                return;
+       }
+    }
+
+ }
 
 }

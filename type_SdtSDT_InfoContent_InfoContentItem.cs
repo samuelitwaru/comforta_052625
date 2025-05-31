@@ -75,6 +75,10 @@ namespace GeneXus.Programs
 			{
 				AddObjectProperty("Tiles", gxTv_SdtSDT_InfoContent_InfoContentItem_Tiles, false);
 			}
+			if (gxTv_SdtSDT_InfoContent_InfoContentItem_Images != null)
+			{
+				AddObjectProperty("Images", gxTv_SdtSDT_InfoContent_InfoContentItem_Images, false);
+			}
 			if (gxTv_SdtSDT_InfoContent_InfoContentItem_Ctaattributes != null)
 			{
 				AddObjectProperty("CtaAttributes", gxTv_SdtSDT_InfoContent_InfoContentItem_Ctaattributes, false);
@@ -185,6 +189,59 @@ namespace GeneXus.Programs
 
 		}
 
+
+		[SoapElement(ElementName="Images" )]
+		[XmlArray(ElementName="Images"  )]
+		[XmlArrayItemAttribute(ElementName="SDT_InfoImageItem" , IsNullable=false )]
+		public GXBaseCollection<GeneXus.Programs.SdtSDT_InfoImage_SDT_InfoImageItem> gxTpr_Images_GXBaseCollection
+		{
+			get {
+				if ( gxTv_SdtSDT_InfoContent_InfoContentItem_Images == null )
+				{
+					gxTv_SdtSDT_InfoContent_InfoContentItem_Images = new GXBaseCollection<GeneXus.Programs.SdtSDT_InfoImage_SDT_InfoImageItem>( context, "SDT_InfoImage", "");
+				}
+				return gxTv_SdtSDT_InfoContent_InfoContentItem_Images;
+			}
+			set {
+				gxTv_SdtSDT_InfoContent_InfoContentItem_Images_N = false;
+				gxTv_SdtSDT_InfoContent_InfoContentItem_Images = value;
+			}
+		}
+
+		[XmlIgnore]
+		public GXBaseCollection<GeneXus.Programs.SdtSDT_InfoImage_SDT_InfoImageItem> gxTpr_Images
+		{
+			get {
+				if ( gxTv_SdtSDT_InfoContent_InfoContentItem_Images == null )
+				{
+					gxTv_SdtSDT_InfoContent_InfoContentItem_Images = new GXBaseCollection<GeneXus.Programs.SdtSDT_InfoImage_SDT_InfoImageItem>( context, "SDT_InfoImage", "");
+				}
+				gxTv_SdtSDT_InfoContent_InfoContentItem_Images_N = false;
+				return gxTv_SdtSDT_InfoContent_InfoContentItem_Images ;
+			}
+			set {
+				gxTv_SdtSDT_InfoContent_InfoContentItem_Images_N = false;
+				gxTv_SdtSDT_InfoContent_InfoContentItem_Images = value;
+				SetDirty("Images");
+			}
+		}
+
+		public void gxTv_SdtSDT_InfoContent_InfoContentItem_Images_SetNull()
+		{
+			gxTv_SdtSDT_InfoContent_InfoContentItem_Images_N = true;
+			gxTv_SdtSDT_InfoContent_InfoContentItem_Images = null;
+		}
+
+		public bool gxTv_SdtSDT_InfoContent_InfoContentItem_Images_IsNull()
+		{
+			return gxTv_SdtSDT_InfoContent_InfoContentItem_Images == null;
+		}
+		public bool ShouldSerializegxTpr_Images_GXBaseCollection_Json()
+		{
+			return gxTv_SdtSDT_InfoContent_InfoContentItem_Images != null && gxTv_SdtSDT_InfoContent_InfoContentItem_Images.Count > 0;
+
+		}
+
 		[SoapElement(ElementName="CtaAttributes" )]
 		[XmlElement(ElementName="CtaAttributes" )]
 		public SdtSDT_InfoContent_InfoContentItem_CtaAttributes gxTpr_Ctaattributes
@@ -250,6 +307,9 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_InfoContent_InfoContentItem_Tiles_N = true;
 
 
+			gxTv_SdtSDT_InfoContent_InfoContentItem_Images_N = true;
+
+
 			gxTv_SdtSDT_InfoContent_InfoContentItem_Ctaattributes_N = true;
 
 			return  ;
@@ -271,6 +331,8 @@ namespace GeneXus.Programs
 		 
 		protected bool gxTv_SdtSDT_InfoContent_InfoContentItem_Tiles_N;
 		protected GXBaseCollection<GeneXus.Programs.SdtSDT_InfoTile_SDT_InfoTileItem> gxTv_SdtSDT_InfoContent_InfoContentItem_Tiles = null;  
+		protected bool gxTv_SdtSDT_InfoContent_InfoContentItem_Images_N;
+		protected GXBaseCollection<GeneXus.Programs.SdtSDT_InfoImage_SDT_InfoImageItem> gxTv_SdtSDT_InfoContent_InfoContentItem_Images = null;  
 		protected bool gxTv_SdtSDT_InfoContent_InfoContentItem_Ctaattributes_N;
 		protected SdtSDT_InfoContent_InfoContentItem_CtaAttributes gxTv_SdtSDT_InfoContent_InfoContentItem_Ctaattributes = null; 
 
@@ -343,7 +405,22 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="CtaAttributes", Order=4, EmitDefaultValue=false)]
+		[DataMember(Name="Images", Order=4, EmitDefaultValue=false)]
+		public  GxGenericCollection<GeneXus.Programs.SdtSDT_InfoImage_SDT_InfoImageItem_RESTInterface> gxTpr_Images
+		{
+			get { 
+				if (sdt.ShouldSerializegxTpr_Images_GXBaseCollection_Json())
+					return new GxGenericCollection<GeneXus.Programs.SdtSDT_InfoImage_SDT_InfoImageItem_RESTInterface>(sdt.gxTpr_Images);
+				else
+					return null;
+
+			}
+			set { 
+				value.LoadCollection(sdt.gxTpr_Images);
+			}
+		}
+
+		[DataMember(Name="CtaAttributes", Order=5, EmitDefaultValue=false)]
 		public SdtSDT_InfoContent_InfoContentItem_CtaAttributes_RESTInterface gxTpr_Ctaattributes
 		{
 			get {

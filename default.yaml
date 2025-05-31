@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250528180142"
+  version: "20250531023908"
 servers:
   - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -2479,6 +2479,59 @@ components:
           description: "Is Image Button"
           type: "boolean"
       x-gx-level: "SDT_ContentPageV1"
+    SDT_DebugResult:
+      properties:
+        Summary:
+          $ref: "#/components/schemas/SDT_DebugResult.Summary"
+        Pages:
+          type: array
+          items:
+            description: PagesItem
+            $ref: "#/components/schemas/SDT_DebugResult.Pages_PagesItem"
+    SDT_DebugResult.Summary:
+      properties:
+        TotalUrls:
+          description: "Total Urls"
+          type: "number"
+          format: "double"
+        SuccessCount:
+          description: "Success Count"
+          type: "number"
+          format: "double"
+        FailureCount:
+          description: "Failure Count"
+          type: "number"
+          format: "double"
+      x-gx-level: "SDT_DebugResult"
+    SDT_DebugResult.Pages_PagesItem:
+      properties:
+        Page:
+          description: "Page"
+          type: "string"
+        UrlList:
+          type: array
+          items:
+            description: UrlListItem
+            $ref: "#/components/schemas/SDT_DebugResult.Pages.UrlList_UrlListItem"
+      x-gx-level: "SDT_DebugResult"
+    SDT_DebugResult.Pages.UrlList_UrlListItem:
+      properties:
+        Url:
+          description: "Url"
+          type: "string"
+        StatusCode:
+          description: "Status Code"
+          type: "string"
+        StatusMessage:
+          description: "Status Message"
+          type: "string"
+        AffectedType:
+          description: "Affected Type"
+          type: "string"
+        AffectedName:
+          description: "Affected Name"
+          type: "string"
+      x-gx-level: "SDT_DebugResult.Pages"
     SDT_DebugResults:
       properties:
         Summary:
@@ -2571,6 +2624,11 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/SDT_InfoTile_SDT_InfoTileItem"
+        Images:
+          description: "SDT_Info Image"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_InfoImage_SDT_InfoImageItem"
         CtaAttributes:
           $ref: "#/components/schemas/SDT_InfoContent.InfoContent.CtaAttributes"
       x-gx-level: "SDT_InfoContent"
@@ -2625,6 +2683,14 @@ components:
           description: "Object Id"
           type: "string"
       x-gx-level: "SDT_InfoContent.InfoContent.CtaAttributes"
+    SDT_InfoImage_SDT_InfoImageItem:
+      properties:
+        InfoImageId:
+          description: "Info Image Id"
+          type: "string"
+        InfoImageValue:
+          description: "Info Image Value"
+          type: "string"
     SDT_InfoPage:
       properties:
         PageId:

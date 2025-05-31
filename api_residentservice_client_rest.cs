@@ -1998,7 +1998,7 @@ namespace GeneXus.Programs {
       }
 
       public void gxep_debugappversion( GXBaseCollection<SdtSDT_PageUrl> aP0_PageUrlList ,
-                                        out SdtSDT_DebugResults aP1_DebugResults ,
+                                        out SdtSDT_DebugResult aP1_DebugResults ,
                                         out SdtSDT_Error aP2_error )
       {
          restCliDebugAppVersion = new GXRestAPIClient();
@@ -2016,12 +2016,12 @@ namespace GeneXus.Programs {
             gxProperties.ErrorCode = restCliDebugAppVersion.ErrorCode;
             gxProperties.ErrorMessage = restCliDebugAppVersion.ErrorMessage;
             gxProperties.StatusCode = restCliDebugAppVersion.StatusCode;
-            aP1_DebugResults = new SdtSDT_DebugResults();
+            aP1_DebugResults = new SdtSDT_DebugResult();
             aP2_error = new SdtSDT_Error();
          }
          else
          {
-            aP1_DebugResults = restCliDebugAppVersion.GetBodySdt<SdtSDT_DebugResults>("DebugResults");
+            aP1_DebugResults = restCliDebugAppVersion.GetBodySdt<SdtSDT_DebugResult>("DebugResults");
             aP2_error = restCliDebugAppVersion.GetBodySdt<SdtSDT_Error>("error");
          }
          /* DebugAppVersion Constructor */
@@ -2552,7 +2552,7 @@ namespace GeneXus.Programs {
          restCliDeletePageV2 = new GXRestAPIClient();
          restCliUpdatePageTitle = new GXRestAPIClient();
          restCliDebugAppVersion = new GXRestAPIClient();
-         aP1_DebugResults = new SdtSDT_DebugResults();
+         aP1_DebugResults = new SdtSDT_DebugResult();
          restCliUpdateProductServiceAPI = new GXRestAPIClient();
          restCliDeleteProductServiceImageAPI = new GXRestAPIClient();
          restCliUpdateLocationAPI__get = new GXRestAPIClient();
@@ -2703,7 +2703,7 @@ namespace GeneXus.Programs {
       protected SdtSDT_AppVersion_PagesItem aP2_MenuPage ;
       protected SdtSDT_AppVersion_PagesItem aP4_MenuPage ;
       protected SdtSDT_AppVersion_PagesItem aP2_ContentPage ;
-      protected SdtSDT_DebugResults aP1_DebugResults ;
+      protected SdtSDT_DebugResult aP1_DebugResults ;
       protected SdtTrn_Location aP0_BC_Trn_Location ;
       protected SdtSDT_Error aP4_error ;
       protected GXBaseCollection<SdtSDT_MemoCategory> aP0_SDT_MemoCategories ;

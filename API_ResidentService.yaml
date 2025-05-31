@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250528180142"
+  version: "20250531023908"
 servers:
   - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
@@ -2375,8 +2375,8 @@ components:
     DebugAppVersionOutput:
       properties:
         DebugResults:
-          description: "SDT_Debug Results"
-          $ref: "#/components/schemas/SDT_DebugResults"
+          description: "SDT_Debug Result"
+          $ref: "#/components/schemas/SDT_DebugResult"
         error:
           description: "SDT_Error"
           $ref: "#/components/schemas/SDT_Error"
@@ -3871,19 +3871,19 @@ components:
 
       x-gx-level: "SDT_PageUrl"
 
-    SDT_DebugResults:
+    SDT_DebugResult:
       properties:
         Summary:
-          $ref: "#/components/schemas/SDT_DebugResults.Summary"
+          $ref: "#/components/schemas/SDT_DebugResult.Summary"
 
         Pages:
           type: array
           items:
             description: PagesItem
-            $ref: "#/components/schemas/SDT_DebugResults.Pages_PagesItem"
+            $ref: "#/components/schemas/SDT_DebugResult.Pages_PagesItem"
 
 
-    SDT_DebugResults.Summary:
+    SDT_DebugResult.Summary:
       properties:
         TotalUrls:
           description: "Total Urls"
@@ -3899,10 +3899,10 @@ components:
           format: "double"
 
 
-      x-gx-level: "SDT_DebugResults"
+      x-gx-level: "SDT_DebugResult"
 
 
-    SDT_DebugResults.Pages_PagesItem:
+    SDT_DebugResult.Pages_PagesItem:
       properties:
         Page:
           description: "Page"
@@ -3912,11 +3912,11 @@ components:
           type: array
           items:
             description: UrlListItem
-            $ref: "#/components/schemas/SDT_DebugResults.Pages.UrlList_UrlListItem"
+            $ref: "#/components/schemas/SDT_DebugResult.Pages.UrlList_UrlListItem"
 
-      x-gx-level: "SDT_DebugResults"
+      x-gx-level: "SDT_DebugResult"
 
-    SDT_DebugResults.Pages.UrlList_UrlListItem:
+    SDT_DebugResult.Pages.UrlList_UrlListItem:
       properties:
         Url:
           description: "Url"
@@ -3935,7 +3935,7 @@ components:
           type: "string"
 
 
-      x-gx-level: "SDT_DebugResults.Pages"
+      x-gx-level: "SDT_DebugResult.Pages"
 
     Trn_Location:
       properties:
@@ -4331,6 +4331,11 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/SDT_InfoTile_SDT_InfoTileItem"
+        Images:
+          description: "SDT_Info Image"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_InfoImage_SDT_InfoImageItem"
 
         CtaAttributes:
           $ref: "#/components/schemas/SDT_InfoContent.InfoContent.CtaAttributes"
