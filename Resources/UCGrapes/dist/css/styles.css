@@ -9,8 +9,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  margin-top: -20px;
+  margin-top: -30px;
   margin-right: -20px;
+  position: relative;
 }
 #tb-body input:not([type="range"]):focus {
   outline: 1px solid #b4b9bd !important;
@@ -38,12 +39,16 @@
   padding: 0 20px;
   background-color: white;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  top: 70px;
-  width: calc(100% - 252px);
+  /* position: fixed; */
+  /* top: 70px; */
+  /* width: calc(100% - 252px); */
   z-index: 10;
   min-height: 50px;
-  /* left: 225px; */
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   right: 0;
 }
 
@@ -160,7 +165,7 @@ button#open-mapping {
   display: flex;
   overflow-y: auto;
   scrollbar-width: thin;
-  top: 35px;
+  top: -2px;
   position: relative;
   height: 100%;
   background-color: #6a747f;
@@ -710,12 +715,37 @@ span#scroll-right:hover {
   color: #333;
 }
 
+.theme-option:last-child {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.tb-version-list .theme-option:last-child {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.tb-version-list .theme-option:first-child:hover {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
 .theme-option:first-child:hover {
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
 
 .theme-option:last-child:hover {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.submenu-list .theme-option:first-child:hover {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.submenu-list .theme-option:last-child:hover {
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
 }
@@ -1741,6 +1771,9 @@ div#cta-selected-actions {
 .file-item:hover .delete-media {
   opacity: 1;
 }
+.selected-checkbox {
+  opacity: 1;
+}
 
 .file-item .progress-bar {
   height: 6px;
@@ -1772,6 +1805,14 @@ div#cta-selected-actions {
 .modal-actions {
   margin-top: 40px;
   display: none;
+  justify-content: flex-end;
+  gap: 1em;
+}
+
+.modal-actions-slider {
+  margin-top: 40px;
+  /* display: none; */
+  margin-left: 76%;
   justify-content: flex-end;
   gap: 1em;
 }
@@ -2146,6 +2187,7 @@ button.add-new-service i {
 .gjs-frame {
   outline: none !important;
   width: calc(100% - 2px) !important;
+  background-color: rgb(239, 238, 236);
 }
 
 #child-container {
@@ -3072,9 +3114,9 @@ canvas {
   padding: 10px;
   width: 235px;
   height: 45px;
-  margin-left: 220px;
-  margin-bottom: 40px;
   margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .modal-footer-buttons {
   display: flex;
@@ -3134,7 +3176,8 @@ input[type="range"]::-webkit-slider-thumb {
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* Responsive grid */
   gap: 10px; /* Spacing between images */
-  padding: 10px;
+  padding: 16px;
+  /* overflow: scroll; */
 }
 
 .grid-image {
@@ -3152,27 +3195,10 @@ input[type="range"]::-webkit-slider-thumb {
   outline: none; /* Remove the default focus outline */
 }
 
-.file-item .check-icon {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 20px;
-  height: 20px;
-  background-color: #28a745;
-  color: #fff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  font-weight: bold;
-  z-index: 10;
-  display: none; /* Hidden by default */
-}
-
 .file-item.active .check-icon {
   display: flex; /* Show only for active tile */
 }
+
 /* Style for both icons */
 .file-item .add-image,
 .file-item .delete-media {
@@ -3192,15 +3218,16 @@ input[type="range"]::-webkit-slider-thumb {
 }
 /* Show icons on hover */
 .file-item:hover .add-image,
-.file-item:hover .delete-media {
+.file-item:hover .delete-media,
+.file-item:hover {
   opacity: 1;
 }
 /* Optional: hover/focus effects */
-.file-item .delete-media:hover,
+/* .file-item .delete-media:hover,
 .file-item .delete-media:focus {
+  background: #5068a8;
   color: #fff;
-  background: #dc3545;
-}
+} */
 /* Trash section */
 .trash-container {
   /* display: flex;
