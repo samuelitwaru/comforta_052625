@@ -145,7 +145,7 @@
 }
 
 .tbap-tile.high-priority-tile {
-  height: 6.0rem;
+  height: 6rem;
 }
 
 @media screen and (min-width: 1440px) {
@@ -195,9 +195,9 @@
   border-radius: 13px;
 }
 
-.tbap-description-container p{
+.tbap-description-container p {
   display: block;
-    margin-block: 0;
+  margin-block: 0;
 }
 
 .tbap-weblink-column {
@@ -308,10 +308,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: column; /* Default to column for single buttons */
   flex-wrap: wrap;
   gap: 0.2rem;
   cursor: pointer;
+}
+
+/* Row layout for multiple round buttons */
+.tbap-cta-container--row {
+  flex-direction: row !important;
+  gap: 0.2rem;
+  margin: 1rem 0; /* Add some vertical spacing for grouped CTAs */
 }
 
 .tbap-cta-round-button {
@@ -340,10 +347,16 @@
   .tbap-cta-container {
     gap: 0.5rem;
   }
+  
+  .tbap-cta-container--row {
+    gap: 1rem;
+  }
+  
   .tbap-cta-round-button .tbap-cta-round-button__button {
     width: 80px;
     height: 80px;
   }
+  
   .tbap-cta-round-button .tbap-cta-round-button__button svg {
     width: 40px;
     height: 40px;
@@ -354,6 +367,13 @@
   margin-top: 8px;
   font-size: 16px;
   color: #555;
+  text-align: center;
+  max-width: 80px; /* Prevent labels from being too wide in row layout */
+}
+
+/* Ensure round buttons in row don't have excessive margins */
+.tbap-cta-container--row .tbap-cta-round-button {
+  margin: 0.1rem;
 }
 
 .tbap-cta-plain-button {
@@ -423,4 +443,64 @@
   max-width: 70px;
   height: 65px;
   object-fit: cover;
+}
+
+.tbap-img-slide-container {
+  position: relative;
+  width: 100%;
+  height: 156px;
+}
+
+.tbap-img-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.tbap-img-slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tbap-img-slide-arrow-left,
+.tbap-img-slide-arrow-right {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.tbap-img-slide-arrow-left:hover,
+.tbap-img-slide-arrow-right:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.tbap-img-slide-arrow-right {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.tbap-img-slide-indicator {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 13px 0 0 0;
 }

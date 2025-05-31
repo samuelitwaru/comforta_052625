@@ -38,7 +38,7 @@ export class CtaComponent {
 
         const label = document.createElement("div");
         label.classList.add("tbap-cta-round-button__label");
-        if(this.cta.CtaLabel) label.innerText = this.cta.CtaLabel;
+        if(this.cta.CtaLabel) label.innerText = this.truncateText(this.cta.CtaLabel);
         
         this.ctaButton.appendChild(buttonDiv);
         this.ctaButton.appendChild(label);
@@ -210,4 +210,7 @@ export class CtaComponent {
         }
     }
     
+    private truncateText(text: string, maxLength: number = 10): string {
+        return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+    }
 }

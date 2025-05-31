@@ -1,4 +1,5 @@
 import { CtaAttributes } from "./CtaAttributes";
+import { Image } from "./Image";
 import { Tile } from "./Tile";
 
 export interface InfoType {
@@ -7,4 +8,5 @@ export interface InfoType {
   InfoValue?: string;
   CtaAttributes?: CtaAttributes;
   Tiles?:Tile[];
+  Images?: Image[];
 }
