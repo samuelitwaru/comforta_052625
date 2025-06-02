@@ -639,6 +639,7 @@ namespace GeneXus.Programs {
                Combo_residentpackagemodules_Selectalltext = cgiGet( "COMBO_RESIDENTPACKAGEMODULES_Selectalltext");
                Combo_residentpackagemodules_Multiplevaluesseparator = cgiGet( "COMBO_RESIDENTPACKAGEMODULES_Multiplevaluesseparator");
                Combo_residentpackagemodules_Addnewoptiontext = cgiGet( "COMBO_RESIDENTPACKAGEMODULES_Addnewoptiontext");
+               Combo_residentpackagemodules_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_RESIDENTPACKAGEMODULES_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                /* Read variables values. */
                A531ResidentPackageName = cgiGet( edtResidentPackageName_Internalname);
                AssignAttri("", false, "A531ResidentPackageName", A531ResidentPackageName);
@@ -2164,7 +2165,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255285162915", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025621747055", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2180,7 +2181,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_residentpackage.js", "?20255285162916", false, true);
+         context.AddJavascriptSource("trn_residentpackage.js", "?2025621747058", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2642,6 +2643,7 @@ namespace GeneXus.Programs {
       private int edtSG_LocationId_Visible ;
       private int edtSG_LocationId_Enabled ;
       private int Combo_residentpackagemodules_Datalistupdateminimumcharacters ;
+      private int Combo_residentpackagemodules_Gxcontroltype ;
       private int AV35GXV1 ;
       private int idxLst ;
       private string sPrefix ;

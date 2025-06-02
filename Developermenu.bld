@@ -1,3 +1,4 @@
+trn_environmentvariable
 trn_supplierdynamicform
 trn_locationimage
 trn_serviceimage
@@ -57,6 +58,9 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+trn_environmentvariablegeneral
+trn_environmentvariableww
+trn_environmentvariableview
 wp_dynamicformtrn_supplierdynamicform
 trn_suppliergentrn_supplierdynamicformwc
 wc_createsupplierform
@@ -395,6 +399,7 @@ gx0050
 gx0040
 general\ui\masterprompt
 general\ui\masterunanimosidebar
+trn_environmentvariablewwgetfilterdata
 aprc_convertmenutoinfopage
 aprc_convertmenutoinfopage
 aprc_convertcontentpages

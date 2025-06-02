@@ -84,7 +84,7 @@ namespace GeneXus.Programs {
                {
                   A630ToolBoxLastUpdateReceptionistI = A89ReceptionistId;
                   n630ToolBoxLastUpdateReceptionistI = false;
-                  A632ToolBoxLastUpdateTime = DateTimeUtil.ResetDate(DateTimeUtil.Now( context));
+                  A632ToolBoxLastUpdateTime = DateTimeUtil.ResetDate(DateTimeUtil.ServerNow( context, pr_default));
                   n632ToolBoxLastUpdateTime = false;
                }
                else

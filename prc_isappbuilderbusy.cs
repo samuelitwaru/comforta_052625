@@ -82,9 +82,13 @@ namespace GeneXus.Programs {
             A89ReceptionistId = P00GE2_A89ReceptionistId[0];
             A630ToolBoxLastUpdateReceptionistI = P00GE2_A630ToolBoxLastUpdateReceptionistI[0];
             n630ToolBoxLastUpdateReceptionistI = P00GE2_n630ToolBoxLastUpdateReceptionistI[0];
+            A632ToolBoxLastUpdateTime = P00GE2_A632ToolBoxLastUpdateTime[0];
+            n632ToolBoxLastUpdateTime = P00GE2_n632ToolBoxLastUpdateTime[0];
             A95ReceptionistGAMGUID = P00GE2_A95ReceptionistGAMGUID[0];
             A630ToolBoxLastUpdateReceptionistI = P00GE2_A630ToolBoxLastUpdateReceptionistI[0];
             n630ToolBoxLastUpdateReceptionistI = P00GE2_n630ToolBoxLastUpdateReceptionistI[0];
+            A632ToolBoxLastUpdateTime = P00GE2_A632ToolBoxLastUpdateTime[0];
+            n632ToolBoxLastUpdateTime = P00GE2_n632ToolBoxLastUpdateTime[0];
             /* Using cursor P00GE3 */
             pr_default.execute(1, new Object[] {A29LocationId, A11OrganisationId});
             while ( (pr_default.getStatus(1) != 101) )
@@ -95,7 +99,16 @@ namespace GeneXus.Programs {
                }
                else
                {
-                  AV8IsBusy = true;
+                  AV10ServerTime = DateTimeUtil.ResetDate(DateTimeUtil.ServerNow( context, pr_default));
+                  AV12Diff = (long)(DateTimeUtil.TDiff( AV10ServerTime, A632ToolBoxLastUpdateTime));
+                  if ( AV12Diff >= 1800 )
+                  {
+                     AV8IsBusy = false;
+                  }
+                  else
+                  {
+                     AV8IsBusy = true;
+                  }
                }
                /* Exiting from a For First loop. */
                if (true) break;
@@ -126,18 +139,22 @@ namespace GeneXus.Programs {
          P00GE2_A89ReceptionistId = new Guid[] {Guid.Empty} ;
          P00GE2_A630ToolBoxLastUpdateReceptionistI = new Guid[] {Guid.Empty} ;
          P00GE2_n630ToolBoxLastUpdateReceptionistI = new bool[] {false} ;
+         P00GE2_A632ToolBoxLastUpdateTime = new DateTime[] {DateTime.MinValue} ;
+         P00GE2_n632ToolBoxLastUpdateTime = new bool[] {false} ;
          P00GE2_A95ReceptionistGAMGUID = new string[] {""} ;
          A11OrganisationId = Guid.Empty;
          A29LocationId = Guid.Empty;
          A89ReceptionistId = Guid.Empty;
          A630ToolBoxLastUpdateReceptionistI = Guid.Empty;
+         A632ToolBoxLastUpdateTime = (DateTime)(DateTime.MinValue);
          A95ReceptionistGAMGUID = "";
          P00GE3_A29LocationId = new Guid[] {Guid.Empty} ;
          P00GE3_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         AV10ServerTime = (DateTime)(DateTime.MinValue);
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_isappbuilderbusy__default(),
             new Object[][] {
                 new Object[] {
-               P00GE2_A11OrganisationId, P00GE2_A29LocationId, P00GE2_A89ReceptionistId, P00GE2_A630ToolBoxLastUpdateReceptionistI, P00GE2_n630ToolBoxLastUpdateReceptionistI, P00GE2_A95ReceptionistGAMGUID
+               P00GE2_A11OrganisationId, P00GE2_A29LocationId, P00GE2_A89ReceptionistId, P00GE2_A630ToolBoxLastUpdateReceptionistI, P00GE2_n630ToolBoxLastUpdateReceptionistI, P00GE2_A632ToolBoxLastUpdateTime, P00GE2_n632ToolBoxLastUpdateTime, P00GE2_A95ReceptionistGAMGUID
                }
                , new Object[] {
                P00GE3_A29LocationId, P00GE3_A11OrganisationId
@@ -147,9 +164,13 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
+      private long AV12Diff ;
       private string GXt_char1 ;
+      private DateTime A632ToolBoxLastUpdateTime ;
+      private DateTime AV10ServerTime ;
       private bool AV8IsBusy ;
       private bool n630ToolBoxLastUpdateReceptionistI ;
+      private bool n632ToolBoxLastUpdateTime ;
       private string AV9UserId ;
       private string A95ReceptionistGAMGUID ;
       private Guid A11OrganisationId ;
@@ -165,6 +186,8 @@ namespace GeneXus.Programs {
       private Guid[] P00GE2_A89ReceptionistId ;
       private Guid[] P00GE2_A630ToolBoxLastUpdateReceptionistI ;
       private bool[] P00GE2_n630ToolBoxLastUpdateReceptionistI ;
+      private DateTime[] P00GE2_A632ToolBoxLastUpdateTime ;
+      private bool[] P00GE2_n632ToolBoxLastUpdateTime ;
       private string[] P00GE2_A95ReceptionistGAMGUID ;
       private Guid[] P00GE3_A29LocationId ;
       private Guid[] P00GE3_A11OrganisationId ;
@@ -197,8 +220,8 @@ namespace GeneXus.Programs {
           new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P00GE2", "SELECT T1.OrganisationId, T1.LocationId, T1.ReceptionistId, T2.ToolBoxLastUpdateReceptionistI, T1.ReceptionistGAMGUID FROM (Trn_Receptionist T1 INNER JOIN Trn_Location T2 ON T2.LocationId = T1.LocationId AND T2.OrganisationId = T1.OrganisationId) WHERE T1.ReceptionistGAMGUID = ( :AV9UserId) ORDER BY T1.ReceptionistId, T1.OrganisationId, T1.LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GE2,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00GE3", "SELECT LocationId, OrganisationId FROM Trn_Location WHERE LocationId = :LocationId and OrganisationId = :OrganisationId ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GE3,1, GxCacheFrequency.OFF ,false,true )
+              new CursorDef("P00GE2", "SELECT T1.OrganisationId, T1.LocationId, T1.ReceptionistId, T2.ToolBoxLastUpdateReceptionistI, T2.ToolBoxLastUpdateTime, T1.ReceptionistGAMGUID FROM (Trn_Receptionist T1 INNER JOIN Trn_Location T2 ON T2.LocationId = T1.LocationId AND T2.OrganisationId = T1.OrganisationId) WHERE T1.ReceptionistGAMGUID = ( :AV9UserId) ORDER BY T1.ReceptionistId, T1.OrganisationId, T1.LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GE2,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("P00GE3", "SELECT LocationId, OrganisationId FROM Trn_Location WHERE LocationId = :LocationId and OrganisationId = :OrganisationId ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GE3,1, GxCacheFrequency.OFF ,true,true )
           };
        }
     }
@@ -215,7 +238,9 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[2])[0] = rslt.getGuid(3);
                 ((Guid[]) buf[3])[0] = rslt.getGuid(4);
                 ((bool[]) buf[4])[0] = rslt.wasNull(4);
-                ((string[]) buf[5])[0] = rslt.getVarchar(5);
+                ((DateTime[]) buf[5])[0] = rslt.getGXDateTime(5);
+                ((bool[]) buf[6])[0] = rslt.wasNull(5);
+                ((string[]) buf[7])[0] = rslt.getVarchar(6);
                 return;
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);

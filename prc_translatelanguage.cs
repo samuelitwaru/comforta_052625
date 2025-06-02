@@ -5,6 +5,8 @@ using GeneXus.Resources;
 using GeneXus.Application;
 using GeneXus.Metadata;
 using GeneXus.Cryptography;
+using System.Data;
+using GeneXus.Data;
 using com.genexus;
 using GeneXus.Data.ADO;
 using GeneXus.Data.NTier;
@@ -26,6 +28,9 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
+         dsGAM = context.GetDataStore("GAM");
+         dsDefault = context.GetDataStore("Default");
          IsMain = true;
          context.SetDefaultTheme("WorkWithPlusDS", true);
       }
@@ -34,6 +39,9 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
+         dsGAM = context.GetDataStore("GAM");
+         dsDefault = context.GetDataStore("Default");
       }
 
       public void execute( string aP0_from ,
@@ -75,29 +83,34 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV16HttpClient.BaseURL = context.GetMessage( "https://api-b2b.backenster.com", "");
-         AV16HttpClient.AddHeader(context.GetMessage( "Content-type", ""), context.GetMessage( "application/json", ""));
-         AV16HttpClient.AddHeader(context.GetMessage( "Authorization", ""), context.GetMessage( "Bearer a_FPErHAYaF0j7aGdubWnroJR40Q9TvO4X7ciQCdwnQv5lw3tPDnoGVL2LlsaiIXxykUJ7uMwWpU4Co6Mv", ""));
-         AV17RequestBody.gxTpr_From = AV12from;
-         AV17RequestBody.gxTpr_To = AV13to;
-         AV17RequestBody.gxTpr_Data = AV14LanguageFrom;
-         AV17RequestBody.gxTpr_Platform = context.GetMessage( "api", "");
-         AV17RequestBody.gxTpr_Translatemode = context.GetMessage( "html", "");
-         AV18body = AV17RequestBody.ToJSonString(false, true);
-         AV16HttpClient.AddString(AV18body);
-         AV16HttpClient.Execute(context.GetMessage( "POST", ""), context.GetMessage( "/b1/api/v3/translate", ""));
-         AV19responsejson = AV16HttpClient.ToString();
-         if ( AV16HttpClient.StatusCode == 200 )
+         /* Using cursor P00DS2 */
+         pr_default.execute(0);
+         while ( (pr_default.getStatus(0) != 101) )
          {
-            AV20Translated.FromJSonString(AV19responsejson, null);
-            AV15LanguageTo = AV20Translated.gxTpr_Result;
+            A634EnvironmentVariableKey = P00DS2_A634EnvironmentVariableKey[0];
+            A635EnvironmentVariableValue = P00DS2_A635EnvironmentVariableValue[0];
+            A633EnvironmentVariableId = P00DS2_A633EnvironmentVariableId[0];
+            if ( StringUtil.StrCmp(A634EnvironmentVariableKey, "AmazonAccessKey") == 0 )
+            {
+               AV22AmazonAccessKey = A635EnvironmentVariableValue;
+            }
+            else if ( StringUtil.StrCmp(A634EnvironmentVariableKey, "AmazonSecretKey") == 0 )
+            {
+               AV23AmazonSecretKey = A635EnvironmentVariableValue;
+            }
+            pr_default.readNext(0);
          }
-         else
+         pr_default.close(0);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV22AmazonAccessKey)) || String.IsNullOrEmpty(StringUtil.RTrim( AV23AmazonSecretKey)) )
          {
-            new prc_logtofile(context ).execute(  context.GetMessage( "failed", "")) ;
-            new prc_logtofile(context ).execute(  AV20Translated.gxTpr_Err) ;
-            new prc_logtofile(context ).execute(  StringUtil.Str( (decimal)(AV16HttpClient.StatusCode), 10, 2)) ;
+            AV15LanguageTo = AV14LanguageFrom;
+            cleanup();
+            if (true) return;
          }
+         AV21Translator.gxTpr_Accesskey = AV22AmazonAccessKey;
+         AV21Translator.gxTpr_Secretkey = AV23AmazonSecretKey;
+         AV21Translator.gxTpr_Regionname = context.GetMessage( "eu-north-1", "");
+         AV15LanguageTo = AV21Translator.translatetext(AV14LanguageFrom, AV12from, AV13to);
          cleanup();
       }
 
@@ -114,11 +127,22 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV15LanguageTo = "";
-         AV16HttpClient = new GxHttpClient( context);
-         AV17RequestBody = new SdtSDTLanguageRequestBody(context);
-         AV18body = "";
-         AV19responsejson = "";
-         AV20Translated = new SdtSDTLanguageResponseBody(context);
+         P00DS2_A634EnvironmentVariableKey = new string[] {""} ;
+         P00DS2_A635EnvironmentVariableValue = new string[] {""} ;
+         P00DS2_A633EnvironmentVariableId = new Guid[] {Guid.Empty} ;
+         A634EnvironmentVariableKey = "";
+         A635EnvironmentVariableValue = "";
+         A633EnvironmentVariableId = Guid.Empty;
+         AV22AmazonAccessKey = "";
+         AV23AmazonSecretKey = "";
+         AV21Translator = new SdtTranslator(context);
+         pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_translatelanguage__default(),
+            new Object[][] {
+                new Object[] {
+               P00DS2_A634EnvironmentVariableKey, P00DS2_A635EnvironmentVariableValue, P00DS2_A633EnvironmentVariableId
+               }
+            }
+         );
          /* GeneXus formulas. */
       }
 
@@ -126,12 +150,60 @@ namespace GeneXus.Programs {
       private string AV13to ;
       private string AV14LanguageFrom ;
       private string AV15LanguageTo ;
-      private string AV18body ;
-      private string AV19responsejson ;
-      private GxHttpClient AV16HttpClient ;
-      private SdtSDTLanguageRequestBody AV17RequestBody ;
-      private SdtSDTLanguageResponseBody AV20Translated ;
+      private string A635EnvironmentVariableValue ;
+      private string AV23AmazonSecretKey ;
+      private string A634EnvironmentVariableKey ;
+      private string AV22AmazonAccessKey ;
+      private Guid A633EnvironmentVariableId ;
+      private IGxDataStore dsDataStore1 ;
+      private IGxDataStore dsGAM ;
+      private IGxDataStore dsDefault ;
+      private IDataStoreProvider pr_default ;
+      private string[] P00DS2_A634EnvironmentVariableKey ;
+      private string[] P00DS2_A635EnvironmentVariableValue ;
+      private Guid[] P00DS2_A633EnvironmentVariableId ;
+      private SdtTranslator AV21Translator ;
       private string aP3_LanguageTo ;
    }
+
+   public class prc_translatelanguage__default : DataStoreHelperBase, IDataStoreHelper
+   {
+      public ICursor[] getCursors( )
+      {
+         cursorDefinitions();
+         return new Cursor[] {
+          new ForEachCursor(def[0])
+       };
+    }
+
+    private static CursorDef[] def;
+    private void cursorDefinitions( )
+    {
+       if ( def == null )
+       {
+          Object[] prmP00DS2;
+          prmP00DS2 = new Object[] {
+          };
+          def= new CursorDef[] {
+              new CursorDef("P00DS2", "SELECT EnvironmentVariableKey, EnvironmentVariableValue, EnvironmentVariableId FROM Trn_EnvironmentVariable ORDER BY EnvironmentVariableId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00DS2,100, GxCacheFrequency.OFF ,false,false )
+          };
+       }
+    }
+
+    public void getResults( int cursor ,
+                            IFieldGetter rslt ,
+                            Object[] buf )
+    {
+       switch ( cursor )
+       {
+             case 0 :
+                ((string[]) buf[0])[0] = rslt.getVarchar(1);
+                ((string[]) buf[1])[0] = rslt.getLongVarchar(2);
+                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+                return;
+       }
+    }
+
+ }
 
 }

@@ -56,10 +56,6 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_DebugResult_Summary.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_DebugResult_PagesItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_DebugResult_PagesItem_UrlListItem.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtSDT_DebugResults.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtSDT_DebugResults_Summary.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtSDT_DebugResults_PagesItem.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtSDT_DebugResults_PagesItem_UrlListItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_DiscussionTranslation.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_DynamicForms.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_DynamicFormTranslation.cs" />

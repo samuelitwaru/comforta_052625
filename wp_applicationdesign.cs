@@ -518,8 +518,17 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divPreventaccessmodaltable_Internalname, divPreventaccessmodaltable_Visible, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* User Defined Control */
             ucPreventaccessmodal.Render(context, "uc_preventaccessmodal", Preventaccessmodal_Internalname, "PREVENTACCESSMODALContainer");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -843,6 +852,7 @@ namespace GeneXus.Programs {
          GXt_boolean1 = AV62IsBusy;
          new prc_isappbuilderbusy(context ).execute( out  GXt_boolean1) ;
          AV62IsBusy = GXt_boolean1;
+         AssignAttri("", false, "AV62IsBusy", AV62IsBusy);
          if ( AV62IsBusy )
          {
             AV63ReferrerUrl = AV37HttpRequest.Referrer;
@@ -1067,6 +1077,17 @@ namespace GeneXus.Programs {
          AV36Current_Language = context.GetLanguage( );
          Apptoolbox1_Current_language = AV36Current_Language;
          ucApptoolbox1.SendProperty(context, "", false, Apptoolbox1_Internalname, "Current_Language", Apptoolbox1_Current_language);
+         /* Execute user subroutine: 'ATTRIBUTESSECURITYCODE' */
+         S112 ();
+         if (returnInSub) return;
+      }
+
+      protected void S112( )
+      {
+         /* 'ATTRIBUTESSECURITYCODE' Routine */
+         returnInSub = false;
+         divPreventaccessmodaltable_Visible = (((AV62IsBusy)) ? 1 : 0);
+         AssignProp("", false, divPreventaccessmodaltable_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divPreventaccessmodaltable_Visible), 5, 0), true);
       }
 
       protected void E115C2( )
@@ -1132,7 +1153,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20255316225846", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202562175176", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1148,7 +1169,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_applicationdesign.js", "?20255316225847", false, true);
+         context.AddJavascriptSource("wp_applicationdesign.js", "?2025621751710", false, true);
          context.AddJavascriptSource("UserControls/UC_AppToolBox1Render.js", "", false, true);
          context.AddJavascriptSource("UserControls/UC_PreventAccessModalRender.js", "", false, true);
          /* End function include_jscripts */
@@ -1164,6 +1185,7 @@ namespace GeneXus.Programs {
          divTablecontent_Internalname = "TABLECONTENT";
          Apptoolbox1_Internalname = "APPTOOLBOX1";
          Preventaccessmodal_Internalname = "PREVENTACCESSMODAL";
+         divPreventaccessmodaltable_Internalname = "PREVENTACCESSMODALTABLE";
          divTablemain_Internalname = "TABLEMAIN";
          divLayoutmaintable_Internalname = "LAYOUTMAINTABLE";
          Form.Internalname = "FORM";
@@ -1177,6 +1199,7 @@ namespace GeneXus.Programs {
             disableJsOutput();
          }
          init_default_properties( ) ;
+         divPreventaccessmodaltable_Visible = 1;
          Apptoolbox1_Servicecreationparentpagetype = "";
          Preventaccessmodal_Visible = Convert.ToBoolean( -1);
          Preventaccessmodal_Previewlink = "";
@@ -1420,6 +1443,7 @@ namespace GeneXus.Programs {
       private short A207WWPFormVersionNumber ;
       private short A206WWPFormId ;
       private short nGXWrapped ;
+      private int divPreventaccessmodaltable_Visible ;
       private int idxLst ;
       private string Apptoolbox1_Servicecreationparentpagetype ;
       private string gxfirstwebparm ;
@@ -1445,6 +1469,7 @@ namespace GeneXus.Programs {
       private string StyleString ;
       private string divTablecontent_Internalname ;
       private string Apptoolbox1_Internalname ;
+      private string divPreventaccessmodaltable_Internalname ;
       private string Preventaccessmodal_Internalname ;
       private string sEvt ;
       private string EvtGridId ;

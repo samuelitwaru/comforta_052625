@@ -112,6 +112,9 @@ namespace GeneXus.Programs {
             n11OrganisationId = P00GB3_n11OrganisationId[0];
             A29LocationId = P00GB3_A29LocationId[0];
             n29LocationId = P00GB3_n29LocationId[0];
+            A273Trn_ThemeId = P00GB3_A273Trn_ThemeId[0];
+            n273Trn_ThemeId = P00GB3_n273Trn_ThemeId[0];
+            AV14ThemeId = A273Trn_ThemeId;
             /* Using cursor P00GB4 */
             pr_default.execute(2, new Object[] {A523AppVersionId});
             while ( (pr_default.getStatus(2) != 101) )
@@ -129,20 +132,21 @@ namespace GeneXus.Programs {
             pr_default.readNext(1);
          }
          pr_default.close(1);
-         /* Execute user subroutine: 'GETTHEMEID' */
-         S111 ();
-         if ( returnInSub )
+         AV22GXV1 = 1;
+         while ( AV22GXV1 <= AV11SDT_InfoPage.gxTpr_Infocontent.Count )
          {
-            cleanup();
-            if (true) return;
-         }
-         AV19GXV1 = 1;
-         while ( AV19GXV1 <= AV11SDT_InfoPage.gxTpr_Infocontent.Count )
-         {
-            AV13InfoContent = ((SdtSDT_InfoPage_InfoContentItem)AV11SDT_InfoPage.gxTpr_Infocontent.Item(AV19GXV1));
-            if ( StringUtil.StrCmp(AV13InfoContent.gxTpr_Infotype, "Image") == 0 )
+            AV13InfoContent = ((SdtSDT_InfoPage_InfoContentItem)AV11SDT_InfoPage.gxTpr_Infocontent.Item(AV22GXV1));
+            if ( StringUtil.StrCmp(AV13InfoContent.gxTpr_Infotype, "Images") == 0 )
             {
-               AV13InfoContent.gxTpr_Images.Add(AV13InfoContent.gxTpr_Infovalue, 0);
+               AV13InfoContent.gxTpr_Infotype = "Image";
+               AV16SDT_InfoImage.FromJSonString(AV13InfoContent.gxTpr_Infovalue, null);
+               AV23GXV2 = 1;
+               while ( AV23GXV2 <= AV16SDT_InfoImage.Count )
+               {
+                  AV18InfoImage = ((SdtSDT_InfoImage_SDT_InfoImageItem)AV16SDT_InfoImage.Item(AV23GXV2));
+                  AV13InfoContent.gxTpr_Images.Add(AV18InfoImage.gxTpr_Infoimagevalue, 0);
+                  AV23GXV2 = (int)(AV23GXV2+1);
+               }
             }
             else if ( StringUtil.StrCmp(AV13InfoContent.gxTpr_Infotype, "Cta") == 0 )
             {
@@ -161,10 +165,10 @@ namespace GeneXus.Programs {
             }
             else if ( StringUtil.StrCmp(AV13InfoContent.gxTpr_Infotype, "TileRow") == 0 )
             {
-               AV20GXV2 = 1;
-               while ( AV20GXV2 <= AV13InfoContent.gxTpr_Tiles.Count )
+               AV24GXV3 = 1;
+               while ( AV24GXV3 <= AV13InfoContent.gxTpr_Tiles.Count )
                {
-                  AV15SDT_InfoTile = ((SdtSDT_InfoTile_SDT_InfoTileItem)AV13InfoContent.gxTpr_Tiles.Item(AV20GXV2));
+                  AV15SDT_InfoTile = ((SdtSDT_InfoTile_SDT_InfoTileItem)AV13InfoContent.gxTpr_Tiles.Item(AV24GXV3));
                   GXt_char1 = "";
                   new prc_getthemecolorbyname(context ).execute(  AV14ThemeId,  AV15SDT_InfoTile.gxTpr_Bgcolor, out  GXt_char1) ;
                   AV15SDT_InfoTile.gxTpr_Bgcolor = GXt_char1;
@@ -188,48 +192,15 @@ namespace GeneXus.Programs {
                      }
                      pr_default.close(3);
                   }
-                  AV20GXV2 = (int)(AV20GXV2+1);
+                  AV24GXV3 = (int)(AV24GXV3+1);
                }
             }
             else
             {
             }
-            AV19GXV1 = (int)(AV19GXV1+1);
+            AV22GXV1 = (int)(AV22GXV1+1);
          }
          cleanup();
-      }
-
-      protected void S111( )
-      {
-         /* 'GETTHEMEID' Routine */
-         returnInSub = false;
-         /* Using cursor P00GB6 */
-         pr_default.execute(4, new Object[] {AV8LocationId});
-         while ( (pr_default.getStatus(4) != 101) )
-         {
-            A584ActiveAppVersionId = P00GB6_A584ActiveAppVersionId[0];
-            n584ActiveAppVersionId = P00GB6_n584ActiveAppVersionId[0];
-            A598PublishedActiveAppVersionId = P00GB6_A598PublishedActiveAppVersionId[0];
-            n598PublishedActiveAppVersionId = P00GB6_n598PublishedActiveAppVersionId[0];
-            A29LocationId = P00GB6_A29LocationId[0];
-            n29LocationId = P00GB6_n29LocationId[0];
-            A11OrganisationId = P00GB6_A11OrganisationId[0];
-            n11OrganisationId = P00GB6_n11OrganisationId[0];
-            /* Using cursor P00GB7 */
-            pr_default.execute(5, new Object[] {n598PublishedActiveAppVersionId, A598PublishedActiveAppVersionId});
-            A273Trn_ThemeId = P00GB7_A273Trn_ThemeId[0];
-            n273Trn_ThemeId = P00GB7_n273Trn_ThemeId[0];
-            pr_default.close(5);
-            /* Using cursor P00GB8 */
-            pr_default.execute(6, new Object[] {n584ActiveAppVersionId, A584ActiveAppVersionId});
-            A273Trn_ThemeId = P00GB8_A273Trn_ThemeId[0];
-            n273Trn_ThemeId = P00GB8_n273Trn_ThemeId[0];
-            pr_default.close(6);
-            AV14ThemeId = A273Trn_ThemeId;
-            pr_default.readNext(4);
-         }
-         pr_default.close(4);
-         pr_default.close(6);
       }
 
       public override void cleanup( )
@@ -240,11 +211,6 @@ namespace GeneXus.Programs {
             context.CloseConnections();
          }
          ExitApp();
-      }
-
-      protected override void CloseCursors( )
-      {
-         pr_default.close(5);
       }
 
       public override void initialize( )
@@ -268,7 +234,11 @@ namespace GeneXus.Programs {
          P00GB3_n11OrganisationId = new bool[] {false} ;
          P00GB3_A29LocationId = new Guid[] {Guid.Empty} ;
          P00GB3_n29LocationId = new bool[] {false} ;
+         P00GB3_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         P00GB3_n273Trn_ThemeId = new bool[] {false} ;
          A523AppVersionId = Guid.Empty;
+         A273Trn_ThemeId = Guid.Empty;
+         AV14ThemeId = Guid.Empty;
          P00GB4_A523AppVersionId = new Guid[] {Guid.Empty} ;
          P00GB4_A517PageName = new string[] {""} ;
          P00GB4_A536PagePublishedStructure = new string[] {""} ;
@@ -277,7 +247,8 @@ namespace GeneXus.Programs {
          A536PagePublishedStructure = "";
          A516PageId = Guid.Empty;
          AV13InfoContent = new SdtSDT_InfoPage_InfoContentItem(context);
-         AV14ThemeId = Guid.Empty;
+         AV16SDT_InfoImage = new GXBaseCollection<SdtSDT_InfoImage_SDT_InfoImageItem>( context, "SDT_InfoImageItem", "Comforta_version2");
+         AV18InfoImage = new SdtSDT_InfoImage_SDT_InfoImageItem(context);
          AV15SDT_InfoTile = new SdtSDT_InfoTile_SDT_InfoTileItem(context);
          P00GB5_A206WWPFormId = new short[1] ;
          P00GB5_A208WWPFormReferenceName = new string[] {""} ;
@@ -286,41 +257,19 @@ namespace GeneXus.Programs {
          A367CallToActionUrl = "";
          GXt_char1 = "";
          GXt_char2 = "";
-         P00GB6_A584ActiveAppVersionId = new Guid[] {Guid.Empty} ;
-         P00GB6_n584ActiveAppVersionId = new bool[] {false} ;
-         P00GB6_A598PublishedActiveAppVersionId = new Guid[] {Guid.Empty} ;
-         P00GB6_n598PublishedActiveAppVersionId = new bool[] {false} ;
-         P00GB6_A29LocationId = new Guid[] {Guid.Empty} ;
-         P00GB6_n29LocationId = new bool[] {false} ;
-         P00GB6_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P00GB6_n11OrganisationId = new bool[] {false} ;
-         P00GB7_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         P00GB7_n273Trn_ThemeId = new bool[] {false} ;
-         A273Trn_ThemeId = Guid.Empty;
-         P00GB8_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         P00GB8_n273Trn_ThemeId = new bool[] {false} ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_homepageapi__default(),
             new Object[][] {
                 new Object[] {
                P00GB2_A29LocationId, P00GB2_A598PublishedActiveAppVersionId, P00GB2_n598PublishedActiveAppVersionId, P00GB2_A584ActiveAppVersionId, P00GB2_n584ActiveAppVersionId, P00GB2_A11OrganisationId
                }
                , new Object[] {
-               P00GB3_A523AppVersionId, P00GB3_A11OrganisationId, P00GB3_n11OrganisationId, P00GB3_A29LocationId, P00GB3_n29LocationId
+               P00GB3_A523AppVersionId, P00GB3_A11OrganisationId, P00GB3_n11OrganisationId, P00GB3_A29LocationId, P00GB3_n29LocationId, P00GB3_A273Trn_ThemeId, P00GB3_n273Trn_ThemeId
                }
                , new Object[] {
                P00GB4_A523AppVersionId, P00GB4_A517PageName, P00GB4_A536PagePublishedStructure, P00GB4_A516PageId
                }
                , new Object[] {
                P00GB5_A206WWPFormId, P00GB5_A208WWPFormReferenceName, P00GB5_A207WWPFormVersionNumber
-               }
-               , new Object[] {
-               P00GB6_A584ActiveAppVersionId, P00GB6_n584ActiveAppVersionId, P00GB6_A598PublishedActiveAppVersionId, P00GB6_n598PublishedActiveAppVersionId, P00GB6_A29LocationId, P00GB6_A11OrganisationId
-               }
-               , new Object[] {
-               P00GB7_A273Trn_ThemeId, P00GB7_n273Trn_ThemeId
-               }
-               , new Object[] {
-               P00GB8_A273Trn_ThemeId, P00GB8_n273Trn_ThemeId
                }
             }
          );
@@ -329,15 +278,15 @@ namespace GeneXus.Programs {
 
       private short A206WWPFormId ;
       private short A207WWPFormVersionNumber ;
-      private int AV19GXV1 ;
-      private int AV20GXV2 ;
+      private int AV22GXV1 ;
+      private int AV23GXV2 ;
+      private int AV24GXV3 ;
       private string GXt_char1 ;
       private string GXt_char2 ;
       private bool n29LocationId ;
       private bool n598PublishedActiveAppVersionId ;
       private bool n584ActiveAppVersionId ;
       private bool n11OrganisationId ;
-      private bool returnInSub ;
       private bool n273Trn_ThemeId ;
       private string A536PagePublishedStructure ;
       private string AV10UserId ;
@@ -352,9 +301,9 @@ namespace GeneXus.Programs {
       private Guid A11OrganisationId ;
       private Guid AV12AppVersionId ;
       private Guid A523AppVersionId ;
-      private Guid A516PageId ;
-      private Guid AV14ThemeId ;
       private Guid A273Trn_ThemeId ;
+      private Guid AV14ThemeId ;
+      private Guid A516PageId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
@@ -373,27 +322,19 @@ namespace GeneXus.Programs {
       private bool[] P00GB3_n11OrganisationId ;
       private Guid[] P00GB3_A29LocationId ;
       private bool[] P00GB3_n29LocationId ;
+      private Guid[] P00GB3_A273Trn_ThemeId ;
+      private bool[] P00GB3_n273Trn_ThemeId ;
       private Guid[] P00GB4_A523AppVersionId ;
       private string[] P00GB4_A517PageName ;
       private string[] P00GB4_A536PagePublishedStructure ;
       private Guid[] P00GB4_A516PageId ;
       private SdtSDT_InfoPage_InfoContentItem AV13InfoContent ;
+      private GXBaseCollection<SdtSDT_InfoImage_SDT_InfoImageItem> AV16SDT_InfoImage ;
+      private SdtSDT_InfoImage_SDT_InfoImageItem AV18InfoImage ;
       private SdtSDT_InfoTile_SDT_InfoTileItem AV15SDT_InfoTile ;
       private short[] P00GB5_A206WWPFormId ;
       private string[] P00GB5_A208WWPFormReferenceName ;
       private short[] P00GB5_A207WWPFormVersionNumber ;
-      private Guid[] P00GB6_A584ActiveAppVersionId ;
-      private bool[] P00GB6_n584ActiveAppVersionId ;
-      private Guid[] P00GB6_A598PublishedActiveAppVersionId ;
-      private bool[] P00GB6_n598PublishedActiveAppVersionId ;
-      private Guid[] P00GB6_A29LocationId ;
-      private bool[] P00GB6_n29LocationId ;
-      private Guid[] P00GB6_A11OrganisationId ;
-      private bool[] P00GB6_n11OrganisationId ;
-      private Guid[] P00GB7_A273Trn_ThemeId ;
-      private bool[] P00GB7_n273Trn_ThemeId ;
-      private Guid[] P00GB8_A273Trn_ThemeId ;
-      private bool[] P00GB8_n273Trn_ThemeId ;
       private SdtSDT_InfoPage aP3_SDT_InfoPage ;
    }
 
@@ -407,9 +348,6 @@ namespace GeneXus.Programs {
          ,new ForEachCursor(def[1])
          ,new ForEachCursor(def[2])
          ,new ForEachCursor(def[3])
-         ,new ForEachCursor(def[4])
-         ,new ForEachCursor(def[5])
-         ,new ForEachCursor(def[6])
        };
     }
 
@@ -436,26 +374,11 @@ namespace GeneXus.Programs {
           prmP00GB5 = new Object[] {
           new ParDef("AV15SDT__1Action_1Objectid",GXType.VarChar,100,0)
           };
-          Object[] prmP00GB6;
-          prmP00GB6 = new Object[] {
-          new ParDef("AV8LocationId",GXType.UniqueIdentifier,36,0)
-          };
-          Object[] prmP00GB7;
-          prmP00GB7 = new Object[] {
-          new ParDef("PublishedActiveAppVersionId",GXType.UniqueIdentifier,36,0){Nullable=true}
-          };
-          Object[] prmP00GB8;
-          prmP00GB8 = new Object[] {
-          new ParDef("ActiveAppVersionId",GXType.UniqueIdentifier,36,0){Nullable=true}
-          };
           def= new CursorDef[] {
               new CursorDef("P00GB2", "SELECT LocationId, PublishedActiveAppVersionId, ActiveAppVersionId, OrganisationId FROM Trn_Location WHERE LocationId = :AV8LocationId ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB2,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P00GB3", "SELECT AppVersionId, OrganisationId, LocationId FROM Trn_AppVersion WHERE (LocationId = :AV8LocationId and OrganisationId = :AV9OrganisationId) AND (AppVersionId = :AV12AppVersionId) ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB3,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("P00GB3", "SELECT AppVersionId, OrganisationId, LocationId, Trn_ThemeId FROM Trn_AppVersion WHERE (LocationId = :AV8LocationId and OrganisationId = :AV9OrganisationId) AND (AppVersionId = :AV12AppVersionId) ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB3,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("P00GB4", "SELECT AppVersionId, PageName, PagePublishedStructure, PageId FROM Trn_AppVersionPage WHERE (AppVersionId = :AppVersionId) AND (LOWER(PageName) = ( 'home')) ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB4,100, GxCacheFrequency.OFF ,false,false )
              ,new CursorDef("P00GB5", "SELECT WWPFormId, WWPFormReferenceName, WWPFormVersionNumber FROM WWP_Form WHERE WWPFormId = TO_NUMBER(0 || :AV15SDT__1Action_1Objectid,'9999999999999999999999999999.99999999999999') ORDER BY WWPFormId, WWPFormVersionNumber ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB5,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00GB6", "SELECT ActiveAppVersionId, PublishedActiveAppVersionId, LocationId, OrganisationId FROM Trn_Location WHERE LocationId = :AV8LocationId ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB6,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00GB7", "SELECT Trn_ThemeId FROM Trn_AppVersion WHERE AppVersionId = :PublishedActiveAppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB7,1, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00GB8", "SELECT Trn_ThemeId FROM Trn_AppVersion WHERE AppVersionId = :ActiveAppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB8,1, GxCacheFrequency.OFF ,true,false )
           };
        }
     }
@@ -480,6 +403,8 @@ namespace GeneXus.Programs {
                 ((bool[]) buf[2])[0] = rslt.wasNull(2);
                 ((Guid[]) buf[3])[0] = rslt.getGuid(3);
                 ((bool[]) buf[4])[0] = rslt.wasNull(3);
+                ((Guid[]) buf[5])[0] = rslt.getGuid(4);
+                ((bool[]) buf[6])[0] = rslt.wasNull(4);
                 return;
              case 2 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -491,22 +416,6 @@ namespace GeneXus.Programs {
                 ((short[]) buf[0])[0] = rslt.getShort(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
                 ((short[]) buf[2])[0] = rslt.getShort(3);
-                return;
-             case 4 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((bool[]) buf[1])[0] = rslt.wasNull(1);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(2);
-                ((bool[]) buf[3])[0] = rslt.wasNull(2);
-                ((Guid[]) buf[4])[0] = rslt.getGuid(3);
-                ((Guid[]) buf[5])[0] = rslt.getGuid(4);
-                return;
-             case 5 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((bool[]) buf[1])[0] = rslt.wasNull(1);
-                return;
-             case 6 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((bool[]) buf[1])[0] = rslt.wasNull(1);
                 return;
        }
     }
