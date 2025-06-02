@@ -136,6 +136,7 @@ namespace GeneXus.Programs {
          while ( AV22GXV1 <= AV11SDT_InfoPage.gxTpr_Infocontent.Count )
          {
             AV13InfoContent = ((SdtSDT_InfoPage_InfoContentItem)AV11SDT_InfoPage.gxTpr_Infocontent.Item(AV22GXV1));
+            new prc_logtoserver(context ).execute(  context.GetMessage( "&InfoContent: ", "")+AV13InfoContent.ToJSonString(false, true)) ;
             if ( StringUtil.StrCmp(AV13InfoContent.gxTpr_Infotype, "Images") == 0 )
             {
                AV13InfoContent.gxTpr_Infotype = "Image";
