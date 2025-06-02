@@ -145,6 +145,7 @@ namespace GeneXus.Programs {
                {
                   AV18InfoImage = ((SdtSDT_InfoImage_SDT_InfoImageItem)AV16SDT_InfoImage.Item(AV23GXV2));
                   AV13InfoContent.gxTpr_Images.Add(AV18InfoImage.gxTpr_Infoimagevalue, 0);
+                  new prc_logtoserver(context ).execute(  context.GetMessage( "&InfoContent: ", "")+AV13InfoContent.ToJSonString(false, true)) ;
                   AV23GXV2 = (int)(AV23GXV2+1);
                }
             }
