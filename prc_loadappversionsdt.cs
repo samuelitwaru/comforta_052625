@@ -105,25 +105,12 @@ namespace GeneXus.Programs {
                AV13SDT_ContentPage = new SdtSDT_ContentPage(context);
                AV14SDT_MenuPage = new SdtSDT_MenuPage(context);
                AV16SDT_InfoContent = new SdtSDT_InfoContent(context);
-               if ( ( ( StringUtil.StrCmp(AV10PageItem.gxTpr_Pagetype, "Menu") == 0 ) ) || ( ( StringUtil.StrCmp(AV10PageItem.gxTpr_Pagetype, "MyLiving") == 0 ) ) || ( ( StringUtil.StrCmp(AV10PageItem.gxTpr_Pagetype, "MyCare") == 0 ) ) || ( ( StringUtil.StrCmp(AV10PageItem.gxTpr_Pagetype, "MyService") == 0 ) ) )
-               {
-                  AV11PageStructure = A518PageStructure;
-                  AV14SDT_MenuPage = new SdtSDT_MenuPage(context);
-                  AV14SDT_MenuPage.FromJSonString(AV11PageStructure, null);
-                  new prc_validatemenupage(context ).execute(  AV8BC_Trn_AppVersion.gxTpr_Appversionid, ref  AV14SDT_MenuPage) ;
-                  AV10PageItem.gxTpr_Pagemenustructure = AV14SDT_MenuPage;
-                  AV11PageStructure = AV14SDT_MenuPage.ToJSonString(false, true);
-               }
-               else if ( ( ( StringUtil.StrCmp(AV10PageItem.gxTpr_Pagetype, "Content") == 0 ) ) || ( ( StringUtil.StrCmp(AV10PageItem.gxTpr_Pagetype, "Reception") == 0 ) ) || ( ( StringUtil.StrCmp(AV10PageItem.gxTpr_Pagetype, "Location") == 0 ) ) )
-               {
-                  AV13SDT_ContentPage = new SdtSDT_ContentPage(context);
-                  AV13SDT_ContentPage.FromJSonString(A518PageStructure, null);
-                  AV10PageItem.gxTpr_Pagecontentstructure = AV13SDT_ContentPage;
-                  AV11PageStructure = AV13SDT_ContentPage.ToJSonString(false, true);
-               }
-               else if ( StringUtil.StrCmp(AV10PageItem.gxTpr_Pagetype, "Information") == 0 )
+               if ( StringUtil.StrCmp(AV10PageItem.gxTpr_Pagetype, "Information") == 0 )
                {
                   AV16SDT_InfoContent = new SdtSDT_InfoContent(context);
+                  GXt_char1 = AV11PageStructure;
+                  new prc_getdynamictransation(context ).execute(  A516PageId,  "",  A518PageStructure, out  GXt_char1) ;
+                  AV11PageStructure = GXt_char1;
                   AV16SDT_InfoContent.FromJSonString(A518PageStructure, null);
                   AV10PageItem.gxTpr_Pageinfostructure = AV16SDT_InfoContent;
                   AV11PageStructure = AV16SDT_InfoContent.ToJSonString(false, true);
@@ -185,6 +172,7 @@ namespace GeneXus.Programs {
          AV13SDT_ContentPage = new SdtSDT_ContentPage(context);
          AV14SDT_MenuPage = new SdtSDT_MenuPage(context);
          AV16SDT_InfoContent = new SdtSDT_InfoContent(context);
+         GXt_char1 = "";
          AV17SDT_LinkPage = new SdtSDT_LinkPage(context);
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_loadappversionsdt__default(),
             new Object[][] {
@@ -199,6 +187,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
+      private string GXt_char1 ;
       private bool A620IsVersionDeleted ;
       private bool A621IsPageDeleted ;
       private bool A541IsPredefined ;

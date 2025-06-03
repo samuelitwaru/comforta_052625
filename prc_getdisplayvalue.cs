@@ -82,7 +82,7 @@ namespace GeneXus.Programs {
          /* Output device settings */
          AV13GetTranslationVar = "";
          GXt_char1 = AV13GetTranslationVar;
-         new prc_gettranslation(context ).execute(  AV15TrnName,  AV11primaryKey,  AV14AttributeName, out  GXt_char1) ;
+         new prc_gettranslation(context ).execute(  AV11primaryKey, out  GXt_char1) ;
          AV13GetTranslationVar = GXt_char1;
          new prc_logtofile(context ).execute(  AV13GetTranslationVar) ;
          AV12AttributeValueOutput = "";

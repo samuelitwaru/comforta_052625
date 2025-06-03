@@ -885,37 +885,6 @@ namespace GeneXus.Programs {
          /* ContentPagesAPI Constructor */
       }
 
-      public void gxep_contentpageapi( Guid aP0_PageId ,
-                                       Guid aP1_locationId ,
-                                       Guid aP2_organisationId ,
-                                       out SdtSDT_ContentPageV1 aP3_SDT_ContentPage )
-      {
-         restCliContentPageAPI = new GXRestAPIClient();
-         if ( restLocation == null )
-         {
-            InitLocation();
-         }
-         restLocation.ResourceName = "/toolbox/content-page";
-         restCliContentPageAPI.Location = restLocation;
-         restCliContentPageAPI.HttpMethod = "GET";
-         restCliContentPageAPI.AddQueryVar("Pageid", (Guid)(aP0_PageId));
-         restCliContentPageAPI.AddQueryVar("Locationid", (Guid)(aP1_locationId));
-         restCliContentPageAPI.AddQueryVar("Organisationid", (Guid)(aP2_organisationId));
-         restCliContentPageAPI.RestExecute();
-         if ( restCliContentPageAPI.ErrorCode != 0 )
-         {
-            gxProperties.ErrorCode = restCliContentPageAPI.ErrorCode;
-            gxProperties.ErrorMessage = restCliContentPageAPI.ErrorMessage;
-            gxProperties.StatusCode = restCliContentPageAPI.StatusCode;
-            aP3_SDT_ContentPage = new SdtSDT_ContentPageV1();
-         }
-         else
-         {
-            aP3_SDT_ContentPage = restCliContentPageAPI.GetBodySdt<SdtSDT_ContentPageV1>("SDT_ContentPage");
-         }
-         /* ContentPageAPI Constructor */
-      }
-
       public void gxep_getsinglepage( Guid aP0_PageId ,
                                       out SdtSDT_Page aP1_SDT_Page ,
                                       out SdtSDT_Error aP2_error )
@@ -2494,8 +2463,6 @@ namespace GeneXus.Programs {
          aP4_SDT_InfoPage = new SdtSDT_InfoPage();
          restCliContentPagesAPI = new GXRestAPIClient();
          aP2_SDT_ContentPageCollection = new GXBaseCollection<SdtSDT_ContentPage>();
-         restCliContentPageAPI = new GXRestAPIClient();
-         aP3_SDT_ContentPage = new SdtSDT_ContentPageV1();
          restCliGetSinglePage = new GXRestAPIClient();
          aP1_SDT_Page = new SdtSDT_Page();
          restCliDeletePage = new GXRestAPIClient();
@@ -2603,7 +2570,6 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliPageAPI ;
       protected GXRestAPIClient restCliInfoPageAPI ;
       protected GXRestAPIClient restCliContentPagesAPI ;
-      protected GXRestAPIClient restCliContentPageAPI ;
       protected GXRestAPIClient restCliGetSinglePage ;
       protected GXRestAPIClient restCliDeletePage ;
       protected GXRestAPIClient restCliListPages ;
@@ -2682,7 +2648,6 @@ namespace GeneXus.Programs {
       protected SdtSDT_MobilePage aP4_SDT_MobilePage ;
       protected SdtSDT_InfoPage aP4_SDT_InfoPage ;
       protected GXBaseCollection<SdtSDT_ContentPage> aP2_SDT_ContentPageCollection ;
-      protected SdtSDT_ContentPageV1 aP3_SDT_ContentPage ;
       protected SdtSDT_Page aP1_SDT_Page ;
       protected GXBaseCollection<SdtSDT_PageStructure> aP0_SDT_PageStructureCollection ;
       protected SdtSDT_Error aP3_error ;

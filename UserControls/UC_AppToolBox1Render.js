@@ -119,10 +119,20 @@ function UC_AppToolBox1($) {
 
 		this.Start = function() {
 
-			   console.log(this.BC_Trn_Location)
+			   console.log(this.BC_Trn_ThemeCollection)
 			   try {
 				   	this.d3 = d3;
 					const themes = this.BC_Trn_ThemeCollection.map(theme => {
+						theme.CtaColor.map(ctaColor => {
+							ctaColor.CtaColorName = ctaColor.CtaColorName
+															.replace('ctaColor1', 'CtaColorOne').replace('ctaColor2','CtaColorTwo')
+															.replace('ctaColor3','CtaColorThree').replace('ctaColor4','CtaColorFour')
+															.replace('ctaColor5','CtaColorFive').replace('ctaColor6','CtaColorSix')
+							return ctaColor
+						})
+						
+						console.log(theme.CtaColor)
+						
 						let res = {
 						ThemeId: theme.Trn_ThemeId,
 						ThemeName: theme.Trn_ThemeName,

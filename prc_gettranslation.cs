@@ -44,39 +44,29 @@ namespace GeneXus.Programs {
          dsDefault = context.GetDataStore("Default");
       }
 
-      public void execute( string aP0_TrnName ,
-                           Guid aP1_primaryKey ,
-                           string aP2_AttributeName ,
-                           out string aP3_Translation )
+      public void execute( Guid aP0_primaryKey ,
+                           out string aP1_Translation )
       {
-         this.AV11TrnName = aP0_TrnName;
-         this.AV10primaryKey = aP1_primaryKey;
-         this.AV12AttributeName = aP2_AttributeName;
+         this.AV10primaryKey = aP0_primaryKey;
          this.AV9Translation = "" ;
          initialize();
          ExecuteImpl();
-         aP3_Translation=this.AV9Translation;
+         aP1_Translation=this.AV9Translation;
       }
 
-      public string executeUdp( string aP0_TrnName ,
-                                Guid aP1_primaryKey ,
-                                string aP2_AttributeName )
+      public string executeUdp( Guid aP0_primaryKey )
       {
-         execute(aP0_TrnName, aP1_primaryKey, aP2_AttributeName, out aP3_Translation);
+         execute(aP0_primaryKey, out aP1_Translation);
          return AV9Translation ;
       }
 
-      public void executeSubmit( string aP0_TrnName ,
-                                 Guid aP1_primaryKey ,
-                                 string aP2_AttributeName ,
-                                 out string aP3_Translation )
+      public void executeSubmit( Guid aP0_primaryKey ,
+                                 out string aP1_Translation )
       {
-         this.AV11TrnName = aP0_TrnName;
-         this.AV10primaryKey = aP1_primaryKey;
-         this.AV12AttributeName = aP2_AttributeName;
+         this.AV10primaryKey = aP0_primaryKey;
          this.AV9Translation = "" ;
          SubmitImpl();
-         aP3_Translation=this.AV9Translation;
+         aP1_Translation=this.AV9Translation;
       }
 
       protected override void ExecutePrivate( )
@@ -85,12 +75,10 @@ namespace GeneXus.Programs {
          /* Output device settings */
          AV13Language = context.GetLanguage( );
          /* Using cursor P00E72 */
-         pr_default.execute(0, new Object[] {AV11TrnName, AV10primaryKey, AV12AttributeName});
+         pr_default.execute(0, new Object[] {AV10primaryKey});
          while ( (pr_default.getStatus(0) != 101) )
          {
-            A581DynamicTranslationAttributeNam = P00E72_A581DynamicTranslationAttributeNam[0];
             A580DynamicTranslationPrimaryKey = P00E72_A580DynamicTranslationPrimaryKey[0];
-            A579DynamicTranslationTrnName = P00E72_A579DynamicTranslationTrnName[0];
             A582DynamicTranslationEnglish = P00E72_A582DynamicTranslationEnglish[0];
             A583DynamicTranslationDutch = P00E72_A583DynamicTranslationDutch[0];
             A578DynamicTranslationId = P00E72_A578DynamicTranslationId[0];
@@ -105,7 +93,6 @@ namespace GeneXus.Programs {
             pr_default.readNext(0);
          }
          pr_default.close(0);
-         new prc_logtofile(context ).execute(  AV9Translation) ;
          cleanup();
       }
 
@@ -123,36 +110,28 @@ namespace GeneXus.Programs {
       {
          AV9Translation = "";
          AV13Language = "";
-         P00E72_A581DynamicTranslationAttributeNam = new string[] {""} ;
          P00E72_A580DynamicTranslationPrimaryKey = new Guid[] {Guid.Empty} ;
-         P00E72_A579DynamicTranslationTrnName = new string[] {""} ;
          P00E72_A582DynamicTranslationEnglish = new string[] {""} ;
          P00E72_A583DynamicTranslationDutch = new string[] {""} ;
          P00E72_A578DynamicTranslationId = new Guid[] {Guid.Empty} ;
-         A581DynamicTranslationAttributeNam = "";
          A580DynamicTranslationPrimaryKey = Guid.Empty;
-         A579DynamicTranslationTrnName = "";
          A582DynamicTranslationEnglish = "";
          A583DynamicTranslationDutch = "";
          A578DynamicTranslationId = Guid.Empty;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_gettranslation__default(),
             new Object[][] {
                 new Object[] {
-               P00E72_A581DynamicTranslationAttributeNam, P00E72_A580DynamicTranslationPrimaryKey, P00E72_A579DynamicTranslationTrnName, P00E72_A582DynamicTranslationEnglish, P00E72_A583DynamicTranslationDutch, P00E72_A578DynamicTranslationId
+               P00E72_A580DynamicTranslationPrimaryKey, P00E72_A582DynamicTranslationEnglish, P00E72_A583DynamicTranslationDutch, P00E72_A578DynamicTranslationId
                }
             }
          );
          /* GeneXus formulas. */
       }
 
-      private string AV13Language ;
       private string AV9Translation ;
       private string A582DynamicTranslationEnglish ;
       private string A583DynamicTranslationDutch ;
-      private string AV11TrnName ;
-      private string AV12AttributeName ;
-      private string A581DynamicTranslationAttributeNam ;
-      private string A579DynamicTranslationTrnName ;
+      private string AV13Language ;
       private Guid AV10primaryKey ;
       private Guid A580DynamicTranslationPrimaryKey ;
       private Guid A578DynamicTranslationId ;
@@ -160,13 +139,11 @@ namespace GeneXus.Programs {
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
-      private string[] P00E72_A581DynamicTranslationAttributeNam ;
       private Guid[] P00E72_A580DynamicTranslationPrimaryKey ;
-      private string[] P00E72_A579DynamicTranslationTrnName ;
       private string[] P00E72_A582DynamicTranslationEnglish ;
       private string[] P00E72_A583DynamicTranslationDutch ;
       private Guid[] P00E72_A578DynamicTranslationId ;
-      private string aP3_Translation ;
+      private string aP1_Translation ;
    }
 
    public class prc_gettranslation__default : DataStoreHelperBase, IDataStoreHelper
@@ -186,12 +163,10 @@ namespace GeneXus.Programs {
        {
           Object[] prmP00E72;
           prmP00E72 = new Object[] {
-          new ParDef("AV11TrnName",GXType.VarChar,100,0) ,
-          new ParDef("AV10primaryKey",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("AV12AttributeName",GXType.VarChar,100,0)
+          new ParDef("AV10primaryKey",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P00E72", "SELECT DynamicTranslationAttributeNam, DynamicTranslationPrimaryKey, DynamicTranslationTrnName, DynamicTranslationEnglish, DynamicTranslationDutch, DynamicTranslationId FROM Trn_DynamicTranslation WHERE (DynamicTranslationTrnName = ( :AV11TrnName)) AND (DynamicTranslationPrimaryKey = :AV10primaryKey) AND (DynamicTranslationAttributeNam = ( :AV12AttributeName)) ORDER BY DynamicTranslationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00E72,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P00E72", "SELECT DynamicTranslationPrimaryKey, DynamicTranslationEnglish, DynamicTranslationDutch, DynamicTranslationId FROM Trn_DynamicTranslation WHERE DynamicTranslationPrimaryKey = :AV10primaryKey ORDER BY DynamicTranslationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00E72,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -203,12 +178,10 @@ namespace GeneXus.Programs {
        switch ( cursor )
        {
              case 0 :
-                ((string[]) buf[0])[0] = rslt.getVarchar(1);
-                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
-                ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
-                ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
-                ((Guid[]) buf[5])[0] = rslt.getGuid(6);
+                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((string[]) buf[1])[0] = rslt.getLongVarchar(2);
+                ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+                ((Guid[]) buf[3])[0] = rslt.getGuid(4);
                 return;
        }
     }

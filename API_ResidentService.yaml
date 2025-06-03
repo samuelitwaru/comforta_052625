@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250602171632"
+  version: "20250603090223"
 servers:
-  - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
+  - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
   /auth/resident-login:
     post:
@@ -807,45 +807,6 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/SDT_ContentPage"  
-
-        404:
-          description: "Not found"
-
-  /toolbox/content-page:
-    get:
-      tags:
-        - API_ResidentService  
-      operationId: "API_ResidentService.ContentPageAPI"
-      summary: "Content Page API"
-      security: 
-        - oAuthGXGAM: []
-      parameters:
-        - name: "Pageid"
-          in: "query"
-          required: false
-          schema:
-            type: "string"
-            format: "uuid"
-        - name: "Locationid"
-          in: "query"
-          required: false
-          schema:
-            type: "string"
-            format: "uuid"
-        - name: "Organisationid"
-          in: "query"
-          required: false
-          schema:
-            type: "string"
-            format: "uuid"
-      
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/SDT_ContentPageV1"  
 
         404:
           description: "Not found"
@@ -2065,7 +2026,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/oauth/gam/v2.0/access_token
+          tokenUrl: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
 
@@ -2110,7 +2071,6 @@ components:
         error:
           description: "SDT_Error"
           $ref: "#/components/schemas/SDT_Error"
-
 
 
 
@@ -2501,7 +2461,6 @@ components:
       properties:
         ProfileImageUrl:
           type: "string"
-
 
 
 
@@ -3448,70 +3407,6 @@ components:
 
 
       x-gx-level: "SDT_ContentPage"
-
-    SDT_ContentPageV1:
-      properties:
-        PageId:
-          description: "Page Id"
-          type: "string"
-          format: "uuid"
-        PageName:
-          description: "Page Name"
-          type: "string"
-
-        Content:
-          type: array
-          items:
-            description: ContentItem
-            $ref: "#/components/schemas/SDT_ContentPageV1.Content_ContentItem"
-
-        Cta:
-          type: array
-          items:
-            description: CtaItem
-            $ref: "#/components/schemas/SDT_ContentPageV1.Cta_CtaItem"
-
-
-    SDT_ContentPageV1.Content_ContentItem:
-      properties:
-        ContentType:
-          description: "Content Type"
-          type: "string"
-        ContentValue:
-          description: "Content Value"
-          type: "string"
-
-
-      x-gx-level: "SDT_ContentPageV1"
-
-
-    SDT_ContentPageV1.Cta_CtaItem:
-      properties:
-        CtaId:
-          description: "Cta Id"
-          type: "string"
-          format: "uuid"
-        CtaType:
-          description: "Cta Type"
-          type: "string"
-        CtaLabel:
-          description: "Cta Label"
-          type: "string"
-        CtaAction:
-          description: "Cta Action"
-          type: "string"
-        CtaBGColor:
-          description: "Cta BGColor"
-          type: "string"
-        IsFullWidth:
-          description: "Is Full Width"
-          type: "boolean"
-        IsImageButton:
-          description: "Is Image Button"
-          type: "boolean"
-
-
-      x-gx-level: "SDT_ContentPageV1"
 
     SDT_PageStructure:
       properties:
