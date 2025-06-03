@@ -141,7 +141,7 @@ namespace GeneXus.Programs {
             {
                AV13InfoContent.gxTpr_Infotype = "Image";
                new prc_logtoserver(context ).execute(  context.GetMessage( "    InfoValue: ", "")+StringUtil.Trim( AV13InfoContent.ToJSonString(false, true))) ;
-               new prc_logtoserver(context ).execute(  context.GetMessage( "    &InfoImageStringCollection: ", "")+AV22InfoImageStringCollection.ToJSonString(false)) ;
+               new prc_logtoserver(context ).execute(  context.GetMessage( "    &InfoContent.Images: ", "")+AV13InfoContent.gxTpr_Images.ToJSonString(false)) ;
                AV27GXV2 = 1;
                while ( AV27GXV2 <= AV13InfoContent.gxTpr_Images.Count )
                {
@@ -251,7 +251,6 @@ namespace GeneXus.Programs {
          A536PagePublishedStructure = "";
          A516PageId = Guid.Empty;
          AV13InfoContent = new SdtSDT_InfoPage_InfoContentItem(context);
-         AV22InfoImageStringCollection = new GxSimpleCollection<string>();
          AV21InfoImageString = "";
          AV18InfoImage = new SdtSDT_InfoImage_SDT_InfoImageItem(context);
          AV15SDT_InfoTile = new SdtSDT_InfoTile_SDT_InfoTileItem(context);
@@ -335,7 +334,6 @@ namespace GeneXus.Programs {
       private string[] P00GB4_A536PagePublishedStructure ;
       private Guid[] P00GB4_A516PageId ;
       private SdtSDT_InfoPage_InfoContentItem AV13InfoContent ;
-      private GxSimpleCollection<string> AV22InfoImageStringCollection ;
       private SdtSDT_InfoImage_SDT_InfoImageItem AV18InfoImage ;
       private SdtSDT_InfoTile_SDT_InfoTileItem AV15SDT_InfoTile ;
       private short[] P00GB5_A206WWPFormId ;
