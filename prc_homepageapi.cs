@@ -140,13 +140,12 @@ namespace GeneXus.Programs {
             if ( StringUtil.StrCmp(AV13InfoContent.gxTpr_Infotype, "Images") == 0 )
             {
                AV13InfoContent.gxTpr_Infotype = "Image";
-               AV22InfoImageStringCollection = AV13InfoContent.gxTpr_Images;
                new prc_logtoserver(context ).execute(  context.GetMessage( "    InfoValue: ", "")+StringUtil.Trim( AV13InfoContent.ToJSonString(false, true))) ;
                new prc_logtoserver(context ).execute(  context.GetMessage( "    &InfoImageStringCollection: ", "")+AV22InfoImageStringCollection.ToJSonString(false)) ;
                AV27GXV2 = 1;
-               while ( AV27GXV2 <= AV22InfoImageStringCollection.Count )
+               while ( AV27GXV2 <= AV13InfoContent.gxTpr_Images.Count )
                {
-                  AV21InfoImageString = ((string)AV22InfoImageStringCollection.Item(AV27GXV2));
+                  AV21InfoImageString = ((string)AV13InfoContent.gxTpr_Images.Item(AV27GXV2));
                   AV18InfoImage.FromJSonString(AV21InfoImageString, null);
                   AV13InfoContent.gxTpr_Images.Add(AV18InfoImage.gxTpr_Infoimagevalue, 0);
                   new prc_logtoserver(context ).execute(  context.GetMessage( "          Image: ", "")+AV18InfoImage.gxTpr_Infoimagevalue) ;
