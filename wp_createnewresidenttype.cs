@@ -443,7 +443,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_residenttype_residenttypename_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_residenttype_residenttypename_Internalname, edtavTrn_residenttype_residenttypename_Caption, "col-sm-4 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_residenttype_residenttypename_Internalname, context.GetMessage( "Resident Type", ""), "col-sm-4 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -855,7 +855,7 @@ namespace GeneXus.Programs {
          else
          {
             AV11LoadSuccess = false;
-            CallWebObject(formatLink("wp_notauthorized.aspx") );
+            CallWebObject(formatLink("gamexamplenotauthorized.aspx") );
             context.wjLocDisableFrm = 1;
          }
          if ( AV11LoadSuccess )
@@ -869,13 +869,6 @@ namespace GeneXus.Programs {
          AV15WebSession.Remove("RESIDENTTYPENAME");
          edtavTrn_residenttype_residenttypeid_Visible = 0;
          AssignProp("", false, edtavTrn_residenttype_residenttypeid_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavTrn_residenttype_residenttypeid_Visible), 5, 0), true);
-         GXt_char1 = AV17ResidentTitle;
-         new prc_getorganisationdefinition(context ).execute(  "Resident", out  GXt_char1) ;
-         AV17ResidentTitle = GXt_char1;
-         edtavTrn_residenttype_residenttypename_Caption = AV17ResidentTitle+" "+context.GetMessage( "Type", "");
-         AssignProp("", false, edtavTrn_residenttype_residenttypename_Internalname, "Caption", edtavTrn_residenttype_residenttypename_Caption, true);
-         Form.Caption = context.GetMessage( "Add New ", "")+AV17ResidentTitle+context.GetMessage( " Type", "");
-         AssignProp("", false, "FORM", "Caption", Form.Caption, true);
       }
 
       protected void E127W2( )
@@ -957,12 +950,12 @@ namespace GeneXus.Programs {
       {
          /* 'SHOW MESSAGES' Routine */
          returnInSub = false;
-         AV20GXV3 = 1;
-         while ( AV20GXV3 <= AV9Messages.Count )
+         AV19GXV3 = 1;
+         while ( AV19GXV3 <= AV9Messages.Count )
          {
-            AV8Message = ((GeneXus.Utils.SdtMessages_Message)AV9Messages.Item(AV20GXV3));
+            AV8Message = ((GeneXus.Utils.SdtMessages_Message)AV9Messages.Item(AV19GXV3));
             GX_msglist.addItem(AV8Message.gxTpr_Description);
-            AV20GXV3 = (int)(AV20GXV3+1);
+            AV19GXV3 = (int)(AV19GXV3+1);
          }
       }
 
@@ -1045,7 +1038,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025641072010", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20256217522728", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1061,7 +1054,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_createnewresidenttype.js", "?2025641072010", false, true);
+         context.AddJavascriptSource("wp_createnewresidenttype.js", "?20256217522728", false, true);
          /* End function include_jscripts */
       }
 
@@ -1091,14 +1084,12 @@ namespace GeneXus.Programs {
             disableJsOutput();
          }
          init_default_properties( ) ;
-         edtavTrn_residenttype_residenttypename_Caption = context.GetMessage( "Resident Type", "");
          edtavTrn_residenttype_residenttypename_Enabled = 1;
          edtavTrn_residenttype_residenttypeid_Jsonclick = "";
          edtavTrn_residenttype_residenttypeid_Visible = 1;
          bttBtnenter_Visible = 1;
          edtavTrn_residenttype_residenttypename_Jsonclick = "";
          edtavTrn_residenttype_residenttypename_Enabled = 1;
-         edtavTrn_residenttype_residenttypename_Caption = context.GetMessage( "Resident Type", "");
          divLayoutmaintable_Class = "Table TableTransactionTemplate";
          Form.Headerrawhtml = "";
          Form.Background = "";
@@ -1164,8 +1155,6 @@ namespace GeneXus.Programs {
          sEvtType = "";
          GXDecQS = "";
          AV15WebSession = context.GetSession();
-         AV17ResidentTitle = "";
-         GXt_char1 = "";
          AV8Message = new GeneXus.Utils.SdtMessages_Message(context);
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -1194,7 +1183,7 @@ namespace GeneXus.Programs {
       private int edtavTrn_residenttype_residenttypename_Enabled ;
       private int bttBtnenter_Visible ;
       private int edtavTrn_residenttype_residenttypeid_Visible ;
-      private int AV20GXV3 ;
+      private int AV19GXV3 ;
       private int idxLst ;
       private string AV10TrnMode ;
       private string wcpOAV10TrnMode ;
@@ -1214,7 +1203,6 @@ namespace GeneXus.Programs {
       private string StyleString ;
       private string divTableattributes_Internalname ;
       private string edtavTrn_residenttype_residenttypename_Internalname ;
-      private string edtavTrn_residenttype_residenttypename_Caption ;
       private string TempTags ;
       private string edtavTrn_residenttype_residenttypename_Jsonclick ;
       private string bttBtnenter_Internalname ;
@@ -1229,7 +1217,6 @@ namespace GeneXus.Programs {
       private string EvtRowId ;
       private string sEvtType ;
       private string GXDecQS ;
-      private string GXt_char1 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool AV12CheckRequiredFieldsResult ;
@@ -1241,7 +1228,6 @@ namespace GeneXus.Programs {
       private bool AV11LoadSuccess ;
       private string AV16DefaultResidentTypeName ;
       private string wcpOAV16DefaultResidentTypeName ;
-      private string AV17ResidentTitle ;
       private Guid AV14ResidentTypeId ;
       private Guid wcpOAV14ResidentTypeId ;
       private IGxSession AV15WebSession ;

@@ -89,9 +89,7 @@ namespace GeneXus.Programs {
          Gxm1uhomemodulessdt.gxTpr_Optiondescription = "Organisation Locations.";
          Gxm1uhomemodulessdt = new SdtUHomeModulesSDT_UHomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1uhomemodulessdt, 0);
-         GXt_char1 = "";
-         new prc_getorganisationdefinition(context ).execute(  "Receptionists", out  GXt_char1) ;
-         Gxm1uhomemodulessdt.gxTpr_Optiontitle = GXt_char1;
+         Gxm1uhomemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Receptionists", "");
          Gxm1uhomemodulessdt.gxTpr_Optioniconthemeclass = "far fa-address-card";
          Gxm1uhomemodulessdt.gxTpr_Optiontype = 1;
          Gxm1uhomemodulessdt.gxTpr_Optionsize = 2;
@@ -141,9 +139,7 @@ namespace GeneXus.Programs {
          Gxm1uhomemodulessdt.gxTpr_Optiondescription = "Forms";
          Gxm1uhomemodulessdt = new SdtUHomeModulesSDT_UHomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1uhomemodulessdt, 0);
-         GXt_char1 = "";
-         new prc_getorganisationdefinition(context ).execute(  "Residents", out  GXt_char1) ;
-         Gxm1uhomemodulessdt.gxTpr_Optiontitle = GXt_char1;
+         Gxm1uhomemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Residents", "");
          Gxm1uhomemodulessdt.gxTpr_Optioniconthemeclass = "fas fa-users";
          Gxm1uhomemodulessdt.gxTpr_Optiontype = 1;
          Gxm1uhomemodulessdt.gxTpr_Optionsize = 2;
@@ -220,11 +216,9 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          Gxm1uhomemodulessdt = new SdtUHomeModulesSDT_UHomeModulesSDTItem(context);
-         GXt_char1 = "";
          /* GeneXus formulas. */
       }
 
-      private string GXt_char1 ;
       private GXBaseCollection<SdtUHomeModulesSDT_UHomeModulesSDTItem> Gxm2rootcol ;
       private SdtUHomeModulesSDT_UHomeModulesSDTItem Gxm1uhomemodulessdt ;
       private GXBaseCollection<SdtUHomeModulesSDT_UHomeModulesSDTItem> aP0_Gxm2rootcol ;

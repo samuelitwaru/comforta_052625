@@ -554,7 +554,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 24,'',false,'',0)\"";
             ClassString = "BtnInsert";
             StyleString = ((bttBtnfilterbydynamicforms_Backcolor==-1) ? "" : "background-color:"+context.BuildHTMLColor( bttBtnfilterbydynamicforms_Backcolor)+";");
-            GxWebStd.gx_button_ctrl( context, bttBtnfilterbydynamicforms_Internalname, "", bttBtnfilterbydynamicforms_Caption, bttBtnfilterbydynamicforms_Jsonclick, 5, context.GetMessage( "Resident Forms", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOFILTERBYDYNAMICFORMS\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_NotificationDashboard.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnfilterbydynamicforms_Internalname, "", context.GetMessage( "Resident Forms", ""), bttBtnfilterbydynamicforms_Jsonclick, 5, context.GetMessage( "Resident Forms", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOFILTERBYDYNAMICFORMS\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_NotificationDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
@@ -1163,11 +1163,6 @@ namespace GeneXus.Programs {
          /* Execute user subroutine: 'SETACTIVEFILTER' */
          S132 ();
          if (returnInSub) return;
-         GXt_char2 = AV47ResidentTitle;
-         new prc_getorganisationdefinition(context ).execute(  "Resident", out  GXt_char2) ;
-         AV47ResidentTitle = GXt_char2;
-         bttBtnfilterbydynamicforms_Caption = AV47ResidentTitle+" "+context.GetMessage( "Forms", "");
-         AssignProp("", false, bttBtnfilterbydynamicforms_Internalname, "Caption", bttBtnfilterbydynamicforms_Caption, true);
       }
 
       protected void E127X2( )
@@ -1608,7 +1603,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025641072118", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20256217523569", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1624,7 +1619,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_notificationdashboard.js", "?2025641072119", false, true);
+         context.AddJavascriptSource("wp_notificationdashboard.js", "?20256217523570", false, true);
          /* End function include_jscripts */
       }
 
@@ -1674,7 +1669,6 @@ namespace GeneXus.Programs {
          edtavSearchkey_Enabled = 1;
          bttBtnfilterbyagenda_Backcolor = (int)(0xF0F0F0);
          bttBtnfilterbydynamicforms_Backcolor = (int)(0xF0F0F0);
-         bttBtnfilterbydynamicforms_Caption = context.GetMessage( "Resident Forms", "");
          bttBtnfilterbydiscussions_Backcolor = (int)(0xF0F0F0);
          bttBtnfilterbymentions_Backcolor = (int)(0xF0F0F0);
          radavNotificationtypes_Jsonclick = "";
@@ -1768,8 +1762,6 @@ namespace GeneXus.Programs {
          EvtRowId = "";
          sEvtType = "";
          AV38NumberOfUnRead = "";
-         AV47ResidentTitle = "";
-         GXt_char2 = "";
          GXt_objcol_SdtUSDTNotificationsData_USDTNotificationsDataItem1 = new GXBaseCollection<SdtUSDTNotificationsData_USDTNotificationsDataItem>( context, "USDTNotificationsDataItem", "Comforta_version2");
          AV46DataOfNotifications = new GXBaseCollection<SdtUSDTNotificationsData_USDTNotificationsDataItem>( context, "USDTNotificationsDataItem", "Comforta_version2");
          BackMsgLst = new msglist();
@@ -1819,7 +1811,6 @@ namespace GeneXus.Programs {
       private string bttBtnfilterbydiscussions_Internalname ;
       private string bttBtnfilterbydiscussions_Jsonclick ;
       private string bttBtnfilterbydynamicforms_Internalname ;
-      private string bttBtnfilterbydynamicforms_Caption ;
       private string bttBtnfilterbydynamicforms_Jsonclick ;
       private string bttBtnfilterbyagenda_Internalname ;
       private string bttBtnfilterbyagenda_Jsonclick ;
@@ -1842,7 +1833,6 @@ namespace GeneXus.Programs {
       private string EvtRowId ;
       private string sEvtType ;
       private string AV38NumberOfUnRead ;
-      private string GXt_char2 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool wbLoad ;
@@ -1857,7 +1847,6 @@ namespace GeneXus.Programs {
       private string AV28CurrentNotficationGroupFilter ;
       private string AV37NotificationTypes ;
       private string AV41SearchKey ;
-      private string AV47ResidentTitle ;
       private GXWebComponent WebComp_Wcwc_notificationgrouping ;
       private GXWebComponent WebComp_Wcwc_notificationfilteredlist ;
       private GXWebForm Form ;

@@ -1100,7 +1100,6 @@ namespace GeneXus.Programs {
          {
             this.executeUsercontrolMethod("", false, "DDC_DISCUSSIONSContainer", "Open", "", new Object[] {});
          }
-         this.executeExternalObjectMethod("", false, "WWPActions", "Tabs_EditCaption", new Object[] {(string)divLayoutmaintable_Internalname,(string)"Tabs",(string)"Trn_Resident",new prc_getorganisationdefinition(context).executeUdp(  "Residents"),(bool)false,(string)""}, false);
       }
 
       protected void E15AD2( )
@@ -1366,7 +1365,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202564107362", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202562186276", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1382,7 +1381,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_residentpackageview.js", "?202564107363", false, true);
+         context.AddJavascriptSource("trn_residentpackageview.js", "?202562186277", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);
