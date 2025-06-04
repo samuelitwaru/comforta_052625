@@ -182,6 +182,10 @@ namespace GeneXus.Programs {
             }
             else if ( StringUtil.StrCmp(AV13InfoContent.gxTpr_Infotype, "Cta") == 0 )
             {
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabuttonicon)) )
+               {
+                  AV13InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabuttonicon = AV13InfoContent.gxTpr_Ctaattributes.gxTpr_Ctatype;
+               }
                GXt_char1 = "";
                new prc_getthemecolorbyname(context ).execute(  AV14ThemeId,  AV13InfoContent.gxTpr_Ctaattributes.gxTpr_Ctacolor, out  GXt_char1) ;
                AV13InfoContent.gxTpr_Ctaattributes.gxTpr_Ctacolor = GXt_char1;
