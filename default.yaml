@@ -1,33 +1,10 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250603090223"
+  version: "20250604102746"
 servers:
   - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
-  /Trn_AppVersionLoadDVCombo:
-    post:
-      tags:
-        - Trn_AppVersionLoadDVCombo
-      operationId: "Trn_AppVersionLoadDVCombo"
-      summary: "Trn_App Version Load DVCombo"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Trn_AppVersionLoadDVComboInput"
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Trn_AppVersionLoadDVComboOutput"
-        404:
-          description: "Not found"
   /Trn_AppVersionWWGetFilterData:
     post:
       tags:
@@ -624,29 +601,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Trn_SupplierAgbWWGetFilterDataOutput"
-        404:
-          description: "Not found"
-  /Trn_SupplierGenTrn_SupplierDynamicFormWCGetFilterData:
-    post:
-      tags:
-        - Trn_SupplierGenTrn_SupplierDynamicFormWCGetFilterData
-      operationId: "Trn_SupplierGenTrn_SupplierDynamicFormWCGetFilterData"
-      summary: "Trn_Supplier Gen Trn_Supplier Dynamic Form WCGet Filter Data"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Trn_SupplierGenTrn_SupplierDynamicFormWCGetFilterDataInput"
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Trn_SupplierGenTrn_SupplierDynamicFormWCGetFilterDataOutput"
         404:
           description: "Not found"
   /Trn_SupplierGenTypeWWGetFilterData:
@@ -1305,14 +1259,6 @@ components:
           scopes: 
             fullcontrol: Full access
   schemas:
-    Trn_AppVersionLoadDVComboOutput:
-      properties:
-        SelectedValue:
-          type: "string"
-        SelectedText:
-          type: "string"
-        Combo_DataJson:
-          type: "string"
     Trn_AppVersionWWGetFilterDataOutput:
       properties:
         OptionsJson:
@@ -1521,14 +1467,6 @@ components:
           type: "string"
         OptionIndexesJson:
           type: "string"
-    Trn_SupplierGenTrn_SupplierDynamicFormWCGetFilterDataOutput:
-      properties:
-        OptionsJson:
-          type: "string"
-        OptionsDescJson:
-          type: "string"
-        OptionIndexesJson:
-          type: "string"
     Trn_SupplierGenTypeWWGetFilterDataOutput:
       properties:
         OptionsJson:
@@ -1685,22 +1623,6 @@ components:
     WWPBaseObjects.Discussions.WWP_GetUsersForDiscussionMentionsOutput:
       properties:
         OptionsJson:
-          type: "string"
-    Trn_AppVersionLoadDVComboInput:  
-      properties:
-        ComboName:
-          type: "string"
-        TrnMode:
-          type: "string"
-        IsDynamicCall:
-          type: "boolean"
-        AppVersionId:
-          type: "string"
-          format: "uuid"
-        Cond_OrganisationId:
-          type: "string"
-          format: "uuid"
-        SearchTxtParms:
           type: "string"
     Trn_AppVersionWWGetFilterDataInput:  
       properties:
@@ -1932,14 +1854,6 @@ components:
         SearchTxtTo:
           type: "string"
     Trn_SupplierAgbWWGetFilterDataInput:  
-      properties:
-        DDOName:
-          type: "string"
-        SearchTxtParms:
-          type: "string"
-        SearchTxtTo:
-          type: "string"
-    Trn_SupplierGenTrn_SupplierDynamicFormWCGetFilterDataInput:  
       properties:
         DDOName:
           type: "string"
@@ -2465,59 +2379,6 @@ components:
           description: "Cta Button Img Url"
           type: "string"
       x-gx-level: "SDT_ContentPage"
-    SDT_ContentPageV1:
-      properties:
-        PageId:
-          description: "Page Id"
-          type: "string"
-          format: "uuid"
-        PageName:
-          description: "Page Name"
-          type: "string"
-        Content:
-          type: array
-          items:
-            description: ContentItem
-            $ref: "#/components/schemas/SDT_ContentPageV1.Content_ContentItem"
-        Cta:
-          type: array
-          items:
-            description: CtaItem
-            $ref: "#/components/schemas/SDT_ContentPageV1.Cta_CtaItem"
-    SDT_ContentPageV1.Content_ContentItem:
-      properties:
-        ContentType:
-          description: "Content Type"
-          type: "string"
-        ContentValue:
-          description: "Content Value"
-          type: "string"
-      x-gx-level: "SDT_ContentPageV1"
-    SDT_ContentPageV1.Cta_CtaItem:
-      properties:
-        CtaId:
-          description: "Cta Id"
-          type: "string"
-          format: "uuid"
-        CtaType:
-          description: "Cta Type"
-          type: "string"
-        CtaLabel:
-          description: "Cta Label"
-          type: "string"
-        CtaAction:
-          description: "Cta Action"
-          type: "string"
-        CtaBGColor:
-          description: "Cta BGColor"
-          type: "string"
-        IsFullWidth:
-          description: "Is Full Width"
-          type: "boolean"
-        IsImageButton:
-          description: "Is Image Button"
-          type: "boolean"
-      x-gx-level: "SDT_ContentPageV1"
     SDT_DebugResult:
       properties:
         Summary:

@@ -78,6 +78,9 @@ namespace GeneXus.Programs {
          /* GeneXus formulas */
          /* Output device settings */
          AV5id = 0;
+         GXt_char1 = AV10ResidentTitle;
+         new prc_getorganisationdefinition(context ).execute(  "Resident", out  GXt_char1) ;
+         AV10ResidentTitle = GXt_char1;
          Gxm1dvelop_menu = new WorkWithPlus.workwithplus_web.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV5id = (short)(AV5id+1);
@@ -156,7 +159,9 @@ namespace GeneXus.Programs {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("wp_locationreceptionists.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon far fa-address-card";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Receptionists", "");
+         GXt_char1 = "";
+         new prc_getorganisationdefinition(context ).execute(  "Receptionists", out  GXt_char1) ;
+         Gxm1dvelop_menu.gxTpr_Caption = GXt_char1;
          Gxm1dvelop_menu.gxTpr_Authorizationkey = context.GetMessage( "wp_locationreceptionists_Execute", "");
          Gxm1dvelop_menu = new WorkWithPlus.workwithplus_web.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
@@ -166,7 +171,9 @@ namespace GeneXus.Programs {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("wp_locationresidents.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fa fa-users";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Residents", "");
+         GXt_char1 = "";
+         new prc_getorganisationdefinition(context ).execute(  "Residents", out  GXt_char1) ;
+         Gxm1dvelop_menu.gxTpr_Caption = GXt_char1;
          Gxm1dvelop_menu.gxTpr_Authorizationkey = context.GetMessage( "wp_locationresidents_Execute", "");
          Gxm1dvelop_menu = new WorkWithPlus.workwithplus_web.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
@@ -222,6 +229,16 @@ namespace GeneXus.Programs {
          AV5id = (short)(AV5id+1);
          Gxm3dvelop_menu_subitems.gxTpr_Id = StringUtil.Str( (decimal)(AV5id), 4, 0);
          Gxm3dvelop_menu_subitems.gxTpr_Tooltip = "";
+         Gxm3dvelop_menu_subitems.gxTpr_Link = formatLink("wp_organisationdefinitions.aspx") ;
+         Gxm3dvelop_menu_subitems.gxTpr_Linktarget = "";
+         Gxm3dvelop_menu_subitems.gxTpr_Iconclass = "";
+         Gxm3dvelop_menu_subitems.gxTpr_Caption = context.GetMessage( "Prompts", "");
+         Gxm3dvelop_menu_subitems.gxTpr_Authorizationkey = context.GetMessage( "wp_organisationdefinitions_Execute", "");
+         Gxm3dvelop_menu_subitems = new WorkWithPlus.workwithplus_web.SdtDVelop_Menu_Item(context);
+         Gxm1dvelop_menu.gxTpr_Subitems.Add(Gxm3dvelop_menu_subitems, 0);
+         AV5id = (short)(AV5id+1);
+         Gxm3dvelop_menu_subitems.gxTpr_Id = StringUtil.Str( (decimal)(AV5id), 4, 0);
+         Gxm3dvelop_menu_subitems.gxTpr_Tooltip = "";
          Gxm3dvelop_menu_subitems.gxTpr_Link = formatLink("trn_organisationtypeww.aspx") ;
          Gxm3dvelop_menu_subitems.gxTpr_Linktarget = "";
          Gxm3dvelop_menu_subitems.gxTpr_Iconclass = "";
@@ -245,7 +262,7 @@ namespace GeneXus.Programs {
          Gxm3dvelop_menu_subitems.gxTpr_Link = formatLink("trn_residenttypeww.aspx") ;
          Gxm3dvelop_menu_subitems.gxTpr_Linktarget = "";
          Gxm3dvelop_menu_subitems.gxTpr_Iconclass = "";
-         Gxm3dvelop_menu_subitems.gxTpr_Caption = context.GetMessage( "Resident Types", "");
+         Gxm3dvelop_menu_subitems.gxTpr_Caption = AV10ResidentTitle+" "+context.GetMessage( "Types", "");
          Gxm3dvelop_menu_subitems.gxTpr_Authorizationkey = context.GetMessage( "trn_residenttypeww_Execute", "");
          Gxm3dvelop_menu_subitems = new WorkWithPlus.workwithplus_web.SdtDVelop_Menu_Item(context);
          Gxm1dvelop_menu.gxTpr_Subitems.Add(Gxm3dvelop_menu_subitems, 0);
@@ -265,7 +282,7 @@ namespace GeneXus.Programs {
          Gxm3dvelop_menu_subitems.gxTpr_Link = formatLink("trn_residentpackageww.aspx") ;
          Gxm3dvelop_menu_subitems.gxTpr_Linktarget = "";
          Gxm3dvelop_menu_subitems.gxTpr_Iconclass = "";
-         Gxm3dvelop_menu_subitems.gxTpr_Caption = context.GetMessage( "Resident Access", "");
+         Gxm3dvelop_menu_subitems.gxTpr_Caption = AV10ResidentTitle+" "+context.GetMessage( "Access", "");
          Gxm3dvelop_menu_subitems = new WorkWithPlus.workwithplus_web.SdtDVelop_Menu_Item(context);
          Gxm1dvelop_menu.gxTpr_Subitems.Add(Gxm3dvelop_menu_subitems, 0);
          AV5id = (short)(AV5id+1);
@@ -338,6 +355,7 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
+         AV10ResidentTitle = "";
          Gxm1dvelop_menu = new WorkWithPlus.workwithplus_web.SdtDVelop_Menu_Item(context);
          Gxm3dvelop_menu_subitems = new WorkWithPlus.workwithplus_web.SdtDVelop_Menu_Item(context);
          GXt_char1 = "";
@@ -351,6 +369,7 @@ namespace GeneXus.Programs {
       private string GXt_char1 ;
       private string GXKey ;
       private string GXEncryptionTmp ;
+      private string AV10ResidentTitle ;
       private Guid GXt_guid2 ;
       private GXBaseCollection<WorkWithPlus.workwithplus_web.SdtDVelop_Menu_Item> Gxm2rootcol ;
       private WorkWithPlus.workwithplus_web.SdtDVelop_Menu_Item Gxm1dvelop_menu ;

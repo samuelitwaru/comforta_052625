@@ -1938,12 +1938,6 @@ namespace GeneXus.Programs {
 
       protected void standaloneModal( )
       {
-         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ! (Guid.Empty==AV43Insert_ToolBoxLastUpdateReceptionistId) )
-         {
-            A630ToolBoxLastUpdateReceptionistI = AV43Insert_ToolBoxLastUpdateReceptionistId;
-            n630ToolBoxLastUpdateReceptionistI = false;
-            AssignAttri("", false, "A630ToolBoxLastUpdateReceptionistI", A630ToolBoxLastUpdateReceptionistI.ToString());
-         }
          A355LocationPhoneCode = AV16ComboLocationPhoneCode;
          AssignAttri("", false, "A355LocationPhoneCode", A355LocationPhoneCode);
          A327LocationCountry = AV23ComboLocationCountry;
@@ -2118,6 +2112,23 @@ namespace GeneXus.Programs {
                AssignAttri("", false, "A577LocationThemeId", A577LocationThemeId.ToString());
             }
          }
+         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ! (Guid.Empty==AV43Insert_ToolBoxLastUpdateReceptionistId) )
+         {
+            A630ToolBoxLastUpdateReceptionistI = AV43Insert_ToolBoxLastUpdateReceptionistId;
+            n630ToolBoxLastUpdateReceptionistI = false;
+            AssignAttri("", false, "A630ToolBoxLastUpdateReceptionistI", A630ToolBoxLastUpdateReceptionistI.ToString());
+         }
+         else
+         {
+            if ( (Guid.Empty==A630ToolBoxLastUpdateReceptionistI) )
+            {
+               A630ToolBoxLastUpdateReceptionistI = Guid.Empty;
+               n630ToolBoxLastUpdateReceptionistI = false;
+               AssignAttri("", false, "A630ToolBoxLastUpdateReceptionistI", A630ToolBoxLastUpdateReceptionistI.ToString());
+               n630ToolBoxLastUpdateReceptionistI = true;
+               AssignAttri("", false, "A630ToolBoxLastUpdateReceptionistI", A630ToolBoxLastUpdateReceptionistI.ToString());
+            }
+         }
          GXt_char2 = AV38LocationDescriptionVar;
          new prc_getdisplayvalue(context ).execute(  A36LocationDescription,  AV39trnName,  AV37AttributeDescription,  A29LocationId, out  GXt_char2) ;
          AV38LocationDescriptionVar = GXt_char2;
@@ -2215,6 +2226,23 @@ namespace GeneXus.Programs {
                AssignAttri("", false, "A577LocationThemeId", A577LocationThemeId.ToString());
                n577LocationThemeId = true;
                AssignAttri("", false, "A577LocationThemeId", A577LocationThemeId.ToString());
+            }
+         }
+         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ! (Guid.Empty==AV43Insert_ToolBoxLastUpdateReceptionistId) )
+         {
+            A630ToolBoxLastUpdateReceptionistI = AV43Insert_ToolBoxLastUpdateReceptionistId;
+            n630ToolBoxLastUpdateReceptionistI = false;
+            AssignAttri("", false, "A630ToolBoxLastUpdateReceptionistI", A630ToolBoxLastUpdateReceptionistI.ToString());
+         }
+         else
+         {
+            if ( (Guid.Empty==A630ToolBoxLastUpdateReceptionistI) )
+            {
+               A630ToolBoxLastUpdateReceptionistI = Guid.Empty;
+               n630ToolBoxLastUpdateReceptionistI = false;
+               AssignAttri("", false, "A630ToolBoxLastUpdateReceptionistI", A630ToolBoxLastUpdateReceptionistI.ToString());
+               n630ToolBoxLastUpdateReceptionistI = true;
+               AssignAttri("", false, "A630ToolBoxLastUpdateReceptionistI", A630ToolBoxLastUpdateReceptionistI.ToString());
             }
          }
          GXt_char2 = AV38LocationDescriptionVar;
@@ -3956,7 +3984,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20256217395165", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20256412284235", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3972,7 +4000,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_location.js", "?20256217395169", false, true);
+         context.AddJavascriptSource("trn_location.js", "?20256412284239", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

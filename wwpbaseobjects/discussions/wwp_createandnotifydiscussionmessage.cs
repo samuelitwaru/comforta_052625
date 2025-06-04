@@ -141,13 +141,17 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             AV25GAMUser.load( AV9WWPDiscussionMessage.gxTpr_Wwpuserextendedid);
             if ( AV25GAMUser.success() )
             {
-               if ( AV25GAMUser.checkrole(context.GetMessage( "Resident", "")) )
+               if ( AV25GAMUser.checkrole("Receptionist") )
                {
-                  AV26RoleName = context.GetMessage( "Resident", "");
+                  GXt_char1 = AV26RoleName;
+                  new prc_getorganisationdefinition(context ).execute(  "Receptionist", out  GXt_char1) ;
+                  AV26RoleName = GXt_char1;
                }
-               if ( AV25GAMUser.checkrole(context.GetMessage( "Receptionist", "")) )
+               else
                {
-                  AV26RoleName = context.GetMessage( "Receptionist", "");
+                  GXt_char1 = AV26RoleName;
+                  new prc_getorganisationdefinition(context ).execute(  "Resident", out  GXt_char1) ;
+                  AV26RoleName = GXt_char1;
                }
                if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV26RoleName)) )
                {
@@ -194,6 +198,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          AV10WWPDiscussionMessageMention = new GeneXus.Programs.wwpbaseobjects.discussions.SdtWWP_DiscussionMessageMention(context);
          AV25GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          AV26RoleName = "";
+         GXt_char1 = "";
          AV27UserFullName = "";
          AV30GXV2 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV28ErrorMessage = new GeneXus.Utils.SdtMessages_Message(context);
@@ -217,6 +222,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private long AV18WWPEntityId ;
       private long AV17WWPDiscussionMessageThreadId ;
       private string AV22WWPUserExtendedId ;
+      private string GXt_char1 ;
       private bool AV11DiscussionMessageCreated ;
       private string AV13MentionWWPUserExtendedIdCollectionJson ;
       private string AV16WWPDiscussionMessageEntityRecordId ;

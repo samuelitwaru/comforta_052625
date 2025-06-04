@@ -103,6 +103,13 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomData_toolboxDetailsItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalRegistration.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Organisation.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_OrganisationDefinitions.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_OrganisationDefinitions_ReceptionistDefinition.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_OrganisationDefinitions_ReceptionistDefinition_english.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_OrganisationDefinitions_ReceptionistDefinition_dutch.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_OrganisationDefinitions_ResidentDefinition.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_OrganisationDefinitions_ResidentDefinition_english.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_OrganisationDefinitions_ResidentDefinition_dutch.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_OrganisationSetting.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Page.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_PageChildren.cs" />

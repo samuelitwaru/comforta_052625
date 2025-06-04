@@ -1506,7 +1506,9 @@ namespace GeneXus.Programs {
          AssignAttri("", false, "AV33Phone", AV33Phone);
          if ( AV65WWPContext.gxTpr_Isreceptionist )
          {
-            AV46role = context.GetMessage( "Receptionist", "");
+            GXt_char2 = AV46role;
+            new prc_getorganisationdefinition(context ).execute(  "Receptionist", out  GXt_char2) ;
+            AV46role = GXt_char2;
             AssignAttri("", false, "AV46role", AV46role);
          }
          if ( AV65WWPContext.gxTpr_Isorganisationmanager )
@@ -1703,7 +1705,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025621873328", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025641322385", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1719,7 +1721,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_userprofile.js", "?2025621873332", false, true);
+         context.AddJavascriptSource("wp_userprofile.js", "?2025641322391", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -1953,7 +1955,6 @@ namespace GeneXus.Programs {
          EvtRowId = "";
          sEvtType = "";
          GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 = new WorkWithPlus.workwithplus_web.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
-         GXt_char2 = "";
          AV5GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          AV62UserProfileImage = "";
          AV67WWP_UserExtended = new GeneXus.Programs.wwpbaseobjects.SdtWWP_UserExtended(context);
@@ -1966,6 +1967,7 @@ namespace GeneXus.Programs {
          AV12Combo_DataItem = new WorkWithPlus.workwithplus_web.SdtDVB_SDTComboData_Item(context);
          AV13ComboTitles = new GxSimpleCollection<string>();
          AV60userOrganisation = "";
+         GXt_char2 = "";
          GXt_SdtWWPContext4 = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV79GXV4 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV69Message = new GeneXus.Utils.SdtMessages_Message(context);
@@ -2121,8 +2123,8 @@ namespace GeneXus.Programs {
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string GXt_char2 ;
       private string tblUpdateactionstable_Internalname ;
+      private string GXt_char2 ;
       private string sStyleString ;
       private string bttBtncancel_Internalname ;
       private string bttBtncancel_Jsonclick ;

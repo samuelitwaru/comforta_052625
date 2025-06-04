@@ -75,4 +75,7 @@
   <Object name="WorkWithPlus_Web.GetHomeSampleData" id="30" type="DataProvider" IntegratedSecurityLevel="SecurityHigh" PermissionPrefix="GetHomeSampleData" xmlns="qv">
     <DefaultOutput type="OutputTypePivotTable" xmlns="qv" />
   </Object>
+  <Object name="Trn_EnvironmentVariable_DataProvider" id="34" type="DataProvider" IntegratedSecurityLevel="SecurityHigh" PermissionPrefix="Trn_EnvironmentVariable_DataProvider" xmlns="qv">
+    <DefaultOutput type="OutputTypePivotTable" xmlns="qv" />
+  </Object>
 </Objects>
