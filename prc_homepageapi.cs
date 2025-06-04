@@ -191,7 +191,7 @@ namespace GeneXus.Programs {
                AV13InfoContent.gxTpr_Ctaattributes.gxTpr_Ctacolor = GXt_char1;
                if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV13InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor))) )
                {
-                  AV13InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor = context.GetMessage( "CtaColor1", "");
+                  AV13InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor = context.GetMessage( "ctaColor1", "");
                }
                GXt_char1 = "";
                new prc_getthemecolorbyname(context ).execute(  AV14ThemeId,  AV13InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor, out  GXt_char1) ;
