@@ -130,9 +130,11 @@ namespace GeneXus.Programs {
          while ( (pr_default.getStatus(3) != 101) )
          {
             A40002LocationImage_GXI = P00F65_A40002LocationImage_GXI[0];
+            n40002LocationImage_GXI = P00F65_n40002LocationImage_GXI[0];
             A29LocationId = P00F65_A29LocationId[0];
             A11OrganisationId = P00F65_A11OrganisationId[0];
             A494LocationImage = P00F65_A494LocationImage[0];
+            n494LocationImage = P00F65_n494LocationImage[0];
             /* Using cursor P00F66 */
             pr_default.execute(4, new Object[] {A29LocationId});
             while ( (pr_default.getStatus(4) != 101) )
@@ -208,9 +210,11 @@ namespace GeneXus.Programs {
          A40001ServiceImage_GXI = "";
          Gx_emsg = "";
          P00F65_A40002LocationImage_GXI = new string[] {""} ;
+         P00F65_n40002LocationImage_GXI = new bool[] {false} ;
          P00F65_A29LocationId = new Guid[] {Guid.Empty} ;
          P00F65_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00F65_A494LocationImage = new string[] {""} ;
+         P00F65_n494LocationImage = new bool[] {false} ;
          A40002LocationImage_GXI = "";
          A494LocationImage = "";
          P00F66_A614OrganisationLocationId = new Guid[] {Guid.Empty} ;
@@ -230,7 +234,7 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               P00F65_A40002LocationImage_GXI, P00F65_A29LocationId, P00F65_A11OrganisationId, P00F65_A494LocationImage
+               P00F65_A40002LocationImage_GXI, P00F65_n40002LocationImage_GXI, P00F65_A29LocationId, P00F65_A11OrganisationId, P00F65_A494LocationImage, P00F65_n494LocationImage
                }
                , new Object[] {
                P00F66_A614OrganisationLocationId, P00F66_A613LocationImageId
@@ -246,6 +250,8 @@ namespace GeneXus.Programs {
       private int GX_INS105 ;
       private string Gx_emsg ;
       private bool AV15isAlreadyAdded ;
+      private bool n40002LocationImage_GXI ;
+      private bool n494LocationImage ;
       private string A40000ProductServiceImage_GXI ;
       private string A40001ServiceImage_GXI ;
       private string A40002LocationImage_GXI ;
@@ -273,9 +279,11 @@ namespace GeneXus.Programs {
       private Guid[] P00F63_A609ServiceId ;
       private Guid[] P00F63_A608ServiceImageId ;
       private string[] P00F65_A40002LocationImage_GXI ;
+      private bool[] P00F65_n40002LocationImage_GXI ;
       private Guid[] P00F65_A29LocationId ;
       private Guid[] P00F65_A11OrganisationId ;
       private string[] P00F65_A494LocationImage ;
+      private bool[] P00F65_n494LocationImage ;
       private Guid[] P00F66_A614OrganisationLocationId ;
       private Guid[] P00F66_A613LocationImageId ;
    }
@@ -358,9 +366,11 @@ namespace GeneXus.Programs {
                 return;
              case 3 :
                 ((string[]) buf[0])[0] = rslt.getMultimediaUri(1);
-                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-                ((string[]) buf[3])[0] = rslt.getMultimediaFile(4, rslt.getVarchar(1));
+                ((bool[]) buf[1])[0] = rslt.wasNull(1);
+                ((Guid[]) buf[2])[0] = rslt.getGuid(2);
+                ((Guid[]) buf[3])[0] = rslt.getGuid(3);
+                ((string[]) buf[4])[0] = rslt.getMultimediaFile(4, rslt.getVarchar(1));
+                ((bool[]) buf[5])[0] = rslt.wasNull(4);
                 return;
              case 4 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);

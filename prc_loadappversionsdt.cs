@@ -111,7 +111,7 @@ namespace GeneXus.Programs {
                   GXt_char1 = AV11PageStructure;
                   new prc_getdynamictranslation(context ).execute(  A516PageId,  "",  A518PageStructure, out  GXt_char1) ;
                   AV11PageStructure = GXt_char1;
-                  AV16SDT_InfoContent.FromJSonString(A518PageStructure, null);
+                  AV16SDT_InfoContent.FromJSonString(AV11PageStructure, null);
                   AV10PageItem.gxTpr_Pageinfostructure = AV16SDT_InfoContent;
                   AV11PageStructure = AV16SDT_InfoContent.ToJSonString(false, true);
                }

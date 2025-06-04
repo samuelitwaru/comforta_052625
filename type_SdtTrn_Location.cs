@@ -100,6 +100,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Receptionimage_gxi_Z");
          state.Add("gxTpr_Locationid_N");
          state.Add("gxTpr_Organisationid_N");
+         state.Add("gxTpr_Locationimage_N");
          state.Add("gxTpr_Locationbrandtheme_N");
          state.Add("gxTpr_Locationctatheme_N");
          state.Add("gxTpr_Toolboxdefaultprofileimage_N");
@@ -112,6 +113,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Locationthemeid_N");
          state.Add("gxTpr_Toolboxlastupdatereceptionistid_N");
          state.Add("gxTpr_Toolboxlastupdatetime_N");
+         state.Add("gxTpr_Locationimage_gxi_N");
          state.Add("gxTpr_Receptionimage_gxi_N");
          return state ;
       }
@@ -183,6 +185,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Location_Receptionimage_gxi_Z = sdt.gxTv_SdtTrn_Location_Receptionimage_gxi_Z ;
          gxTv_SdtTrn_Location_Locationid_N = sdt.gxTv_SdtTrn_Location_Locationid_N ;
          gxTv_SdtTrn_Location_Organisationid_N = sdt.gxTv_SdtTrn_Location_Organisationid_N ;
+         gxTv_SdtTrn_Location_Locationimage_N = sdt.gxTv_SdtTrn_Location_Locationimage_N ;
          gxTv_SdtTrn_Location_Locationbrandtheme_N = sdt.gxTv_SdtTrn_Location_Locationbrandtheme_N ;
          gxTv_SdtTrn_Location_Locationctatheme_N = sdt.gxTv_SdtTrn_Location_Locationctatheme_N ;
          gxTv_SdtTrn_Location_Toolboxdefaultprofileimage_N = sdt.gxTv_SdtTrn_Location_Toolboxdefaultprofileimage_N ;
@@ -195,6 +198,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Location_Locationthemeid_N = sdt.gxTv_SdtTrn_Location_Locationthemeid_N ;
          gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N = sdt.gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N ;
          gxTv_SdtTrn_Location_Toolboxlastupdatetime_N = sdt.gxTv_SdtTrn_Location_Toolboxlastupdatetime_N ;
+         gxTv_SdtTrn_Location_Locationimage_gxi_N = sdt.gxTv_SdtTrn_Location_Locationimage_gxi_N ;
          gxTv_SdtTrn_Location_Receptionimage_gxi_N = sdt.gxTv_SdtTrn_Location_Receptionimage_gxi_N ;
          return  ;
       }
@@ -220,6 +224,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("OrganisationId_N", gxTv_SdtTrn_Location_Organisationid_N, false, includeNonInitialized);
          AddObjectProperty("LocationName", gxTv_SdtTrn_Location_Locationname, false, includeNonInitialized);
          AddObjectProperty("LocationImage", gxTv_SdtTrn_Location_Locationimage, false, includeNonInitialized);
+         AddObjectProperty("LocationImage_N", gxTv_SdtTrn_Location_Locationimage_N, false, includeNonInitialized);
          AddObjectProperty("LocationCountry", gxTv_SdtTrn_Location_Locationcountry, false, includeNonInitialized);
          AddObjectProperty("LocationCity", gxTv_SdtTrn_Location_Locationcity, false, includeNonInitialized);
          AddObjectProperty("LocationZipCode", gxTv_SdtTrn_Location_Locationzipcode, false, includeNonInitialized);
@@ -331,6 +336,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("ReceptionImage_GXI_Z", gxTv_SdtTrn_Location_Receptionimage_gxi_Z, false, includeNonInitialized);
             AddObjectProperty("LocationId_N", gxTv_SdtTrn_Location_Locationid_N, false, includeNonInitialized);
             AddObjectProperty("OrganisationId_N", gxTv_SdtTrn_Location_Organisationid_N, false, includeNonInitialized);
+            AddObjectProperty("LocationImage_N", gxTv_SdtTrn_Location_Locationimage_N, false, includeNonInitialized);
             AddObjectProperty("LocationBrandTheme_N", gxTv_SdtTrn_Location_Locationbrandtheme_N, false, includeNonInitialized);
             AddObjectProperty("LocationCtaTheme_N", gxTv_SdtTrn_Location_Locationctatheme_N, false, includeNonInitialized);
             AddObjectProperty("ToolBoxDefaultProfileImage_N", gxTv_SdtTrn_Location_Toolboxdefaultprofileimage_N, false, includeNonInitialized);
@@ -343,6 +349,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("LocationThemeId_N", gxTv_SdtTrn_Location_Locationthemeid_N, false, includeNonInitialized);
             AddObjectProperty("ToolBoxLastUpdateReceptionistId_N", gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N, false, includeNonInitialized);
             AddObjectProperty("ToolBoxLastUpdateTime_N", gxTv_SdtTrn_Location_Toolboxlastupdatetime_N, false, includeNonInitialized);
+            AddObjectProperty("LocationImage_GXI_N", gxTv_SdtTrn_Location_Locationimage_gxi_N, false, includeNonInitialized);
             AddObjectProperty("ReceptionImage_GXI_N", gxTv_SdtTrn_Location_Receptionimage_gxi_N, false, includeNonInitialized);
          }
          return  ;
@@ -367,11 +374,13 @@ namespace GeneXus.Programs {
          }
          if ( sdt.IsDirty("LocationImage") )
          {
+            gxTv_SdtTrn_Location_Locationimage_N = (short)(sdt.gxTv_SdtTrn_Location_Locationimage_N);
             sdtIsNull = 0;
             gxTv_SdtTrn_Location_Locationimage = sdt.gxTv_SdtTrn_Location_Locationimage ;
          }
          if ( sdt.IsDirty("LocationImage") )
          {
+            gxTv_SdtTrn_Location_Locationimage_gxi_N = (short)(sdt.gxTv_SdtTrn_Location_Locationimage_gxi_N);
             sdtIsNull = 0;
             gxTv_SdtTrn_Location_Locationimage_gxi = sdt.gxTv_SdtTrn_Location_Locationimage_gxi ;
          }
@@ -646,11 +655,25 @@ namespace GeneXus.Programs {
          }
 
          set {
+            gxTv_SdtTrn_Location_Locationimage_N = 0;
             sdtIsNull = 0;
             gxTv_SdtTrn_Location_Locationimage = value;
             SetDirty("Locationimage");
          }
 
+      }
+
+      public void gxTv_SdtTrn_Location_Locationimage_SetNull( )
+      {
+         gxTv_SdtTrn_Location_Locationimage_N = 1;
+         gxTv_SdtTrn_Location_Locationimage = "";
+         SetDirty("Locationimage");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Location_Locationimage_IsNull( )
+      {
+         return (gxTv_SdtTrn_Location_Locationimage_N==1) ;
       }
 
       [  SoapElement( ElementName = "LocationImage_GXI" )]
@@ -662,11 +685,25 @@ namespace GeneXus.Programs {
          }
 
          set {
+            gxTv_SdtTrn_Location_Locationimage_gxi_N = 0;
             sdtIsNull = 0;
             gxTv_SdtTrn_Location_Locationimage_gxi = value;
             SetDirty("Locationimage_gxi");
          }
 
+      }
+
+      public void gxTv_SdtTrn_Location_Locationimage_gxi_SetNull( )
+      {
+         gxTv_SdtTrn_Location_Locationimage_gxi_N = 1;
+         gxTv_SdtTrn_Location_Locationimage_gxi = "";
+         SetDirty("Locationimage_gxi");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Location_Locationimage_gxi_IsNull( )
+      {
+         return (gxTv_SdtTrn_Location_Locationimage_gxi_N==1) ;
       }
 
       [  SoapElement( ElementName = "LocationCountry" )]
@@ -2191,6 +2228,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "LocationImage_N" )]
+      [  XmlElement( ElementName = "LocationImage_N"   )]
+      public short gxTpr_Locationimage_N
+      {
+         get {
+            return gxTv_SdtTrn_Location_Locationimage_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Location_Locationimage_N = value;
+            SetDirty("Locationimage_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Location_Locationimage_N_SetNull( )
+      {
+         gxTv_SdtTrn_Location_Locationimage_N = 0;
+         SetDirty("Locationimage_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Location_Locationimage_N_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "LocationBrandTheme_N" )]
       [  XmlElement( ElementName = "LocationBrandTheme_N"   )]
       public short gxTpr_Locationbrandtheme_N
@@ -2527,6 +2592,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "LocationImage_GXI_N" )]
+      [  XmlElement( ElementName = "LocationImage_GXI_N"   )]
+      public short gxTpr_Locationimage_gxi_N
+      {
+         get {
+            return gxTv_SdtTrn_Location_Locationimage_gxi_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Location_Locationimage_gxi_N = value;
+            SetDirty("Locationimage_gxi_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Location_Locationimage_gxi_N_SetNull( )
+      {
+         gxTv_SdtTrn_Location_Locationimage_gxi_N = 0;
+         SetDirty("Locationimage_gxi_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Location_Locationimage_gxi_N_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "ReceptionImage_GXI_N" )]
       [  XmlElement( ElementName = "ReceptionImage_GXI_N"   )]
       public short gxTpr_Receptionimage_gxi_N
@@ -2649,6 +2742,7 @@ namespace GeneXus.Programs {
       private short gxTv_SdtTrn_Location_Initialized ;
       private short gxTv_SdtTrn_Location_Locationid_N ;
       private short gxTv_SdtTrn_Location_Organisationid_N ;
+      private short gxTv_SdtTrn_Location_Locationimage_N ;
       private short gxTv_SdtTrn_Location_Locationbrandtheme_N ;
       private short gxTv_SdtTrn_Location_Locationctatheme_N ;
       private short gxTv_SdtTrn_Location_Toolboxdefaultprofileimage_N ;
@@ -2661,6 +2755,7 @@ namespace GeneXus.Programs {
       private short gxTv_SdtTrn_Location_Locationthemeid_N ;
       private short gxTv_SdtTrn_Location_Toolboxlastupdatereceptionistid_N ;
       private short gxTv_SdtTrn_Location_Toolboxlastupdatetime_N ;
+      private short gxTv_SdtTrn_Location_Locationimage_gxi_N ;
       private short gxTv_SdtTrn_Location_Receptionimage_gxi_N ;
       private string gxTv_SdtTrn_Location_Locationphone ;
       private string gxTv_SdtTrn_Location_Mode ;

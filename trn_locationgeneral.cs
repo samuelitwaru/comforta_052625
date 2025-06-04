@@ -1159,6 +1159,7 @@ namespace GeneXus.Programs {
                A36LocationDescription = H00422_A36LocationDescription[0];
                AssignAttri(sPrefix, false, "A36LocationDescription", A36LocationDescription);
                A40000LocationImage_GXI = H00422_A40000LocationImage_GXI[0];
+               n40000LocationImage_GXI = H00422_n40000LocationImage_GXI[0];
                AssignProp(sPrefix, false, imgLocationImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A494LocationImage)) ? A40000LocationImage_GXI : context.convertURL( context.PathToRelativeUrl( A494LocationImage))), true);
                AssignProp(sPrefix, false, imgLocationImage_Internalname, "SrcSet", context.GetImageSrcSet( A494LocationImage), true);
                A328LocationCity = H00422_A328LocationCity[0];
@@ -1178,6 +1179,7 @@ namespace GeneXus.Programs {
                A31LocationName = H00422_A31LocationName[0];
                AssignAttri(sPrefix, false, "A31LocationName", A31LocationName);
                A494LocationImage = H00422_A494LocationImage[0];
+               n494LocationImage = H00422_n494LocationImage[0];
                AssignAttri(sPrefix, false, "A494LocationImage", A494LocationImage);
                AssignProp(sPrefix, false, imgLocationImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A494LocationImage)) ? A40000LocationImage_GXI : context.convertURL( context.PathToRelativeUrl( A494LocationImage))), true);
                AssignProp(sPrefix, false, imgLocationImage_Internalname, "SrcSet", context.GetImageSrcSet( A494LocationImage), true);
@@ -1286,6 +1288,7 @@ namespace GeneXus.Programs {
             AV18LocationCountry_Description = cgiGet( edtavLocationcountry_description_Internalname);
             AssignAttri(sPrefix, false, "AV18LocationCountry_Description", AV18LocationCountry_Description);
             A494LocationImage = cgiGet( imgLocationImage_Internalname);
+            n494LocationImage = false;
             AssignAttri(sPrefix, false, "A494LocationImage", A494LocationImage);
             A36LocationDescription = cgiGet( edtLocationDescription_Internalname);
             AssignAttri(sPrefix, false, "A36LocationDescription", A36LocationDescription);
@@ -1384,9 +1387,7 @@ namespace GeneXus.Programs {
          AssignProp(sPrefix, false, divUnnamedtable7_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divUnnamedtable7_Visible), 5, 0), true);
          divUnnamedtable8_Visible = (((StringUtil.StrCmp(Gx_mode, "DSP")==0)) ? 1 : 0);
          AssignProp(sPrefix, false, divUnnamedtable8_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divUnnamedtable8_Visible), 5, 0), true);
-         GXt_char2 = "";
-         new prc_getdisplayvalue(context ).execute(  A36LocationDescription,  "Trn_Location",  "LocationDescription",  A29LocationId, out  GXt_char2) ;
-         lblTransactiondetail_descriptiontext_Caption = GXt_char2;
+         lblTransactiondetail_descriptiontext_Caption = A36LocationDescription;
          AssignProp(sPrefix, false, lblTransactiondetail_descriptiontext_Internalname, "Caption", lblTransactiondetail_descriptiontext_Caption, true);
       }
 
@@ -1625,7 +1626,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20256412214374", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20256417542349", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1641,7 +1642,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_locationgeneral.js", "?20256412214374", false, true);
+         context.AddJavascriptSource("trn_locationgeneral.js", "?20256417542350", false, true);
          context.AddJavascriptSource("UserControls/UC_CustomImageUploadRender.js", "", false, true);
          context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
          context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
@@ -1845,6 +1846,7 @@ namespace GeneXus.Programs {
          H00422_A11OrganisationId = new Guid[] {Guid.Empty} ;
          H00422_A36LocationDescription = new string[] {""} ;
          H00422_A40000LocationImage_GXI = new string[] {""} ;
+         H00422_n40000LocationImage_GXI = new bool[] {false} ;
          H00422_A328LocationCity = new string[] {""} ;
          H00422_A329LocationZipCode = new string[] {""} ;
          H00422_A331LocationAddressLine2 = new string[] {""} ;
@@ -1854,11 +1856,11 @@ namespace GeneXus.Programs {
          H00422_A34LocationEmail = new string[] {""} ;
          H00422_A31LocationName = new string[] {""} ;
          H00422_A494LocationImage = new string[] {""} ;
+         H00422_n494LocationImage = new bool[] {false} ;
          hsh = "";
          Gx_mode = "";
          AV6WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          GXt_objcol_SdtSDT_FileUploadData1 = new GXBaseCollection<SdtSDT_FileUploadData>( context, "SDT_FileUploadData", "Comforta_version2");
-         GXt_char2 = "";
          AV8TrnContext = new WorkWithPlus.workwithplus_commonobjects.SdtWWPTransactionContext(context);
          AV11HTTPRequest = new GxHttpRequest( context);
          AV10Session = context.GetSession();
@@ -1869,8 +1871,8 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_locationgeneral__default(),
             new Object[][] {
                 new Object[] {
-               H00422_A29LocationId, H00422_A11OrganisationId, H00422_A36LocationDescription, H00422_A40000LocationImage_GXI, H00422_A328LocationCity, H00422_A329LocationZipCode, H00422_A331LocationAddressLine2, H00422_A330LocationAddressLine1, H00422_A35LocationPhone, H00422_A356LocationPhoneNumber,
-               H00422_A34LocationEmail, H00422_A31LocationName, H00422_A494LocationImage
+               H00422_A29LocationId, H00422_A11OrganisationId, H00422_A36LocationDescription, H00422_A40000LocationImage_GXI, H00422_n40000LocationImage_GXI, H00422_A328LocationCity, H00422_A329LocationZipCode, H00422_A331LocationAddressLine2, H00422_A330LocationAddressLine1, H00422_A35LocationPhone,
+               H00422_A356LocationPhoneNumber, H00422_A34LocationEmail, H00422_A31LocationName, H00422_A494LocationImage, H00422_n494LocationImage
                }
             }
          );
@@ -2009,7 +2011,6 @@ namespace GeneXus.Programs {
       private string GXDecQS ;
       private string hsh ;
       private string Gx_mode ;
-      private string GXt_char2 ;
       private string sCtrlA29LocationId ;
       private string sCtrlA11OrganisationId ;
       private bool entryPointCalled ;
@@ -2020,6 +2021,8 @@ namespace GeneXus.Programs {
       private bool Rfr0gs ;
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
+      private bool n40000LocationImage_GXI ;
+      private bool n494LocationImage ;
       private bool returnInSub ;
       private string A36LocationDescription ;
       private string AV20LocationDescriptionVar ;
@@ -2054,6 +2057,7 @@ namespace GeneXus.Programs {
       private Guid[] H00422_A11OrganisationId ;
       private string[] H00422_A36LocationDescription ;
       private string[] H00422_A40000LocationImage_GXI ;
+      private bool[] H00422_n40000LocationImage_GXI ;
       private string[] H00422_A328LocationCity ;
       private string[] H00422_A329LocationZipCode ;
       private string[] H00422_A331LocationAddressLine2 ;
@@ -2063,6 +2067,7 @@ namespace GeneXus.Programs {
       private string[] H00422_A34LocationEmail ;
       private string[] H00422_A31LocationName ;
       private string[] H00422_A494LocationImage ;
+      private bool[] H00422_n494LocationImage ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV6WWPContext ;
       private GXBaseCollection<SdtSDT_FileUploadData> GXt_objcol_SdtSDT_FileUploadData1 ;
       private WorkWithPlus.workwithplus_commonobjects.SdtWWPTransactionContext AV8TrnContext ;
@@ -2107,15 +2112,17 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
                 ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
-                ((string[]) buf[5])[0] = rslt.getVarchar(6);
-                ((string[]) buf[6])[0] = rslt.getVarchar(7);
-                ((string[]) buf[7])[0] = rslt.getVarchar(8);
-                ((string[]) buf[8])[0] = rslt.getString(9, 20);
-                ((string[]) buf[9])[0] = rslt.getVarchar(10);
-                ((string[]) buf[10])[0] = rslt.getVarchar(11);
-                ((string[]) buf[11])[0] = rslt.getVarchar(12);
-                ((string[]) buf[12])[0] = rslt.getMultimediaFile(13, rslt.getVarchar(4));
+                ((bool[]) buf[4])[0] = rslt.wasNull(4);
+                ((string[]) buf[5])[0] = rslt.getVarchar(5);
+                ((string[]) buf[6])[0] = rslt.getVarchar(6);
+                ((string[]) buf[7])[0] = rslt.getVarchar(7);
+                ((string[]) buf[8])[0] = rslt.getVarchar(8);
+                ((string[]) buf[9])[0] = rslt.getString(9, 20);
+                ((string[]) buf[10])[0] = rslt.getVarchar(10);
+                ((string[]) buf[11])[0] = rslt.getVarchar(11);
+                ((string[]) buf[12])[0] = rslt.getVarchar(12);
+                ((string[]) buf[13])[0] = rslt.getMultimediaFile(13, rslt.getVarchar(4));
+                ((bool[]) buf[14])[0] = rslt.wasNull(13);
                 return;
        }
     }

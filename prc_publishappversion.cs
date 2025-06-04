@@ -133,9 +133,11 @@ namespace GeneXus.Programs {
                GXTBL4 = 0;
                A11OrganisationId = P00BL5_A11OrganisationId[0];
                A29LocationId = P00BL5_A29LocationId[0];
+               A584ActiveAppVersionId = P00BL5_A584ActiveAppVersionId[0];
+               n584ActiveAppVersionId = P00BL5_n584ActiveAppVersionId[0];
                A598PublishedActiveAppVersionId = P00BL5_A598PublishedActiveAppVersionId[0];
                n598PublishedActiveAppVersionId = P00BL5_n598PublishedActiveAppVersionId[0];
-               A598PublishedActiveAppVersionId = AV15AppVersionId;
+               A598PublishedActiveAppVersionId = A584ActiveAppVersionId;
                n598PublishedActiveAppVersionId = false;
                GXTBL4 = 1;
                /* Using cursor P00BL6 */
@@ -202,10 +204,13 @@ namespace GeneXus.Programs {
          AV32Udparg2 = Guid.Empty;
          P00BL5_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00BL5_A29LocationId = new Guid[] {Guid.Empty} ;
+         P00BL5_A584ActiveAppVersionId = new Guid[] {Guid.Empty} ;
+         P00BL5_n584ActiveAppVersionId = new bool[] {false} ;
          P00BL5_A598PublishedActiveAppVersionId = new Guid[] {Guid.Empty} ;
          P00BL5_n598PublishedActiveAppVersionId = new bool[] {false} ;
          A11OrganisationId = Guid.Empty;
          A29LocationId = Guid.Empty;
+         A584ActiveAppVersionId = Guid.Empty;
          A598PublishedActiveAppVersionId = Guid.Empty;
          AV27SDT_InfoPageTranslationCollection = new GXBaseCollection<SdtSDT_InfoPageTranslation>( context, "SDT_InfoPageTranslation", "Comforta_version2");
          GXt_objcol_SdtSDT_InfoPageTranslation1 = new GXBaseCollection<SdtSDT_InfoPageTranslation>( context, "SDT_InfoPageTranslation", "Comforta_version2");
@@ -231,7 +236,7 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               P00BL5_A11OrganisationId, P00BL5_A29LocationId, P00BL5_A598PublishedActiveAppVersionId, P00BL5_n598PublishedActiveAppVersionId
+               P00BL5_A11OrganisationId, P00BL5_A29LocationId, P00BL5_A584ActiveAppVersionId, P00BL5_n584ActiveAppVersionId, P00BL5_A598PublishedActiveAppVersionId, P00BL5_n598PublishedActiveAppVersionId
                }
                , new Object[] {
                }
@@ -243,6 +248,7 @@ namespace GeneXus.Programs {
       private short GXTBL3 ;
       private short GXTBL4 ;
       private bool AV18Notify ;
+      private bool n584ActiveAppVersionId ;
       private bool n598PublishedActiveAppVersionId ;
       private string A536PagePublishedStructure ;
       private string A518PageStructure ;
@@ -256,6 +262,7 @@ namespace GeneXus.Programs {
       private Guid AV32Udparg2 ;
       private Guid A11OrganisationId ;
       private Guid A29LocationId ;
+      private Guid A584ActiveAppVersionId ;
       private Guid A598PublishedActiveAppVersionId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
@@ -274,6 +281,8 @@ namespace GeneXus.Programs {
       private GxSimpleCollection<Guid> AV26PageIdCollection ;
       private Guid[] P00BL5_A11OrganisationId ;
       private Guid[] P00BL5_A29LocationId ;
+      private Guid[] P00BL5_A584ActiveAppVersionId ;
+      private bool[] P00BL5_n584ActiveAppVersionId ;
       private Guid[] P00BL5_A598PublishedActiveAppVersionId ;
       private bool[] P00BL5_n598PublishedActiveAppVersionId ;
       private GXBaseCollection<SdtSDT_InfoPageTranslation> AV27SDT_InfoPageTranslationCollection ;
@@ -396,7 +405,7 @@ public class prc_publishappversion__default : DataStoreHelperBase, IDataStoreHel
            new CursorDef("P00BL2", "SELECT AppVersionId FROM Trn_AppVersion WHERE AppVersionId = :AV15AppVersionId ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BL2,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("P00BL3", "SELECT AppVersionId, PagePublishedStructure, PageStructure, PageId, PageName FROM Trn_AppVersionPage WHERE (AppVersionId = :AppVersionId) AND (Not ( PageStructure = ( PagePublishedStructure))) ORDER BY AppVersionId  FOR UPDATE OF Trn_AppVersionPage",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BL3,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("P00BL4", "SAVEPOINT gxupdate;UPDATE Trn_AppVersionPage SET PagePublishedStructure=:PagePublishedStructure  WHERE AppVersionId = :AppVersionId AND PageId = :PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00BL4)
-          ,new CursorDef("P00BL5", "SELECT OrganisationId, LocationId, PublishedActiveAppVersionId FROM Trn_Location WHERE LocationId = :AV31Udparg1 and OrganisationId = :AV32Udparg2 ORDER BY LocationId, OrganisationId  FOR UPDATE OF Trn_Location",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BL5,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("P00BL5", "SELECT OrganisationId, LocationId, ActiveAppVersionId, PublishedActiveAppVersionId FROM Trn_Location WHERE LocationId = :AV31Udparg1 and OrganisationId = :AV32Udparg2 ORDER BY LocationId, OrganisationId  FOR UPDATE OF Trn_Location",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BL5,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("P00BL6", "SAVEPOINT gxupdate;UPDATE Trn_Location SET PublishedActiveAppVersionId=:PublishedActiveAppVersionId  WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00BL6)
        };
     }
@@ -423,6 +432,8 @@ public class prc_publishappversion__default : DataStoreHelperBase, IDataStoreHel
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
              ((bool[]) buf[3])[0] = rslt.wasNull(3);
+             ((Guid[]) buf[4])[0] = rslt.getGuid(4);
+             ((bool[]) buf[5])[0] = rslt.wasNull(4);
              return;
     }
  }

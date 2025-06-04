@@ -83,9 +83,15 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         AV14TranslatedValue = AV9DefaultValue;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13Language)) )
          {
             AV13Language = context.GetLanguage( );
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13Language)) )
+            {
+               cleanup();
+               if (true) return;
+            }
          }
          if ( StringUtil.StrCmp(AV13Language, "Dutch") == 0 )
          {
@@ -98,7 +104,6 @@ namespace GeneXus.Programs {
          else
          {
          }
-         AV14TranslatedValue = AV9DefaultValue;
          /* Using cursor P00ED2 */
          pr_default.execute(0, new Object[] {AV10DynamicTranslationPrimaryKey});
          while ( (pr_default.getStatus(0) != 101) )

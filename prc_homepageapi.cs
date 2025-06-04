@@ -98,6 +98,7 @@ namespace GeneXus.Programs {
             pr_default.readNext(0);
          }
          pr_default.close(0);
+         new prc_logtoserver(context ).execute(  ">>>>, "+AV23ResidentLanguage) ;
          /* Using cursor P00GB3 */
          pr_default.execute(1, new Object[] {AV8LocationId});
          while ( (pr_default.getStatus(1) != 101) )

@@ -194,7 +194,7 @@ wp_createneworganisationtype
 wp_createnewsupplieragbtype
 wp_createnewsuppliergentype
 trn_themeiconwc
-wp_notificationpanel
+wc_notificationpanel
 wwpbaseobjects\workwithplustoolboxmasterpage
 wp_residentdiscussion
 wp_residentdiscussion
@@ -400,6 +400,7 @@ gx0050
 gx0040
 general\ui\masterprompt
 general\ui\masterunanimosidebar
+aprc_copyappversiontolocation
 trn_environmentvariablewwgetfilterdata
 aprc_convertmenutoinfopage
 aprc_convertmenutoinfopage

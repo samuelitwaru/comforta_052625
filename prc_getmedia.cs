@@ -104,7 +104,6 @@ namespace GeneXus.Programs {
                AV15MediaPath = context.GetMessage( "media/", "") + A414MediaName;
                AV14File = new GxFile(context.GetPhysicalPath());
                AV14File.Source = context.GetMessage( "media/", "")+A414MediaName;
-               new prc_logtofile(context ).execute(  context.GetMessage( "Media: ", "")+AV15MediaPath+" "+StringUtil.BoolToStr( AV14File.Exists())) ;
                if ( AV14File.Exists() )
                {
                   AV9SDT_MediaCollection.Add(AV8SDT_Media, 0);
@@ -222,7 +221,7 @@ namespace GeneXus.Programs {
           new ParDef("AV17Udparg1",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P009M2", "SELECT LocationId, MediaImage_GXI, MediaId, MediaName, MediaSize, MediaType, MediaUrl, MediaDateTime, MediaImage FROM Trn_Media WHERE LocationId = :AV17Udparg1 ORDER BY MediaDateTime DESC ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009M2,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P009M2", "SELECT LocationId, MediaImage_GXI, MediaId, MediaName, MediaSize, MediaType, MediaUrl, MediaDateTime, MediaImage FROM Trn_Media WHERE LocationId = :AV17Udparg1 ORDER BY MediaDateTime DESC ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009M2,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
