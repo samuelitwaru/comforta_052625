@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250604145916"
+  version: "20250604171243"
 servers:
   - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
@@ -737,6 +737,51 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.InfoPageAPI"
       summary: "Pages API"
+      security: 
+        - oAuthGXGAM: []
+      parameters:
+        - name: "Pageid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Locationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Organisationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Userid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_InfoPage"  
+
+        404:
+          description: "Not found"
+
+  /toolbox/module-page:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.ModulePageAPI"
+      summary: "Pages Module API"
       security: 
         - oAuthGXGAM: []
       parameters:
@@ -2077,6 +2122,7 @@ components:
 
 
 
+
     GetSinglePageOutput:
       properties:
         SDT_Page:
@@ -2461,6 +2507,7 @@ components:
       properties:
         ProfileImageUrl:
           type: "string"
+
 
 
 
