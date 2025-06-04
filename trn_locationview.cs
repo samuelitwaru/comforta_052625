@@ -1112,6 +1112,7 @@ namespace GeneXus.Programs {
          {
             this.executeUsercontrolMethod("", false, "DDC_DISCUSSIONSContainer", "Open", "", new Object[] {});
          }
+         this.executeExternalObjectMethod("", false, "WWPActions", "Tabs_EditCaption", new Object[] {(string)divLayoutmaintable_Internalname,(string)"Tabs",(string)"Trn_Receptionist",new prc_getorganisationdefinition(context).executeUdp(  "Receptionists"),(bool)false,(string)""}, false);
       }
 
       protected void E15412( )
@@ -1380,7 +1381,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20256217495419", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202564107144", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1396,7 +1397,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_locationview.js", "?20256217495419", false, true);
+         context.AddJavascriptSource("trn_locationview.js", "?202564107144", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);

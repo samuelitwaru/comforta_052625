@@ -338,7 +338,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtResidentTypeName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtResidentTypeName_Internalname, context.GetMessage( "Resident Type", ""), "col-sm-6 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtResidentTypeName_Internalname, edtResidentTypeName_Caption, "col-sm-6 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -736,6 +736,14 @@ namespace GeneXus.Programs {
          AV11TrnContext.FromXml(AV12WebSession.Get("TrnContext"), null, "", "");
          edtResidentTypeId_Visible = 0;
          AssignProp("", false, edtResidentTypeId_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtResidentTypeId_Visible), 5, 0), true);
+         GXt_char1 = AV13ResidentTitle;
+         new prc_getorganisationdefinition(context ).execute(  "Resident", out  GXt_char1) ;
+         AV13ResidentTitle = GXt_char1;
+         AssignAttri("", false, "AV13ResidentTitle", AV13ResidentTitle);
+         edtResidentTypeName_Caption = AV13ResidentTitle+" "+context.GetMessage( "Type", "");
+         AssignProp("", false, edtResidentTypeName_Internalname, "Caption", edtResidentTypeName_Caption, true);
+         Form.Caption = AV13ResidentTitle+" "+context.GetMessage( "Type", "");
+         AssignProp("", false, "FORM", "Caption", Form.Caption, true);
       }
 
       protected void E120D2( )
@@ -1671,7 +1679,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20256217421974", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025641054891", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1687,7 +1695,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_residenttype.js", "?20256217421975", false, true);
+         context.AddJavascriptSource("trn_residenttype.js", "?2025641054891", false, true);
          /* End function include_jscripts */
       }
 
@@ -1730,6 +1738,7 @@ namespace GeneXus.Programs {
          bttBtntrn_enter_Visible = 1;
          edtResidentTypeName_Jsonclick = "";
          edtResidentTypeName_Enabled = 1;
+         edtResidentTypeName_Caption = context.GetMessage( "Resident Type", "");
          divLayoutmaintable_Class = "Table";
          context.GX_msglist.DisplayMode = 1;
          if ( context.isSpaRequest( ) )
@@ -1832,6 +1841,8 @@ namespace GeneXus.Programs {
          AV8WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV11TrnContext = new WorkWithPlus.workwithplus_commonobjects.SdtWWPTransactionContext(context);
          AV12WebSession = context.GetSession();
+         AV13ResidentTitle = "";
+         GXt_char1 = "";
          T000D4_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
          T000D4_n96ResidentTypeId = new bool[] {false} ;
          T000D4_A97ResidentTypeName = new string[] {""} ;
@@ -1941,6 +1952,7 @@ namespace GeneXus.Programs {
       private string grpUnnamedgroup1_Internalname ;
       private string divTablecontent_Internalname ;
       private string divTableattributes_Internalname ;
+      private string edtResidentTypeName_Caption ;
       private string TempTags ;
       private string edtResidentTypeName_Jsonclick ;
       private string bttBtntrn_enter_Internalname ;
@@ -1960,6 +1972,7 @@ namespace GeneXus.Programs {
       private string sEvtType ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
+      private string GXt_char1 ;
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
@@ -1971,6 +1984,7 @@ namespace GeneXus.Programs {
       private bool returnInSub ;
       private string Z97ResidentTypeName ;
       private string A97ResidentTypeName ;
+      private string AV13ResidentTitle ;
       private Guid wcpOAV7ResidentTypeId ;
       private Guid Z96ResidentTypeId ;
       private Guid AV7ResidentTypeId ;

@@ -931,6 +931,43 @@ namespace GeneXus.Programs {
             WebComp_Steptitles.componentprepare(new Object[] {(string)"W0012",(string)"",(string)AV20Pgmname+"_Data",(GXBaseCollection<WorkWithPlus.workwithplus_web.SdtWizardSteps_WizardStepsItem>)AV13WizardSteps,(string)AV12CurrentStepAux});
             WebComp_Steptitles.componentbind(new Object[] {(string)""+""+"",(string)"",(string)""});
          }
+         AV13WizardSteps = new GXBaseCollection<WorkWithPlus.workwithplus_web.SdtWizardSteps_WizardStepsItem>( context, "WizardStepsItem", "Comforta_version2");
+         AV13WizardSteps.Add(new WorkWithPlus.workwithplus_web.wwp_wizardgetstep(context).executeUdp(  "Step1",  context.GetMessage( "Location", ""),  " ",  false), 0);
+         AV13WizardSteps.Add(new WorkWithPlus.workwithplus_web.wwp_wizardgetstep(context).executeUdp(  "Step2",  new prc_getorganisationdefinition(context).executeUdp(  "Receptionists"),  " ",  false), 0);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11CurrentStep)) )
+         {
+            AV12CurrentStepAux = "Step1";
+            AssignAttri("", false, "AV12CurrentStepAux", AV12CurrentStepAux);
+            GxWebStd.gx_hidden_field( context, "gxhash_vCURRENTSTEPAUX", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12CurrentStepAux, "")), context));
+            AV7WebSession.Remove(AV20Pgmname+"_Data");
+         }
+         else
+         {
+            AV12CurrentStepAux = AV11CurrentStep;
+            AssignAttri("", false, "AV12CurrentStepAux", AV12CurrentStepAux);
+            GxWebStd.gx_hidden_field( context, "gxhash_vCURRENTSTEPAUX", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12CurrentStepAux, "")), context));
+         }
+         /* Execute user subroutine: 'LOADWIZARDSTEPWC' */
+         S112 ();
+         if (returnInSub) return;
+         /* Object Property */
+         if ( true )
+         {
+            bDynCreated_Steptitles = true;
+         }
+         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Steptitles_Component), StringUtil.Lower( "WWPBaseObjects.WizardStepsBulletWC")) != 0 )
+         {
+            WebComp_Steptitles = getWebComponent(GetType(), "GeneXus.Programs", "wwpbaseobjects.wizardstepsbulletwc", new Object[] {context} );
+            WebComp_Steptitles.ComponentInit();
+            WebComp_Steptitles.Name = "WWPBaseObjects.WizardStepsBulletWC";
+            WebComp_Steptitles_Component = "WWPBaseObjects.WizardStepsBulletWC";
+         }
+         if ( StringUtil.Len( WebComp_Steptitles_Component) != 0 )
+         {
+            WebComp_Steptitles.setjustcreated();
+            WebComp_Steptitles.componentprepare(new Object[] {(string)"W0012",(string)"",(string)AV20Pgmname+"_Data",(GXBaseCollection<WorkWithPlus.workwithplus_web.SdtWizardSteps_WizardStepsItem>)AV13WizardSteps,(string)AV12CurrentStepAux});
+            WebComp_Steptitles.componentbind(new Object[] {(string)""+""+"",(string)"",(string)""});
+         }
       }
 
       protected void S112( )
@@ -1095,7 +1132,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20256217511362", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202564107351", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1111,7 +1148,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_createlocationandreceptionist.js", "?20256217511362", false, true);
+         context.AddJavascriptSource("wp_createlocationandreceptionist.js", "?202564107351", false, true);
          /* End function include_jscripts */
       }
 
