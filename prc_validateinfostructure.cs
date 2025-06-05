@@ -76,7 +76,7 @@ namespace GeneXus.Programs {
                {
                   AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabuttonicon = AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctatype;
                }
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor))) )
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor))) || ( StringUtil.StrCmp(StringUtil.Trim( AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor), context.GetMessage( "CtaColorOne", "")) == 0 ) )
                {
                   AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor = context.GetMessage( "ctaColor1", "");
                }
