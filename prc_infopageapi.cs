@@ -184,7 +184,7 @@ namespace GeneXus.Programs {
                GXt_char1 = "";
                new prc_getthemecolorbyname(context ).execute(  AV15ThemeId,  AV14InfoContent.gxTpr_Ctaattributes.gxTpr_Ctacolor, out  GXt_char1) ;
                AV14InfoContent.gxTpr_Ctaattributes.gxTpr_Ctacolor = GXt_char1;
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV14InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor))) )
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV14InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor))) || ( StringUtil.StrCmp(StringUtil.Trim( AV14InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor), context.GetMessage( "CtaColorOne", "")) == 0 ) )
                {
                   AV14InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor = context.GetMessage( "ctaColor1", "");
                }
