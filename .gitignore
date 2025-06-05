@@ -1,5 +1,4 @@
 media/*
-!.gitignore
 !media/Calendar.png
 !media/LocationInfo.png
 !media/receptie-197@3x.png
