@@ -171,6 +171,15 @@ namespace GeneXus.Programs {
                                                       AV44SDT_InfoTileItemDutch = ((SdtSDT_InfoTile_SDT_InfoTileItem)AV43SDT_InfoContentItemDutch.gxTpr_Tiles.Item(AV68GXV11));
                                                       if ( StringUtil.StrCmp(AV44SDT_InfoTileItemDutch.gxTpr_Id, AV45SDT_InfoTileItemEnglish.gxTpr_Id) == 0 )
                                                       {
+                                                         AV44SDT_InfoTileItemDutch.gxTpr_Action = AV24SDT_InfoTileItem.gxTpr_Action;
+                                                         AV44SDT_InfoTileItemDutch.gxTpr_Align = AV24SDT_InfoTileItem.gxTpr_Align;
+                                                         AV44SDT_InfoTileItemDutch.gxTpr_Bgcolor = AV24SDT_InfoTileItem.gxTpr_Bgcolor;
+                                                         AV44SDT_InfoTileItemDutch.gxTpr_Bgimageurl = AV24SDT_InfoTileItem.gxTpr_Bgimageurl;
+                                                         AV44SDT_InfoTileItemDutch.gxTpr_Color = AV24SDT_InfoTileItem.gxTpr_Color;
+                                                         AV44SDT_InfoTileItemDutch.gxTpr_Icon = AV24SDT_InfoTileItem.gxTpr_Icon;
+                                                         AV44SDT_InfoTileItemDutch.gxTpr_Name = AV24SDT_InfoTileItem.gxTpr_Name;
+                                                         AV44SDT_InfoTileItemDutch.gxTpr_Opacity = AV24SDT_InfoTileItem.gxTpr_Opacity;
+                                                         AV44SDT_InfoTileItemDutch.gxTpr_Size = AV24SDT_InfoTileItem.gxTpr_Size;
                                                          if ( ! ( StringUtil.StrCmp(AV45SDT_InfoTileItemEnglish.gxTpr_Text, AV24SDT_InfoTileItem.gxTpr_Text) == 0 ) )
                                                          {
                                                             GXt_char1 = "";
@@ -235,6 +244,17 @@ namespace GeneXus.Programs {
                                     }
                                     else if ( StringUtil.StrCmp(AV22SDT_InfoContentItem.gxTpr_Infotype, "Cta") == 0 )
                                     {
+                                       AV43SDT_InfoContentItemDutch.gxTpr_Ctaattributes.gxTpr_Action = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Action;
+                                       AV43SDT_InfoContentItemDutch.gxTpr_Ctaattributes.gxTpr_Ctaaction = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctaaction;
+                                       AV43SDT_InfoContentItemDutch.gxTpr_Ctaattributes.gxTpr_Ctabgcolor = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctabgcolor;
+                                       AV43SDT_InfoContentItemDutch.gxTpr_Ctaattributes.gxTpr_Ctabuttonicon = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctabuttonicon;
+                                       AV43SDT_InfoContentItemDutch.gxTpr_Ctaattributes.gxTpr_Ctabuttonimgurl = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctabuttonimgurl;
+                                       AV43SDT_InfoContentItemDutch.gxTpr_Ctaattributes.gxTpr_Ctabuttontype = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctabuttontype;
+                                       AV43SDT_InfoContentItemDutch.gxTpr_Ctaattributes.gxTpr_Ctacolor = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctacolor;
+                                       AV43SDT_InfoContentItemDutch.gxTpr_Ctaattributes.gxTpr_Ctaconnectedsupplierid = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctaconnectedsupplierid;
+                                       AV43SDT_InfoContentItemDutch.gxTpr_Ctaattributes.gxTpr_Ctaid = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctaid;
+                                       AV43SDT_InfoContentItemDutch.gxTpr_Ctaattributes.gxTpr_Ctasupplierisconnected = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctasupplierisconnected;
+                                       AV43SDT_InfoContentItemDutch.gxTpr_Ctaattributes.gxTpr_Ctatype = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctatype;
                                        if ( ! ( StringUtil.StrCmp(AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctalabel, AV42SDT_InfoContentItemEnglish.gxTpr_Ctaattributes.gxTpr_Ctalabel) == 0 ) )
                                        {
                                           GXt_char1 = "";
@@ -244,7 +264,7 @@ namespace GeneXus.Programs {
                                     }
                                     else
                                     {
-                                       new prc_logtofile(context ).execute(  context.GetMessage( "Non translatable", "")) ;
+                                       AV43SDT_InfoContentItemDutch = AV22SDT_InfoContentItem;
                                     }
                                  }
                                  AV63GXV6 = (int)(AV63GXV6+1);
@@ -281,7 +301,6 @@ namespace GeneXus.Programs {
                         }
                         else
                         {
-                           new prc_logtofile(context ).execute(  context.GetMessage( "Non translatable", "")) ;
                         }
                         AV39SDT_InfoContentDutch.gxTpr_Infocontent.Add(AV22SDT_InfoContentItem, 0);
                      }
@@ -417,6 +436,15 @@ namespace GeneXus.Programs {
                                                       AV45SDT_InfoTileItemEnglish = ((SdtSDT_InfoTile_SDT_InfoTileItem)AV42SDT_InfoContentItemEnglish.gxTpr_Tiles.Item(AV87GXV30));
                                                       if ( StringUtil.StrCmp(AV45SDT_InfoTileItemEnglish.gxTpr_Id, AV44SDT_InfoTileItemDutch.gxTpr_Id) == 0 )
                                                       {
+                                                         AV45SDT_InfoTileItemEnglish.gxTpr_Action = AV24SDT_InfoTileItem.gxTpr_Action;
+                                                         AV45SDT_InfoTileItemEnglish.gxTpr_Align = AV24SDT_InfoTileItem.gxTpr_Align;
+                                                         AV45SDT_InfoTileItemEnglish.gxTpr_Bgcolor = AV24SDT_InfoTileItem.gxTpr_Bgcolor;
+                                                         AV45SDT_InfoTileItemEnglish.gxTpr_Bgimageurl = AV24SDT_InfoTileItem.gxTpr_Bgimageurl;
+                                                         AV45SDT_InfoTileItemEnglish.gxTpr_Color = AV24SDT_InfoTileItem.gxTpr_Color;
+                                                         AV45SDT_InfoTileItemEnglish.gxTpr_Icon = AV24SDT_InfoTileItem.gxTpr_Icon;
+                                                         AV45SDT_InfoTileItemEnglish.gxTpr_Name = AV24SDT_InfoTileItem.gxTpr_Name;
+                                                         AV45SDT_InfoTileItemEnglish.gxTpr_Opacity = AV24SDT_InfoTileItem.gxTpr_Opacity;
+                                                         AV45SDT_InfoTileItemEnglish.gxTpr_Size = AV24SDT_InfoTileItem.gxTpr_Size;
                                                          if ( ! ( StringUtil.StrCmp(AV44SDT_InfoTileItemDutch.gxTpr_Text, AV24SDT_InfoTileItem.gxTpr_Text) == 0 ) )
                                                          {
                                                             GXt_char1 = "";
@@ -481,6 +509,17 @@ namespace GeneXus.Programs {
                                     }
                                     else if ( StringUtil.StrCmp(AV22SDT_InfoContentItem.gxTpr_Infotype, "Cta") == 0 )
                                     {
+                                       AV42SDT_InfoContentItemEnglish.gxTpr_Ctaattributes.gxTpr_Action = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Action;
+                                       AV42SDT_InfoContentItemEnglish.gxTpr_Ctaattributes.gxTpr_Ctaaction = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctaaction;
+                                       AV42SDT_InfoContentItemEnglish.gxTpr_Ctaattributes.gxTpr_Ctabgcolor = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctabgcolor;
+                                       AV42SDT_InfoContentItemEnglish.gxTpr_Ctaattributes.gxTpr_Ctabuttonicon = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctabuttonicon;
+                                       AV42SDT_InfoContentItemEnglish.gxTpr_Ctaattributes.gxTpr_Ctabuttonimgurl = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctabuttonimgurl;
+                                       AV42SDT_InfoContentItemEnglish.gxTpr_Ctaattributes.gxTpr_Ctabuttontype = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctabuttontype;
+                                       AV42SDT_InfoContentItemEnglish.gxTpr_Ctaattributes.gxTpr_Ctacolor = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctacolor;
+                                       AV42SDT_InfoContentItemEnglish.gxTpr_Ctaattributes.gxTpr_Ctaconnectedsupplierid = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctaconnectedsupplierid;
+                                       AV42SDT_InfoContentItemEnglish.gxTpr_Ctaattributes.gxTpr_Ctaid = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctaid;
+                                       AV42SDT_InfoContentItemEnglish.gxTpr_Ctaattributes.gxTpr_Ctasupplierisconnected = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctasupplierisconnected;
+                                       AV42SDT_InfoContentItemEnglish.gxTpr_Ctaattributes.gxTpr_Ctatype = AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctatype;
                                        if ( ! ( StringUtil.StrCmp(AV22SDT_InfoContentItem.gxTpr_Ctaattributes.gxTpr_Ctalabel, AV43SDT_InfoContentItemDutch.gxTpr_Ctaattributes.gxTpr_Ctalabel) == 0 ) )
                                        {
                                           GXt_char1 = "";
@@ -490,7 +529,7 @@ namespace GeneXus.Programs {
                                     }
                                     else
                                     {
-                                       new prc_logtofile(context ).execute(  context.GetMessage( "Non translatable", "")) ;
+                                       AV42SDT_InfoContentItemEnglish = AV22SDT_InfoContentItem;
                                     }
                                  }
                                  AV82GXV25 = (int)(AV82GXV25+1);
@@ -527,7 +566,6 @@ namespace GeneXus.Programs {
                         }
                         else
                         {
-                           new prc_logtofile(context ).execute(  context.GetMessage( "Non translatable", "")) ;
                         }
                         AV38SDT_InfoContentEnglish.gxTpr_Infocontent.Add(AV22SDT_InfoContentItem, 0);
                      }

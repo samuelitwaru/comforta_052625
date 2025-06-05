@@ -105,7 +105,7 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV18GXLvl2 = 0;
+         AV19GXLvl2 = 0;
          /* Using cursor P009G2 */
          pr_default.execute(0, new Object[] {AV10WWPUserExtendedId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -114,7 +114,7 @@ namespace GeneXus.Programs {
             A29LocationId = P009G2_A29LocationId[0];
             A89ReceptionistId = P009G2_A89ReceptionistId[0];
             A11OrganisationId = P009G2_A11OrganisationId[0];
-            AV18GXLvl2 = 1;
+            AV19GXLvl2 = 1;
             AV12LocationId = A29LocationId;
             AV14isRecordFound = true;
             /* Exit For each command. Update data (if necessary), close cursors & exit. */
@@ -122,7 +122,7 @@ namespace GeneXus.Programs {
             pr_default.readNext(0);
          }
          pr_default.close(0);
-         if ( AV18GXLvl2 == 0 )
+         if ( AV19GXLvl2 == 0 )
          {
             AV14isRecordFound = false;
          }
@@ -141,7 +141,7 @@ namespace GeneXus.Programs {
             }
             pr_default.close(1);
          }
-         AV20GXLvl20 = 0;
+         AV21GXLvl20 = 0;
          /* Using cursor P009G4 */
          pr_default.execute(2, new Object[] {AV12LocationId});
          while ( (pr_default.getStatus(2) != 101) )
@@ -150,8 +150,9 @@ namespace GeneXus.Programs {
             A95ReceptionistGAMGUID = P009G4_A95ReceptionistGAMGUID[0];
             A89ReceptionistId = P009G4_A89ReceptionistId[0];
             A11OrganisationId = P009G4_A11OrganisationId[0];
-            AV20GXLvl20 = 1;
+            AV21GXLvl20 = 1;
             AV13LocationReceptionistsGUIDCollection.Add(A95ReceptionistGAMGUID, 0);
+            AV16SDT_ReceptionistToNotifyItem = new SdtSDT_ReceptionistToNotifiy_SDT_ReceptionistToNotifiyItem(context);
             AV16SDT_ReceptionistToNotifyItem.gxTpr_Receptionistid = A89ReceptionistId;
             AV16SDT_ReceptionistToNotifyItem.gxTpr_Receptionistguid = A95ReceptionistGAMGUID;
             AV17GAMUser.load( A95ReceptionistGAMGUID);
@@ -163,11 +164,10 @@ namespace GeneXus.Programs {
             pr_default.readNext(2);
          }
          pr_default.close(2);
-         if ( AV20GXLvl20 == 0 )
+         if ( AV21GXLvl20 == 0 )
          {
             AV15SDT_ReceptionistsToNotify.Clear();
          }
-         new prc_logtofile(context ).execute(  context.GetMessage( "Receptionists ------------------>", "")+AV15SDT_ReceptionistsToNotify.ToJSonString(false)) ;
          cleanup();
       }
 
@@ -222,8 +222,8 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private short AV18GXLvl2 ;
-      private short AV20GXLvl20 ;
+      private short AV19GXLvl2 ;
+      private short AV21GXLvl20 ;
       private string AV10WWPUserExtendedId ;
       private bool AV14isRecordFound ;
       private string A95ReceptionistGAMGUID ;

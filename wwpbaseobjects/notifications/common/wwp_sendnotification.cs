@@ -125,7 +125,6 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
                AV40GXV1 = (int)(AV40GXV1+1);
             }
          }
-         new prc_logtofile(context ).execute(  context.GetMessage( "Receptionists:", "")+AV30ReceptionistsToNotify.ToJSonString(false)) ;
          AV42Udparg1 = new GeneXus.Programs.wwpbaseobjects.wwp_getentitybyname(context).executeUdp(  AV18WWPEntityName);
          /* Using cursor P003K2 */
          pr_default.execute(0, new Object[] {AV42Udparg1, AV23WWPNotificationDefinitionName});
