@@ -36,31 +36,40 @@ namespace GeneXus.Programs {
          IsMain = false;
       }
 
-      public void execute( SdtSDT_InfoContent aP0_SDT_InfoContent ,
-                           SdtSDT_InfoContent aP1_SDT_InfoContent )
+      public void execute( string aP0_PageStructure ,
+                           out SdtSDT_InfoContent aP1_SDT_InfoContent )
       {
-         this.AV11SDT_InfoContent = aP0_SDT_InfoContent;
-         this.AV11SDT_InfoContent = aP1_SDT_InfoContent;
+         this.AV12PageStructure = aP0_PageStructure;
+         this.AV11SDT_InfoContent = new SdtSDT_InfoContent(context) ;
          initialize();
          ExecuteImpl();
+         aP1_SDT_InfoContent=this.AV11SDT_InfoContent;
       }
 
-      public void executeSubmit( SdtSDT_InfoContent aP0_SDT_InfoContent ,
-                                 SdtSDT_InfoContent aP1_SDT_InfoContent )
+      public SdtSDT_InfoContent executeUdp( string aP0_PageStructure )
       {
-         this.AV11SDT_InfoContent = aP0_SDT_InfoContent;
-         this.AV11SDT_InfoContent = aP1_SDT_InfoContent;
+         execute(aP0_PageStructure, out aP1_SDT_InfoContent);
+         return AV11SDT_InfoContent ;
+      }
+
+      public void executeSubmit( string aP0_PageStructure ,
+                                 out SdtSDT_InfoContent aP1_SDT_InfoContent )
+      {
+         this.AV12PageStructure = aP0_PageStructure;
+         this.AV11SDT_InfoContent = new SdtSDT_InfoContent(context) ;
          SubmitImpl();
+         aP1_SDT_InfoContent=this.AV11SDT_InfoContent;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV12GXV1 = 1;
-         while ( AV12GXV1 <= AV11SDT_InfoContent.gxTpr_Infocontent.Count )
+         AV11SDT_InfoContent.FromJSonString(AV12PageStructure, null);
+         AV13GXV1 = 1;
+         while ( AV13GXV1 <= AV11SDT_InfoContent.gxTpr_Infocontent.Count )
          {
-            AV9InfoContent = ((SdtSDT_InfoContent_InfoContentItem)AV11SDT_InfoContent.gxTpr_Infocontent.Item(AV12GXV1));
+            AV9InfoContent = ((SdtSDT_InfoContent_InfoContentItem)AV11SDT_InfoContent.gxTpr_Infocontent.Item(AV13GXV1));
             if ( StringUtil.StrCmp(AV9InfoContent.gxTpr_Infotype, "Cta") == 0 )
             {
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabuttonicon)) )
@@ -75,7 +84,7 @@ namespace GeneXus.Programs {
             else
             {
             }
-            AV12GXV1 = (int)(AV12GXV1+1);
+            AV13GXV1 = (int)(AV13GXV1+1);
          }
          cleanup();
       }
@@ -92,13 +101,16 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
+         AV11SDT_InfoContent = new SdtSDT_InfoContent(context);
          AV9InfoContent = new SdtSDT_InfoContent_InfoContentItem(context);
          /* GeneXus formulas. */
       }
 
-      private int AV12GXV1 ;
+      private int AV13GXV1 ;
+      private string AV12PageStructure ;
       private SdtSDT_InfoContent AV11SDT_InfoContent ;
       private SdtSDT_InfoContent_InfoContentItem AV9InfoContent ;
+      private SdtSDT_InfoContent aP1_SDT_InfoContent ;
    }
 
 }
