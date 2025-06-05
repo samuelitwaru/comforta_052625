@@ -76,6 +76,8 @@ namespace GeneXus.Programs {
             A274Trn_ThemeName = P009Y2_A274Trn_ThemeName[0];
             A273Trn_ThemeId = P009Y2_A273Trn_ThemeId[0];
             AV8ThemeId = A273Trn_ThemeId;
+            /* Exit For each command. Update data (if necessary), close cursors & exit. */
+            if (true) break;
             pr_default.readNext(0);
          }
          pr_default.close(0);
@@ -140,7 +142,7 @@ namespace GeneXus.Programs {
           prmP009Y2 = new Object[] {
           };
           def= new CursorDef[] {
-              new CursorDef("P009Y2", "SELECT Trn_ThemeName, Trn_ThemeId FROM Trn_Theme WHERE Trn_ThemeName = ( 'Minimalistic') ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Y2,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P009Y2", "SELECT Trn_ThemeName, Trn_ThemeId FROM Trn_Theme WHERE Trn_ThemeName = ( 'Minimalistic') ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Y2,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }
