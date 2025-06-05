@@ -8,3 +8,5 @@ CREATE TABLE copy_trn_appversionpage AS SELECT * FROM trn_appversionpage WHERE a
 
 pg_dump --file "/home/fountain6/trn_appversion.sql" --username "yukonadmin" --format=p --data-only --inserts --on-conflict-do-nothing --column-inserts --table "copy_trn_appversion" "comforta_staging";
 pg_dump --file "/home/fountain6/trn_appversionpage.sql" --username "yukonadmin" --format=p --data-only --inserts --on-conflict-do-nothing --column-inserts --table "copy_trn_appversionpage" "comforta_staging";
+
+
