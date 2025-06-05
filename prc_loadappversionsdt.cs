@@ -112,9 +112,7 @@ namespace GeneXus.Programs {
                   new prc_getdynamictranslation(context ).execute(  A516PageId,  "",  A518PageStructure, out  GXt_char1) ;
                   AV11PageStructure = GXt_char1;
                   AV16SDT_InfoContent.FromJSonString(AV11PageStructure, null);
-                  GXt_SdtSDT_InfoContent2 = new SdtSDT_InfoContent();
-                  new prc_validateinfostructure(context ).execute( ref  AV16SDT_InfoContent) ;
-                  AV10PageItem.gxTpr_Pageinfostructure = GXt_SdtSDT_InfoContent2;
+                  AV10PageItem.gxTpr_Pageinfostructure = AV16SDT_InfoContent;
                   AV11PageStructure = AV16SDT_InfoContent.ToJSonString(false, true);
                }
                else if ( ( StringUtil.StrCmp(AV10PageItem.gxTpr_Pagetype, "DynamicForm") == 0 ) || ( StringUtil.StrCmp(AV10PageItem.gxTpr_Pagetype, "WebLink") == 0 ) )
@@ -175,7 +173,6 @@ namespace GeneXus.Programs {
          AV14SDT_MenuPage = new SdtSDT_MenuPage(context);
          AV16SDT_InfoContent = new SdtSDT_InfoContent(context);
          GXt_char1 = "";
-         GXt_SdtSDT_InfoContent2 = new SdtSDT_InfoContent(context);
          AV17SDT_LinkPage = new SdtSDT_LinkPage(context);
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_loadappversionsdt__default(),
             new Object[][] {
@@ -223,7 +220,6 @@ namespace GeneXus.Programs {
       private SdtSDT_ContentPage AV13SDT_ContentPage ;
       private SdtSDT_MenuPage AV14SDT_MenuPage ;
       private SdtSDT_InfoContent AV16SDT_InfoContent ;
-      private SdtSDT_InfoContent GXt_SdtSDT_InfoContent2 ;
       private SdtSDT_LinkPage AV17SDT_LinkPage ;
       private SdtSDT_AppVersion aP1_SDT_AppVersion ;
    }

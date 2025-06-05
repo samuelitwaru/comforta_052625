@@ -36,25 +36,21 @@ namespace GeneXus.Programs {
          IsMain = false;
       }
 
-      public void execute( ref SdtSDT_InfoContent aP0_SDT_InfoContent )
+      public void execute( SdtSDT_InfoContent aP0_SDT_InfoContent ,
+                           SdtSDT_InfoContent aP1_SDT_InfoContent )
       {
          this.AV11SDT_InfoContent = aP0_SDT_InfoContent;
+         this.AV11SDT_InfoContent = aP1_SDT_InfoContent;
          initialize();
          ExecuteImpl();
-         aP0_SDT_InfoContent=this.AV11SDT_InfoContent;
       }
 
-      public SdtSDT_InfoContent executeUdp( )
-      {
-         execute(ref aP0_SDT_InfoContent);
-         return AV11SDT_InfoContent ;
-      }
-
-      public void executeSubmit( ref SdtSDT_InfoContent aP0_SDT_InfoContent )
+      public void executeSubmit( SdtSDT_InfoContent aP0_SDT_InfoContent ,
+                                 SdtSDT_InfoContent aP1_SDT_InfoContent )
       {
          this.AV11SDT_InfoContent = aP0_SDT_InfoContent;
+         this.AV11SDT_InfoContent = aP1_SDT_InfoContent;
          SubmitImpl();
-         aP0_SDT_InfoContent=this.AV11SDT_InfoContent;
       }
 
       protected override void ExecutePrivate( )
@@ -102,7 +98,6 @@ namespace GeneXus.Programs {
 
       private int AV12GXV1 ;
       private SdtSDT_InfoContent AV11SDT_InfoContent ;
-      private SdtSDT_InfoContent aP0_SDT_InfoContent ;
       private SdtSDT_InfoContent_InfoContentItem AV9InfoContent ;
    }
 
