@@ -109,6 +109,9 @@ namespace GeneXus.Programs {
          AV11BC_Trn_AppVersion.gxTpr_Locationid = AV10LocationId;
          AV11BC_Trn_AppVersion.gxTpr_Organisationid = AV13OrganisationId;
          AV11BC_Trn_AppVersion.gxTpr_Isactive = AV23IsActive;
+         GXt_guid1 = Guid.Empty;
+         new prc_getdefaulttheme(context ).execute( out  GXt_guid1) ;
+         AV11BC_Trn_AppVersion.gxTpr_Trn_themeid = GXt_guid1;
          /* Execute user subroutine: 'SAVEAPPVERSION' */
          S111 ();
          if ( returnInSub )
@@ -183,8 +186,8 @@ namespace GeneXus.Programs {
       {
          AV8SDT_AppVersion = new SdtSDT_AppVersion(context);
          AV9SDT_Error = new SdtSDT_Error(context);
-         GXt_guid1 = Guid.Empty;
          AV11BC_Trn_AppVersion = new SdtTrn_AppVersion(context);
+         GXt_guid1 = Guid.Empty;
          AV25BC_MyActivityPage = new SdtTrn_AppVersion_Page(context);
          AV24BC_CalendarPage = new SdtTrn_AppVersion_Page(context);
          AV26BC_MapsPage = new SdtTrn_AppVersion_Page(context);

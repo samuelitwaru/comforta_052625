@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250604171242"
+  version: "20250605075831"
 servers:
   - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -2647,6 +2647,18 @@ components:
           description: "Size"
           type: "number"
           format: "double"
+        BGSize:
+          description: "BGSize"
+          type: "string"
+        BGPosition:
+          description: "BGPosition"
+          type: "string"
+        Left:
+          description: "Left"
+          type: "string"
+        Top:
+          description: "Top"
+          type: "string"
         Action:
           $ref: "#/components/schemas/SDT_InfoTile.Action"
     SDT_InfoTile.Action:
