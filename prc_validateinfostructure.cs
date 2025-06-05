@@ -76,7 +76,7 @@ namespace GeneXus.Programs {
                {
                   AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabuttonicon = AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctatype;
                }
-               if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor))) || ( StringUtil.StrCmp(StringUtil.Trim( AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor), context.GetMessage( "CtaColorOne", "")) == 0 ) )
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor))) || ( StringUtil.StrCmp(StringUtil.Trim( AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor), context.GetMessage( "CtaColorOne", "")) == 0 ) || ( StringUtil.StrCmp(StringUtil.Trim( AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor), context.GetMessage( "CtaColorTwo", "")) == 0 ) || ( StringUtil.StrCmp(StringUtil.Trim( AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor), context.GetMessage( "CtaColorThree", "")) == 0 ) || ( StringUtil.StrCmp(StringUtil.Trim( AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor), context.GetMessage( "CtaColorFour", "")) == 0 ) || ( StringUtil.StrCmp(StringUtil.Trim( AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor), context.GetMessage( "CtaColorFive", "")) == 0 ) || ( StringUtil.StrCmp(StringUtil.Trim( AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor), context.GetMessage( "CtaColorSix", "")) == 0 ) )
                {
                   AV9InfoContent.gxTpr_Ctaattributes.gxTpr_Ctabgcolor = context.GetMessage( "ctaColor1", "");
                }
