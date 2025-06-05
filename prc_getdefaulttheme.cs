@@ -73,6 +73,7 @@ namespace GeneXus.Programs {
          pr_default.execute(0);
          while ( (pr_default.getStatus(0) != 101) )
          {
+            A274Trn_ThemeName = P009Y2_A274Trn_ThemeName[0];
             A273Trn_ThemeId = P009Y2_A273Trn_ThemeId[0];
             AV8ThemeId = A273Trn_ThemeId;
             pr_default.readNext(0);
@@ -94,24 +95,28 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV8ThemeId = Guid.Empty;
+         P009Y2_A274Trn_ThemeName = new string[] {""} ;
          P009Y2_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         A274Trn_ThemeName = "";
          A273Trn_ThemeId = Guid.Empty;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_getdefaulttheme__default(),
             new Object[][] {
                 new Object[] {
-               P009Y2_A273Trn_ThemeId
+               P009Y2_A274Trn_ThemeName, P009Y2_A273Trn_ThemeId
                }
             }
          );
          /* GeneXus formulas. */
       }
 
+      private string A274Trn_ThemeName ;
       private Guid AV8ThemeId ;
       private Guid A273Trn_ThemeId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
+      private string[] P009Y2_A274Trn_ThemeName ;
       private Guid[] P009Y2_A273Trn_ThemeId ;
       private Guid aP0_ThemeId ;
    }
@@ -135,7 +140,7 @@ namespace GeneXus.Programs {
           prmP009Y2 = new Object[] {
           };
           def= new CursorDef[] {
-              new CursorDef("P009Y2", "SELECT Trn_ThemeId FROM Trn_Theme ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Y2,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P009Y2", "SELECT Trn_ThemeName, Trn_ThemeId FROM Trn_Theme WHERE Trn_ThemeName = ( 'Minimalistic') ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Y2,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -147,7 +152,8 @@ namespace GeneXus.Programs {
        switch ( cursor )
        {
              case 0 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((string[]) buf[0])[0] = rslt.getVarchar(1);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 return;
        }
     }
