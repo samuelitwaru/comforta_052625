@@ -1668,7 +1668,7 @@ namespace GeneXus.Programs {
             AnyError = 1;
          }
          pr_default.close(25);
-         if ( ! ( ( StringUtil.StrCmp(A443IconCategory, "General") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Services") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Living") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Health") == 0 ) ) )
+         if ( ! ( ( StringUtil.StrCmp(A443IconCategory, "General") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Services") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Living") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Health") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Technical Services & Support") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Care & Wellbeing") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Services & Hospitality") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Community & Connection") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Communication & Media") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Building & Furnishing") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Mobility & Transport") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Real Estate & Rental") == 0 ) ) )
          {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Icon Category", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
@@ -3980,7 +3980,7 @@ public class trn_theme_bc__default : DataStoreHelperBase, IDataStoreHelper
        prmBC000Z27 = new Object[] {
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("IconName",GXType.VarChar,100,0) ,
-       new ParDef("IconCategory",GXType.VarChar,40,0) ,
+       new ParDef("IconCategory",GXType.VarChar,100,0) ,
        new ParDef("IconId",GXType.UniqueIdentifier,36,0)
        };
        Object[] prmBC000Z28;
@@ -3992,13 +3992,13 @@ public class trn_theme_bc__default : DataStoreHelperBase, IDataStoreHelper
        prmBC000Z29 = new Object[] {
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("IconId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("IconCategory",GXType.VarChar,40,0) ,
+       new ParDef("IconCategory",GXType.VarChar,100,0) ,
        new ParDef("IconName",GXType.VarChar,100,0) ,
        new ParDef("IconSVG",GXType.LongVarChar,2097152,0)
        };
        Object[] prmBC000Z30;
        prmBC000Z30 = new Object[] {
-       new ParDef("IconCategory",GXType.VarChar,40,0) ,
+       new ParDef("IconCategory",GXType.VarChar,100,0) ,
        new ParDef("IconName",GXType.VarChar,100,0) ,
        new ParDef("IconSVG",GXType.LongVarChar,2097152,0) ,
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,

@@ -713,7 +713,7 @@ public class prc_updatelocationthemesetting__default : DataStoreHelperBase, IDat
        new ParDef("IconId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("IconName",GXType.VarChar,100,0) ,
        new ParDef("IconSVG",GXType.LongVarChar,2097152,0) ,
-       new ParDef("IconCategory",GXType.VarChar,40,0)
+       new ParDef("IconCategory",GXType.VarChar,100,0)
        };
        Object[] prmP00D913;
        prmP00D913 = new Object[] {

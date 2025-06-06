@@ -3207,7 +3207,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
          pr_default.close(27);
-         if ( ! ( ( StringUtil.StrCmp(A443IconCategory, "General") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Services") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Living") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Health") == 0 ) ) )
+         if ( ! ( ( StringUtil.StrCmp(A443IconCategory, "General") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Services") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Living") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Health") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Technical Services & Support") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Care & Wellbeing") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Services & Hospitality") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Community & Connection") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Communication & Media") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Building & Furnishing") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Mobility & Transport") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Real Estate & Rental") == 0 ) ) )
          {
             GXCCtl = "ICONCATEGORY_" + sGXsfl_51_idx;
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Icon Category", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, GXCCtl);
@@ -4301,6 +4301,14 @@ namespace GeneXus.Programs {
             cmbIconCategory.addItem("Services", context.GetMessage( "Services", ""), 0);
             cmbIconCategory.addItem("Living", context.GetMessage( "Living", ""), 0);
             cmbIconCategory.addItem("Health", context.GetMessage( "Health", ""), 0);
+            cmbIconCategory.addItem("Technical Services & Support", context.GetMessage( "Technical Services & Support", ""), 0);
+            cmbIconCategory.addItem("Care & Wellbeing", context.GetMessage( "Care & Wellbeing", ""), 0);
+            cmbIconCategory.addItem("Services & Hospitality", context.GetMessage( "Services & Hospitality", ""), 0);
+            cmbIconCategory.addItem("Community & Connection", context.GetMessage( "Community & Connection", ""), 0);
+            cmbIconCategory.addItem("Communication & Media", context.GetMessage( "Communication & Media", ""), 0);
+            cmbIconCategory.addItem("Building & Furnishing", context.GetMessage( "Building & Furnishing", ""), 0);
+            cmbIconCategory.addItem("Mobility & Transport", context.GetMessage( "Mobility & Transport", ""), 0);
+            cmbIconCategory.addItem("Real Estate & Rental", context.GetMessage( "Real Estate & Rental", ""), 0);
             if ( cmbIconCategory.ItemCount > 0 )
             {
                A443IconCategory = cmbIconCategory.getValidValue(A443IconCategory);
@@ -4918,7 +4926,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025641334928", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025661424499", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -4934,7 +4942,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_theme.js", "?2025641334929", false, true);
+         context.AddJavascriptSource("trn_theme.js", "?20256614244910", false, true);
          /* End function include_jscripts */
       }
 
@@ -5239,6 +5247,14 @@ namespace GeneXus.Programs {
          cmbIconCategory.addItem("Services", context.GetMessage( "Services", ""), 0);
          cmbIconCategory.addItem("Living", context.GetMessage( "Living", ""), 0);
          cmbIconCategory.addItem("Health", context.GetMessage( "Health", ""), 0);
+         cmbIconCategory.addItem("Technical Services & Support", context.GetMessage( "Technical Services & Support", ""), 0);
+         cmbIconCategory.addItem("Care & Wellbeing", context.GetMessage( "Care & Wellbeing", ""), 0);
+         cmbIconCategory.addItem("Services & Hospitality", context.GetMessage( "Services & Hospitality", ""), 0);
+         cmbIconCategory.addItem("Community & Connection", context.GetMessage( "Community & Connection", ""), 0);
+         cmbIconCategory.addItem("Communication & Media", context.GetMessage( "Communication & Media", ""), 0);
+         cmbIconCategory.addItem("Building & Furnishing", context.GetMessage( "Building & Furnishing", ""), 0);
+         cmbIconCategory.addItem("Mobility & Transport", context.GetMessage( "Mobility & Transport", ""), 0);
+         cmbIconCategory.addItem("Real Estate & Rental", context.GetMessage( "Real Estate & Rental", ""), 0);
          if ( cmbIconCategory.ItemCount > 0 )
          {
             A443IconCategory = cmbIconCategory.getValidValue(A443IconCategory);
@@ -5312,7 +5328,7 @@ namespace GeneXus.Programs {
             GX_FocusControl = edtTrn_ThemeId_Internalname;
          }
          pr_default.close(42);
-         if ( ! ( ( StringUtil.StrCmp(A443IconCategory, "General") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Services") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Living") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Health") == 0 ) ) )
+         if ( ! ( ( StringUtil.StrCmp(A443IconCategory, "General") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Services") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Living") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Health") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Technical Services & Support") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Care & Wellbeing") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Services & Hospitality") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Community & Connection") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Communication & Media") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Building & Furnishing") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Mobility & Transport") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Real Estate & Rental") == 0 ) ) )
          {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Icon Category", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "ICONCATEGORY");
             AnyError = 1;
@@ -6366,7 +6382,7 @@ public class trn_theme__default : DataStoreHelperBase, IDataStoreHelper
        prmT000Z29 = new Object[] {
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("IconName",GXType.VarChar,100,0) ,
-       new ParDef("IconCategory",GXType.VarChar,40,0) ,
+       new ParDef("IconCategory",GXType.VarChar,100,0) ,
        new ParDef("IconId",GXType.UniqueIdentifier,36,0)
        };
        Object[] prmT000Z30;
@@ -6378,13 +6394,13 @@ public class trn_theme__default : DataStoreHelperBase, IDataStoreHelper
        prmT000Z31 = new Object[] {
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("IconId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("IconCategory",GXType.VarChar,40,0) ,
+       new ParDef("IconCategory",GXType.VarChar,100,0) ,
        new ParDef("IconName",GXType.VarChar,100,0) ,
        new ParDef("IconSVG",GXType.LongVarChar,2097152,0)
        };
        Object[] prmT000Z32;
        prmT000Z32 = new Object[] {
-       new ParDef("IconCategory",GXType.VarChar,40,0) ,
+       new ParDef("IconCategory",GXType.VarChar,100,0) ,
        new ParDef("IconName",GXType.VarChar,100,0) ,
        new ParDef("IconSVG",GXType.LongVarChar,2097152,0) ,
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
@@ -6455,7 +6471,7 @@ public class trn_theme__default : DataStoreHelperBase, IDataStoreHelper
        prmT000Z44 = new Object[] {
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("IconName",GXType.VarChar,100,0) ,
-       new ParDef("IconCategory",GXType.VarChar,40,0) ,
+       new ParDef("IconCategory",GXType.VarChar,100,0) ,
        new ParDef("IconId",GXType.UniqueIdentifier,36,0)
        };
        Object[] prmT000Z45;

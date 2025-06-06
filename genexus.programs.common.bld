@@ -66,10 +66,6 @@ type_SdtTrn_SupplierGen.cs
 type_SdtTrn_Location.cs
 type_SdtTrn_AgendaCalendar.cs
 type_SdtTrn_Receptionist.cs
-type_SdtTrn_Theme.cs
-type_SdtTrn_Theme_Color.cs
-type_SdtTrn_Theme_CtaColor.cs
-type_SdtTrn_Theme_Icon.cs
 type_SdtTrn_Resident.cs
 type_SdtTrn_LocationDynamicForm.cs
 type_SdtTrn_Page.cs
@@ -77,6 +73,10 @@ type_SdtTrn_AppVersion.cs
 type_SdtTrn_AppVersion_Page.cs
 type_SdtTrn_ResidentPackage.cs
 type_SdtTrn_ProductService.cs
+type_SdtTrn_Theme.cs
+type_SdtTrn_Theme_Color.cs
+type_SdtTrn_Theme_CtaColor.cs
+type_SdtTrn_Theme_Icon.cs
 type_SdtQRCodeLibrary.cs
 type_SdtEO_Base64Image.cs
 type_SdtRandomStringGenerator.cs

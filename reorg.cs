@@ -60,17 +60,11 @@ namespace GeneXus.Programs {
          /* Load data into tables. */
       }
 
-      public void ReorganizeTrn_Location( )
+      public void ReorganizeTrn_ThemeIcon( )
       {
          string cmdBuffer = "";
-         /* Indices for table Trn_Location */
-         cmdBuffer=" ALTER TABLE Trn_Location ALTER COLUMN LocationImage DROP NOT NULL "
-         ;
-         RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
-         RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
-         RGZ.ExecuteStmt() ;
-         RGZ.Drop();
-         cmdBuffer=" ALTER TABLE Trn_Location ALTER COLUMN LocationImage_GXI DROP NOT NULL "
+         /* Indices for table Trn_ThemeIcon */
+         cmdBuffer=" ALTER TABLE Trn_ThemeIcon ALTER COLUMN IconCategory TYPE VARCHAR(100)  "
          ;
          RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
          RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
@@ -84,9 +78,9 @@ namespace GeneXus.Programs {
          {
             /* Using cursor P00012 */
             pr_default.execute(0);
-            Trn_LocationCount = P00012_ATrn_LocationCount[0];
+            Trn_ThemeIconCount = P00012_ATrn_ThemeIconCount[0];
             pr_default.close(0);
-            PrintRecordCount ( "Trn_Location" ,  Trn_LocationCount );
+            PrintRecordCount ( "Trn_ThemeIcon" ,  Trn_ThemeIconCount );
          }
       }
 
@@ -102,7 +96,7 @@ namespace GeneXus.Programs {
 
       private void ExecuteOnlyTablesReorganization( )
       {
-         ReorgExecute.RegisterBlockForSubmit( 1 ,  "ReorganizeTrn_Location" , new Object[]{ });
+         ReorgExecute.RegisterBlockForSubmit( 1 ,  "ReorganizeTrn_ThemeIcon" , new Object[]{ });
       }
 
       private void ExecuteOnlyRisReorganization( )
@@ -124,7 +118,7 @@ namespace GeneXus.Programs {
 
       private void SetPrecedencetables( )
       {
-         GXReorganization.SetMsg( 1 ,  GXResourceManager.GetMessage("GXM_fileupdate", new   object[]  {"Trn_Location", ""}) );
+         GXReorganization.SetMsg( 1 ,  GXResourceManager.GetMessage("GXM_fileupdate", new   object[]  {"Trn_ThemeIcon", ""}) );
       }
 
       private void SetPrecedenceris( )
@@ -157,12 +151,12 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         P00012_ATrn_LocationCount = new int[1] ;
+         P00012_ATrn_ThemeIconCount = new int[1] ;
          sSchemaVar = "";
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.reorg__default(),
             new Object[][] {
                 new Object[] {
-               P00012_ATrn_LocationCount
+               P00012_ATrn_ThemeIconCount
                }
             }
          );
@@ -170,14 +164,14 @@ namespace GeneXus.Programs {
       }
 
       protected short ErrCode ;
-      protected int Trn_LocationCount ;
+      protected int Trn_ThemeIconCount ;
       protected string sSchemaVar ;
       protected IGxDataStore dsDataStore1 ;
       protected IGxDataStore dsGAM ;
       protected IGxDataStore dsDefault ;
       protected GxCommand RGZ ;
       protected IDataStoreProvider pr_default ;
-      protected int[] P00012_ATrn_LocationCount ;
+      protected int[] P00012_ATrn_ThemeIconCount ;
    }
 
    public class reorg__default : DataStoreHelperBase, IDataStoreHelper
@@ -199,7 +193,7 @@ namespace GeneXus.Programs {
           prmP00012 = new Object[] {
           };
           def= new CursorDef[] {
-              new CursorDef("P00012", "SELECT COUNT(*) FROM Trn_Location ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00012,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P00012", "SELECT COUNT(*) FROM Trn_ThemeIcon ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00012,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }

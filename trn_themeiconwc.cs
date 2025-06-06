@@ -1840,7 +1840,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025641334113", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025661424371", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1856,7 +1856,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_themeiconwc.js", "?2025641334113", false, true);
+         context.AddJavascriptSource("trn_themeiconwc.js", "?2025661424371", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DVPaginationBar/DVPaginationBarRender.js", "", false, true);
@@ -1970,6 +1970,14 @@ namespace GeneXus.Programs {
                cmbIconCategory.addItem("Services", context.GetMessage( "Services", ""), 0);
                cmbIconCategory.addItem("Living", context.GetMessage( "Living", ""), 0);
                cmbIconCategory.addItem("Health", context.GetMessage( "Health", ""), 0);
+               cmbIconCategory.addItem("Technical Services & Support", context.GetMessage( "Technical Services & Support", ""), 0);
+               cmbIconCategory.addItem("Care & Wellbeing", context.GetMessage( "Care & Wellbeing", ""), 0);
+               cmbIconCategory.addItem("Services & Hospitality", context.GetMessage( "Services & Hospitality", ""), 0);
+               cmbIconCategory.addItem("Community & Connection", context.GetMessage( "Community & Connection", ""), 0);
+               cmbIconCategory.addItem("Communication & Media", context.GetMessage( "Communication & Media", ""), 0);
+               cmbIconCategory.addItem("Building & Furnishing", context.GetMessage( "Building & Furnishing", ""), 0);
+               cmbIconCategory.addItem("Mobility & Transport", context.GetMessage( "Mobility & Transport", ""), 0);
+               cmbIconCategory.addItem("Real Estate & Rental", context.GetMessage( "Real Estate & Rental", ""), 0);
                if ( cmbIconCategory.ItemCount > 0 )
                {
                   A443IconCategory = cmbIconCategory.getValidValue(A443IconCategory);
@@ -2013,6 +2021,14 @@ namespace GeneXus.Programs {
          cmbIconCategory.addItem("Services", context.GetMessage( "Services", ""), 0);
          cmbIconCategory.addItem("Living", context.GetMessage( "Living", ""), 0);
          cmbIconCategory.addItem("Health", context.GetMessage( "Health", ""), 0);
+         cmbIconCategory.addItem("Technical Services & Support", context.GetMessage( "Technical Services & Support", ""), 0);
+         cmbIconCategory.addItem("Care & Wellbeing", context.GetMessage( "Care & Wellbeing", ""), 0);
+         cmbIconCategory.addItem("Services & Hospitality", context.GetMessage( "Services & Hospitality", ""), 0);
+         cmbIconCategory.addItem("Community & Connection", context.GetMessage( "Community & Connection", ""), 0);
+         cmbIconCategory.addItem("Communication & Media", context.GetMessage( "Communication & Media", ""), 0);
+         cmbIconCategory.addItem("Building & Furnishing", context.GetMessage( "Building & Furnishing", ""), 0);
+         cmbIconCategory.addItem("Mobility & Transport", context.GetMessage( "Mobility & Transport", ""), 0);
+         cmbIconCategory.addItem("Real Estate & Rental", context.GetMessage( "Real Estate & Rental", ""), 0);
          if ( cmbIconCategory.ItemCount > 0 )
          {
          }

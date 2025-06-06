@@ -654,7 +654,7 @@ public class prc_updateorganisationthemesetting__default : DataStoreHelperBase, 
        new ParDef("IconId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("IconName",GXType.VarChar,100,0) ,
        new ParDef("IconSVG",GXType.LongVarChar,2097152,0) ,
-       new ParDef("IconCategory",GXType.VarChar,40,0)
+       new ParDef("IconCategory",GXType.VarChar,100,0)
        };
        Object[] prmP00C411;
        prmP00C411 = new Object[] {
