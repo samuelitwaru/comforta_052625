@@ -54,6 +54,8 @@ namespace GeneXus.Programs
 
 			gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Top = "";
 
+			gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Originalimageurl = "";
+
 		}
 
 		public SdtSDT_InfoTile_SDT_InfoTileItem(IGxContext context)
@@ -121,6 +123,9 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("Top", gxTpr_Top, false);
+
+
+			AddObjectProperty("OriginalImageUrl", gxTpr_Originalimageurl, false);
 
 			if (gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Action != null)
 			{
@@ -364,6 +369,22 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="OriginalImageUrl")]
+		[XmlElement(ElementName="OriginalImageUrl")]
+		public string gxTpr_Originalimageurl
+		{
+			get {
+				return gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Originalimageurl; 
+			}
+			set {
+				gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Originalimageurl = value;
+				SetDirty("Originalimageurl");
+			}
+		}
+
+
+
 		[SoapElement(ElementName="Action" )]
 		[XmlElement(ElementName="Action" )]
 		public SdtSDT_InfoTile_SDT_InfoTileItem_Action gxTpr_Action
@@ -436,6 +457,7 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Bgposition = "";
 			gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Left = "";
 			gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Top = "";
+			gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Originalimageurl = "";
 
 			gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Action_N = true;
 
@@ -488,6 +510,9 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Top;
+		 
+
+		protected string gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Originalimageurl;
 		 
 		protected bool gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Action_N;
 		protected SdtSDT_InfoTile_SDT_InfoTileItem_Action gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Action = null; 
@@ -678,7 +703,19 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="Action", Order=14, EmitDefaultValue=false)]
+		[DataMember(Name="OriginalImageUrl", Order=14)]
+		public  string gxTpr_Originalimageurl
+		{
+			get { 
+				return sdt.gxTpr_Originalimageurl;
+
+			}
+			set { 
+				 sdt.gxTpr_Originalimageurl = value;
+			}
+		}
+
+		[DataMember(Name="Action", Order=15, EmitDefaultValue=false)]
 		public SdtSDT_InfoTile_SDT_InfoTileItem_Action_RESTInterface gxTpr_Action
 		{
 			get {

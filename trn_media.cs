@@ -527,10 +527,12 @@ namespace GeneXus.Programs {
                n618MediaDateTime = ((DateTime.MinValue==A618MediaDateTime) ? true : false);
                Z416MediaUrl = cgiGet( "Z416MediaUrl");
                Z29LocationId = StringUtil.StrToGuid( cgiGet( "Z29LocationId"));
+               Z637IsCropped = StringUtil.StrToBool( cgiGet( "Z637IsCropped"));
                A618MediaDateTime = context.localUtil.CToT( cgiGet( "Z618MediaDateTime"), 0);
                n618MediaDateTime = false;
                n618MediaDateTime = ((DateTime.MinValue==A618MediaDateTime) ? true : false);
                A29LocationId = StringUtil.StrToGuid( cgiGet( "Z29LocationId"));
+               A637IsCropped = StringUtil.StrToBool( cgiGet( "Z637IsCropped"));
                IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Gx_mode = cgiGet( "Mode");
@@ -541,6 +543,7 @@ namespace GeneXus.Programs {
                n618MediaDateTime = ((DateTime.MinValue==A618MediaDateTime) ? true : false);
                A40000MediaImage_GXI = cgiGet( "MEDIAIMAGE_GXI");
                n40000MediaImage_GXI = (String.IsNullOrEmpty(StringUtil.RTrim( A40000MediaImage_GXI))&&String.IsNullOrEmpty(StringUtil.RTrim( A415MediaImage)) ? true : false);
+               A637IsCropped = StringUtil.StrToBool( cgiGet( "ISCROPPED"));
                /* Read variables values. */
                if ( StringUtil.StrCmp(cgiGet( edtMediaId_Internalname), "") == 0 )
                {
@@ -599,6 +602,7 @@ namespace GeneXus.Programs {
                forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
                forbiddenHiddens.Add("MediaDateTime", context.localUtil.Format( A618MediaDateTime, "99/99/99 99:99"));
                forbiddenHiddens.Add("LocationId", A29LocationId.ToString());
+               forbiddenHiddens.Add("IsCropped", StringUtil.BoolToStr( A637IsCropped));
                hsh = cgiGet( "hsh");
                if ( ( ! ( ( A413MediaId != Z413MediaId ) ) || ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) ) && ! GXUtil.CheckEncryptedHash( forbiddenHiddens.ToString(), hsh, GXKey) )
                {
@@ -880,6 +884,7 @@ namespace GeneXus.Programs {
                Z618MediaDateTime = T00103_A618MediaDateTime[0];
                Z416MediaUrl = T00103_A416MediaUrl[0];
                Z29LocationId = T00103_A29LocationId[0];
+               Z637IsCropped = T00103_A637IsCropped[0];
             }
             else
             {
@@ -889,6 +894,7 @@ namespace GeneXus.Programs {
                Z618MediaDateTime = A618MediaDateTime;
                Z416MediaUrl = A416MediaUrl;
                Z29LocationId = A29LocationId;
+               Z637IsCropped = A637IsCropped;
             }
          }
          if ( GX_JID == -8 )
@@ -902,6 +908,7 @@ namespace GeneXus.Programs {
             Z618MediaDateTime = A618MediaDateTime;
             Z416MediaUrl = A416MediaUrl;
             Z29LocationId = A29LocationId;
+            Z637IsCropped = A637IsCropped;
          }
       }
 
@@ -991,6 +998,7 @@ namespace GeneXus.Programs {
             A416MediaUrl = T00104_A416MediaUrl[0];
             AssignAttri("", false, "A416MediaUrl", A416MediaUrl);
             A29LocationId = T00104_A29LocationId[0];
+            A637IsCropped = T00104_A637IsCropped[0];
             A415MediaImage = T00104_A415MediaImage[0];
             n415MediaImage = T00104_n415MediaImage[0];
             AssignAttri("", false, "A415MediaImage", A415MediaImage);
@@ -1068,6 +1076,7 @@ namespace GeneXus.Programs {
             A416MediaUrl = T00103_A416MediaUrl[0];
             AssignAttri("", false, "A416MediaUrl", A416MediaUrl);
             A29LocationId = T00103_A29LocationId[0];
+            A637IsCropped = T00103_A637IsCropped[0];
             A415MediaImage = T00103_A415MediaImage[0];
             n415MediaImage = T00103_n415MediaImage[0];
             AssignAttri("", false, "A415MediaImage", A415MediaImage);
@@ -1286,7 +1295,7 @@ namespace GeneXus.Programs {
             {
                Gx_longc = true;
             }
-            if ( Gx_longc || ( Z29LocationId != T00102_A29LocationId[0] ) )
+            if ( Gx_longc || ( Z29LocationId != T00102_A29LocationId[0] ) || ( Z637IsCropped != T00102_A637IsCropped[0] ) )
             {
                if ( StringUtil.StrCmp(Z414MediaName, T00102_A414MediaName[0]) != 0 )
                {
@@ -1324,6 +1333,12 @@ namespace GeneXus.Programs {
                   GXUtil.WriteLogRaw("Old: ",Z29LocationId);
                   GXUtil.WriteLogRaw("Current: ",T00102_A29LocationId[0]);
                }
+               if ( Z637IsCropped != T00102_A637IsCropped[0] )
+               {
+                  GXUtil.WriteLog("trn_media:[seudo value changed for attri]"+"IsCropped");
+                  GXUtil.WriteLogRaw("Old: ",Z637IsCropped);
+                  GXUtil.WriteLogRaw("Current: ",T00102_A637IsCropped[0]);
+               }
                GX_msglist.addItem(context.GetMessage( "GXM_waschg", new   object[]  {"Trn_Media"}), "RecordWasChanged", 1, "");
                AnyError = 1;
                return  ;
@@ -1357,7 +1372,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor T00108 */
-                     pr_default.execute(6, new Object[] {A413MediaId, A414MediaName, n415MediaImage, A415MediaImage, n40000MediaImage_GXI, A40000MediaImage_GXI, A417MediaSize, A418MediaType, n618MediaDateTime, A618MediaDateTime, A416MediaUrl, A29LocationId});
+                     pr_default.execute(6, new Object[] {A413MediaId, A414MediaName, n415MediaImage, A415MediaImage, n40000MediaImage_GXI, A40000MediaImage_GXI, A417MediaSize, A418MediaType, n618MediaDateTime, A618MediaDateTime, A416MediaUrl, A29LocationId, A637IsCropped});
                      pr_default.close(6);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Media");
                      if ( (pr_default.getStatus(6) == 1) )
@@ -1422,7 +1437,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor T00109 */
-                     pr_default.execute(7, new Object[] {A414MediaName, A417MediaSize, A418MediaType, n618MediaDateTime, A618MediaDateTime, A416MediaUrl, A29LocationId, A413MediaId});
+                     pr_default.execute(7, new Object[] {A414MediaName, A417MediaSize, A418MediaType, n618MediaDateTime, A618MediaDateTime, A416MediaUrl, A29LocationId, A637IsCropped, A413MediaId});
                      pr_default.close(7);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Media");
                      if ( (pr_default.getStatus(7) == 103) )
@@ -1738,6 +1753,7 @@ namespace GeneXus.Programs {
          forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
          forbiddenHiddens.Add("MediaDateTime", context.localUtil.Format( A618MediaDateTime, "99/99/99 99:99"));
          forbiddenHiddens.Add("LocationId", A29LocationId.ToString());
+         forbiddenHiddens.Add("IsCropped", StringUtil.BoolToStr( A637IsCropped));
          GxWebStd.gx_hidden_field( context, "hsh", GetEncryptedHash( forbiddenHiddens.ToString(), GXKey));
          GXUtil.WriteLogInfo("trn_media:[ SendSecurityCheck value for]"+forbiddenHiddens.ToJSonString());
       }
@@ -1754,6 +1770,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "Z618MediaDateTime", context.localUtil.TToC( Z618MediaDateTime, 10, 8, 0, 0, "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "Z416MediaUrl", Z416MediaUrl);
          GxWebStd.gx_hidden_field( context, "Z29LocationId", Z29LocationId.ToString());
+         GxWebStd.gx_boolean_hidden_field( context, "Z637IsCropped", Z637IsCropped);
          GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
@@ -1775,6 +1792,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "LOCATIONID", A29LocationId.ToString());
          GxWebStd.gx_hidden_field( context, "MEDIADATETIME", context.localUtil.TToC( A618MediaDateTime, 10, 8, 0, 0, "/", ":", " "));
          GxWebStd.gx_hidden_field( context, "MEDIAIMAGE_GXI", A40000MediaImage_GXI);
+         GxWebStd.gx_boolean_hidden_field( context, "ISCROPPED", A637IsCropped);
          GXCCtlgxBlob = "MEDIAIMAGE" + "_gxBlob";
          GxWebStd.gx_hidden_field( context, GXCCtlgxBlob, A415MediaImage);
       }
@@ -1880,6 +1898,8 @@ namespace GeneXus.Programs {
          AssignAttri("", false, "A418MediaType", A418MediaType);
          A416MediaUrl = "";
          AssignAttri("", false, "A416MediaUrl", A416MediaUrl);
+         A637IsCropped = false;
+         AssignAttri("", false, "A637IsCropped", A637IsCropped);
          A618MediaDateTime = DateTimeUtil.Now( context);
          n618MediaDateTime = false;
          AssignAttri("", false, "A618MediaDateTime", context.localUtil.TToC( A618MediaDateTime, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
@@ -1891,6 +1911,7 @@ namespace GeneXus.Programs {
          Z618MediaDateTime = (DateTime)(DateTime.MinValue);
          Z416MediaUrl = "";
          Z29LocationId = Guid.Empty;
+         Z637IsCropped = false;
       }
 
       protected void InitAll1076( )
@@ -1920,7 +1941,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202564133552", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025661795042", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1936,7 +1957,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_media.js", "?202564133554", false, true);
+         context.AddJavascriptSource("trn_media.js", "?2025661795043", false, true);
          /* End function include_jscripts */
       }
 
@@ -2034,7 +2055,7 @@ namespace GeneXus.Programs {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("ENTER","""{"handler":"UserMainFullajax","iparms":[{"postForm":true},{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV13MediaId","fld":"vMEDIAID","hsh":true}]}""");
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV13MediaId","fld":"vMEDIAID","hsh":true},{"av":"A618MediaDateTime","fld":"MEDIADATETIME","pic":"99/99/99 99:99"},{"av":"A29LocationId","fld":"LOCATIONID"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV13MediaId","fld":"vMEDIAID","hsh":true},{"av":"A618MediaDateTime","fld":"MEDIADATETIME","pic":"99/99/99 99:99"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A637IsCropped","fld":"ISCROPPED"}]}""");
          setEventMetadata("AFTER TRN","""{"handler":"E12102","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true}]}""");
          setEventMetadata("VALID_MEDIAID","""{"handler":"Valid_Mediaid","iparms":[]}""");
          setEventMetadata("VALID_MEDIAURL","""{"handler":"Valid_Mediaurl","iparms":[]}""");
@@ -2113,6 +2134,7 @@ namespace GeneXus.Programs {
          T00104_n618MediaDateTime = new bool[] {false} ;
          T00104_A416MediaUrl = new string[] {""} ;
          T00104_A29LocationId = new Guid[] {Guid.Empty} ;
+         T00104_A637IsCropped = new bool[] {false} ;
          T00104_A415MediaImage = new string[] {""} ;
          T00104_n415MediaImage = new bool[] {false} ;
          T00105_A413MediaId = new Guid[] {Guid.Empty} ;
@@ -2126,6 +2148,7 @@ namespace GeneXus.Programs {
          T00103_n618MediaDateTime = new bool[] {false} ;
          T00103_A416MediaUrl = new string[] {""} ;
          T00103_A29LocationId = new Guid[] {Guid.Empty} ;
+         T00103_A637IsCropped = new bool[] {false} ;
          T00103_A415MediaImage = new string[] {""} ;
          T00103_n415MediaImage = new bool[] {false} ;
          T00106_A413MediaId = new Guid[] {Guid.Empty} ;
@@ -2140,6 +2163,7 @@ namespace GeneXus.Programs {
          T00102_n618MediaDateTime = new bool[] {false} ;
          T00102_A416MediaUrl = new string[] {""} ;
          T00102_A29LocationId = new Guid[] {Guid.Empty} ;
+         T00102_A637IsCropped = new bool[] {false} ;
          T00102_A415MediaImage = new string[] {""} ;
          T00102_n415MediaImage = new bool[] {false} ;
          T001012_A413MediaId = new Guid[] {Guid.Empty} ;
@@ -2162,15 +2186,15 @@ namespace GeneXus.Programs {
             new Object[][] {
                 new Object[] {
                T00102_A413MediaId, T00102_A414MediaName, T00102_A40000MediaImage_GXI, T00102_n40000MediaImage_GXI, T00102_A417MediaSize, T00102_A418MediaType, T00102_A618MediaDateTime, T00102_n618MediaDateTime, T00102_A416MediaUrl, T00102_A29LocationId,
-               T00102_A415MediaImage, T00102_n415MediaImage
+               T00102_A637IsCropped, T00102_A415MediaImage, T00102_n415MediaImage
                }
                , new Object[] {
                T00103_A413MediaId, T00103_A414MediaName, T00103_A40000MediaImage_GXI, T00103_n40000MediaImage_GXI, T00103_A417MediaSize, T00103_A418MediaType, T00103_A618MediaDateTime, T00103_n618MediaDateTime, T00103_A416MediaUrl, T00103_A29LocationId,
-               T00103_A415MediaImage, T00103_n415MediaImage
+               T00103_A637IsCropped, T00103_A415MediaImage, T00103_n415MediaImage
                }
                , new Object[] {
                T00104_A413MediaId, T00104_A414MediaName, T00104_A40000MediaImage_GXI, T00104_n40000MediaImage_GXI, T00104_A417MediaSize, T00104_A418MediaType, T00104_A618MediaDateTime, T00104_n618MediaDateTime, T00104_A416MediaUrl, T00104_A29LocationId,
-               T00104_A415MediaImage, T00104_n415MediaImage
+               T00104_A637IsCropped, T00104_A415MediaImage, T00104_n415MediaImage
                }
                , new Object[] {
                T00105_A413MediaId
@@ -2285,11 +2309,13 @@ namespace GeneXus.Programs {
       private DateTime Z618MediaDateTime ;
       private DateTime A618MediaDateTime ;
       private DateTime i618MediaDateTime ;
+      private bool Z637IsCropped ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool wbErr ;
       private bool A415MediaImage_IsBlob ;
       private bool n618MediaDateTime ;
+      private bool A637IsCropped ;
       private bool n40000MediaImage_GXI ;
       private bool n415MediaImage ;
       private bool returnInSub ;
@@ -2328,6 +2354,7 @@ namespace GeneXus.Programs {
       private bool[] T00104_n618MediaDateTime ;
       private string[] T00104_A416MediaUrl ;
       private Guid[] T00104_A29LocationId ;
+      private bool[] T00104_A637IsCropped ;
       private string[] T00104_A415MediaImage ;
       private bool[] T00104_n415MediaImage ;
       private Guid[] T00105_A413MediaId ;
@@ -2341,6 +2368,7 @@ namespace GeneXus.Programs {
       private bool[] T00103_n618MediaDateTime ;
       private string[] T00103_A416MediaUrl ;
       private Guid[] T00103_A29LocationId ;
+      private bool[] T00103_A637IsCropped ;
       private string[] T00103_A415MediaImage ;
       private bool[] T00103_n415MediaImage ;
       private Guid[] T00106_A413MediaId ;
@@ -2355,6 +2383,7 @@ namespace GeneXus.Programs {
       private bool[] T00102_n618MediaDateTime ;
       private string[] T00102_A416MediaUrl ;
       private Guid[] T00102_A29LocationId ;
+      private bool[] T00102_A637IsCropped ;
       private string[] T00102_A415MediaImage ;
       private bool[] T00102_n415MediaImage ;
       private Guid[] T001012_A413MediaId ;
@@ -2485,7 +2514,8 @@ public class trn_media__default : DataStoreHelperBase, IDataStoreHelper
        new ParDef("MediaType",GXType.Char,20,0) ,
        new ParDef("MediaDateTime",GXType.DateTime,8,5){Nullable=true} ,
        new ParDef("MediaUrl",GXType.VarChar,1000,0) ,
-       new ParDef("LocationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("IsCropped",GXType.Boolean,4,0)
        };
        Object[] prmT00109;
        prmT00109 = new Object[] {
@@ -2495,6 +2525,7 @@ public class trn_media__default : DataStoreHelperBase, IDataStoreHelper
        new ParDef("MediaDateTime",GXType.DateTime,8,5){Nullable=true} ,
        new ParDef("MediaUrl",GXType.VarChar,1000,0) ,
        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("IsCropped",GXType.Boolean,4,0) ,
        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
        };
        Object[] prmT001010;
@@ -2511,14 +2542,14 @@ public class trn_media__default : DataStoreHelperBase, IDataStoreHelper
        prmT001012 = new Object[] {
        };
        def= new CursorDef[] {
-           new CursorDef("T00102", "SELECT MediaId, MediaName, MediaImage_GXI, MediaSize, MediaType, MediaDateTime, MediaUrl, LocationId, MediaImage FROM Trn_Media WHERE MediaId = :MediaId  FOR UPDATE OF Trn_Media NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT00102,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T00103", "SELECT MediaId, MediaName, MediaImage_GXI, MediaSize, MediaType, MediaDateTime, MediaUrl, LocationId, MediaImage FROM Trn_Media WHERE MediaId = :MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00103,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T00104", "SELECT TM1.MediaId, TM1.MediaName, TM1.MediaImage_GXI, TM1.MediaSize, TM1.MediaType, TM1.MediaDateTime, TM1.MediaUrl, TM1.LocationId, TM1.MediaImage FROM Trn_Media TM1 WHERE TM1.MediaId = :MediaId ORDER BY TM1.MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00104,100, GxCacheFrequency.OFF ,true,false )
+           new CursorDef("T00102", "SELECT MediaId, MediaName, MediaImage_GXI, MediaSize, MediaType, MediaDateTime, MediaUrl, LocationId, IsCropped, MediaImage FROM Trn_Media WHERE MediaId = :MediaId  FOR UPDATE OF Trn_Media NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT00102,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T00103", "SELECT MediaId, MediaName, MediaImage_GXI, MediaSize, MediaType, MediaDateTime, MediaUrl, LocationId, IsCropped, MediaImage FROM Trn_Media WHERE MediaId = :MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00103,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T00104", "SELECT TM1.MediaId, TM1.MediaName, TM1.MediaImage_GXI, TM1.MediaSize, TM1.MediaType, TM1.MediaDateTime, TM1.MediaUrl, TM1.LocationId, TM1.IsCropped, TM1.MediaImage FROM Trn_Media TM1 WHERE TM1.MediaId = :MediaId ORDER BY TM1.MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00104,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T00105", "SELECT MediaId FROM Trn_Media WHERE MediaId = :MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00105,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T00106", "SELECT MediaId FROM Trn_Media WHERE ( MediaId > :MediaId) ORDER BY MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00106,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("T00107", "SELECT MediaId FROM Trn_Media WHERE ( MediaId < :MediaId) ORDER BY MediaId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT00107,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("T00108", "SAVEPOINT gxupdate;INSERT INTO Trn_Media(MediaId, MediaName, MediaImage, MediaImage_GXI, MediaSize, MediaType, MediaDateTime, MediaUrl, LocationId) VALUES(:MediaId, :MediaName, :MediaImage, :MediaImage_GXI, :MediaSize, :MediaType, :MediaDateTime, :MediaUrl, :LocationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT00108)
-          ,new CursorDef("T00109", "SAVEPOINT gxupdate;UPDATE Trn_Media SET MediaName=:MediaName, MediaSize=:MediaSize, MediaType=:MediaType, MediaDateTime=:MediaDateTime, MediaUrl=:MediaUrl, LocationId=:LocationId  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT00109)
+          ,new CursorDef("T00108", "SAVEPOINT gxupdate;INSERT INTO Trn_Media(MediaId, MediaName, MediaImage, MediaImage_GXI, MediaSize, MediaType, MediaDateTime, MediaUrl, LocationId, IsCropped) VALUES(:MediaId, :MediaName, :MediaImage, :MediaImage_GXI, :MediaSize, :MediaType, :MediaDateTime, :MediaUrl, :LocationId, :IsCropped);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT00108)
+          ,new CursorDef("T00109", "SAVEPOINT gxupdate;UPDATE Trn_Media SET MediaName=:MediaName, MediaSize=:MediaSize, MediaType=:MediaType, MediaDateTime=:MediaDateTime, MediaUrl=:MediaUrl, LocationId=:LocationId, IsCropped=:IsCropped  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT00109)
           ,new CursorDef("T001010", "SAVEPOINT gxupdate;UPDATE Trn_Media SET MediaImage=:MediaImage, MediaImage_GXI=:MediaImage_GXI  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001010)
           ,new CursorDef("T001011", "SAVEPOINT gxupdate;DELETE FROM Trn_Media  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001011)
           ,new CursorDef("T001012", "SELECT MediaId FROM Trn_Media ORDER BY MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001012,100, GxCacheFrequency.OFF ,true,false )
@@ -2543,8 +2574,9 @@ public class trn_media__default : DataStoreHelperBase, IDataStoreHelper
              ((bool[]) buf[7])[0] = rslt.wasNull(6);
              ((string[]) buf[8])[0] = rslt.getVarchar(7);
              ((Guid[]) buf[9])[0] = rslt.getGuid(8);
-             ((string[]) buf[10])[0] = rslt.getMultimediaFile(9, rslt.getVarchar(3));
-             ((bool[]) buf[11])[0] = rslt.wasNull(9);
+             ((bool[]) buf[10])[0] = rslt.getBool(9);
+             ((string[]) buf[11])[0] = rslt.getMultimediaFile(10, rslt.getVarchar(3));
+             ((bool[]) buf[12])[0] = rslt.wasNull(10);
              return;
           case 1 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -2557,8 +2589,9 @@ public class trn_media__default : DataStoreHelperBase, IDataStoreHelper
              ((bool[]) buf[7])[0] = rslt.wasNull(6);
              ((string[]) buf[8])[0] = rslt.getVarchar(7);
              ((Guid[]) buf[9])[0] = rslt.getGuid(8);
-             ((string[]) buf[10])[0] = rslt.getMultimediaFile(9, rslt.getVarchar(3));
-             ((bool[]) buf[11])[0] = rslt.wasNull(9);
+             ((bool[]) buf[10])[0] = rslt.getBool(9);
+             ((string[]) buf[11])[0] = rslt.getMultimediaFile(10, rslt.getVarchar(3));
+             ((bool[]) buf[12])[0] = rslt.wasNull(10);
              return;
           case 2 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -2571,8 +2604,9 @@ public class trn_media__default : DataStoreHelperBase, IDataStoreHelper
              ((bool[]) buf[7])[0] = rslt.wasNull(6);
              ((string[]) buf[8])[0] = rslt.getVarchar(7);
              ((Guid[]) buf[9])[0] = rslt.getGuid(8);
-             ((string[]) buf[10])[0] = rslt.getMultimediaFile(9, rslt.getVarchar(3));
-             ((bool[]) buf[11])[0] = rslt.wasNull(9);
+             ((bool[]) buf[10])[0] = rslt.getBool(9);
+             ((string[]) buf[11])[0] = rslt.getMultimediaFile(10, rslt.getVarchar(3));
+             ((bool[]) buf[12])[0] = rslt.wasNull(10);
              return;
           case 3 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);

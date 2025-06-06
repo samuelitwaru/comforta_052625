@@ -146,13 +146,10 @@ namespace GeneXus.Programs {
             while ( (pr_default.getStatus(3) != 101) )
             {
                A517PageName = P00GB5_A517PageName[0];
-               A516PageId = P00GB5_A516PageId[0];
                A536PagePublishedStructure = P00GB5_A536PagePublishedStructure[0];
+               A516PageId = P00GB5_A516PageId[0];
                AV11SDT_InfoPage = new SdtSDT_InfoPage(context);
-               GXt_char1 = AV24PagePublishedStructure;
-               new prc_getdynamictranslation(context ).execute(  A516PageId,  AV23ResidentLanguage,  A536PagePublishedStructure, out  GXt_char1) ;
-               AV24PagePublishedStructure = GXt_char1;
-               AV11SDT_InfoPage.FromJSonString(AV24PagePublishedStructure, null);
+               AV11SDT_InfoPage.FromJSonString(A536PagePublishedStructure, null);
                AV11SDT_InfoPage.gxTpr_Pageid = A516PageId;
                AV11SDT_InfoPage.gxTpr_Pagename = A517PageName;
                pr_default.readNext(3);
@@ -295,12 +292,11 @@ namespace GeneXus.Programs {
          AV14ThemeId = Guid.Empty;
          P00GB5_A523AppVersionId = new Guid[] {Guid.Empty} ;
          P00GB5_A517PageName = new string[] {""} ;
-         P00GB5_A516PageId = new Guid[] {Guid.Empty} ;
          P00GB5_A536PagePublishedStructure = new string[] {""} ;
+         P00GB5_A516PageId = new Guid[] {Guid.Empty} ;
          A517PageName = "";
-         A516PageId = Guid.Empty;
          A536PagePublishedStructure = "";
-         AV24PagePublishedStructure = "";
+         A516PageId = Guid.Empty;
          AV13InfoContent = new SdtSDT_InfoPage_InfoContentItem(context);
          AV22Images = new GxSimpleCollection<string>();
          AV21InfoImageString = "";
@@ -326,7 +322,7 @@ namespace GeneXus.Programs {
                P00GB4_A523AppVersionId, P00GB4_A11OrganisationId, P00GB4_n11OrganisationId, P00GB4_A29LocationId, P00GB4_n29LocationId, P00GB4_A273Trn_ThemeId, P00GB4_n273Trn_ThemeId
                }
                , new Object[] {
-               P00GB5_A523AppVersionId, P00GB5_A517PageName, P00GB5_A516PageId, P00GB5_A536PagePublishedStructure
+               P00GB5_A523AppVersionId, P00GB5_A517PageName, P00GB5_A536PagePublishedStructure, P00GB5_A516PageId
                }
                , new Object[] {
                P00GB6_A206WWPFormId, P00GB6_A208WWPFormReferenceName, P00GB6_A207WWPFormVersionNumber
@@ -352,7 +348,6 @@ namespace GeneXus.Programs {
       private bool n273Trn_ThemeId ;
       private bool returnInSub ;
       private string A536PagePublishedStructure ;
-      private string AV24PagePublishedStructure ;
       private string AV21InfoImageString ;
       private string AV10UserId ;
       private string A71ResidentGUID ;
@@ -401,8 +396,8 @@ namespace GeneXus.Programs {
       private bool[] P00GB4_n273Trn_ThemeId ;
       private Guid[] P00GB5_A523AppVersionId ;
       private string[] P00GB5_A517PageName ;
-      private Guid[] P00GB5_A516PageId ;
       private string[] P00GB5_A536PagePublishedStructure ;
+      private Guid[] P00GB5_A516PageId ;
       private SdtSDT_InfoPage_InfoContentItem AV13InfoContent ;
       private GxSimpleCollection<string> AV22Images ;
       private SdtSDT_InfoImage_SDT_InfoImageItem AV18InfoImage ;
@@ -458,7 +453,7 @@ namespace GeneXus.Programs {
               new CursorDef("P00GB2", "SELECT ResidentGUID, ResidentLanguage, ResidentId, LocationId, OrganisationId FROM Trn_Resident WHERE ResidentGUID = ( :AV10UserId) ORDER BY ResidentId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB2,100, GxCacheFrequency.OFF ,false,false )
              ,new CursorDef("P00GB3", "SELECT LocationId, PublishedActiveAppVersionId, ActiveAppVersionId, OrganisationId FROM Trn_Location WHERE LocationId = :AV8LocationId ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB3,100, GxCacheFrequency.OFF ,false,false )
              ,new CursorDef("P00GB4", "SELECT AppVersionId, OrganisationId, LocationId, Trn_ThemeId FROM Trn_AppVersion WHERE (LocationId = :AV8LocationId and OrganisationId = :AV9OrganisationId) AND (AppVersionId = :AV12AppVersionId) ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB4,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00GB5", "SELECT AppVersionId, PageName, PageId, PagePublishedStructure FROM Trn_AppVersionPage WHERE (AppVersionId = :AppVersionId) AND (LOWER(PageName) = ( 'home')) ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB5,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("P00GB5", "SELECT AppVersionId, PageName, PagePublishedStructure, PageId FROM Trn_AppVersionPage WHERE (AppVersionId = :AppVersionId) AND (LOWER(PageName) = ( 'home')) ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB5,100, GxCacheFrequency.OFF ,false,false )
              ,new CursorDef("P00GB6", "SELECT WWPFormId, WWPFormReferenceName, WWPFormVersionNumber FROM WWP_Form WHERE WWPFormId = TO_NUMBER(0 || :AV15SDT__1Action_1Objectid,'9999999999999999999999999999.99999999999999') ORDER BY WWPFormId, WWPFormVersionNumber ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB6,100, GxCacheFrequency.OFF ,true,false )
           };
        }
@@ -497,8 +492,8 @@ namespace GeneXus.Programs {
              case 3 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-                ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+                ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
+                ((Guid[]) buf[3])[0] = rslt.getGuid(4);
                 return;
              case 4 :
                 ((short[]) buf[0])[0] = rslt.getShort(1);

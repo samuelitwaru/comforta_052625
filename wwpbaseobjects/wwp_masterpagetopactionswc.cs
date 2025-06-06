@@ -968,10 +968,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
          AV6UserName = (String.IsNullOrEmpty(StringUtil.RTrim( AV9GAMUser.gxTpr_Firstname)) ? AV9GAMUser.gxTpr_Name : StringUtil.Trim( AV9GAMUser.gxTpr_Firstname)+" "+StringUtil.Trim( AV9GAMUser.gxTpr_Lastname));
          AssignAttri(sPrefix, false, "AV6UserName", AV6UserName);
          AV10GAMRoleCollection = new GeneXus.Programs.genexussecurity.SdtGAMSession(context).getroles(out  AV7GAMErrorCollection);
-         AV21GXV1 = 1;
-         while ( AV21GXV1 <= AV10GAMRoleCollection.Count )
+         AV22GXV1 = 1;
+         while ( AV22GXV1 <= AV10GAMRoleCollection.Count )
          {
-            AV11GAMRole = ((GeneXus.Programs.genexussecurity.SdtGAMRole)AV10GAMRoleCollection.Item(AV21GXV1));
+            AV11GAMRole = ((GeneXus.Programs.genexussecurity.SdtGAMRole)AV10GAMRoleCollection.Item(AV22GXV1));
             if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV12RolesDescriptions)) )
             {
                AV12RolesDescriptions += ", ";
@@ -985,24 +985,26 @@ namespace GeneXus.Programs.wwpbaseobjects {
             {
                AV19RoleNameDefinition = AV11GAMRole.gxTpr_Description;
             }
-            AV20isReceptionistOrManager = false;
-            AssignAttri(sPrefix, false, "AV20isReceptionistOrManager", AV20isReceptionistOrManager);
-            GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISRECEPTIONISTORMANAGER", GetSecureSignedToken( sPrefix, AV20isReceptionistOrManager, context));
-            if ( StringUtil.Contains( AV12RolesDescriptions, "Organisation Manager") || StringUtil.Contains( AV12RolesDescriptions, "Receptionist") )
-            {
-               AV20isReceptionistOrManager = true;
-               AssignAttri(sPrefix, false, "AV20isReceptionistOrManager", AV20isReceptionistOrManager);
-               GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISRECEPTIONISTORMANAGER", GetSecureSignedToken( sPrefix, AV20isReceptionistOrManager, context));
-            }
-            if ( StringUtil.StrCmp(AV19RoleNameDefinition, "Receptionist") == 0 )
-            {
-               GXt_char1 = AV19RoleNameDefinition;
-               new prc_getorganisationdefinition(context ).execute(  "Receptionist", out  GXt_char1) ;
-               AV19RoleNameDefinition = GXt_char1;
-            }
             AV12RolesDescriptions += AV19RoleNameDefinition;
             AssignAttri(sPrefix, false, "AV12RolesDescriptions", AV12RolesDescriptions);
-            AV21GXV1 = (int)(AV21GXV1+1);
+            AV22GXV1 = (int)(AV22GXV1+1);
+         }
+         AV20isReceptionistOrManager = false;
+         AssignAttri(sPrefix, false, "AV20isReceptionistOrManager", AV20isReceptionistOrManager);
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISRECEPTIONISTORMANAGER", GetSecureSignedToken( sPrefix, AV20isReceptionistOrManager, context));
+         if ( StringUtil.Contains( AV12RolesDescriptions, "Organisation Manager") || StringUtil.Contains( AV12RolesDescriptions, "Receptionist") )
+         {
+            AV20isReceptionistOrManager = true;
+            AssignAttri(sPrefix, false, "AV20isReceptionistOrManager", AV20isReceptionistOrManager);
+            GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISRECEPTIONISTORMANAGER", GetSecureSignedToken( sPrefix, AV20isReceptionistOrManager, context));
+         }
+         if ( StringUtil.Contains( AV12RolesDescriptions, "Receptionist") )
+         {
+            GXt_char1 = AV21ReceptionistTitle;
+            new prc_getorganisationdefinition(context ).execute(  "Receptionist", out  GXt_char1) ;
+            AV21ReceptionistTitle = GXt_char1;
+            AV12RolesDescriptions = StringUtil.StringReplace( AV12RolesDescriptions, "Receptionist", AV21ReceptionistTitle);
+            AssignAttri(sPrefix, false, "AV12RolesDescriptions", AV12RolesDescriptions);
          }
       }
 
@@ -1292,7 +1294,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20256412224381", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025661711329", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1310,7 +1312,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wwpbaseobjects/wwp_masterpagetopactionswc.js", "?20256412224385", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/wwp_masterpagetopactionswc.js", "?2025661711332", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
@@ -1435,6 +1437,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          AV7GAMErrorCollection = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          AV11GAMRole = new GeneXus.Programs.genexussecurity.SdtGAMRole(context);
          AV19RoleNameDefinition = "";
+         AV21ReceptionistTitle = "";
          AV18UserId = "";
          GXt_char1 = "";
          H003A2_A630ToolBoxLastUpdateReceptionistI = new Guid[] {Guid.Empty} ;
@@ -1482,7 +1485,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private short nDonePA ;
       private int edtavUsername_Enabled ;
       private int edtavRolesdescriptions_Enabled ;
-      private int AV21GXV1 ;
+      private int AV22GXV1 ;
       private int idxLst ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
@@ -1542,6 +1545,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private string A95ReceptionistGAMGUID ;
       private string AV6UserName ;
       private string AV19RoleNameDefinition ;
+      private string AV21ReceptionistTitle ;
       private string AV18UserId ;
       private Guid A630ToolBoxLastUpdateReceptionistI ;
       private Guid A89ReceptionistId ;

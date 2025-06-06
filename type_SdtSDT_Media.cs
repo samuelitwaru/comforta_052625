@@ -84,6 +84,9 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("MediaUrl", gxTpr_Mediaurl, false);
 
+
+			AddObjectProperty("IsCropped", gxTpr_Iscropped, false);
+
 			return;
 		}
 		#endregion
@@ -198,6 +201,22 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="IsCropped")]
+		[XmlElement(ElementName="IsCropped")]
+		public bool gxTpr_Iscropped
+		{
+			get {
+				return gxTv_SdtSDT_Media_Iscropped; 
+			}
+			set {
+				gxTv_SdtSDT_Media_Iscropped = value;
+				SetDirty("Iscropped");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -224,6 +243,7 @@ namespace GeneXus.Programs
 
 			gxTv_SdtSDT_Media_Mediatype = "";
 			gxTv_SdtSDT_Media_Mediaurl = "";
+
 			return  ;
 		}
 
@@ -249,6 +269,9 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_Media_Mediaurl;
+		 
+
+		protected bool gxTv_SdtSDT_Media_Iscropped;
 		 
 
 
@@ -338,6 +361,18 @@ namespace GeneXus.Programs
 			}
 			set { 
 				 sdt.gxTpr_Mediaurl = value;
+			}
+		}
+
+		[DataMember(Name="IsCropped", Order=6)]
+		public bool gxTpr_Iscropped
+		{
+			get { 
+				return sdt.gxTpr_Iscropped;
+
+			}
+			set { 
+				sdt.gxTpr_Iscropped = value;
 			}
 		}
 

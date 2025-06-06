@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250606112518"
+  version: "20250606141233"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -2659,6 +2659,9 @@ components:
         Top:
           description: "Top"
           type: "string"
+        OriginalImageUrl:
+          description: "Original Image Url"
+          type: "string"
         Action:
           $ref: "#/components/schemas/SDT_InfoTile.Action"
     SDT_InfoTile.Action:
@@ -2796,6 +2799,9 @@ components:
         MediaUrl:
           description: "Media Url"
           type: "string"
+        IsCropped:
+          description: "Is Cropped"
+          type: "boolean"
     SDT_Memo:
       properties:
         MemoId:
@@ -3635,6 +3641,9 @@ components:
           description: "Location Id"
           type: "string"
           format: "uuid"
+        IsCropped:
+          description: "Is Cropped"
+          type: "boolean"
     WorkWithPlus.DynamicForms.WWP_FormInstance:
       properties:
         WWPFormInstanceId:

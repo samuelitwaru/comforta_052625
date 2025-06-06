@@ -76,6 +76,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Mediadatetime_Z_Nullable");
          state.Add("gxTpr_Mediaurl_Z");
          state.Add("gxTpr_Locationid_Z");
+         state.Add("gxTpr_Iscropped_Z");
          state.Add("gxTpr_Mediaimage_gxi_Z");
          state.Add("gxTpr_Mediaimage_N");
          state.Add("gxTpr_Mediadatetime_N");
@@ -96,6 +97,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Media_Mediadatetime = sdt.gxTv_SdtTrn_Media_Mediadatetime ;
          gxTv_SdtTrn_Media_Mediaurl = sdt.gxTv_SdtTrn_Media_Mediaurl ;
          gxTv_SdtTrn_Media_Locationid = sdt.gxTv_SdtTrn_Media_Locationid ;
+         gxTv_SdtTrn_Media_Iscropped = sdt.gxTv_SdtTrn_Media_Iscropped ;
          gxTv_SdtTrn_Media_Mode = sdt.gxTv_SdtTrn_Media_Mode ;
          gxTv_SdtTrn_Media_Initialized = sdt.gxTv_SdtTrn_Media_Initialized ;
          gxTv_SdtTrn_Media_Mediaid_Z = sdt.gxTv_SdtTrn_Media_Mediaid_Z ;
@@ -105,6 +107,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Media_Mediadatetime_Z = sdt.gxTv_SdtTrn_Media_Mediadatetime_Z ;
          gxTv_SdtTrn_Media_Mediaurl_Z = sdt.gxTv_SdtTrn_Media_Mediaurl_Z ;
          gxTv_SdtTrn_Media_Locationid_Z = sdt.gxTv_SdtTrn_Media_Locationid_Z ;
+         gxTv_SdtTrn_Media_Iscropped_Z = sdt.gxTv_SdtTrn_Media_Iscropped_Z ;
          gxTv_SdtTrn_Media_Mediaimage_gxi_Z = sdt.gxTv_SdtTrn_Media_Mediaimage_gxi_Z ;
          gxTv_SdtTrn_Media_Mediaimage_N = sdt.gxTv_SdtTrn_Media_Mediaimage_N ;
          gxTv_SdtTrn_Media_Mediadatetime_N = sdt.gxTv_SdtTrn_Media_Mediadatetime_N ;
@@ -156,6 +159,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("MediaDateTime_N", gxTv_SdtTrn_Media_Mediadatetime_N, false, includeNonInitialized);
          AddObjectProperty("MediaUrl", gxTv_SdtTrn_Media_Mediaurl, false, includeNonInitialized);
          AddObjectProperty("LocationId", gxTv_SdtTrn_Media_Locationid, false, includeNonInitialized);
+         AddObjectProperty("IsCropped", gxTv_SdtTrn_Media_Iscropped, false, includeNonInitialized);
          if ( includeState )
          {
             AddObjectProperty("MediaImage_GXI", gxTv_SdtTrn_Media_Mediaimage_gxi, false, includeNonInitialized);
@@ -187,6 +191,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("MediaDateTime_Z", sDateCnv, false, includeNonInitialized);
             AddObjectProperty("MediaUrl_Z", gxTv_SdtTrn_Media_Mediaurl_Z, false, includeNonInitialized);
             AddObjectProperty("LocationId_Z", gxTv_SdtTrn_Media_Locationid_Z, false, includeNonInitialized);
+            AddObjectProperty("IsCropped_Z", gxTv_SdtTrn_Media_Iscropped_Z, false, includeNonInitialized);
             AddObjectProperty("MediaImage_GXI_Z", gxTv_SdtTrn_Media_Mediaimage_gxi_Z, false, includeNonInitialized);
             AddObjectProperty("MediaImage_N", gxTv_SdtTrn_Media_Mediaimage_N, false, includeNonInitialized);
             AddObjectProperty("MediaDateTime_N", gxTv_SdtTrn_Media_Mediadatetime_N, false, includeNonInitialized);
@@ -245,6 +250,11 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Media_Locationid = sdt.gxTv_SdtTrn_Media_Locationid ;
          }
+         if ( sdt.IsDirty("IsCropped") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Media_Iscropped = sdt.gxTv_SdtTrn_Media_Iscropped ;
+         }
          return  ;
       }
 
@@ -268,6 +278,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Media_Mediadatetime_Z_SetNull( );
                this.gxTv_SdtTrn_Media_Mediaurl_Z_SetNull( );
                this.gxTv_SdtTrn_Media_Locationid_Z_SetNull( );
+               this.gxTv_SdtTrn_Media_Iscropped_Z_SetNull( );
                this.gxTv_SdtTrn_Media_Mediaimage_gxi_Z_SetNull( );
             }
             gxTv_SdtTrn_Media_Mediaid = value;
@@ -463,6 +474,22 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Media_Locationid = value;
             SetDirty("Locationid");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "IsCropped" )]
+      [  XmlElement( ElementName = "IsCropped"   )]
+      public bool gxTpr_Iscropped
+      {
+         get {
+            return gxTv_SdtTrn_Media_Iscropped ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Media_Iscropped = value;
+            SetDirty("Iscropped");
          }
 
       }
@@ -738,6 +765,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "IsCropped_Z" )]
+      [  XmlElement( ElementName = "IsCropped_Z"   )]
+      public bool gxTpr_Iscropped_Z
+      {
+         get {
+            return gxTv_SdtTrn_Media_Iscropped_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Media_Iscropped_Z = value;
+            SetDirty("Iscropped_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Media_Iscropped_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Media_Iscropped_Z = false;
+         SetDirty("Iscropped_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Media_Iscropped_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "MediaImage_GXI_Z" )]
       [  XmlElement( ElementName = "MediaImage_GXI_Z"   )]
       public string gxTpr_Mediaimage_gxi_Z
@@ -915,6 +970,8 @@ namespace GeneXus.Programs {
       private DateTime gxTv_SdtTrn_Media_Mediadatetime ;
       private DateTime gxTv_SdtTrn_Media_Mediadatetime_Z ;
       private DateTime datetime_STZ ;
+      private bool gxTv_SdtTrn_Media_Iscropped ;
+      private bool gxTv_SdtTrn_Media_Iscropped_Z ;
       private string gxTv_SdtTrn_Media_Medianame ;
       private string gxTv_SdtTrn_Media_Mediaimage_gxi ;
       private string gxTv_SdtTrn_Media_Mediaurl ;
@@ -1052,6 +1109,20 @@ namespace GeneXus.Programs {
 
       }
 
+      [DataMember( Name = "IsCropped" , Order = 8 )]
+      [GxSeudo()]
+      public bool gxTpr_Iscropped
+      {
+         get {
+            return sdt.gxTpr_Iscropped ;
+         }
+
+         set {
+            sdt.gxTpr_Iscropped = value;
+         }
+
+      }
+
       public SdtTrn_Media sdt
       {
          get {
@@ -1073,7 +1144,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 8 )]
+      [DataMember( Name = "gx_md5_hash", Order = 9 )]
       public string Hash
       {
          get {
