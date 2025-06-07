@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250607054233"
+  version: "20250607080230"
 servers:
   - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -2675,6 +2675,10 @@ components:
         ObjectUrl:
           description: "Object Url"
           type: "string"
+        FormId:
+          description: "Form Id"
+          type: "integer"
+          format: "int32"
       x-gx-level: "SDT_InfoTile"
     SDT_LinkPage:
       properties:

@@ -1446,3 +1446,4 @@ FILLED FORMS=INGEVULDE FORMULIEREN
 Filled Out Forms=Ingevulde formulieren
 Filled by=Ingevuld door
 Types=Typen
+WC_Create Supplier Form=Maak leveranciersformulier aan

@@ -1222,18 +1222,18 @@ namespace GeneXus.Programs {
          /* Start Routine */
          returnInSub = false;
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV6WWPContext) ;
-         AV22GXLvl8 = 0;
+         AV24GXLvl8 = 0;
          /* Using cursor H00B23 */
          pr_default.execute(1, new Object[] {AV20WWPFormType});
          while ( (pr_default.getStatus(1) != 101) )
          {
             A240WWPFormType = H00B23_A240WWPFormType[0];
-            AV22GXLvl8 = 1;
+            AV24GXLvl8 = 1;
             AV9Exists = true;
             pr_default.readNext(1);
          }
          pr_default.close(1);
-         if ( AV22GXLvl8 == 0 )
+         if ( AV24GXLvl8 == 0 )
          {
             Form.Caption = context.GetMessage( "WWP_RecordNotFound", "");
             AssignProp("", false, "FORM", "Caption", Form.Caption, true);
@@ -1266,6 +1266,12 @@ namespace GeneXus.Programs {
          {
             AV13SelectedTabCode = AV8TabCode;
             AssignAttri("", false, "AV13SelectedTabCode", AV13SelectedTabCode);
+            AV23successful = AV22WebSession.Get(context.GetMessage( "DynamicFormCreationSuccess", ""));
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV23successful)) )
+            {
+               GX_msglist.addItem(new WorkWithPlus.workwithplus_web.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Success",  context.GetMessage( "Form created successfully", ""),  "success",  "",  "true",  ""));
+               AV22WebSession.Remove(context.GetMessage( "DynamicFormCreationSuccess", ""));
+            }
          }
          else
          {
@@ -1617,7 +1623,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025641323728", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202567110424", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1633,7 +1639,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_dynamicform.js", "?2025641323729", false, true);
+         context.AddJavascriptSource("wp_dynamicform.js", "?202567110424", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);
@@ -1782,6 +1788,8 @@ namespace GeneXus.Programs {
          H00B23_A207WWPFormVersionNumber = new short[1] ;
          H00B23_A240WWPFormType = new short[1] ;
          AV18Session = context.GetSession();
+         AV23successful = "";
+         AV22WebSession = context.GetSession();
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.wp_dynamicform__default(),
@@ -1816,7 +1824,7 @@ namespace GeneXus.Programs {
       private short wbStart ;
       private short nCmpId ;
       private short nDonePA ;
-      private short AV22GXLvl8 ;
+      private short AV24GXLvl8 ;
       private short nGXWrapped ;
       private int Tabs_Pagecount ;
       private int idxLst ;
@@ -1880,6 +1888,7 @@ namespace GeneXus.Programs {
       private string EvtRowId ;
       private string sEvtType ;
       private string GXDecQS ;
+      private string AV23successful ;
       private bool AV21WWPFormIsForDynamicValidations ;
       private bool wcpOAV21WWPFormIsForDynamicValidations ;
       private bool entryPointCalled ;
@@ -1903,6 +1912,7 @@ namespace GeneXus.Programs {
       private bool bDynCreated_Supplierdynamicformwc ;
       private string AV17RecordDescription ;
       private IGxSession AV18Session ;
+      private IGxSession AV22WebSession ;
       private GXWebComponent WebComp_Generaldynamicformwc ;
       private GXWebComponent WebComp_Organisationdynamicformwc ;
       private GXWebComponent WebComp_Locationdynamicformwc ;

@@ -71,6 +71,9 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("ObjectUrl", gxTpr_Objecturl, false);
 
+
+			AddObjectProperty("FormId", gxTpr_Formid, false);
+
 			return;
 		}
 		#endregion
@@ -124,6 +127,22 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="FormId")]
+		[XmlElement(ElementName="FormId")]
+		public short gxTpr_Formid
+		{
+			get {
+				return gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Action_Formid; 
+			}
+			set {
+				gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Action_Formid = value;
+				SetDirty("Formid");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -148,6 +167,7 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Action_Objecttype = "";
 			gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Action_Objectid = "";
 			gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Action_Objecturl = "";
+
 			return  ;
 		}
 
@@ -164,6 +184,9 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Action_Objecturl;
+		 
+
+		protected short gxTv_SdtSDT_InfoTile_SDT_InfoTileItem_Action_Formid;
 		 
 
 
@@ -216,6 +239,18 @@ namespace GeneXus.Programs
 			}
 			set { 
 				 sdt.gxTpr_Objecturl = value;
+			}
+		}
+
+		[DataMember(Name="FormId", Order=3)]
+		public short gxTpr_Formid
+		{
+			get { 
+				return sdt.gxTpr_Formid;
+
+			}
+			set { 
+				sdt.gxTpr_Formid = value;
 			}
 		}
 

@@ -225,7 +225,7 @@ namespace GeneXus.Programs {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( context.GetMessage( "WC_Create Supplier Form", "")) ;
+            context.SendWebValue( context.GetMessage( "Create Supplier Form", "")) ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -385,7 +385,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "WC_Create Supplier Form", "") ;
+         return context.GetMessage( "Create Supplier Form", "") ;
       }
 
       protected void WBBL0( )
@@ -502,7 +502,7 @@ namespace GeneXus.Programs {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", context.GetMessage( "WC_Create Supplier Form", ""), 0) ;
+            Form.Meta.addItem("description", context.GetMessage( "Create Supplier Form", ""), 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -974,8 +974,9 @@ namespace GeneXus.Programs {
          if (returnInSub) return;
          if ( AV7CheckRequiredFieldsResult )
          {
+            this.executeExternalObjectMethod(sPrefix, false, "WWPActions", "WCPopup_Close", new Object[] {(string)"CANCEL"}, false);
             GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "workwithplus.dynamicforms.wwp_createdynamicform.aspx"+UrlEncode(StringUtil.LTrimStr(0,1,0)) + "," + UrlEncode(StringUtil.RTrim("INS")) + "," + UrlEncode(StringUtil.RTrim("")) + "," + UrlEncode(StringUtil.LTrimStr(AV8WWPFormType,1,0)) + "," + UrlEncode(AV6Trn_SupplierGen.ToString());
+            GXEncryptionTmp = "workwithplus.dynamicforms.wwp_createdynamicform.aspx"+UrlEncode(StringUtil.LTrimStr(0,1,0)) + "," + UrlEncode(StringUtil.RTrim("INS")) + "," + UrlEncode(StringUtil.RTrim("")) + "," + UrlEncode(StringUtil.LTrimStr(AV8WWPFormType,1,0)) + "," + UrlEncode(StringUtil.RTrim(context.GetMessage( "Supplier", ""))) + "," + UrlEncode(AV6Trn_SupplierGen.ToString());
             CallWebObject(formatLink("workwithplus.dynamicforms.wwp_createdynamicform.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
@@ -1193,7 +1194,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025641221718", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20256710594017", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1209,7 +1210,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_createsupplierform.js", "?2025641221718", false, true);
+         context.AddJavascriptSource("wc_createsupplierform.js", "?20256710594017", false, true);
          /* End function include_jscripts */
       }
 

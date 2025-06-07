@@ -1045,10 +1045,10 @@ namespace GeneXus.Programs {
             new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_saveformdefinition(context ).execute(  AV25SessionId,  AV43WWPForm) ;
             if ( AV49WWPFormType == 1 )
             {
-               AV53GXV1 = 1;
-               while ( AV53GXV1 <= AV43WWPForm.gxTpr_Element.Count )
+               AV56GXV1 = 1;
+               while ( AV56GXV1 <= AV43WWPForm.gxTpr_Element.Count )
                {
-                  AV45WWPFormElement = ((GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form_Element)AV43WWPForm.gxTpr_Element.Item(AV53GXV1));
+                  AV45WWPFormElement = ((GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form_Element)AV43WWPForm.gxTpr_Element.Item(AV56GXV1));
                   if ( AV45WWPFormElement.gxTpr_Wwpformelementparentid == 0 )
                   {
                      cmbavDynamicsectiontoupdate.addItem(StringUtil.Trim( StringUtil.Str( (decimal)(AV45WWPFormElement.gxTpr_Wwpformelementid), 4, 0)), AV45WWPFormElement.gxTpr_Wwpformelementreferenceid, 0);
@@ -1058,7 +1058,7 @@ namespace GeneXus.Programs {
                         AssignAttri("", false, "AV11DynamicSectionToUpdate", StringUtil.LTrimStr( (decimal)(AV11DynamicSectionToUpdate), 4, 0));
                      }
                   }
-                  AV53GXV1 = (int)(AV53GXV1+1);
+                  AV56GXV1 = (int)(AV56GXV1+1);
                }
             }
          }
@@ -1374,7 +1374,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025641321530", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025671103927", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1390,7 +1390,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("utoolboxdynamicform.js", "?2025641321532", false, true);
+         context.AddJavascriptSource("utoolboxdynamicform.js", "?2025671103929", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -1585,7 +1585,7 @@ namespace GeneXus.Programs {
       private int bttBtncancel_Visible ;
       private int bttBtnsettings_Visible ;
       private int edtavSessionid_Visible ;
-      private int AV53GXV1 ;
+      private int AV56GXV1 ;
       private int idxLst ;
       private string AV42WWPDynamicFormMode ;
       private string wcpOAV42WWPDynamicFormMode ;

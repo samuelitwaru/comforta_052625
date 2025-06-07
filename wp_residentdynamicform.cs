@@ -236,6 +236,7 @@ namespace GeneXus.Programs {
          {
             enableOutput();
          }
+         context.AddJavascriptSource("UserControls/UC_DynamicFormJSCSSRender.js", "", false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -307,6 +308,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vWWPDYNAMICFORMMODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV9WWPDynamicFormMode, "")), context));
          GxWebStd.gx_hidden_field( context, "vACCESSTOKEN", AV15AccessToken);
          GxWebStd.gx_hidden_field( context, "gxhash_vACCESSTOKEN", GetSecureSignedToken( "", AV15AccessToken, context));
+         GxWebStd.gx_hidden_field( context, "DYNAMICFORMJSCSS_Backgroundcolor", StringUtil.RTrim( Dynamicformjscss_Backgroundcolor));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -540,6 +542,15 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* User Defined Control */
+            ucDynamicformjscss.SetProperty("BackgroundColor", Dynamicformjscss_Backgroundcolor);
+            ucDynamicformjscss.Render(context, "uc_dynamicformjscss", Dynamicformjscss_Internalname, "DYNAMICFORMJSCSSContainer");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -816,6 +827,7 @@ namespace GeneXus.Programs {
          {
             /* Read saved SDTs. */
             /* Read saved values. */
+            Dynamicformjscss_Backgroundcolor = cgiGet( "DYNAMICFORMJSCSS_Backgroundcolor");
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
@@ -851,7 +863,10 @@ namespace GeneXus.Programs {
             {
                A71ResidentGUID = H007K2_A71ResidentGUID[0];
                A599ResidentLanguage = H007K2_A599ResidentLanguage[0];
+               A29LocationId = H007K2_A29LocationId[0];
                AV19Language = A599ResidentLanguage;
+               AV22LocationId = A29LocationId;
+               AssignAttri("", false, "AV22LocationId", AV22LocationId.ToString());
                /* Exit For each command. Update data (if necessary), close cursors & exit. */
                if (true) break;
                pr_default.readNext(0);
@@ -873,6 +888,52 @@ namespace GeneXus.Programs {
             AV14ShowNoRecordFound = false;
             AssignAttri("", false, "AV14ShowNoRecordFound", AV14ShowNoRecordFound);
             GxWebStd.gx_hidden_field( context, "gxhash_vSHOWNORECORDFOUND", GetSecureSignedToken( "", AV14ShowNoRecordFound, context));
+            /* Using cursor H007K3 */
+            pr_default.execute(1, new Object[] {AV22LocationId});
+            while ( (pr_default.getStatus(1) != 101) )
+            {
+               A584ActiveAppVersionId = H007K3_A584ActiveAppVersionId[0];
+               n584ActiveAppVersionId = H007K3_n584ActiveAppVersionId[0];
+               A598PublishedActiveAppVersionId = H007K3_A598PublishedActiveAppVersionId[0];
+               n598PublishedActiveAppVersionId = H007K3_n598PublishedActiveAppVersionId[0];
+               A29LocationId = H007K3_A29LocationId[0];
+               /* Using cursor H007K4 */
+               pr_default.execute(2, new Object[] {n598PublishedActiveAppVersionId, A598PublishedActiveAppVersionId});
+               A273Trn_ThemeId = H007K4_A273Trn_ThemeId[0];
+               n273Trn_ThemeId = H007K4_n273Trn_ThemeId[0];
+               pr_default.close(2);
+               /* Using cursor H007K5 */
+               pr_default.execute(3, new Object[] {n584ActiveAppVersionId, A584ActiveAppVersionId});
+               A273Trn_ThemeId = H007K5_A273Trn_ThemeId[0];
+               n273Trn_ThemeId = H007K5_n273Trn_ThemeId[0];
+               pr_default.close(3);
+               /* Using cursor H007K6 */
+               pr_default.execute(4, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId});
+               while ( (pr_default.getStatus(4) != 101) )
+               {
+                  /* Using cursor H007K7 */
+                  pr_default.execute(5, new Object[] {n273Trn_ThemeId, A273Trn_ThemeId});
+                  while ( (pr_default.getStatus(5) != 101) )
+                  {
+                     A276ColorName = H007K7_A276ColorName[0];
+                     A277ColorCode = H007K7_A277ColorCode[0];
+                     if ( StringUtil.StrCmp(A276ColorName, context.GetMessage( "backgroundColor", "")) == 0 )
+                     {
+                        AV20BackgroundColor = A277ColorCode;
+                     }
+                     pr_default.readNext(5);
+                  }
+                  pr_default.close(5);
+                  /* Exiting from a For First loop. */
+                  if (true) break;
+               }
+               pr_default.close(4);
+               pr_default.readNext(1);
+            }
+            pr_default.close(1);
+            pr_default.close(3);
+            Dynamicformjscss_Backgroundcolor = AV20BackgroundColor;
+            ucDynamicformjscss.SendProperty(context, "", false, Dynamicformjscss_Internalname, "BackgroundColor", Dynamicformjscss_Backgroundcolor);
             tblSpacetable2_Height = 30;
             AssignProp("", false, tblSpacetable2_Internalname, "Height", StringUtil.LTrimStr( (decimal)(tblSpacetable2_Height), 9, 0), true);
             tblSpacetable1_Height = 60;
@@ -1048,7 +1109,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025641315217", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025671102565", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1064,7 +1125,8 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_residentdynamicform.js", "?2025641315217", false, true);
+         context.AddJavascriptSource("wp_residentdynamicform.js", "?2025671102566", false, true);
+         context.AddJavascriptSource("UserControls/UC_DynamicFormJSCSSRender.js", "", false, true);
          /* End function include_jscripts */
       }
 
@@ -1085,6 +1147,7 @@ namespace GeneXus.Programs {
          divTablecontent_Internalname = "TABLECONTENT";
          imgImage1_Internalname = "IMAGE1";
          divLoadertable_Internalname = "LOADERTABLE";
+         Dynamicformjscss_Internalname = "DYNAMICFORMJSCSS";
          divTablemain_Internalname = "TABLEMAIN";
          divLayoutmaintable_Internalname = "LAYOUTMAINTABLE";
          Form.Internalname = "FORM";
@@ -1103,6 +1166,7 @@ namespace GeneXus.Programs {
          divLoadertable_Visible = 1;
          lblErrormessage_Caption = context.GetMessage( "The record could not be found", "");
          divNorecordfoundtable_Visible = 1;
+         Dynamicformjscss_Backgroundcolor = "&BackgroundColor";
          Form.Headerrawhtml = "";
          Form.Background = "";
          Form.Textcolor = 0;
@@ -1136,6 +1200,11 @@ namespace GeneXus.Programs {
          }
       }
 
+      protected override void CloseCursors( )
+      {
+         pr_default.close(2);
+      }
+
       public override void initialize( )
       {
          wcpOAV7WWPFormReferenceName = "";
@@ -1158,20 +1227,46 @@ namespace GeneXus.Programs {
          lblErrormessage_Jsonclick = "";
          imgImage1_gximage = "";
          sImgUrl = "";
+         ucDynamicformjscss = new GXUserControl();
          sEvt = "";
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
          AV11ResidentId = "";
          H007K2_A62ResidentId = new Guid[] {Guid.Empty} ;
-         H007K2_A29LocationId = new Guid[] {Guid.Empty} ;
          H007K2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          H007K2_A71ResidentGUID = new string[] {""} ;
          H007K2_A599ResidentLanguage = new string[] {""} ;
+         H007K2_A29LocationId = new Guid[] {Guid.Empty} ;
          A71ResidentGUID = "";
          A599ResidentLanguage = "";
+         A29LocationId = Guid.Empty;
          AV19Language = "";
+         AV22LocationId = Guid.Empty;
          AV12WebSession = context.GetSession();
+         H007K3_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         H007K3_A584ActiveAppVersionId = new Guid[] {Guid.Empty} ;
+         H007K3_n584ActiveAppVersionId = new bool[] {false} ;
+         H007K3_A598PublishedActiveAppVersionId = new Guid[] {Guid.Empty} ;
+         H007K3_n598PublishedActiveAppVersionId = new bool[] {false} ;
+         H007K3_A29LocationId = new Guid[] {Guid.Empty} ;
+         A584ActiveAppVersionId = Guid.Empty;
+         A598PublishedActiveAppVersionId = Guid.Empty;
+         H007K4_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         H007K4_n273Trn_ThemeId = new bool[] {false} ;
+         A273Trn_ThemeId = Guid.Empty;
+         H007K5_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         H007K5_n273Trn_ThemeId = new bool[] {false} ;
+         H007K6_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         H007K6_n273Trn_ThemeId = new bool[] {false} ;
+         H007K7_A275ColorId = new Guid[] {Guid.Empty} ;
+         H007K7_A273Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         H007K7_n273Trn_ThemeId = new bool[] {false} ;
+         H007K7_A276ColorName = new string[] {""} ;
+         H007K7_A277ColorCode = new string[] {""} ;
+         A276ColorName = "";
+         A277ColorCode = "";
+         AV20BackgroundColor = "";
          sStyleString = "";
          lblTextblock2_Jsonclick = "";
          lblTextblock1_Jsonclick = "";
@@ -1180,7 +1275,22 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.wp_residentdynamicform__default(),
             new Object[][] {
                 new Object[] {
-               H007K2_A62ResidentId, H007K2_A29LocationId, H007K2_A11OrganisationId, H007K2_A71ResidentGUID, H007K2_A599ResidentLanguage
+               H007K2_A62ResidentId, H007K2_A11OrganisationId, H007K2_A71ResidentGUID, H007K2_A599ResidentLanguage, H007K2_A29LocationId
+               }
+               , new Object[] {
+               H007K3_A11OrganisationId, H007K3_A584ActiveAppVersionId, H007K3_n584ActiveAppVersionId, H007K3_A598PublishedActiveAppVersionId, H007K3_n598PublishedActiveAppVersionId, H007K3_A29LocationId
+               }
+               , new Object[] {
+               H007K4_A273Trn_ThemeId, H007K4_n273Trn_ThemeId
+               }
+               , new Object[] {
+               H007K5_A273Trn_ThemeId, H007K5_n273Trn_ThemeId
+               }
+               , new Object[] {
+               H007K6_A273Trn_ThemeId
+               }
+               , new Object[] {
+               H007K7_A275ColorId, H007K7_A273Trn_ThemeId, H007K7_A276ColorName, H007K7_A277ColorCode
                }
             }
          );
@@ -1188,6 +1298,12 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
+      private short nRcdExists_4 ;
+      private short nIsMod_4 ;
+      private short nRcdExists_5 ;
+      private short nIsMod_5 ;
+      private short nRcdExists_6 ;
+      private short nIsMod_6 ;
       private short nRcdExists_3 ;
       private short nIsMod_3 ;
       private short nGotPars ;
@@ -1215,6 +1331,7 @@ namespace GeneXus.Programs {
       private string FormProcess ;
       private string bodyStyle ;
       private string GXKey ;
+      private string Dynamicformjscss_Backgroundcolor ;
       private string GX_FocusControl ;
       private string sPrefix ;
       private string divLayoutmaintable_Internalname ;
@@ -1234,6 +1351,7 @@ namespace GeneXus.Programs {
       private string imgImage1_gximage ;
       private string sImgUrl ;
       private string imgImage1_Internalname ;
+      private string Dynamicformjscss_Internalname ;
       private string sEvt ;
       private string EvtGridId ;
       private string EvtRowId ;
@@ -1256,6 +1374,9 @@ namespace GeneXus.Programs {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool AV16isTokenValid ;
+      private bool n584ActiveAppVersionId ;
+      private bool n598PublishedActiveAppVersionId ;
+      private bool n273Trn_ThemeId ;
       private bool bDynCreated_Wcwc_residentdynamicform ;
       private string AV15AccessToken ;
       private string wcpOAV15AccessToken ;
@@ -1264,7 +1385,16 @@ namespace GeneXus.Programs {
       private string AV11ResidentId ;
       private string A71ResidentGUID ;
       private string AV19Language ;
+      private string A276ColorName ;
+      private string A277ColorCode ;
+      private string AV20BackgroundColor ;
+      private Guid A29LocationId ;
+      private Guid AV22LocationId ;
+      private Guid A584ActiveAppVersionId ;
+      private Guid A598PublishedActiveAppVersionId ;
+      private Guid A273Trn_ThemeId ;
       private GXWebComponent WebComp_Wcwc_residentdynamicform ;
+      private GXUserControl ucDynamicformjscss ;
       private IGxSession AV12WebSession ;
       private GXWebForm Form ;
       private IGxDataStore dsDataStore1 ;
@@ -1272,10 +1402,27 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
       private Guid[] H007K2_A62ResidentId ;
-      private Guid[] H007K2_A29LocationId ;
       private Guid[] H007K2_A11OrganisationId ;
       private string[] H007K2_A71ResidentGUID ;
       private string[] H007K2_A599ResidentLanguage ;
+      private Guid[] H007K2_A29LocationId ;
+      private Guid[] H007K3_A11OrganisationId ;
+      private Guid[] H007K3_A584ActiveAppVersionId ;
+      private bool[] H007K3_n584ActiveAppVersionId ;
+      private Guid[] H007K3_A598PublishedActiveAppVersionId ;
+      private bool[] H007K3_n598PublishedActiveAppVersionId ;
+      private Guid[] H007K3_A29LocationId ;
+      private Guid[] H007K4_A273Trn_ThemeId ;
+      private bool[] H007K4_n273Trn_ThemeId ;
+      private Guid[] H007K5_A273Trn_ThemeId ;
+      private bool[] H007K5_n273Trn_ThemeId ;
+      private Guid[] H007K6_A273Trn_ThemeId ;
+      private bool[] H007K6_n273Trn_ThemeId ;
+      private Guid[] H007K7_A275ColorId ;
+      private Guid[] H007K7_A273Trn_ThemeId ;
+      private bool[] H007K7_n273Trn_ThemeId ;
+      private string[] H007K7_A276ColorName ;
+      private string[] H007K7_A277ColorCode ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }
@@ -1287,6 +1434,11 @@ namespace GeneXus.Programs {
          cursorDefinitions();
          return new Cursor[] {
           new ForEachCursor(def[0])
+         ,new ForEachCursor(def[1])
+         ,new ForEachCursor(def[2])
+         ,new ForEachCursor(def[3])
+         ,new ForEachCursor(def[4])
+         ,new ForEachCursor(def[5])
        };
     }
 
@@ -1299,8 +1451,33 @@ namespace GeneXus.Programs {
           prmH007K2 = new Object[] {
           new ParDef("AV11ResidentId",GXType.VarChar,100,60)
           };
+          Object[] prmH007K3;
+          prmH007K3 = new Object[] {
+          new ParDef("AV22LocationId",GXType.UniqueIdentifier,36,0)
+          };
+          Object[] prmH007K4;
+          prmH007K4 = new Object[] {
+          new ParDef("PublishedActiveAppVersionId",GXType.UniqueIdentifier,36,0){Nullable=true}
+          };
+          Object[] prmH007K5;
+          prmH007K5 = new Object[] {
+          new ParDef("ActiveAppVersionId",GXType.UniqueIdentifier,36,0){Nullable=true}
+          };
+          Object[] prmH007K6;
+          prmH007K6 = new Object[] {
+          new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+          };
+          Object[] prmH007K7;
+          prmH007K7 = new Object[] {
+          new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+          };
           def= new CursorDef[] {
-              new CursorDef("H007K2", "SELECT ResidentId, LocationId, OrganisationId, ResidentGUID, ResidentLanguage FROM Trn_Resident WHERE ResidentGUID = ( :AV11ResidentId) ORDER BY ResidentId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH007K2,1, GxCacheFrequency.OFF ,false,true )
+              new CursorDef("H007K2", "SELECT ResidentId, OrganisationId, ResidentGUID, ResidentLanguage, LocationId FROM Trn_Resident WHERE ResidentGUID = ( :AV11ResidentId) ORDER BY ResidentId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH007K2,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("H007K3", "SELECT OrganisationId, ActiveAppVersionId, PublishedActiveAppVersionId, LocationId FROM Trn_Location WHERE LocationId = :AV22LocationId ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH007K3,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("H007K4", "SELECT Trn_ThemeId FROM Trn_AppVersion WHERE AppVersionId = :PublishedActiveAppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH007K4,1, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("H007K5", "SELECT Trn_ThemeId FROM Trn_AppVersion WHERE AppVersionId = :ActiveAppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH007K5,1, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("H007K6", "SELECT Trn_ThemeId FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH007K6,1, GxCacheFrequency.OFF ,true,true )
+             ,new CursorDef("H007K7", "SELECT ColorId, Trn_ThemeId, ColorName, ColorCode FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH007K7,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -1314,9 +1491,34 @@ namespace GeneXus.Programs {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
+                ((string[]) buf[3])[0] = rslt.getString(4, 20);
+                ((Guid[]) buf[4])[0] = rslt.getGuid(5);
+                return;
+             case 1 :
+                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+                ((bool[]) buf[2])[0] = rslt.wasNull(2);
+                ((Guid[]) buf[3])[0] = rslt.getGuid(3);
+                ((bool[]) buf[4])[0] = rslt.wasNull(3);
+                ((Guid[]) buf[5])[0] = rslt.getGuid(4);
+                return;
+             case 2 :
+                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((bool[]) buf[1])[0] = rslt.wasNull(1);
+                return;
+             case 3 :
+                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((bool[]) buf[1])[0] = rslt.wasNull(1);
+                return;
+             case 4 :
+                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                return;
+             case 5 :
+                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((string[]) buf[4])[0] = rslt.getString(5, 20);
                 return;
        }
     }

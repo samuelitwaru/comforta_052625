@@ -107,7 +107,6 @@ trn_residentpackageww
 trn_residentpackageview
 wp_createorganisationandmanagerstep3
 wp_manageorganisationprovisioning
-wp_organisationdynamicform
 wc_calltoactiondetails
 wc_locationreceptionistswithinsert
 wc_productservice
@@ -123,7 +122,6 @@ wc_copygeneraldynamicformtolocation
 udynamicform
 udynamicform
 ucreatedynamicform
-uformww
 uhome
 uhome
 ulogin
@@ -225,7 +223,6 @@ wc_calltoaction
 editreceptionists
 wp_productservicestep2
 wp_productservicestep1
-wp_locationdynamicform
 wp_productservice
 wc_description
 wc_color
@@ -422,7 +419,6 @@ aprc_createapppreview
 trn_memowwgetfilterdata
 trn_memocategorywwgetfilterdata
 trn_residentpackagewwgetfilterdata
-wp_organisationdynamicformgetfilterdata
 aprc_uploadprofileimage
 aprc_uploadlogo
 aprc_createdynamicformpage
@@ -430,7 +426,6 @@ aprc_createotpevents
 aprc_handleotpevents
 ufilledoutformsgetfilterdata
 aprc_changeuserpassword
-uformwwgetfilterdata
 aprc_createpermissions
 aprc_getlocationreceptioniststonotify
 aprc_contentpageapi
@@ -455,7 +450,6 @@ wp_organisationagbsuppliersgetfilterdata
 trn_auditloaddvcombo
 trn_auditwwgetfilterdata
 trn_calltoactionloaddvcombo
-wp_locationdynamicformgetfilterdata
 prc_getlocationinformation
 trn_medicalindicationwwgetfilterdata
 trn_residenttypewwgetfilterdata

@@ -3320,3 +3320,4 @@ WWP_TitleFilter_RangeUpToValue=up to {0}
 WWP_AIError_AssistantHasNoTransactions=no Transactions in your Knowledge Base has AI Assistant enabled, see the WorkWithPlus documentation to learn how to enable it
 WWP_AIAssistant_NM_Title=AI Assistant
 WWP_AIAssistantAppliedFilters_GroupingBy=grouping by {0}
+WC_Create Supplier Form=Create Supplier Form

@@ -208,7 +208,7 @@ namespace GeneXus.Programs {
                   if ( StringUtil.StrCmp(AV15SDT_InfoTile.gxTpr_Action.gxTpr_Objecttype, "DynamicForm") == 0 )
                   {
                      /* Using cursor P00GB6 */
-                     pr_default.execute(4, new Object[] {AV15SDT_InfoTile.gxTpr_Action.gxTpr_Objectid});
+                     pr_default.execute(4, new Object[] {AV15SDT_InfoTile.gxTpr_Action.gxTpr_Formid, AV15SDT_InfoTile.gxTpr_Action.gxTpr_Objectid});
                      while ( (pr_default.getStatus(4) != 101) )
                      {
                         A206WWPFormId = P00GB6_A206WWPFormId[0];
@@ -447,6 +447,7 @@ namespace GeneXus.Programs {
           };
           Object[] prmP00GB6;
           prmP00GB6 = new Object[] {
+          new ParDef("AV15SDT__2Action_2Formid",GXType.Int16,4,0) ,
           new ParDef("AV15SDT__1Action_1Objectid",GXType.VarChar,100,0)
           };
           def= new CursorDef[] {
@@ -454,7 +455,7 @@ namespace GeneXus.Programs {
              ,new CursorDef("P00GB3", "SELECT LocationId, PublishedActiveAppVersionId, ActiveAppVersionId, OrganisationId FROM Trn_Location WHERE LocationId = :AV8LocationId ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB3,100, GxCacheFrequency.OFF ,false,false )
              ,new CursorDef("P00GB4", "SELECT AppVersionId, OrganisationId, LocationId, Trn_ThemeId FROM Trn_AppVersion WHERE (LocationId = :AV8LocationId and OrganisationId = :AV9OrganisationId) AND (AppVersionId = :AV12AppVersionId) ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB4,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("P00GB5", "SELECT AppVersionId, PageName, PagePublishedStructure, PageId FROM Trn_AppVersionPage WHERE (AppVersionId = :AppVersionId) AND (LOWER(PageName) = ( 'home')) ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB5,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P00GB6", "SELECT WWPFormId, WWPFormReferenceName, WWPFormVersionNumber FROM WWP_Form WHERE WWPFormId = TO_NUMBER(0 || :AV15SDT__1Action_1Objectid,'9999999999999999999999999999.99999999999999') ORDER BY WWPFormId, WWPFormVersionNumber ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB6,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("P00GB6", "SELECT WWPFormId, WWPFormReferenceName, WWPFormVersionNumber FROM WWP_Form WHERE WWPFormId = :AV15SDT__2Action_2Formid or WWPFormId = TO_NUMBER(0 || :AV15SDT__1Action_1Objectid,'9999999999999999999999999999.99999999999999') ORDER BY WWPFormId, WWPFormVersionNumber ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00GB6,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }

@@ -229,8 +229,6 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
-         new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV9WWPContext) ;
-         AV10TrnContext.FromXml(AV11WebSession.Get("TrnContext"), null, "", "");
       }
 
       protected void E111G2( )
@@ -2149,9 +2147,6 @@ namespace GeneXus.Programs {
          endTrnMsgTxt = "";
          endTrnMsgCod = "";
          sMode40 = "";
-         AV9WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
-         AV10TrnContext = new WorkWithPlus.workwithplus_commonobjects.SdtWWPTransactionContext(context);
-         AV11WebSession = context.GetSession();
          Z208WWPFormReferenceName = "";
          A208WWPFormReferenceName = "";
          Z209WWPFormTitle = "";
@@ -2475,13 +2470,10 @@ namespace GeneXus.Programs {
       private string A241WWPFormSectionRefElements ;
       private string Z213WWPFormElementReferenceId ;
       private string A213WWPFormElementReferenceId ;
-      private IGxSession AV11WebSession ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private SdtUForm bcUForm ;
-      private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV9WWPContext ;
-      private WorkWithPlus.workwithplus_commonobjects.SdtWWPTransactionContext AV10TrnContext ;
       private IDataStoreProvider pr_default ;
       private short[] BC001G7_A206WWPFormId ;
       private short[] BC001G7_A207WWPFormVersionNumber ;
