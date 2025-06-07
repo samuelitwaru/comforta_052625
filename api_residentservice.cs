@@ -99,6 +99,10 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_uploadcroppedmedia") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_deletemedia") == 0 )
          {
             return GAMSecurityLevel.SecurityNone ;
@@ -839,6 +843,26 @@ namespace GeneXus.Programs {
          initialize();
          /* UploadMedia Constructor */
          new prc_uploadmedia(context ).execute(  AV30MediaName,  AV32MediaImageData,  AV34MediaSize,  AV35MediaType, out  AV33BC_Trn_Media, out  AV69error) ;
+         aP4_BC_Trn_Media=this.AV33BC_Trn_Media;
+         aP5_error=this.AV69error;
+      }
+
+      public void gxep_uploadcroppedmedia( string aP0_MediaName ,
+                                           string aP1_MediaImageData ,
+                                           int aP2_MediaSize ,
+                                           string aP3_MediaType ,
+                                           out SdtTrn_Media aP4_BC_Trn_Media ,
+                                           out SdtSDT_Error aP5_error )
+      {
+         this.AV30MediaName = aP0_MediaName;
+         this.AV32MediaImageData = aP1_MediaImageData;
+         this.AV34MediaSize = aP2_MediaSize;
+         this.AV35MediaType = aP3_MediaType;
+         AV33BC_Trn_Media = new SdtTrn_Media(context);
+         AV69error = new SdtSDT_Error(context);
+         initialize();
+         /* UploadCroppedMedia Constructor */
+         new prc_uploadcroppedmedia(context ).execute(  AV30MediaName,  AV32MediaImageData,  AV34MediaSize,  AV35MediaType, out  AV33BC_Trn_Media, out  AV69error) ;
          aP4_BC_Trn_Media=this.AV33BC_Trn_Media;
          aP5_error=this.AV69error;
       }

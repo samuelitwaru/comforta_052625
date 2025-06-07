@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250606141233"
+  version: "20250607054233"
 servers:
-  - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
+  - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
   /auth/resident-login:
     post:
@@ -487,6 +487,31 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UploadMediaOutput"
+        404:
+          description: "Not found"
+
+  /media/upload/cropped:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.UploadCroppedMedia"
+      summary: "UploadCroppedMedia"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UploadCroppedMediaInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UploadCroppedMediaOutput"
         404:
           description: "Not found"
 
@@ -2071,12 +2096,21 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/oauth/gam/v2.0/access_token
+          tokenUrl: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
 
   schemas:
     UploadMediaOutput:
+      properties:
+        BC_Trn_Media:
+          description: "Trn_Media"
+          $ref: "#/components/schemas/Trn_Media"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+    UploadCroppedMediaOutput:
       properties:
         BC_Trn_Media:
           description: "Trn_Media"
@@ -2485,6 +2519,18 @@ components:
 
 
     UploadMediaInput:  
+      properties:
+        MediaName:
+          type: "string"
+        MediaImageData:
+          type: "string"
+        MediaSize:
+          type: "integer"
+          format: "int64"
+        MediaType:
+          type: "string"
+
+    UploadCroppedMediaInput:  
       properties:
         MediaName:
           type: "string"
