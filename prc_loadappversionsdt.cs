@@ -76,6 +76,12 @@ namespace GeneXus.Programs {
          AV9SDT_AppVersion = new SdtSDT_AppVersion(context);
          AV9SDT_AppVersion.FromJSonString(AV8BC_Trn_AppVersion.ToJSonString(true, true), null);
          AV9SDT_AppVersion.gxTpr_Themeid = AV8BC_Trn_AppVersion.gxTpr_Trn_themeid;
+         if ( (Guid.Empty==AV9SDT_AppVersion.gxTpr_Themeid) )
+         {
+            GXt_guid1 = Guid.Empty;
+            new prc_getdefaulttheme(context ).execute( out  GXt_guid1) ;
+            AV9SDT_AppVersion.gxTpr_Themeid = GXt_guid1;
+         }
          AV9SDT_AppVersion.gxTpr_Pages.Clear();
          /* Using cursor P00CA2 */
          pr_default.execute(0, new Object[] {AV8BC_Trn_AppVersion.gxTpr_Appversionid});
@@ -109,9 +115,9 @@ namespace GeneXus.Programs {
                {
                   AV16SDT_InfoContent = new SdtSDT_InfoContent(context);
                   AV16SDT_InfoContent.FromJSonString(A518PageStructure, null);
-                  GXt_SdtSDT_InfoContent1 = new SdtSDT_InfoContent();
-                  new prc_validateinfostructure(context ).execute(  A518PageStructure, out  GXt_SdtSDT_InfoContent1) ;
-                  AV10PageItem.gxTpr_Pageinfostructure = GXt_SdtSDT_InfoContent1;
+                  GXt_SdtSDT_InfoContent2 = new SdtSDT_InfoContent();
+                  new prc_validateinfostructure(context ).execute(  A518PageStructure, out  GXt_SdtSDT_InfoContent2) ;
+                  AV10PageItem.gxTpr_Pageinfostructure = GXt_SdtSDT_InfoContent2;
                   AV11PageStructure = AV16SDT_InfoContent.ToJSonString(false, true);
                }
                else if ( ( StringUtil.StrCmp(AV10PageItem.gxTpr_Pagetype, "DynamicForm") == 0 ) || ( StringUtil.StrCmp(AV10PageItem.gxTpr_Pagetype, "WebLink") == 0 ) )
@@ -149,6 +155,7 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV9SDT_AppVersion = new SdtSDT_AppVersion(context);
+         GXt_guid1 = Guid.Empty;
          P00CA2_A523AppVersionId = new Guid[] {Guid.Empty} ;
          P00CA2_A620IsVersionDeleted = new bool[] {false} ;
          A523AppVersionId = Guid.Empty;
@@ -171,7 +178,7 @@ namespace GeneXus.Programs {
          AV13SDT_ContentPage = new SdtSDT_ContentPage(context);
          AV14SDT_MenuPage = new SdtSDT_MenuPage(context);
          AV16SDT_InfoContent = new SdtSDT_InfoContent(context);
-         GXt_SdtSDT_InfoContent1 = new SdtSDT_InfoContent(context);
+         GXt_SdtSDT_InfoContent2 = new SdtSDT_InfoContent(context);
          AV17SDT_LinkPage = new SdtSDT_LinkPage(context);
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_loadappversionsdt__default(),
             new Object[][] {
@@ -195,6 +202,7 @@ namespace GeneXus.Programs {
       private string A517PageName ;
       private string A525PageType ;
       private string A40000PageThumbnail_GXI ;
+      private Guid GXt_guid1 ;
       private Guid A523AppVersionId ;
       private Guid A516PageId ;
       private IGxDataStore dsDataStore1 ;
@@ -218,7 +226,7 @@ namespace GeneXus.Programs {
       private SdtSDT_ContentPage AV13SDT_ContentPage ;
       private SdtSDT_MenuPage AV14SDT_MenuPage ;
       private SdtSDT_InfoContent AV16SDT_InfoContent ;
-      private SdtSDT_InfoContent GXt_SdtSDT_InfoContent1 ;
+      private SdtSDT_InfoContent GXt_SdtSDT_InfoContent2 ;
       private SdtSDT_LinkPage AV17SDT_LinkPage ;
       private SdtSDT_AppVersion aP1_SDT_AppVersion ;
    }
