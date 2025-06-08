@@ -1435,7 +1435,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025641310265", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025687404581", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1453,7 +1453,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wwpbaseobjects/notifications/common/wwp_visualizeallnotifications.js", "?2025641310266", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/notifications/common/wwp_visualizeallnotifications.js", "?2025687404582", false, true);
          }
          /* End function include_jscripts */
       }

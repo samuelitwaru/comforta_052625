@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250607080230"
+  version: "20250608045004"
 servers:
   - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -718,29 +718,6 @@ paths:
                 $ref: "#/components/schemas/UFilledOutFormsGetFilterDataOutput"
         404:
           description: "Not found"
-  /UFormWWGetFilterData:
-    post:
-      tags:
-        - UFormWWGetFilterData
-      operationId: "UFormWWGetFilterData"
-      summary: "UForm WWGet Filter Data"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UFormWWGetFilterDataInput"
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/UFormWWGetFilterDataOutput"
-        404:
-          description: "Not found"
   /WorkWithPlus/DynamicForms/WWP_DF_DynamicComboBox_WCLoadDVCombo:
     post:
       tags:
@@ -990,29 +967,6 @@ paths:
                 $ref: "#/components/schemas/WP_DynamicFormTrn_SupplierDynamicFormGetFilterDataOutput"
         404:
           description: "Not found"
-  /WP_LocationDynamicFormGetFilterData:
-    post:
-      tags:
-        - WP_LocationDynamicFormGetFilterData
-      operationId: "WP_LocationDynamicFormGetFilterData"
-      summary: "WP_Location Dynamic Form Get Filter Data"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/WP_LocationDynamicFormGetFilterDataInput"
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/WP_LocationDynamicFormGetFilterDataOutput"
-        404:
-          description: "Not found"
   /WP_OrganisationAGBSuppliersGetFilterData:
     post:
       tags:
@@ -1034,29 +988,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WP_OrganisationAGBSuppliersGetFilterDataOutput"
-        404:
-          description: "Not found"
-  /WP_OrganisationDynamicFormGetFilterData:
-    post:
-      tags:
-        - WP_OrganisationDynamicFormGetFilterData
-      operationId: "WP_OrganisationDynamicFormGetFilterData"
-      summary: "WP_Organisation Dynamic Form Get Filter Data"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/WP_OrganisationDynamicFormGetFilterDataInput"
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/WP_OrganisationDynamicFormGetFilterDataOutput"
         404:
           description: "Not found"
   /WP_OrganisationGeneralSuppliersGetFilterData:
@@ -1507,14 +1438,6 @@ components:
           type: "string"
         OptionIndexesJson:
           type: "string"
-    UFormWWGetFilterDataOutput:
-      properties:
-        OptionsJson:
-          type: "string"
-        OptionsDescJson:
-          type: "string"
-        OptionIndexesJson:
-          type: "string"
     WorkWithPlus.DynamicForms.WWP_DF_DynamicComboBox_WCLoadDVComboOutput:
       properties:
         Combo_DataJson:
@@ -1588,23 +1511,7 @@ components:
           type: "string"
         OptionIndexesJson:
           type: "string"
-    WP_LocationDynamicFormGetFilterDataOutput:
-      properties:
-        OptionsJson:
-          type: "string"
-        OptionsDescJson:
-          type: "string"
-        OptionIndexesJson:
-          type: "string"
     WP_OrganisationAGBSuppliersGetFilterDataOutput:
-      properties:
-        OptionsJson:
-          type: "string"
-        OptionsDescJson:
-          type: "string"
-        OptionIndexesJson:
-          type: "string"
-    WP_OrganisationDynamicFormGetFilterDataOutput:
       properties:
         OptionsJson:
           type: "string"
@@ -1901,14 +1808,6 @@ components:
           type: "string"
         SearchTxtTo:
           type: "string"
-    UFormWWGetFilterDataInput:  
-      properties:
-        DDOName:
-          type: "string"
-        SearchTxtParms:
-          type: "string"
-        SearchTxtTo:
-          type: "string"
     WorkWithPlus.DynamicForms.WWP_DF_DynamicComboBox_WCLoadDVComboInput:  
       properties:
         ComboName:
@@ -2009,23 +1908,7 @@ components:
           type: "string"
         SearchTxtTo:
           type: "string"
-    WP_LocationDynamicFormGetFilterDataInput:  
-      properties:
-        DDOName:
-          type: "string"
-        SearchTxtParms:
-          type: "string"
-        SearchTxtTo:
-          type: "string"
     WP_OrganisationAGBSuppliersGetFilterDataInput:  
-      properties:
-        DDOName:
-          type: "string"
-        SearchTxtParms:
-          type: "string"
-        SearchTxtTo:
-          type: "string"
-    WP_OrganisationDynamicFormGetFilterDataInput:  
       properties:
         DDOName:
           type: "string"

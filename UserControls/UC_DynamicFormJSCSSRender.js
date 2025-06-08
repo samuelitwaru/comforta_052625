@@ -1,1 +1,68 @@
-function UC_DynamicFormJSCSS(n){var i="<UC_DynamicFormJSCSS>",u={},r,t;Mustache.parse(i);this.show=function(){r=n(this.getContainerControl());this.setHtml(Mustache.render(i,this,u));this.renderChildContainers();this.Start()};this.Scripts=[];this.Start=function(){try{if(document){const n=document.querySelectorAll(".MobileSubmitBtn");console.log(this.BackgroundColor);n.forEach(n=>{n.style.backgroundColor=this.BackgroundColor})}else console.log("No document found")}catch(n){console.log(n)}};this.autoToggleVisibility=!0;t={};this.renderChildContainers=function(){r.find("[data-slot][data-parent='"+this.ContainerName+"']").each(function(i,r){var e=n(r),f=e.attr("data-slot"),u;u=t[f];u||(u=this.getChildContainer(f),t[f]=u,u.parentNode.removeChild(u));e.append(u);n(u).show()}.closure(this))}}
+function UC_DynamicFormJSCSS($) {
+	  
+
+	var template = '<UC_DynamicFormJSCSS>';
+	var partials = {  }; 
+	Mustache.parse(template);
+	var $container;
+	this.show = function() {
+			$container = $(this.getContainerControl());
+
+			// Raise before show scripts
+
+
+			//if (this.IsPostBack)
+				this.setHtml(Mustache.render(template, this, partials));
+			this.renderChildContainers();
+
+
+
+			// Raise after show scripts
+			this.Start(); 
+	}
+
+	this.Scripts = [];
+
+		this.Start = function() {
+
+					try {
+						if(document) {
+							const dynamicFormButtons = document.querySelectorAll(".MobileSubmitBtn")
+							console.log(this.BackgroundColor)
+							dynamicFormButtons.forEach((button) => {
+								button.style.backgroundColor = this.BackgroundColor
+							});
+						} else {
+							console.log("No document found")
+						}
+					} catch (e) {
+						console.log(e)
+					}	
+				
+		}
+
+
+
+	this.autoToggleVisibility = true;
+
+	var childContainers = {};
+	this.renderChildContainers = function () {
+		$container
+			.find("[data-slot][data-parent='" + this.ContainerName + "']")
+			.each((function (i, slot) {
+				var $slot = $(slot),
+					slotName = $slot.attr('data-slot'),
+					slotContentEl;
+
+				slotContentEl = childContainers[slotName];
+				if (!slotContentEl) {				
+					slotContentEl = this.getChildContainer(slotName)
+					childContainers[slotName] = slotContentEl;
+					slotContentEl.parentNode.removeChild(slotContentEl);
+				}
+				$slot.append(slotContentEl);
+				$(slotContentEl).show();
+			}).closure(this));
+	};
+
+}
