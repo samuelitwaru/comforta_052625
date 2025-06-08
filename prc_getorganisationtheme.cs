@@ -89,7 +89,10 @@ namespace GeneXus.Programs {
             AV22BC_Trn_Theme = new SdtTrn_Theme(context);
             AV22BC_Trn_Theme.Load(A273Trn_ThemeId);
             AV22BC_Trn_Theme.gxTpr_Color.Sort("ColorName");
-            AV28Icons = AV22BC_Trn_Theme.gxTpr_Icon;
+            if ( StringUtil.StrCmp(AV22BC_Trn_Theme.gxTpr_Trn_themename, "Minimalisitic") == 0 )
+            {
+               AV28Icons = AV22BC_Trn_Theme.gxTpr_Icon;
+            }
             AV23BC_Trn_ThemeCollection.Add(AV22BC_Trn_Theme, 0);
             pr_default.readNext(0);
          }
